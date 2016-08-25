@@ -1,0 +1,26 @@
+.none {
+    display: none
+}
+.popup_map_wrapper .property_thumbbnail {
+    background: url('../images/hinh_taisancungdongia_35823583.png') center no-repeat; 
+    background-size: cover;
+}
+.popup_center {
+    width: 100%
+}
+.popup_map .property_title {
+    padding: 20px 20px;
+}
+#search_box {
+    width: 770px;
+}
+.popup_map_wrapper {
+	position: relative;
+	width: 530;
+	height: auto;
+}
+.popup_map {
+    top: 0;
+    left: 0;
+    margin-left: 0
+}

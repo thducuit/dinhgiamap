@@ -1,0 +1,1 @@
+{{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyCCHpTS1Q6l81cF0bG9Q5tgBaU9udHTmWg&sensor=false') }}
