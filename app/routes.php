@@ -11,67 +11,145 @@
 |
 */
 
-Route::get('/', 'HomeController@view');
-Route::get('/index', 'HomeController@view');
+//Create group && user
+
+// Route::get('/creategroup', function() {
+//      try
+//      {
+//         $group = Sentry::createGroup(array(
+//             'name' => 'administrator',
+//             'permissions' => array(
+//                     'create'=> 1,
+//                     'read'  => 1,
+//                     'update'=> 1,
+//                     'delete'=> 1
+//                 )
+//         ));
+//      }
+//      catch(Cartalyst\Sentry\Groups\NameRequiredException $e)
+//      {
+//         echo 'name is required';
+//      }
+//      catch(Cartalyst\Sentry\Groups\GroupExistsException $e)
+//      {
+//         echo 'group is existed';
+//      }
+// });
+
+// Route::get('/createuser', function() {
+//      try
+//      {
+//         $user = Sentry::createUser(array(
+//                 'email'=>'admin@gmail.com',
+//                 'password'=>'123456',
+//                 'activated' => true,
+//             ));
+            
+//         //Find Administrator group
+//         $group = Sentry::findGroupByName('administrator');
+        
+//         // Assign the group to the user
+//         $user->addGroup($group);
+//      }
+//      catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+//      {
+//         echo 'Login field is required.';
+//      }
+//      catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+//      {
+//         echo 'Password field is required.';
+//      }
+//      catch (Cartalyst\Sentry\Users\UserExistsException $e)
+//      {
+//         echo 'User with this login already exists.';
+//      }
+//      catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+//      {
+//         echo 'Group was not found.';
+//      }
+// });
+
+
+//Route::get('/', 'HomeController@view');
+//Route::get('/index', 'HomeController@view');
+Route::get('/index1', 'HomeController@view');
 Route::get('/search', 'HomeController@search');
 Route::get('/markers', 'HomeController@getMarkers');
 Route::get('/info', 'HomeController@getInfo');
 Route::get('/address', 'HomeController@getAddress');
+Route::get('/streets', 'HomeController@getStreet');
+Route::get('/streets/price', 'HomeController@getStreetPrice');
 
-Route::controller('/contact', 'ContactController');
+
+
 
 Route::get('/about', function() {
      return View::make('default.page.about')
         ->with(array('title'=> 'về chúng tôi'))
+        ->with('current', 2)
         ->with(array('body_class'=> 'page_xemquihoach'));
 });
 Route::get('/price', function() {
+     $marker = Marker::findByPlaceId(Input::get('placeId'));
+     $address = ($marker) ? $marker->name : Input::get('address');
      return View::make('default.page.price')
-        ->with('address', Input::get('address'))
-	   ->with('placeId', Input::get('placeId'))
+        ->with('address', $address)
+        ->with('placeId', Input::get('placeId'))
+	    ->with('streetId', Input::get('street'))
         ->with(array('title'=> 'định giá'))
         ->with(array('body_class'=> 'page_search'));
 });
+
+Route::post('/district', function() {
+    $districts = Province::find(Input::get('id'))->districts;
+    return Response::json($districts);
+});
+
 Route::get('/plan', function() {
      return View::make('default.page.plan')
         ->with(array('title'=> 'xem quy hoạch'))
+        ->with('current', 3)
         ->with(array('body_class'=> 'page_xemquihoach'));
 });
-Route::get('/payment', function() {
-     return View::make('default.page.payment')
-        ->with(array('title'=> 'thanh toán'))
-        ->with(array('body_class'=> 'page_thanhtoan'));
-});
-Route::get('/payment2', function() {
-     return View::make('default.page.payment2')
-        ->with(array('title'=> 'hình thức thanh toán'))
-        ->with(array('body_class'=> 'page_thanhtoan'));
-});
-Route::get('/payment3', function() {
-     return View::make('default.page.payment3')
-        ->with(array('title'=> 'hoàn tất thanh toán'))
-        ->with(array('body_class'=> 'page_thanhtoan'));
-});
+
+Route::controller('/payment', 'PaymentController');
+Route::controller('/customer', 'CustomerController');
+
 Route::get('/question', function() {
      return View::make('default.page.qa')
         ->with(array('title'=> 'câu hỏi thường gặp'))
+        ->with('current', 4)
         ->with(array('body_class'=> 'page_contact'));
 });
-Route::get('/result', function() {
-     return View::make('default.page.result')
-        ->with(array('title'=> 'kết quả định giá'))
+Route::get('/result', 'HomeController@showResult');
+Route::get('/register', function() {
+     return View::make('default.page.register')
+        ->with(array('title'=> 'Đăng ký'))
         ->with(array('body_class'=> 'page_contact'));
 });
+Route::post('/register', 'AuthController@register');
+
+Route::post('/login', 'AuthController@login');
+
+Route::get('/logout', 'AuthController@logout');
+
+Route::get('/structure', 'HomeController@getStructure');
 
 Route::post('/the-price', 'HomeController@getPrice');
 
-Route::get('admin/dashboard', function() {
-     return View::make('admin.dashboard')
-        ->with(array('title'=> 'trang chủ'));
+
+Route::group(array('before' => 'dg_admin_authentication'), function() {
+     Route::controller('admin/info', 'InfoController');
+     Route::controller('admin/streets', 'StreetController');
+     Route::controller('admin/markers', 'MarkerController');
+     Route::controller('admin/questions', 'QuestionController');
+     Route::controller('admin/plans', 'PlanController');
+     Route::controller('admin/contacts', 'AdminContactController');
+     Route::controller('admin/users', 'UserController');
+     Route::controller('admin/customers', 'CustomerController');
+     Route::get('admin/dashboard', 'AdminController@dashboard');
 });
 
+Route::controller('admin', 'AdminController');
 
-Route::controller('admin/info', 'InfoController');
-Route::controller('admin/streets', 'StreetController');
-Route::controller('admin/markers', 'MarkerController');
-Route::controller('admin/questions', 'QuestionController');
+Route::controller('/contact', 'ContactController');

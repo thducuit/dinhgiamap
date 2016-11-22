@@ -18,11 +18,11 @@
 			        </tr>
 			        <tr>
 			            <td>Đơn giá thị trường vnđ/m<sup>2</sup></td>
-			            <td>{{ $marker->price }}</td>
+			            <td>{{ number_format($marker->price) }}</td>
 			        </tr>
 			        <tr>
 			            <td>Đơn giá nhà nước vnđ/m<sup>2</sup></td>
-			            <td>{{ $marker->state_price }}</td>
+			            <td>{{ number_format($marker->state_price) }}</td>
 			        </tr>
 			        <tr>
 			            <td>Diện tích đất m<sup>2</sup></td>

@@ -13,7 +13,7 @@ class CreatePaymentTypeTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('payment_type', function(Blueprint $table) {
+		Schema::create('payment_service', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('title');
 			$table->timestamps();
@@ -28,7 +28,7 @@ class CreatePaymentTypeTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('payment_type');
+		Schema::drop('payment_service');
 	}
 
 }

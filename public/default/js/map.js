@@ -4,6 +4,9 @@
     $(document).ready(function() {
         var place = null;
         var geocoder = new google.maps.Geocoder();
+        var isAutoComplete = false;
+
+        var polygons = [];
         
         var placeInfo = null;
 
@@ -38,8 +41,9 @@
         autocomplete.addListener('place_changed', function() {
             var place = autocomplete.getPlace();
             //mapObject.setCenter(place.geometry.location);
-            console.log('place', place);
+            //console.log('place', place);
             $('#placeId').val(place.place_id);
+            isAutoComplete = true;
         });
 
         var infowindow = new google.maps.InfoWindow();
@@ -69,7 +73,7 @@
                     return o;
                 }
             }
-            return null
+            return null;
         }
 
         function getAddress(type, value, callback) {
@@ -78,7 +82,6 @@
             if (geocoder) {
                 geocoder.geocode(request, function(result) {
                     if (result && $.isArray(result) && result.length) {
-                        console.log('geo', result);
                         if (callback && $.isFunction(callback)) {
                             callback(result);
                         }
@@ -92,7 +95,6 @@
         }
 
         function getDragendAddressCallback(list) {
-            console.log('drag', list);
             var object = list[0];
             $('#google-map-autocomplete').val(object.formatted_address);
             $('#placeId').val(object.place_id);
@@ -118,62 +120,91 @@
             getAddress('latLng', e.latLng, getDragendAddressCallback);
         });
 
-        function setContent(place) {
-            if (!place) return null;
-            placeInfo = place;
-            var p = $('#placeId').val();
-            var a = $('#google-map-autocomplete').val();
-            var contentString = '<div class="popup_map">' +
-                '<div class="popup_map_inner clearfix">' +
-                '<div class="p_address">' +
-                '<p>' + place.name + '</p>' +
-                '</div>' +
-                '<div class="clearfix">' +
-                '<div class="p_half">' +
-                '<div class="p_status">' +
-                '<p>Trạng thái: </strong></p>' +
-                '</div>' +
-                '</div>' +
-                '<div class="p_half">' +
-                '<div class="p_value">' +
-                '<p><a href="#"><i class="icon_money"></i><span><strong>Liên hệ định giá</strong></span></a></p>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="popup_button_group">' +
-                '<a id="showDGPopUp" href="#"><div class="btn btn_icon btn_gradient1"><i class="icon_xemdongia"></i><span>Xem đơn giá</span></div></a>' +
-                '<a href="' + url.plan + '"><div class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>' +
-                '<a id="showDinhGiaPopUp" href="' + url.price + '?placeId=' + p +'&address='+a+'"><div class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></div></a>' +
-                '<a href="' + url.address + '?lat=' + place.lat + '&lng=' + place.lng + '"><div class="btn btn_icon btn_gradient4"><i class="icon_cungdongia"></i><span>Tài sản cùng đơn giá</span></div></a>' +
-                '</div>' +
-                '</div>' +
-                '</div>';
+        // function setContent(place) {
+        //     if (!place) return null;
 
-            infowindow.setContent(contentString);
+        //     placeInfo = place;
+        //     console.log(place);
+        //     var p = $('#placeId').val();
+        //     var a = $('#google-map-autocomplete').val();
+        //     var s = placeInfo.street_id;
+        //     var contentString = '<div class="popup_map">' +
+        //         '<div class="popup_map_inner clearfix">' +
+        //         '<div class="p_address">' +
+        //         '<p>' + place.name + '</p>' +
+        //         '</div>' +
+        //         '<div class="clearfix">' +
+        //         '<div class="p_half">' +
+        //         '<div class="p_status">' +
+        //         '<p>Trạng thái: </strong></p>' +
+        //         '</div>' +
+        //         '</div>' +
+        //         '<div class="p_half">' +
+        //         '<div class="p_value">' +
+        //         '<p><a href="#"><i class="icon_money"></i><span><strong>Liên hệ định giá</strong></span></a></p>' +
+        //         '</div>' +
+        //         '</div>' +
+        //         '</div>' +
+        //         '<div class="popup_button_group">' +
+        //         '<a id="showDGPopUp" href="#"><div class="btn btn_icon btn_gradient1"><i class="icon_xemdongia"></i><span>Xem đơn giá</span></div></a>' +
+        //         '<a href="' + url.plan + '"><div class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>' +
+        //         '<a id="showDinhGiaPopUp" href="' + url.price + '?placeId=' + p +'&address=' + a + '&street=' + s +  '"><div class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></div></a>' +
+        //         '<a id="priceLink" href="' + url.address + '?lat=' + place.lat + '&lng=' + place.lng + '"><div class="btn btn_icon btn_gradient4"><i class="icon_cungdongia"></i><span>Tài sản cùng đơn giá</span></div></a>' +
+        //         '</div>' +
+        //         '</div>' +
+        //         '</div>';
+
+        //     infowindow.setContent(contentString);
+        // }
+
+        function setContent(place) {
+            $('#modal_info .p_address p').text(place.name);
+
+            placeInfo = place;
+            var a = $('#google-map-autocomplete').val();
+            var p = $('#placeId').val();
+            var priceLink = [url.price, '?placeId=', p, '&address=', a, '&street=', placeInfo.street_id].join('');
+            $('.btn_dinhgia').attr('href', priceLink);
         }
 
-        $('body').on('click', '#showDGPopUp', function(e) {
+        $('#show-price-pop-up').click(function(e) {
             e.preventDefault();
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgtt_popup_address').html(html);
-            if(placeInfo.price_format) {
-                $('.dongia_highlight_left').html(placeInfo.price_format);
-            }
-            if(placeInfo.state_price_format) {
-                $('.dongia_highlight_right').html(placeInfo.state_price_format);
-            }
-            $('#dgtt_popup').removeClass('none');
+
+
+
+            if(placeInfo.price_format && placeInfo.state_price_format) {
+                buildHTMLPopupDG();
+            }else {
+                getStreetPrice();
+            }  
         });
-        
-        // $('body').on('click', '#showDinhGiaPopUp', function(e) {
-        //     e.preventDefault();
-        //     var street =  placeInfo.street.name || '';
-        //     var html = [placeInfo.name, '<br>', street].join('');
-        //     //$('#dgtt_popup_address').html(html);
-        //     $('#dinhgia_popup').removeClass('none');
-        // });
-        
+
+        function buildHTMLPopupDG() {
+            $('.dongia_highlight_left').html(placeInfo.price_format);
+            $('.dongia_highlight_right').html(placeInfo.state_price_format);
+
+            $('#modal_dongiathitruong').modal('show');
+        }
+
+        function getStreetPrice(){
+            $.ajax({
+                url: url.priceStreet,
+                type: 'get',
+                data: {
+                    id: placeInfo.street_id
+                },
+                success: function(response) {
+                    if(response){
+                        placeInfo.price_format = response.price_format;
+                        placeInfo.state_price_format = response.state_price_format;
+                        buildHTMLPopupDG();
+                    }
+                }
+            });
+        }
         
         
         $('#btn_close').click(function() {
@@ -189,26 +220,103 @@
                     placeId: placeId
                 },
                 success: function(response) {
-                    console.log('address information', response);
                     if (response && response.name) {
                         setContent(response);
+                        $('#modal_info').modal('show');
                     }
                     else {
+                        place.street_id = ContainInPolygon(place);
                         setContent(place);
+                        $('#modal_info').modal('show');
                     }
                 }
             })
         }
 
+        function ContainInPolygon(place){
+            for(var i = polygons.length; i>=0; i--) {
+                if( polygons[i] && google.maps.geometry.poly.containsLocation(new google.maps.LatLng(place.lat, place.lng), polygons[i]) )
+                    return i;
+            }
+            return 0;
+        }
+
         marker.addListener('click', function() {
-            infowindow.open(mapObject, marker);
+            //infowindow.open(mapObject, marker);
             findAddressInformation();
         });
 
-        function init() {
+        /**
+        get area -> draw polygons -> get current point
+        */
+        function getAreas () {
+            $.ajax({
+                url: url.street,
+                type: 'get',
+                success: function(response) {
+                    if(response) {
+                        drawPolygon(response);
+                    }
+                    initCurrentPoint();
+                }
+            })    
+        }
+
+        function drawPolygon(response) {
+            $.map(response, function(value, index) {
+                if(value) {
+                    var triangleCoords = JSON.parse(value);
+                    if(triangleCoords.latlng && $.isArray(triangleCoords.latlng) && triangleCoords.latlng.length)  {
+                        polygons[index] = new google.maps.Polygon({
+                                          paths: triangleCoords.latlng,
+                                          strokeColor: '#FF0000',
+                                          strokeOpacity: 0.5,
+                                          strokeWeight: 1,
+                                          fillColor: '#FF0000',
+                                          fillOpacity: 0.35
+                                        });
+                        polygons[index].setMap(mapObject);
+                    }
+                }else{
+                    polygons[index] = null;
+                }
+            });
+        }
+
+        function initCurrentPoint(){
             var placeId = $("#placeId").val();
             getAddress('placeId', placeId, getAddressCallback);
         }
+
+        function init() {
+            getAreas();
+            
+        }
+
+        $('.input_submit').click(function(event) {
+            event.stopPropagation();
+            if(isAutoComplete) {
+                return true;
+            }else {
+                var address = $('.cen-address-text').val();
+                if(address) {
+                    getAddress('address', address, function(result) {
+                        //console.log(result);
+                        if(result && $.isArray(result) && result.length ) {
+                            var obj = result[0];
+                            $('.cen-address-text').val(obj.formatted_address);
+                            $('#placeId').val(obj.place_id);
+                            $('.google-map-search-form').submit();
+                        }
+                    });
+                }
+                return false;
+            }
+        });
+
+        $('.cen-address-text').change(function() {
+            isAutoComplete = false;
+        });
 
         init();
 

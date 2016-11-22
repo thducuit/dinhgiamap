@@ -1,0 +1,43 @@
+<header>
+				<div id="header">
+					<div class="header_inner">
+						<div class="header_show clearfix">
+							<div id="logo"><a href="{{ URL::to('/index') }}">Cenvalue</a></div>
+							<div id="menu_button"><span></span></div>
+						</div>
+						<div id="navigation">
+							<div class="navigation_wrapper">
+								<ul class="menu_list clearfix">									
+									
+									@if(! Sentry::check() )
+									<li class="menu_item"><a href="{{ URL::to('/register') }}"><i class="menu_icon icon_dangky"></i> <span>Đăng ký  &nbsp; | </span></a><a href="{{ URL::to('/register') }}"><span>Đăng nhập</span></a></li>
+									@else
+									<li class="menu_item"><a href="{{ URL::to('/customer/info') }}"><i class="menu_icon icon_dangky"></i> <span>Thông tin cá nhân &nbsp; | </span></span></a><a href="{{ URL::to('/logout') }}"><span>Đăng xuất</span></a></li>
+									@endif
+									<li class="menu_item {{ isset($current) && $current == 1 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/index') }}"><i class="menu_icon icon_trangchu"></i><span>Trang chủ</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 2 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/about') }}"><i class="menu_icon icon_vechungtoi"></i><span>Về chúng tôi</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 3 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/plan') }}"><i class="menu_icon icon_xemquihoach"></i><span>Xem qui hoạch</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 4 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/question') }}"><i class="menu_icon icon_faq"></i><span>Hỏi đáp</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 5 ? 'current' : '' }}"><a class="clearfix" href="#"><i class="menu_icon icon_video"></i><span>Hướng dẫn sử dụng</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/contact') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li>									
+								</ul>
+								<ul class="submenu">
+									<li><a href="#"><span>Điều khoản bảo mật</span></a></li>
+									<li><a href="#"><span>Chính sách sử dụng</span></a></li>
+								</ul>
+								<!-- <div class="nav_contact nav_address">
+									<p>CÔNG TY CỔ PHẦN THẨM ĐỊNH GIÁ THẾ KỶ - CENVALUE</p>
+									<p>Địa chỉ: Tầng 20, Tòa nhà 319 Bộ Quốc Phòng,</p>
+									<p>Số 63 Lê Văn Lương - Cầu Giấy, Hà Nội</p>
+									<p>Điện thoại: (04) 32222.786 - Fax: (04) 32222.787</p>
+								</div> -->
+								<div class="nav_contact">
+									<p>Hotline</p>
+									<p><strong><!-- 0983 604 426 - 0936 878 55 -->1900 1079</strong></p>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>

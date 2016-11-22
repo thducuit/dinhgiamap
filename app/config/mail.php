@@ -29,7 +29,7 @@ return array(
 	*/
 
 	//'host' => 'smtp.mailgun.org',
-	'host' => 'smtp.gmail.com',
+	'host' => 'smtp.googlemail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return array(
 	|
 	*/
 
-	'username' => 'dukpro2910@gmail.com',
+	'username' => 'email.sender.systems@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return array(
 	|
 	*/
 
-	'password' => 'choancut',
+	'password' => '123456tq',
 
 	/*
 	|--------------------------------------------------------------------------

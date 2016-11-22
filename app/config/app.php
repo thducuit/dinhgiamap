@@ -121,7 +121,10 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Ducnguyen\Storage\StorageServiceProvider'
+		'Cartalyst\Sentry\SentryServiceProvider',
+		'Ducnguyen\Storage\StorageServiceProvider',
+		'Chumper\Zipper\ZipperServiceProvider',
+		'Maatwebsite\Excel\ExcelServiceProvider'
 
 	),
 
@@ -189,6 +192,9 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+		'Sentry' 			=> 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+		'Zipper' 			=> 'Chumper\Zipper\Zipper',
+		'Excel'				=> 'Maatwebsite\Excel\Facades\Excel'
 
 	),
 

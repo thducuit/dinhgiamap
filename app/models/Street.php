@@ -5,6 +5,11 @@ class Street extends Eloquent {
     public function markers(){
         return $this->hasMany('Marker');
     }
+
+    public function user()
+    {
+        return $this->hasOne('User');
+    }
     
     public static function getOptions()
     {

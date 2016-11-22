@@ -9,7 +9,7 @@ MAIN
 <div id="main" class="screen">
 	<div class="main_wrapper">
 		
-		<div class="block_overlay none">
+		<div class="block_overlay">
 			<!--
 			SEARCH BOX
 			-->
@@ -18,17 +18,9 @@ MAIN
 					{{ Form::open( array('url' => 'search', 'method' => 'get', 'class' => 'clearfix google-map-search-form') ) }}
 						<div class="form_group form_group_icon_location"><i class="icon_location"></i></div>
 						<div class="form_group form_group_input_text">
-							<input class="input_text" type="text" name="address" value="{{ $address }}" id="google-map-autocomplete" placeholder="Nhập địa chỉ tài sản để định giá">
+							<input class="input_text cen-address-text" type="text" name="address" value="{{ $address }}" id="google-map-autocomplete" placeholder="Nhập địa chỉ tài sản để định giá">
 							<input class="input_text" name="placeId" id="placeId" type="hidden" value="{{ $placeId }}" >
 						</div>
-						<!--<div class="form_group form_group_input_select">-->
-						<!--<select class="input_select">-->
-						<!--	<option>Căn hộ</option>-->
-						<!--	<option>Nhà nguyên căn</option>-->
-						<!--	<option>Biệt thự</option>-->
-						<!--	<option>Đất nền</option>-->
-						<!--</select>-->
-						<!--</div>-->
 						<div class="form_group form_group_submit">
 							<input class="input_submit" type="submit" value="Tìm kiếm">
 						</div>
@@ -41,15 +33,45 @@ MAIN
 		<!--
 		MAP VIEW
 		-->
-		<div id="map_view"></div>	
+		<div id="map_view"></div>
+		
+		
 		
 		<!--
 		POPUP
 		-->
-		<div class="popup_middle_wrapper">
-			<div class="popup_middle">
-				<div class="popup_middle_inner clearfix">
+		<!-- <div class="popup_middle_wrapper"> -->
+		<div id="modal_dinhgia" class="modal fade" role="dialog">	
+			<div class="modal-dialog" style="max-width: 900px;">
+			<!-- <div class="popup_middle"> -->
+				<!-- <div class="popup_middle_inner clearfix"> -->
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div class="modal-body">
+					<!--.errors-->
+				    @if( $errors->has() )
+				    <div class="row the-error">
+				        <div class="col-md-12">
+			                @foreach( $errors->all() as $error )
+			                <p class="error">{{ $error }} </p>
+			        		@endforeach
+						</div>
+				    </div>
+				    @endif
+					<!--/.errors-->
 					
+					<!--.alert-->
+					@if( Session::get('message') )
+					<div class="row">
+					    <div class="col-md-12">
+					    	<div class="alert">
+							  <strong><p class="error">{{ Session::get('message') }}</p></strong>
+							</div>
+					    </div>
+					</div>
+				    @endif
+				    <!--/.alert-->
+				    
 					<!-- danh cho ban desktop -->
 					<div class="desktop">
 						<div class="dinhgia_tabpanel">
@@ -72,66 +94,96 @@ MAIN
 									</div>
 									<div class="tab_body">
 										<div class="tab_body_inner">
-											{{ Form::open(array( 'url' => '/the-price', 'method'=>'post' )) }}
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Vị trí (*)</label>
+														<input type="hidden" name="type" value='vacant_land'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+														<select>
+															<option>1 hẻm</option>
+															<option>2 hẻm</option>
+														</select>
+													
+													</div>
+													<div class="form_col">
+														<label>Hình dạng thửa đất</label>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col" style="width: 50%;">
+														<label>Yếu tố khác</label>
+														<select>
+                                                            <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+															<option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+														</select>
+													</div>	
+												</div>
 												<div class="form_row clearfix">
 													<div class="form_col">
 														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="">
+														<label>&nbsp;</label>
+														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="">
-													</div>																										
-													<div class="form_col">
-														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="">
-													</div>
-												</div>
-												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Hình dạng thửa đất</label>
-													</div>
-													<div class="form_col">
-														<select name="shape">
-															<option>Vuông vức</option>
-															<option>Hình chữ nhật</option>
-														</select>
+														<label>&nbsp;</label>
+														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
 													</div>
 												</div>														
 												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Đất phù hợp quy hoạch</label>
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
 													</div>
 													<div class="form_col">
-														<input type="text" name="leaving_plan_area" placeholder="Diện tích đất ở (m)" value="">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" name="farming_plan_area" placeholder="Diện tích đất Nông Nghiệp" value="">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
 													</div>																										
 													<div class="form_col">
-														<input type="text" name="building_plan_area" placeholder="Diện tích đất SX-XD" value="">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
 													</div>
 												</div>											
 												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Đất vi phạm lộ giới được công nhận</label>
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
 													</div>
 													<div class="form_col">
-														<input type="text" name="leaving_accept_area" placeholder="Diện tích đất ở (m)" value="">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" name="farming_accept_area" placeholder="Diện tích đất Nông Nghiệp" value="">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
 													</div>																										
 													<div class="form_col">
-														<input type="text" name="building_accept_area" placeholder="Diện tích đất SX-XD" value="">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
 													</div>
 												</div>
 												<div class="form_row clearfix">
-													<div class="popup_button_group">
-														<a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a>
-														<button id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+													<div class="popup_button_group groupThanhToan">
+
+														<!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
 													</div>
 												</div>
+												<input type="hidden" class="chooser" name="chooser">
 											{{ Form::close() }}
 										</div>
 									</div>
@@ -145,58 +197,81 @@ MAIN
 									</div>
 									<div class="tab_body">
 										<div class="tab_body_inner">
-											{{ Form::open(array( 'url' => '/the-price', 'method'=>'post' )) }}
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
 												<div class="form_row clearfix">
 													<div class="form_col">
-														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<label class="highlight">Vị trí (*)</label>
+														<input type="hidden" name="type" value='house'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+														<select>
+															<option>1 hẻm</option>
+															<option>2 hẻm</option>
+														</select>
 													</div>
 													<div class="form_col">
-														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="">
+														<label>Hình dạng thửa đất</label>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
 													</div>
-													<div class="form_col">
-														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="">
-													</div>																										
-													<div class="form_col">
-														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="">
+													<div class="form_col"  style="width: 50%;">
+														<label>Yếu tố khác</label>
+														<select>
+                                                            <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+															<option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+														</select>
 													</div>
 												</div>
 												<div class="form_row clearfix">
 													<div class="form_col">
-														<label>Hình dạng thửa đất</label>
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
 													</div>
 													<div class="form_col">
-														<select name="shape">
-															<option>Vuông vức</option>
-															<option>Hình chữ nhật</option>
-														</select>
+														<label>&nbsp;</label>
+														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
 													</div>
 												</div>														
 												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Đất phù hợp quy hoạch</label>
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
 													</div>
 													<div class="form_col">
-														<input name="leaving_plan_area" type="text" placeholder="Diện tích đất ở (m)" value="">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
 													</div>
 													<div class="form_col">
-														<input name="farming_plan_area" type="text" placeholder="Diện tích đất Nông Nghiệp" value="">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
 													</div>																										
 													<div class="form_col">
-														<input name="building_plan_area" type="text" placeholder="Diện tích đất SX-XD" value="">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
 													</div>
 												</div>											
 												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Đất vi phạm lộ giới được công nhận</label>
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
 													</div>
 													<div class="form_col">
-														<input name="leaving_accept_area" type="text" placeholder="Diện tích đất ở (m)" value="">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
 													</div>
 													<div class="form_col">
-														<input name="farming_accept_area" type="text" placeholder="Diện tích đất Nông Nghiệp" value="">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
 													</div>																										
 													<div class="form_col">
-														<input name="building_accept_area" type="text" placeholder="Diện tích đất SX-XD" value="">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
 													</div>
 												</div>
 												<div class="form_row clearfix">
@@ -205,26 +280,24 @@ MAIN
 													</div>
 												</div>																												
 												<div class="form_row clearfix">
-													<div class="form_col">
+													<div class="form_col form_col2">
 														<label>Kết cấu chính</label>
-														<input name="structure[]" type="text" placeholder="" value="">
-													</div>
-													<div class="form_col">
-														<label>Tổng diện tích sàn xd</label>
-														<input name="total_ground_area[]" type="text" placeholder="" value="">
-													</div>
-													<div class="form_col">
-														<label>Năm xây dựng</label>
-														<select name="building_year[]">
-															<option>2016</option>
-															<option>2015</option>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('nha-pho')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
 														</select>
 													</div>
 													<div class="form_col">
-														<label>Năm sửa chữa (nếu có)</label>
-														<select name="fixing_year[]">
-															<option>2016</option>
-															<option>2015</option>
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
 														</select>
 													</div>
 												</div>	
@@ -234,33 +307,30 @@ MAIN
 													</div>
 												</div>																												
 												<div class="form_row clearfix">
-													<div class="form_col">
+													<div class="form_col form_col2">
 														<label>Kết cấu chính</label>
-														<input name="structure[]" type="text" placeholder="" value="">
+														<input type="text" placeholder="" value="">
 													</div>
 													<div class="form_col">
 														<label>Tổng diện tích sàn xd</label>
-														<input name="total_ground_area[]" type="text" placeholder="" value="">
+														<input type="text" placeholder="" value="">
 													</div>
 													<div class="form_col">
 														<label>Năm xây dựng</label>
-														<select name="building_year[]">
-															<option>2016</option>
-															<option>2015</option>
-														</select>
-													</div>
-													<div class="form_col">
-														<label>Năm sửa chữa (nếu có)</label>
-														<select name="fixing_year[]">
+														<select>
 															<option>2016</option>
 															<option>2015</option>
 														</select>
 													</div>
 												</div>	
 												<div class="form_row clearfix">
-													<div class="popup_button_group">
-														<a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a>
-														<button type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.house_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
 													</div>
 												</div>
 											{{ Form::close() }}
@@ -271,50 +341,750 @@ MAIN
 								<!-- content tab biet thu -->
 								<div>
 									<div class="tab_header">
-										biet thu
+										<h3 class="tab_header_title">Địa chỉ định giá</h3>
+										<p>Địa chỉ : {{ $address }}</p>
 									</div>
 									<div class="tab_body">
-										a
+										<div class="tab_body_inner">
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form vila_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Vị trí (*)</label>
+														<input type="hidden" name="type" value='house'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+														<select>
+															<option>1 hẻm</option>
+															<option>2 hẻm</option>
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Hình dạng thửa đất</label>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col"  style="width: 50%;">
+														<label>Yếu tố khác</label>
+														<select>
+                                                            <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+															<option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+														</select>
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('biet-thu')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.vila_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
+										</div>
 									</div>
 								</div>
 								
 								<!-- content tab can ho -->
 								<div>
 									<div class="tab_header">
-										can ho
+										<h3 class="tab_header_title">Địa chỉ định giá</h3>
+										<p>Địa chỉ : {{ $address }}</p>
 									</div>
 									<div class="tab_body">
-										a
+										<div class="tab_body_inner">
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form flat_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Vị trí (*)</label>
+														<input type="hidden" name="type" value='house'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+														<select>
+															<option>1 hẻm</option>
+															<option>2 hẻm</option>
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Hình dạng thửa đất</label>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col"  style="width: 50%;">
+														<label>Yếu tố khác</label>
+														<select>
+                                                            <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+															<option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+														</select>
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('can-ho')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.flat_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
+										</div>
 									</div>
 								</div>
 								
 								<!-- content tab khach san -->
 								<div>
 									<div class="tab_header">
-										khach san
+										<h3 class="tab_header_title">Địa chỉ định giá</h3>
+										<p>Địa chỉ : {{ $address }}</p>
 									</div>
 									<div class="tab_body">
-										a
+										<div class="tab_body_inner">
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form hotel_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Vị trí (*)</label>
+														<input type="hidden" name="type" value='house'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+														<select>
+															<option>1 hẻm</option>
+															<option>2 hẻm</option>
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Hình dạng thửa đất</label>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col"  style="width: 50%;">
+														<label>Yếu tố khác</label>
+														<select>
+                                                            <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+															<option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+														</select>
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('khach-san')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.hotel_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
+										</div>
 									</div>
 								</div>
 								
 								<!-- content tab toa nha van phong -->
 								<div>
 									<div class="tab_header">
-										toa nha van phong
+										<h3 class="tab_header_title">Địa chỉ định giá</h3>
+										<p>Địa chỉ : {{ $address }}</p>
 									</div>
 									<div class="tab_body">
-										a
+										<div class="tab_body_inner">
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form office_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Vị trí (*)</label>
+														<input type="hidden" name="type" value='house'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+														<select>
+															<option>1 hẻm</option>
+															<option>2 hẻm</option>
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Hình dạng thửa đất</label>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col"  style="width: 50%;">
+														<label>Yếu tố khác</label>
+														<select>
+                                                            <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+															<option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+														</select>
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('toa-nha-van-phong')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.office_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
+										</div>
 									</div>
 								</div>
 								
 								<!-- content tab kho xuong -->
 								<div>
 									<div class="tab_header">
-										kho xuong
+										<h3 class="tab_header_title">Địa chỉ định giá</h3>
+										<p>Địa chỉ : {{ $address }}</p>
 									</div>
 									<div class="tab_body">
-										a
+										<div class="tab_body_inner">
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form warehouse_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Vị trí (*)</label>
+														<input type="hidden" name="type" value='house'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+														<select>
+															<option>1 hẻm</option>
+															<option>2 hẻm</option>
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Hình dạng thửa đất</label>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col"  style="width: 50%;">
+														<label>Yếu tố khác</label>
+														<select>
+                                                            <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+															<option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+														</select>
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+													</div>
+													<div class="form_col">
+														<label>&nbsp;</label>
+														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<select name="structure_parent" id="structure_parent">
+															@foreach (Structure::findByParent('kho-xuong')->get()->toArray() as $s)
+															<option value="{{ $s['id'] }}">{{ $s['name'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col form_col2">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.warehouse_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
+										</div>
 									</div>
 								</div>
 								
@@ -334,71 +1104,89 @@ MAIN
 								<div>
 									<div class="tab_header">
 										<h3 class="tab_header_title">Địa chỉ định giá</h3>
-										<p>Địa chỉ : 27 Phó Đức Chính, Phường Nguyễn Thái Bình Quận 1, TPHCM</p>
+										<p>Địa chỉ : {{ $address }}</p>
 									</div>
 									<div class="tab_body">
 										<div class="tab_body_inner">
-											<form>
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form') ) }}
 												<div class="form_row clearfix">
-													<div class="form_col">
+													<div class="form_col form_col_first">
 														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="hidden" name="type" value='vacant_land'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+													
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Tổng diện tích (m2)" value="">
+														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Chiều ngang mặt tiền (m)" value="">
+														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
 													</div>																										
 													<div class="form_col">
-														<input type="text" placeholder="Chiều dài lớn nhất (m)" value="">
+														<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
 													</div>
 												</div>
 												<div class="form_row clearfix">
-													<div class="form_col">
+													<div class="form_col form_col_first">
 														<label>Hình dạng thửa đất</label>
 													</div>
 													<div class="form_col">
-														<select>
-															<option>Vuông vức</option>
-															<option>Hình chữ nhật</option>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
 														</select>
 													</div>
 												</div>														
 												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Đất phù hợp quy hoạch</label>
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất ở (m)" value="">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất Nông Nghiệp" value="">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
 													</div>																										
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất SX-XD" value="">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
 													</div>
 												</div>											
 												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Đất vi phạm lộ giới được công nhận</label>
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất ở (m)" value="">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất Nông Nghiệp" value="">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
 													</div>																										
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất SX-XD" value="">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
 													</div>
 												</div>
 												<div class="form_row clearfix">
-													<div class="popup_button_group">
-														<a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a>
-														<div id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></div></a>
+													<div class="popup_button_group groupThanhToan">
+
+														<!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
 													</div>
 												</div>
-											</form>
+												<input type="hidden" class="chooser" name="chooser">
+											{{ Form::close() }}
 										</div>
 									</div>
 								</div>
@@ -414,67 +1202,107 @@ MAIN
 								<div>
 									<div class="tab_header">
 										<h3 class="tab_header_title">Địa chỉ định giá</h3>
-										<p>Địa chỉ : 27 Phó Đức Chính, Phường Nguyễn Thái Bình Quận 1, TPHCM</p>
+										<p>Địa chỉ : {{ $address }}</p>
 									</div>
 									<div class="tab_body">
 										<div class="tab_body_inner">
-											<form>
+											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
 												<div class="form_row clearfix">
-													<div class="form_col">
+													<div class="form_col form_col_first">
 														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="hidden" name="type" value='house'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+													
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Tổng diện tích (m2)" value="">
+														<input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Chiều ngang mặt tiền (m)" value="">
+														<input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
 													</div>																										
 													<div class="form_col">
-														<input type="text" placeholder="Chiều dài lớn nhất (m)" value="">
+														<input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
 													</div>
 												</div>
 												<div class="form_row clearfix">
-													<div class="form_col">
+													<div class="form_col form_col_first">
 														<label>Hình dạng thửa đất</label>
 													</div>
 													<div class="form_col">
-														<select>
-															<option>Vuông vức</option>
-															<option>Hình chữ nhật</option>
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
 														</select>
 													</div>
 												</div>														
 												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Đất phù hợp quy hoạch</label>
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất ở (m)" value="">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất Nông Nghiệp" value="">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
 													</div>																										
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất SX-XD" value="">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
 													</div>
 												</div>											
 												<div class="form_row clearfix">
-													<div class="form_col">
-														<label>Đất vi phạm lộ giới được công nhận</label>
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất ở (m)" value="">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất Nông Nghiệp" value="">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
 													</div>																										
 													<div class="form_col">
-														<input type="text" placeholder="Diện tích đất SX-XD" value="">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
 													</div>
 												</div>
 												<div class="form_row clearfix">
 													<div class="form_col">
 														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('nha-pho')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
 													</div>
 												</div>																												
 												<div class="form_row clearfix">
@@ -493,19 +1321,135 @@ MAIN
 															<option>2015</option>
 														</select>
 													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.house_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
+										</div>
+									</div>
+								</div>
+							  </article>
+							</div>
+						  </section>
+						  
+						  <section data-accordion>
+							<button data-control><i class="icon_tabpanel icon_bietthu"></i> Biệt thự</button>
+							<div data-content>
+							   <article>
+									<!-- content tab biet thu -->
+									<div>
+										<div class="tab_header">
+											<h3 class="tab_header_title">Địa chỉ định giá</h3>
+											<p>Địa chỉ : {{ $address }}</p>
+										</div>
+										<div class="tab_body">
+											<div class="tab_body_inner">
+												{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form vila_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="hidden" name="type" value='vila'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+													</div>
 													<div class="form_col">
-														<label>Năm sửa chữa (nếu có)</label>
-														<select>
-															<option>2016</option>
-															<option>2015</option>
+														<input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Hình dạng thửa đất</label>
+													</div>
+													<div class="form_col">
+														<select name="shape">
+														@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+														<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+														@endforeach
 														</select>
 													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('biet-thu')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
 												</div>	
 												<div class="form_row form_add_row_wrapper clearfix">
 													<div class="form_col">
 														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
 													</div>
-												</div>																																													
+												</div>																												
 												<div class="form_row clearfix">
 													<div class="form_col">
 														<label>Kết cấu chính</label>
@@ -522,40 +1466,18 @@ MAIN
 															<option>2015</option>
 														</select>
 													</div>
-													<div class="form_col">
-														<label>Năm sửa chữa (nếu có)</label>
-														<select>
-															<option>2016</option>
-															<option>2015</option>
-														</select>
-													</div>
 												</div>	
 												<div class="form_row clearfix">
-													<div class="popup_button_group">
-														<a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a>
-														<div id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></div></a>
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.vila_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
 													</div>
 												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							  </article>
-							</div>
-						  </section>
-						  
-						  <section data-accordion>
-							<button data-control><i class="icon_tabpanel icon_bietthu"></i> Biệt thự</button>
-							<div data-content>
-							   <article>
-									<!-- content tab biet thu -->
-									<div>
-										<div class="tab_header">
-											<h3 class="tab_header_title">Địa chỉ định giá</h3>
-											<p>Địa chỉ : 27 Phó Đức Chính, Phường Nguyễn Thái Bình Quận 1, TPHCM</p>
-										</div>
-										<div class="tab_body">
-											<div class="tab_body_inner">
+											{{ Form::close() }}
 											</div>
 										</div>
 									</div>
@@ -571,10 +1493,137 @@ MAIN
 									<div>
 										<div class="tab_header">
 											<h3 class="tab_header_title">Địa chỉ định giá</h3>
-											<p>Địa chỉ : 27 Phó Đức Chính, Phường Nguyễn Thái Bình Quận 1, TPHCM</p>
+											<p>Địa chỉ : {{ $address }}</p>
 										</div>
 										<div class="tab_body">
 											<div class="tab_body_inner">
+												{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form flat_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="hidden" name="type" value='flat'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+													
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Hình dạng thửa đất</label>
+													</div>
+													<div class="form_col">
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('can-ho')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.flat_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
 											</div>
 										</div>
 									</div>
@@ -590,10 +1639,136 @@ MAIN
 									<div>
 										<div class="tab_header">
 											<h3 class="tab_header_title">Địa chỉ định giá</h3>
-											<p>Địa chỉ : 27 Phó Đức Chính, Phường Nguyễn Thái Bình Quận 1, TPHCM</p>
+											<p>Địa chỉ : {{ $address }}</p>
 										</div>
 										<div class="tab_body">
 											<div class="tab_body_inner">
+												{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form hotel_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="hidden" name="type" value='hotel'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Hình dạng thửa đất</label>
+													</div>
+													<div class="form_col">
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('khach-san')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.hotel_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
 											</div>
 										</div>
 									</div>
@@ -609,10 +1784,136 @@ MAIN
 									<div>
 										<div class="tab_header">
 											<h3 class="tab_header_title">Địa chỉ định giá</h3>
-											<p>Địa chỉ : 27 Phó Đức Chính, Phường Nguyễn Thái Bình Quận 1, TPHCM</p>
+											<p>Địa chỉ : {{ $address }}</p>
 										</div>
 										<div class="tab_body">
 											<div class="tab_body_inner">
+												{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form office_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="hidden" name="type" value='office'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Hình dạng thửa đất</label>
+													</div>
+													<div class="form_col">
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="">
+															@foreach (Structure::findByAlias('toa-nha-van-phong')->structure_options()->get()->toArray() as $s)
+															<option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.office_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
 											</div>
 										</div>
 									</div>
@@ -628,10 +1929,142 @@ MAIN
 									<div>
 										<div class="tab_header">
 											<h3 class="tab_header_title">Địa chỉ định giá</h3>
-											<p>Địa chỉ : 27 Phó Đức Chính, Phường Nguyễn Thái Bình Quận 1, TPHCM</p>
+											<p>Địa chỉ : {{ $address }}</p>
 										</div>
 										<div class="tab_body">
 											<div class="tab_body_inner">
+												{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form warehouse_form') ) }}
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label class="highlight">Đất sử dụng riêng (*)</label>
+														<input type="hidden" name="type" value='warehouse'/>
+														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+														<input type="hidden" name="address"  value="{{ $address }}" >
+													
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Hình dạng thửa đất</label>
+													</div>
+													<div class="form_col">
+														<select name="shape">
+															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+												</div>														
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất phù hợp quy hoạch</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+													</div>
+												</div>											
+												<div class="form_row clearfix">
+													<div class="form_col form_col_first">
+														<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+													</div>
+													<div class="form_col">
+														<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+													</div>																										
+													<div class="form_col">
+														<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+													</div>																								
+													<div class="form_col">
+														<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+													</div>
+												</div>
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Công trình xây dựng</label>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Loại CTXD</label>
+														<select name="structure_parent" id="structure_parent">
+															@foreach (Structure::findByParent('kho-xuong')->get()->toArray() as $s)
+															<option value="{{ $s['id'] }}">{{ $s['name'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<select name="structure" id="structure_child">
+														</select>
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" name="total_ground_area" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select name="year_building">
+															@foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+															@endforeach
+														</select>
+													</div>
+													
+												</div>	
+												<div class="form_row form_add_row_wrapper clearfix">
+													<div class="form_col">
+														<button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+													</div>
+												</div>																												
+												<div class="form_row clearfix">
+													<div class="form_col">
+														<label>Kết cấu chính</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Tổng diện tích sàn xd</label>
+														<input type="text" placeholder="" value="">
+													</div>
+													<div class="form_col">
+														<label>Năm xây dựng</label>
+														<select>
+															<option>2016</option>
+															<option>2015</option>
+														</select>
+													</div>
+												</div>	
+												<div class="form_row clearfix">
+													<div class="popup_button_group groupThanhToan">
+														<!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+														@if( !Sentry::check() ) 
+														<button data='.warehouse_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@else
+														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+														@endif
+													</div>
+												</div>
+											{{ Form::close() }}
 											</div>
 										</div>
 									</div>
@@ -641,12 +2074,82 @@ MAIN
 						  
 						</section>
 					</div>
+					
 				</div>
 			</div>
 		</div>
 		
 	</div>
 </div>
+
+<div id="modal_alert" class="modal fade" role="dialog">	
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4>Thông báo</h4>
+			</div>
+			<div class="modal-body">
+				<div class="modal_info_inner clearfix">
+					<div class="popup_button_group groupThanhToan">
+						Vui lòng <a class="clogin" href="#">Đăng nhập</a> hoặc chọn <a class="cnologin" href="#">Thanh toán nhanh</a>
+						không cần <a class="clogin" href="#">Đăng kí tài khoản </a> để nhận kết quả định giá của bạn
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<script>
+	function getOptions(val) {
+		$.ajax({
+	            url: '/public/structure',
+	            type: 'get',
+	            data: {id:val},
+	            success: function(response) {
+	            	var select = '';
+	                $.each(response, function(i,data)
+	                {
+	                  select +='<option value="'+data.price+'">'+data.structure+'</option>';
+	                });
+	                $('#structure_child').html(select);
+	            }
+	        });
+
+
+	}
+	jQuery(document).ready(function() {
+		var formClass = '';
+
+		getOptions(jQuery('#structure_parent').val());
+		jQuery('#structure_parent').change(function() {
+			var _this = jQuery(this);
+			var val = _this.val();
+	        getOptions(val);
+		});
+
+		jQuery('#btn_dinhgia').click(function(e) {
+			e.preventDefault();
+			jQuery('#modal_alert').modal('show');
+			formClass = jQuery(this).attr('data');
+		});
+
+		jQuery('.clogin').click(function(e) {
+			e.preventDefault();
+			jQuery('.chooser').val('login');
+			$(formClass).submit();
+		});
+
+		jQuery('.cnologin').click(function(e) {
+			e.preventDefault();
+			jQuery('.chooser').val('nologin');
+			$(formClass).submit();
+		});
+
+		jQuery('#modal_dinhgia').modal('show');
+	});
+</script>
 {{ HTML::script('default/js/map.js') }}
 {{ HTML::style('default/css/custom.css') }}
 @endsection

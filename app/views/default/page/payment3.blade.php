@@ -16,7 +16,7 @@ MAIN
 						<div class="step_container clearfix">
 							<!-- dùng cho desktop-->
 							<div class="desktop">
-								<div class="step_col active">
+								<div class="step_col">
 									<div class="step_col_inner">
 										<span class="icon_check"></span>
 										<span>Chọn gói dịch vụ</span>
@@ -28,7 +28,7 @@ MAIN
 										<span>Chọn hình thức thanh toán</span>
 									</div>
 								</div>
-								<div class="step_col">
+								<div class="step_col active">
 									<div class="step_col_inner">
 										<span class="icon_check"></span>
 										<span>Hoàn tất</span>
@@ -63,28 +63,28 @@ MAIN
 									<div class="summary_info_item_body">
 										<div class="summary_info_item_row clearfix">
 											<div class="summary_info_item_col">Họ tên:</div>
-											<div class="summary_info_item_col">Thành Lê</div>
+											<div class="summary_info_item_col">{{ $customer->name }}</div>
 										</div>
 										<div class="summary_info_item_row clearfix">
 											<div class="summary_info_item_col">Email:</div>
-											<div class="summary_info_item_col">yeenki1606@gmail.com</div>
+											<div class="summary_info_item_col">{{ $customer->email }}</div>
 										</div>
 										<div class="summary_info_item_row clearfix">
 											<div class="summary_info_item_col">Điện thoại:</div>
-											<div class="summary_info_item_col">099999999</div>
+											<div class="summary_info_item_col">{{ $customer->mobile }}</div>
 										</div>
 									</div>
 								</div>
 								<div class="summary_info_item">
 									<div class="summary_info_item_header">hình thức thanh toán</div>
 									<div class="summary_info_item_body">
-										<p>Thanh toán qua <strong>Internet Banking</strong></p>
+										<p>Thanh toán qua <strong>{{ $name_type }}</strong></p>
 									</div>
 								</div>
 								<div class="summary_info_item">
 									<div class="summary_info_item_header">thông tin loại dịch vụ <span><a href="#">Sửa</a><i></i></span></div>
 									<div class="summary_info_item_body">
-										<p>Sử dụng dịch vụ <strong>Định giá</strong></p>
+										<p>Sử dụng dịch vụ <strong>{{ $name_service }}</strong></p>
 									</div>
 								</div>
 							</div>
@@ -96,4 +96,33 @@ MAIN
 		
 	</div>
 </div>
+
+<!--.alert-->
+@if( Session::get('message') )
+<div id="modal_alert" class="modal fade" role="dialog">	
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4>Thông báo</h4>
+			</div>
+			<div class="modal-body">
+				<div class="modal_info_inner clearfix">
+					<div class="popup_button_group">
+						{{ Session::get('message') }}
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<script>
+	jQuery(document).ready(function() {
+		jQuery('#modal_alert').modal('show');
+	});
+</script>
+@endif
+<!--/.alert-->
+{{ HTML::style('default/css/custom.css') }}
 @endsection

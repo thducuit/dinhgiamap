@@ -5,6 +5,7 @@ class ContactController extends BaseController {
     {
         return View::make('default.page.contact')
         ->with(array('title'=> 'liên hệ'))
+        ->with('current', 6)
         ->with(array('body_class'=> 'page_contact'));
     }
     
@@ -16,8 +17,16 @@ class ContactController extends BaseController {
             'title' => 'required',    
             'content' => 'required',    
         );
+
+        $messages = array(
+            'name.required' => 'Nhập họ và tên',
+            'email.required'=>'Nhập email',
+            'email.email'=>'Nhập chưa đúng',
+            'title.required'=>'Nhập tiêu đề',
+            'content.required'=>'Nhập nội dung'
+        );
         
-        $validation = Validator::make(Input::get(), $rules);
+        $validation = Validator::make(Input::get(), $rules, $messages);
         
         if( $validation->fails() )
         {
@@ -40,6 +49,7 @@ class ContactController extends BaseController {
         $this->sendMailReply();
         
         return Redirect::to('/contact')
+                ->with('class_alert', 'alert-c-success')
                 ->with('message', 'Success');
     }
     
@@ -50,9 +60,16 @@ class ContactController extends BaseController {
             {
               $message->to(Input::get('email'))->subject('Welcome to the CenValue!');
             });
+
+            if(count(Mail::failures()) > 0){
+                return Redirect::to('/contact')
+                    ->with('class_alert', 'alert-error')
+                    ->with('message', 'Failed to send password reset email, please try again.');
+            }
         }catch(Exception $e)
         {
             return Redirect::to('/contact')
+                ->with('class_alert', 'alert-error')
                 ->with('message', 'Fail');
         }
         

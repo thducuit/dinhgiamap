@@ -1,0 +1,41 @@
+
+			<!--
+			/*==============================*\
+			FOOTER 111
+			/*==============================*\
+			-->
+			<!-- <footer>
+				<div id="footer">
+					<div class="main_width clearfix">					
+						<div class="footer_col">
+							<div class="footer_col_inner">
+								<div class="icon_bocongthuong"></div>
+								<!-- Địa chỉ: Tầng 20, Tòa nhà 319 Bộ Quốc Phòng,
+								Số 63 Lê Văn Lương - Cầu Giấy, Hà Nội -->
+							</div>
+						</div>
+						<div class="footer_col">
+							<div class="footer_col_inner">
+								<!-- Điện thoại: (04) 32222.786 <br>
+								Fax: (04) 32222.787 -->
+								<div><img class='img-responsive' src="{{ URL::asset('default/images/comodo.png') }}"></div>
+							</div>
+						</div>
+						<div class="footer_col">
+							<a href="#"><img src="{{ URL::asset('default/images/footer_hotro.png') }}"></a>
+						</div>
+						<div class="footer_col">
+							<a href="#"><img src="{{ URL::asset('default/images/footer_lienhe.png') }}"></a>
+						</div>
+						<div class="footer-col">
+							<div class="nav_social">
+								<div class="social_list clearfix">
+									<a class="social_item social_item_facebook" href="#">Facebook</a>
+									<a class="social_item social_item_google" href="#">Google+</a>
+									<a class="social_item social_item_linkedin" href="#">Linkedin</a>
+								</div>
+							</div>
+						</div>
+					</div>					
+				</div>
+			</footer> -->

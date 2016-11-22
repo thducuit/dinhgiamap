@@ -13,11 +13,10 @@ class PaymentTypeTableSeeder extends Seeder {
         DB::table('payment_type')->truncate();
         //insert some dummy records
         DB::table('payment_type')->insert(array(
-         array('title'=>'Dịch vụ định giá'),
-         array('title'=>'Xem qui hoạch'),
-         array('title'=>'Mua gói tài khoản'),
-         array('title'=>'Tài sản cùng đơn giá')
-      
+         array('id'=>'card', 'title' => 'SMS (Thẻ cào điện thoại)'),
+         array('id'=>'internetbanking', 'title' => 'Internet Banking'),
+         array('id'=>'office', 'title' => 'Chuyển khoản & thanh toán tại VP'),
+         array('id'=>'visa', 'title' => 'Thanh toán bằng visa')
         ));
 	}
 

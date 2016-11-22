@@ -11,4 +11,12 @@ class Ward extends Eloquent{
     //     }
     //     return $options;
     // }
+    public static function name($id)
+    {
+        if( !empty($id) ) {
+            $ward = Ward::find($id);
+            return ($ward->name) ? $ward->name : '';
+        }
+        return null;
+    }
 }

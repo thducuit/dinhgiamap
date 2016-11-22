@@ -71,7 +71,7 @@ MAIN
 					    <div class="row">
 					        <div class="col-md-12">
 				                @foreach( $errors->all() as $error )
-				                <p>{{ $error }} </p>
+				                <p class="error">{{ $error }} </p>
 				        		@endforeach
 							</div>
 					    </div>
@@ -82,8 +82,8 @@ MAIN
 						@if( Session::get('message') )
 						<div class="row">
 						    <div class="col-md-12">
-						    	<div class="alert">
-								  <strong>{{ Session::get('message') }}</strong>
+						    	<div class="alert {{ Session::get('class_alert') }}">
+								  <strong><p>{{ Session::get('message') }}</p></strong>
 								</div>
 						    </div>
 						</div>

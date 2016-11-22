@@ -1,20 +1,61 @@
 <?php
-class MarkerController extends BaseController {
+class MarkerController extends AdminController {
     
+    public function __construct()
+    {
+        parent::__construct();
+        $this->active('dia-chi');
+    }
+
     public function getIndex()
     {
-        $markers = DB::table('markers')
+        $markers = DB::table('markers');
+
+        if(!$this->isAdmin())
+        {
+            $markers = $markers->where('user_id', '=', $this->getUser());
+        }
+
+        $markers = $markers->orderBy('created_at', 'desc')
 	    ->paginate(Config::get('constant.admin.pager'));
 	    $pager = $markers->links();
 	    
         return View::make('admin.marker.view')
-        ->with(array('title' => 'Vị trí', 'markers' => $markers, 'pager' => $pager));
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('title' => 'Vị trí', 'markers' => $markers, 'pager' => $pager));
     }
     
     public function getAdd()
     {
         return View::make('admin.marker.add')
-        ->with(array('title'=> 'Thêm vị trí'));
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('title'=> 'Thêm vị trí'));
+    }
+
+    public function getEdit($id = 0)
+    {
+        $marker = Marker::find($id);
+        return View::make('admin.marker.edit')
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with('marker', $marker)
+            ->with(array('title'=> 'Cập nhật vị trí'));
+    }
+
+    public function getShow($id = 0)
+    {
+        $marker = Marker::find($id);
+        $street = Street::find($marker->street_id);
+        $province = Province::find($marker->province_id);
+        $district = District::find($marker->district_id);
+        $ward = Ward::find($marker->ward_id);
+        return View::make('admin.marker.show')
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with('marker', $marker)
+            ->with('street', $street)
+            ->with('province', $province)
+            ->with('district', $district)
+            ->with('ward', $ward)
+            ->with(array('title'=> 'Chi tiết vị trí'));
     }
     
     
@@ -22,7 +63,9 @@ class MarkerController extends BaseController {
     {
         $rules = array(
             'name' => 'required',
-            'street_id' => 'required',
+            // 'street_id' => 'required',
+            'price' => 'required',
+            'state_price' => 'required',
             'lat' => 'required',
             'lng' => 'required'
         );
@@ -39,17 +82,23 @@ class MarkerController extends BaseController {
             ->withErrors($validation);
         }
         
-        $price = Input::get('price');
-        if(empty($price)) 
-        {
-            if( Input::get('street_id') )
-            {
-                $street = Street::find(Input::get('street_id'))->toArray();
-                $price = $street['price'];
-            }
-        }
+        // $price = Input::get('price');
+        // if(empty($price)) 
+        // {
+        //     if( Input::get('street_id') )
+        //     {
+        //         $street = Street::find(Input::get('street_id'))->toArray();
+        //         $price = $street['price'];
+        //     }
+        // }
         
-        $this->uploadPhoto();
+        
+        $name = null;
+        if( Input::hasFile('plan_photo') )
+        {
+            $name = date('Y_m_d_His_') . Input::file('plan_photo')->getClientOriginalName();
+            $this->uploadPhoto($name);
+        }
         
         $data = array(
                 'name' => Input::get('name'),
@@ -66,59 +115,39 @@ class MarkerController extends BaseController {
                 'class_field' => Input::get('class_field'),
                 'plan_field' => Input::get('plan_field'),
                 'state_price' => Input::get('state_price'),
-                'price' => $price
+                'price' => Input::get('price'),
+                'photo_plan' => $name,
+                'user_id' => $this->getUser()
             );
+            
+            
             
         DB::table('markers')->insert($data);
         
         return Redirect::to('admin/markers')
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
-                ->with('type_message', Config::get('constant.admin.alert.success.type'));
-                
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));            
     }
     
-    private function uploadPhoto()
+    private function uploadPhoto($name)
     {
-        if( Input::hasFile('plan_photo') )
+        $file = Input::file('plan_photo');    
+        
+        $destinationPath = public_path() . '/upload/' . $name;
+        
+        try
         {
-            $file = Input::file('plan_photo');
-            $name = $file->getClientOriginalName();
-            $destinationPath = public_path() . '/upload/' . $name;
-            try
-            {
-                $file->move($destinationPath);
-            }
-            catch(Exception $ex)
-            {
-                dd($ex); die();
-            }
+            $file->move($destinationPath);
+        }
+        catch(Exception $ex)
+        {
+            echo '<pre>';
+            dd($ex); die();
         }
     }
     
-    public function getEdit($id = 0)
-    {
-        $marker = Marker::find($id);
-        return View::make('admin.marker.edit')
-        ->with('marker', $marker)
-        ->with(array('title'=> 'Cập nhật vị trí'));
-    }
     
-    public function getShow($id = 0)
-    {
-        $marker = Marker::find($id);
-        $street = Street::find($marker->street_id);
-        $province = Province::find($marker->province_id);
-        $district = District::find($marker->district_id);
-        $ward = Ward::find($marker->ward_id);
-        return View::make('admin.marker.show')
-        ->with('marker', $marker)
-        ->with('street', $street)
-        ->with('province', $province)
-        ->with('district', $district)
-        ->with('ward', $ward)
-        ->with(array('title'=> 'Chi tiết vị trí'));
-    }
     
     public function postEdit() 
     {
@@ -126,6 +155,8 @@ class MarkerController extends BaseController {
         $rules = array(
             'name' => 'required',
             'street_id' => 'required',
+            'price' => 'required',
+            'state_price' => 'required',
             'lat' => 'required',
             'lng' => 'required'
         );
@@ -140,14 +171,21 @@ class MarkerController extends BaseController {
             ->withErrors($validation);
         }
         
-        $price = Input::get('price');
-        if(empty($price)) 
+        // $price = Input::get('price');
+        // if(empty($price)) 
+        // {
+        //     if( Input::get('street_id') )
+        //     {
+        //         $street = Street::find(Input::get('street_id'))->toArray();
+        //         $price = $street['price'];
+        //     }
+        // }
+
+        $name = null;
+        if( Input::hasFile('plan_photo') )
         {
-            if( Input::get('street_id') )
-            {
-                $street = Street::find(Input::get('street_id'))->toArray();
-                $price = $street['price'];
-            }
+            $name = date('Y_m_d_His_') . Input::file('plan_photo')->getClientOriginalName();
+            $this->uploadPhoto($name);
         }
         
         $marker = Marker::find(Input::get('id'));
@@ -158,7 +196,7 @@ class MarkerController extends BaseController {
         $marker->lng = Input::get('lng'); 
         $marker->used_acreage = Input::get('used_acreage'); 
         $marker->land_acreage = Input::get('land_acreage'); 
-        $marker->price = $price; 
+        $marker->price = Input::get('price'); 
         $marker->sale_price = Input::get('sale_price'); 
         $marker->province_id = Input::get('province_id'); 
         $marker->district_id = Input::get('district_id'); 
@@ -166,7 +204,7 @@ class MarkerController extends BaseController {
         $marker->class_field = Input::get('class_field'); 
         $marker->plan_field = Input::get('plan_field'); 
         $marker->state_price = Input::get('state_price'); 
-        
+        $marker->photo_plan = $name; 
         $marker->save();
         
         return Redirect::to('admin/markers')

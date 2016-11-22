@@ -3,7 +3,8 @@
 
   $(document).ready(function() {
     //var place = null;
-    //var geocoder = new google.maps.Geocoder();
+    var geocoder = new google.maps.Geocoder();
+    var isAutoComplete = false;
     var markers = [];
 
     var mapsProperties = {
@@ -21,6 +22,7 @@
       var place = autocomplete.getPlace();
       //mapObject.setCenter(place.geometry.location);
       $('#placeId').val(place.place_id);
+      isAutoComplete = true;
     });
 
     var infowindow = new google.maps.InfoWindow();
@@ -69,7 +71,7 @@
           lng: lng
         },
         success: function(response) {
-          console.log('get markers', response);
+          //console.log('get markers', response);
           callback(response);
         }
       });
@@ -99,7 +101,7 @@
 
     function bindInfoWindow(marker) {
       google.maps.event.addListener(marker, 'click', function() {
-        console.log(marker);
+        //console.log(marker);
         setContent(marker);
         infowindow.open(mapObject, marker);
       });
@@ -133,6 +135,30 @@
       getMarkers(lat, lng, showMarkers);
       drawCircle(new google.maps.LatLng(lat, lng));
     }
+
+    $('.input_submit').click(function(event) {
+        event.stopPropagation();
+        if(isAutoComplete) {
+            return true;
+        }else {
+            var address = $('.cen-address-text').val();
+            if(address) {
+                getAddress('address', address, function(result) {
+                    if(result && $.isArray(result) && result.length ) {
+                        var obj = result[0];
+                        $('.cen-address-text').val(obj.formatted_address);
+                        $('#placeId').val(obj.place_id);
+                        $('.google-map-search-form').submit();
+                    }
+                });
+            }
+            return false;
+        }
+    });
+
+    $('.cen-address-text').change(function() {
+        isAutoComplete = false;
+    });
     
 
     init();

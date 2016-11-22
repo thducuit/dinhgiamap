@@ -11,12 +11,30 @@
 {{ HTML::style('admin/css/styles.css') }}
 {{ HTML::style('admin/css/custom.css') }}
 
-{{ HTML::script('admin/js/jquery-1.11.1.min.js') }}
+<!--leaflet-->
+{{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
+{{ HTML::style('admin/css/leaflet.draw.css') }}
 
-{{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyDl_U9Nei3FMIhxCQysJYsj0-E0r-tDp4g&sensor=false&libraries=places') }}
+
+
+{{ HTML::script('https://code.jquery.com/jquery-2.2.4.min.js') }}
+
+
+{{ HTML::script('admin/js/jquery.validate.js') }}
+
+
 
 <!--Icons-->
 {{ HTML::script('admin/js/lumino.glyphs.js') }}
+
+<!--leaflet-->
+{{ 	HTML::script('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js') }}
+{{	HTML::script('http://matchingnotes.com/javascripts/leaflet-google.js') }}
+{{	HTML::script('admin/js/custom/Google.js') }}
+{{ HTML::script('admin/js/custom/leaflet.draw.js') }}
+
+<!--Google map APIs -->
+{{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyCFEQBvTi6zuAx2lh4Lte_bofdG8eMknlI&sensor=false&libraries=places,drawing,geometry') }}
 
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
@@ -24,6 +42,14 @@
 <![endif]-->
 
 <script type="text/javascript">
+	var url = {
+		ward: '/public/admin/info/ward',
+		district: '/public/admin/info/district',
+		street: '/public/streets',
+		priceStreet: '/public/admin/info/price',
+		plan: '/public/admin/info/plan',
+	};
+	
 	jQuery(window).keydown(function(event){
 	    if(event.keyCode == 13) {
 	      event.preventDefault();
@@ -43,14 +69,16 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>
+				<a class="navbar-brand" href="#"><span>CenGroup</span>Admin</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> {{ Sentry::getUser()->email }} <span class="caret"></span></a>
+						
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
 							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
-							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
+							<li><a href="{{ URL::to('/admin/logout') }}"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -66,9 +94,17 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li><a href="{{ URL::to('admin/streets') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg> Danh sách Đoạn đường</a></li>
+			@if($menu)
+				@foreach($menu as $m)
+					@if($m['show'] == true)
+						<li {{ $m['active'] == true ? "class='active'" : "" }} ><a href="{{ URL::to($m['url']) }}"><span class="glyphicon glyphicon-{{ $m['icon'] }}"></span> {{ $m['title'] }}</a></li>
+					@endif
+				@endforeach
+			@endif
+			
+			<!-- <li><a href="{{ URL::to('admin/streets') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg> Danh sách Đoạn đường</a></li>
 			<li><a href="{{ URL::to('admin/markers') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg> Danh sách Địa chỉ</a></li>
-			<li><a href="{{ URL::to('admin/questions') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg> Danh sách Câu hỏi</a></li>
+			<li><a href="{{ URL::to('admin/questions') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"/></svg> Danh sách Câu hỏi</a></li> -->
 			
 			<!--<li><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>-->
 			<!--<li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>-->

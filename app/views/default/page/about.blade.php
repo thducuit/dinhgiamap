@@ -28,7 +28,7 @@ MAIN
 						navDotTemplate: '<a>.</a>'">
 						<ul>
 							<li>
-								<img src="images/about_banner1.jpg" largesrc="images/about_banner1.jpg" />									
+								<img src="{{ URL::asset('default/images/about_banner1.jpg') }}" largesrc="{{ URL::asset('default/images/about_banner1.jpg') }}" />									
 								<div class="elements">
 									<div class="main_width">
 										<div class="slider_content">
@@ -42,7 +42,7 @@ MAIN
 								</div>
 							</li>
 							<li>
-								<img src="images/about_banner2.jpg" largesrc="images/about_banner2.jpg" />
+								<img src="{{ URL::asset('default/images/about_banner2.jpg') }}" largesrc="{{ URL::asset('default/images/about_banner2.jpg') }}" />
 								<div class="elements">
 									<div class="main_width">
 										<div class="slider_content">
@@ -56,7 +56,7 @@ MAIN
 								</div>
 							</li>
 							<li>
-								<img src="images/about_banner3.jpg" largesrc="images/about_banner3.jpg" />									
+								<img src="{{ URL::asset('default/images/about_banner3.jpg') }}" largesrc="{{ URL::asset('default/images/about_banner3.jpg') }}" />									
 								<div class="elements">
 									<div class="main_width">
 										<div class="slider_content">
@@ -82,7 +82,7 @@ MAIN
 			<div class="mobile">
 				<div class="about_block">
 					<div class="about_block_image">
-						<img src="images/about_banner1.jpg">
+						<img src="{{ URL::asset('default/images/about_banner1.jpg') }}">
 					</div>
 					<div class="about_block_content">
 						<h3>Thẩm định giá Thế Kỷ (CenValue)<h3>
@@ -92,7 +92,7 @@ MAIN
 				</div>
 				<div class="about_block">
 					<div class="about_block_image">
-						<img src="images/about_banner2.jpg">
+						<img src="{{ URL::asset('default/images/about_banner2.jpg') }}">
 					</div>
 					<div class="about_block_content">
 						<h3>Định giá trực tuyến đầu tiên của Việt Nam</h3>
@@ -102,7 +102,7 @@ MAIN
 				</div>
 				<div class="about_block">
 					<div class="about_block_image">
-						<img src="images/about_banner3.jpg">
+						<img src="{{ URL::asset('default/images/about_banner3.jpg') }}">
 					</div>
 					<div class="about_block_content">
 						<h3>Đối tượng sử dụng định giá trực tuyến:<h3>														

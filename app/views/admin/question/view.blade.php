@@ -30,7 +30,7 @@
     					                            	<div class="btn-group">
     					                            		<a href="{{ URL::to('admin/questions/edit/' . $e->id) }}" class='btn btn-default'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Sửa</a>
     					                                	<a href="{{ URL::to('admin/questions/delete/' . $e->id) }}" data-confirm='Do you really want to delete this item?' class='btn btn-danger'><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"/></svg> Xóa</a>
-    					                            		<a href="{{ URL::to('admin/questions/show/' . $e->id) }}" class='btn btn-info'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Chi tiết</a>
+    					                            		<a href="{{ URL::to('admin/questions/show/' . $e->id) }}" class='btn btn-info'><i class="glyphicon glyphicon-pushpin"></i> Chi tiết</a>
     					                            	</div>
     					                            </td>
     					                        </tr>

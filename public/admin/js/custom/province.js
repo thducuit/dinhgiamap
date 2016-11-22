@@ -1,14 +1,14 @@
-(function($) {
+(function($, url) {
     'use strict';
     
     var buildOptionDistrict = function (callback) {
         var val = $('.province_id').val();
         $.ajax({
-            url: '/public/admin/info/district',
+            url: url.district,
             type: 'post',
             data: {id:val},
             success: function(response) {
-                var select = '';
+                var select = '<option value="0">Quận/Huyện</option>';
                 var district_id = $('#district_id').val();
                 $.each(response, function(i,data)
                 {
@@ -26,11 +26,11 @@
     var buildOptionWard = function (callback) {
         var val = $('.district_id').val();
         $.ajax({
-            url: '/public//admin/info/ward',
+            url: url.ward,
             type: 'post',
             data: {id:val},
             success: function(response) {
-                var select = '';
+                var select = '<option value="0">Phường/Xã</option>';
                 var ward_id = $('#ward_id').val();
                 $.each(response, function(i,data)
                 {
@@ -61,4 +61,4 @@
     });
     
     init();
-})(jQuery);
+})(jQuery, url);

@@ -18,6 +18,8 @@
 		                                <thead>
                     					    <tr>
                     					        <th style=""><div class="th-inner ">Tên</div></th>
+                    					        <th style=""><div class="th-inner ">Giá thị trường (VNĐ)</div></th>
+                    					        <th style=""><div class="th-inner ">Giá nhà nước (VNĐ)</div></th>
                     					        <th style=""><div class="th-inner "></div></th>
                     					    </tr>
 					                    </thead>
@@ -26,11 +28,13 @@
     					                        @foreach($markers as $e)
     					                        <tr>
     					                            <td>{{ $e->name }}</td>
+    					                            <td>{{ number_format($e->price) }}</td>
+    					                            <td>{{ number_format($e->state_price) }}</td>
     					                            <td>
     					                            	<div class="btn-group">
     					                            		<a href="{{ URL::to('admin/markers/edit/' . $e->id) }}" class='btn btn-default'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Sửa</a>
     					                                	<a href="{{ URL::to('admin/markers/delete/' . $e->id) }}" data-confirm='Do you really want to delete this item?' class='btn btn-danger'><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"/></svg> Xóa</a>
-    					                            		<a href="{{ URL::to('admin/markers/show/' . $e->id) }}" class='btn btn-info'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Chi tiết</a>
+    					                            		<a href="{{ URL::to('admin/markers/show/' . $e->id) }}" class='btn btn-info'><i class="glyphicon glyphicon-pushpin"></i> Chi tiết</a>
     					                            	</div>
     					                            </td>
     					                        </tr>

@@ -1,3 +1,0 @@
-<!--{{ Form::select('district', District::getOptions(), null, ['class'=>'form-control']) }}-->
-
-AIzaSyAHnM3t2hfa__VQIExI3msAK1DzEeg_xVE

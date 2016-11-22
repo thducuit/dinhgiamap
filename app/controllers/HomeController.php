@@ -1,6 +1,7 @@
 <?php
 use Ducnguyen\Storage\Price\PriceRepository as Price;
-
+use Ducnguyen\Storage\Cart\CartRepository as Cart; 
+use Ducnguyen\Storage\Payment\PaymentRepository as Payment; 
 class HomeController extends BaseController {
 
 	/*
@@ -17,17 +18,25 @@ class HomeController extends BaseController {
 	*/
 	
 	private $estate;
+
+	private $cart;
+
+	private $payment;
 	
-	public function __construct(Price $e)
+	public function __construct(Price $e, Cart $c, Payment $p)
 	{
 		$this->estate = $e;
+
+		$this->cart = $c;
+
+		$this->payment = $p;
 	}
 
 	public function view()
 	{
-		//$this->estate->fix();
 		return View::make('default.index.view')
 		->with('title', 'home page')
+		->with('current', 1)
 		->with('body_class', 'page_home');
 	}
 	
@@ -47,8 +56,8 @@ class HomeController extends BaseController {
 	    $place = Marker::where('place_id', '=', $placeId)->get()->first();
 	    if($place) 
 	    {
-	    	$street =  Street::find($place->street_id)->get()->first();
-	    	$place->street = $street;
+	    	$street =  Street::find($place->street_id);
+	    	$place->street = ($street) ? $street->get()->first() : null;
 	    	$place->price_format = number_format($place->price);
 	    	$place->state_price_format = number_format($place->state_price);
 	    }
@@ -84,46 +93,87 @@ class HomeController extends BaseController {
 	
 	public function getPrice()
 	{
-		return Redirect::to('/result');
+		// dd(Input::get()); die();
+		$rules = array(
+			'leaving_plan_area' => 'required|numeric'
+		);
+		
+		$messages = array(
+		    'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch',
+		    'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch',
+		);
+		
+		$validation = Validator::make(Input::get(), $rules, $messages);
+        
+        if( $validation->fails() )
+        {
+        	$url = '/price?placeId=' . Input::get('place_id');
+            return Redirect::to($url)
+            ->withInput(Input::all())
+            ->withErrors($validation)
+            ->withType(Input::get('type'));
+        }
+		
+		$result = $this->getResult();
+
+		$result['place_id'] = Input::get('place_id');
+
+		$this->cart->store($result);
+		
+		if( empty(Input::get('chooser')) || Input::get('chooser') == 'nologin' )
+		{
+			Session::put('step', 2);
+			return Redirect::to('/payment');
+		}
+		else
+		{
+			Session::put('step', 1);
+			return Redirect::to('/register');
+		}
 	}
 	
+	private function getResult()
+	{
+		$input = Input::get();
+		return $this->estate->result($input);
+	}
 	
-    // 	public function search()
-    // 	{
-    // 		$k = 'test';
-    // 		$streets = DB::table('streets')->get();
-    // 		$dataResponse = array();
-    // 		foreach ($streets as $street) {
-    // 			$dataResponse[] = (object)array( 'value'=> $street->name, 'data'=> $street->id );
-    // 		}
-    		
-    // 		return Response::json( array('query'=> $k, 'suggestions' => $dataResponse) );
-    // 	}
-    
-    // public function getMarkers()
-    // {
-    //     $dataResponse = array();
-    //     $placeId = Input::get('placeId');
-    //     if( empty($placeId) )
-    //     {
-    //         return Response::json(
-    //                 array(
-    //                     'success' => false,
-    //                     'message' => 'street id is empty',
-    //                     'data' => array()
-    //                 )
-    //             );
-    //     }
-        
-    //     $street = Street::where('place_id', '=', $placeId)->get()->toArray();
-    //     //$street['markers'] = Street::find($streetId)->markers->toArray();
-        
-    //     return Response::json(
-    //             array(
-    //                 'success' => true,
-    //                 'message' => '',
-    //                 'data' => $street
-    //                 )
-    //         );
-    // }
+	public function getStructure()
+    {
+        $options = StructureOption::where('structure_id', '=', Input::get('id'))->get()->toArray();
+        return Response::json($options);
+    }
+
+    public function getStreet()
+    {
+    	$streets = Street::all()->toArray();
+    	$response = array();
+    	foreach ($streets as $key => $s) {
+    		$response[$s['id']] = $s['position'];
+    	}
+    	return Response::json($response);
+    }
+
+    public function getStreetPrice()
+    {
+    	$response = array(
+    		'price_format' => 0,
+    		'state_price_format' => 0
+    	);
+    	if(Input::get('id') != 0) {
+    		$streets = Street::find((int)Input::get('id'));
+	    	$response['price_format'] = number_format($streets->price);
+		    $response['state_price_format'] = number_format($streets->state_price);
+    	}
+    	return Response::json($response);
+    }
+
+    public function showResult()
+    {
+    	$result = $this->cart->getLastResult();
+     	return View::make('default.page.result')
+        ->with(array('title'=> 'kết quả định giá'))
+        ->with(array('result'=> $result))
+        ->with(array('body_class'=> 'page_thanhtoan'));
+    }
 }

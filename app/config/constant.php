@@ -1,7 +1,7 @@
 <?php
     return array(
         'admin' => array(
-            'pager'=> 10,
+            'pager'=> 20,
             'alert'=> array(
                     'notice' => array(
                             'type' => 'primary',

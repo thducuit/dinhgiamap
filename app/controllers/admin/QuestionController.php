@@ -1,20 +1,46 @@
 <?php
-class QuestionController extends BaseController {
+class QuestionController extends AdminController {
     
+    public function __construct()
+    {
+        parent::__construct();
+        $this->active('hoi-dap');
+    }
+
     public function getIndex()
     {
-        $questions = DB::table('questions')
+        $questions = DB::table('questions')->orderBy('created_at', 'desc')
 	    ->paginate(Config::get('constant.admin.pager'));
 	    $pager = $questions->links();
 	    
         return View::make('admin.question.view')
-        ->with(array('title' => 'Hỏi đáp', 'questions' => $questions, 'pager' => $pager));
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('title' => 'Hỏi đáp', 'questions' => $questions, 'pager' => $pager));
     }
     
     public function getAdd()
     {
         return View::make('admin.question.add')
-        ->with(array('title'=> 'Thêm câu hỏi'));
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('title'=> 'Thêm câu hỏi'));
+    }
+
+    public function getEdit($id = 0)
+    {
+        $question = Question::find($id);
+        return View::make('admin.question.edit')
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with('question', $question)
+            ->with(array('title'=> 'Cập nhật câu hỏi'));
+    }
+
+    public function getShow($id = 0)
+    {
+        $question = Question::find($id);
+        return View::make('admin.question.show')
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with('question', $question)
+            ->with(array('title'=> 'Chi tiết câu hỏi'));
     }
     
     
@@ -47,22 +73,6 @@ class QuestionController extends BaseController {
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));
                 
-    }
-    
-    public function getEdit($id = 0)
-    {
-        $question = Question::find($id);
-        return View::make('admin.question.edit')
-        ->with('question', $question)
-        ->with(array('title'=> 'Cập nhật câu hỏi'));
-    }
-    
-    public function getShow($id = 0)
-    {
-        $question = Question::find($id);
-        return View::make('admin.question.show')
-        ->with('question', $question)
-        ->with(array('title'=> 'Chi tiết câu hỏi'));
     }
     
     public function postEdit() 

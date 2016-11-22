@@ -18,17 +18,9 @@ MAIN
 					{{ Form::open( array('url' => 'search', 'method' => 'get', 'class' => 'clearfix google-map-search-form') ) }}
 						<div class="form_group form_group_icon_location"><i class="icon_location"></i></div>
 						<div class="form_group form_group_input_text">
-							<input class="input_text" type="text" name="address" value="" id="google-map-autocomplete" placeholder="Nhập địa chỉ tài sản để định giá">
+							<input class="input_text cen-address-text" type="text" name="address" value="" id="google-map-autocomplete" placeholder="Nhập địa chỉ tài sản để định giá">
 							<input class="input_text" name="placeId" id="placeId" type="hidden" value="" >
 						</div>
-						<!--<div class="form_group form_group_input_select">-->
-						<!--<select class="input_select">-->
-						<!--	<option>Căn hộ</option>-->
-						<!--	<option>Nhà nguyên căn</option>-->
-						<!--	<option>Biệt thự</option>-->
-						<!--	<option>Đất nền</option>-->
-						<!--</select>-->
-						<!--</div>-->
 						<div class="form_group form_group_submit">
 							<input class="input_submit" type="submit" value="Tìm kiếm">
 						</div>
