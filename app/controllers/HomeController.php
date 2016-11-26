@@ -114,6 +114,7 @@ class HomeController extends BaseController {
             ->withType(Input::get('type'));
         }
 		
+        
 		$result = $this->getResult();
 
 		$result['place_id'] = Input::get('place_id');

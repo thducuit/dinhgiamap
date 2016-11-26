@@ -96,34 +96,63 @@ MAIN
 										<div class="tab_body_inner">
 											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
 												<div class="form_row clearfix">
+                                                    <div class="form_col">
+														<label>Quận</label>
+														<select name="shape" class="selectQuan">
+                                                          <option value=""></option>
+															@foreach ($districts as $key => $value)
+															<option value="{{ $key }}">{{ $value }}</option>
+															@endforeach
+														</select>
+													</div>
 													<div class="form_col">
 														<label class="highlight">Vị trí (*)</label>
 														<input type="hidden" name="type" value='vacant_land'/>
 														<input type="hidden" name="place_id" value='{{ $placeId }}'/>
 														<input type="hidden" name="street_id"  value="{{ $streetId }}" >
 														<input type="hidden" name="address"  value="{{ $address }}" >
-														<select>
-															<option>1 hẻm</option>
-															<option>2 hẻm</option>
+                                                        <input type="hidden" name="viTri"  value="" class="inputViTri">
+														<select class="selectVitri">
+                                                          <option value=""></option>
+                                                          @foreach ($viTri as $s)
+															<option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                                                          @endforeach															
 														</select>
 													
 													</div>
+													
 													<div class="form_col">
-														<label>Hình dạng thửa đất</label>
-														<select name="shape">
-															@foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-															<option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
-															@endforeach
-														</select>
-													</div>
-													<div class="form_col" style="width: 50%;">
-														<label>Yếu tố khác</label>
-														<select>
-                                                            <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
-															<option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
-														</select>
+                                                      <label>Yếu tố khác</label>
+                                                      <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
+                                                      <select class="selectYeuToKhac">
+                                                        <option value=""></option>
+                                                        @foreach ($yeuToKhac as $s)
+                                                          <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                                                        @endforeach															
+                                                      </select>
 													</div>	
 												</div>
+                                            <div class="form_row clearfix">
+                                              <div class="form_col">
+                                                  <label>Hình dạng thửa đất</label>
+                                                  <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">
+                                                  <select name="shape" class="selectMatTienOrHem">
+                                                    <option value="mat_tien">Mặt Tiền</option>
+                                                    <option value="hem">Hẻm</option>
+                                                  </select>                                                  
+                                              </div>
+                                              <div class="form_col">
+                                                  <label>&nbsp;</label>
+                                                  <select name="shape" class="selectHinhDangThuaDat">
+                                                    <option value=""></option>
+                                                    @foreach ($hinhDangThuaDat as $s)
+                                                    <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                                                    @endforeach
+                                                  </select>
+                                              </div>
+                                              
+                                            </div>
+                                            
 												<div class="form_row clearfix">
 													<div class="form_col">
 														<label class="highlight">Đất sử dụng riêng (*)</label>
@@ -2120,6 +2149,44 @@ MAIN
 
 	}
 	jQuery(document).ready(function() {
+      var vitriOptions = [];
+      var hinhDangThuaDatOptions = [];
+      var yeuToKhacOptions = [];
+      <?php 
+      foreach($viTri as $item){
+        ?>
+            vitriOptions[<?php echo $item['id']?>] = {
+              quanTrungTam: <?php echo $item['quanTrungTam']?>,
+              quanKhac: <?php echo $item['quanKhac']?>
+            };
+            <?php
+      }
+      ?>
+          
+      <?php 
+      foreach($hinhDangThuaDat as $item){
+        ?>
+            hinhDangThuaDatOptions[<?php echo $item['id']?>] = {
+              quanTrungTamMatTien: <?php echo $item['quanTrungTamMatTien']?>,
+              quanTrungTamHem: <?php echo $item['quanTrungTamHem']?>,
+              quanKhacMatTien: <?php echo $item['quanKhacMatTien']?>,
+              quanKhacHem: <?php echo $item['quanKhacHem']?>
+            };
+            <?php
+      }
+      ?>    
+      
+      <?php 
+      foreach($yeuToKhac as $item){
+        ?>
+            yeuToKhacOptions[<?php echo $item['id']?>] = {
+              quanTrungTam: <?php echo $item['quanTrungTam']?>,
+              quanKhac: <?php echo $item['quanKhac']?>
+            };
+            <?php
+      }
+      ?>    
+          
 		var formClass = '';
 
 		getOptions(jQuery('#structure_parent').val());
@@ -2148,6 +2215,54 @@ MAIN
 		});
 
 		jQuery('#modal_dinhgia').modal('show');
+        
+        jQuery('.selectQuan, .selectVitri, .selectVitri, .selectMatTienOrHem, .selectHinhDangThuaDat, .selectYeuToKhac').change(function(){
+          var quan = $(this).parents('.price-form').find('.selectQuan:first').val();
+          var idOptionVitri = $(this).parents('.price-form').find('.selectVitri:first').val();
+          var idOptionHinhDangThuaDat = $(this).parents('.price-form').find('.selectHinhDangThuaDat:first').val();
+          var idOptionYeuToKhac = $(this).parents('.price-form').find('.selectYeuToKhac:first').val();
+          var selectHemMaTien = $(this).parents('.price-form').find('.selectMatTienOrHem:first').val();;
+          var vitriData = '';          
+          var hinhDangThuaDatData = ''; 
+          var yeuToKhacData = '';
+           
+          if(vitriOptions[idOptionVitri]){
+            if(quan == 1 || quan == 3){
+              vitriData = vitriOptions[idOptionVitri].quanTrungTam;
+            }else{
+              vitriData = vitriOptions[idOptionVitri].quanKhac;
+            }            
+          }
+          $(this).parents('.price-form').find('.inputViTri:first').val(vitriData);                    
+                    
+          if(hinhDangThuaDatOptions[idOptionHinhDangThuaDat]){
+            if(quan == 1 || quan == 3){
+              if(selectHemMaTien == 'mat_tien'){
+                hinhDangThuaDatData = hinhDangThuaDatOptions[idOptionHinhDangThuaDat].quanTrungTamMatTien;
+              }else{
+                hinhDangThuaDatData = hinhDangThuaDatOptions[idOptionHinhDangThuaDat].quanTrungTamHem;
+              }
+            }else{
+              if(selectHemMaTien == 'mat_tien'){
+                hinhDangThuaDatData = hinhDangThuaDatOptions[idOptionHinhDangThuaDat].quanKhacMatTien;
+              }else{
+                hinhDangThuaDatData = hinhDangThuaDatOptions[idOptionHinhDangThuaDat].quanKhacHem;
+              }
+            }            
+          }
+          $(this).parents('.price-form').find('.inputHinhDangThuaDat:first').val(hinhDangThuaDatData);  
+          
+          if(yeuToKhacOptions[idOptionYeuToKhac]){
+            if(quan == 1 || quan == 3){
+              yeuToKhacData = yeuToKhacOptions[idOptionYeuToKhac].quanTrungTam;
+            }else{
+              yeuToKhacData = yeuToKhacOptions[idOptionYeuToKhac].quanKhac;
+            }            
+          }
+          $(this).parents('.price-form').find('.inputYeuToKhac:first').val(yeuToKhacData);                    
+        });
+        
+       
 	});
 </script>
 {{ HTML::script('default/js/map.js') }}
