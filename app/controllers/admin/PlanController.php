@@ -133,4 +133,26 @@ class PlanController extends AdminController {
                 ->with('icon', Config::get('constant.admin.alert.error.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.error.type'));
     }
+
+    public function getShow($id = 0)
+    {
+        $plan = Plan::find($id);
+        $plan->show = 1;
+        $plan->save();
+        return Redirect::to('admin/plans')
+                ->with('message', 'Success')
+                ->with('icon', Config::get('constant.admin.alert.success.icon'))
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));
+    }
+
+    public function getHide($id = 0)
+    {
+        $plan = Plan::find($id);
+        $plan->show = 0;
+        $plan->save();
+        return Redirect::to('admin/plans')
+                ->with('message', 'Success')
+                ->with('icon', Config::get('constant.admin.alert.success.icon'))
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));
+    }
 }

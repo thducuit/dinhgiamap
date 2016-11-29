@@ -37,6 +37,12 @@
     					                                		<!-- <a href="{{ URL::to('admin/plans/delete/' . $e->id) }}" data-confirm='Do you really want to delete this item?' class='btn btn-danger'><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"/></svg> Xóa Bản đồ quy hoạch</a> -->
     					                            			<!-- <a href="#" class='btn btn-default'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Đã cập nhật</a> -->
     					                            		@endif
+
+    					                            		@if($e->show == 1)
+    					                            			<a href="{{ URL::to('admin/plans/show/' . $e->id) }}" class='btn btn-info'>Đang hiện</a>
+    					                            		@else
+    					                            			<a href="{{ URL::to('admin/plans/hide/' . $e->id) }}" class='btn btn-danger'>Đang ẩn</a>
+    					                            		@endif
     					                            	</div>
     					                            </td>
     					                        </tr>
