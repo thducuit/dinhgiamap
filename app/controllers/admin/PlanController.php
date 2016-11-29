@@ -137,7 +137,7 @@ class PlanController extends AdminController {
     public function getShow($id = 0)
     {
         $plan = Plan::find($id);
-        $plan->show = 1;
+        $plan->_show = 1;
         $plan->save();
         return Redirect::to('admin/plans')
                 ->with('message', 'Success')
@@ -148,7 +148,7 @@ class PlanController extends AdminController {
     public function getHide($id = 0)
     {
         $plan = Plan::find($id);
-        $plan->show = 0;
+        $plan->_show = 0;
         $plan->save();
         return Redirect::to('admin/plans')
                 ->with('message', 'Success')

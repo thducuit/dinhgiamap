@@ -14,7 +14,7 @@ class Plan extends Eloquent{
     
     public static function findByStatus()
     {
-        return Plan::where('status', '=', 1)->where('show', '=', 1)->get();
+        return Plan::where('status', '=', 1)->where('_show', '=', 1)->get();
     }
 
     public static function getOptions()
