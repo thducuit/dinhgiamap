@@ -38,10 +38,10 @@
     					                            			<!-- <a href="#" class='btn btn-default'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Đã cập nhật</a> -->
     					                            		@endif
 
-    					                            		@if($e->show == 1)
-    					                            			<a href="{{ URL::to('admin/plans/show/' . $e->id) }}" class='btn btn-info'>Đang hiện</a>
+    					                            		@if($e->_show == 1)
+    					                            			<a href="{{ URL::to('admin/plans/hide/' . $e->id) }}" class='btn btn-success'>Đang hiện</a>
     					                            		@else
-    					                            			<a href="{{ URL::to('admin/plans/hide/' . $e->id) }}" class='btn btn-danger'>Đang ẩn</a>
+    					                            			<a href="{{ URL::to('admin/plans/show/' . $e->id) }}" class='btn btn-warning'>Đang ẩn</a>
     					                            		@endif
     					                            	</div>
     					                            </td>

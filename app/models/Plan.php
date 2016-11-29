@@ -1,7 +1,7 @@
 <?php
 class Plan extends Eloquent{
     protected $table = 'plans';
-    protected $fillable = array('name');
+    protected $fillable = array('name', '_show');
     public static function isExistedName($name)
     {
         return Plan::where('name', '=', $name)->exists();
