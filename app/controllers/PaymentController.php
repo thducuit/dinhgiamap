@@ -15,8 +15,9 @@ class PaymentController extends BaseController {
     }
 
     public function getIndex()
-    {
+    {      
         $payment = (Session::get('payment')) ? Session::get('payment') : 0;
+//        $packageService = Pac
         return View::make('default.page.payment')
             ->with(array('title'=> 'thanh toán'))
             ->with(array('payment'=> $payment))
@@ -41,6 +42,13 @@ class PaymentController extends BaseController {
         $messages = array(
             'payment_package.required' => 'Chọn gói dịch vụ phù hợp'
         );
+//        $rules = array(
+//            'goidichvu_thanhtoan' => 'required'
+//        );
+//
+//        $messages = array(
+//            'goidichvu_thanhtoan.required' => 'Chọn gói dịch vụ phù hợp'
+//        );      
 
         $validation = Validator::make(Input::get(), $rules, $messages);
 

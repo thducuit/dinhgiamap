@@ -2559,6 +2559,9 @@ body.menu_mobile_active {
 	color: #8d8d8d;
 	font-size: 14px;
 }
+.modal .tab_body.ngay-sinh-box .form_row{
+  padding: 0;
+}
 #modal_dinhgia .groupThanhToan {
 	float: right;
 }
@@ -3374,4 +3377,7 @@ body .zui-popup-close:hover {
     padding: 5px 40px 5px 10px;
     background: url(../images/btn_trucongtrinh.png) right center no-repeat;
     border: 2px solid #aaa;
+}
+.cursor{
+  cursor:pointer;
 }

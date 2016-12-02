@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2016 at 02:12 AM
+-- Generation Time: Dec 02, 2016 at 03:10 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -83,46 +83,11 @@ CREATE TABLE `adjust_options` (
 --
 
 INSERT INTO `adjust_options` (`id`, `_order`, `description`, `value`, `_limit`, `group_id`, `quanTrungTam`, `quanTrungTamMatTien`, `quanTrungTamHem`, `quanKhac`, `quanKhacMatTien`, `quanKhacHem`) VALUES
-(1, 0, '﻿≤3', -5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 0, '3 - ≤4', -1, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 0, '4 - ≤5', 0, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 0, '5 - ≤6', 1, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 0, '6 - ≤7', 1.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 0, '7 - ≤8', 2, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 0, '8 - ≤9', 2.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 0, '9 - ≤10', 3, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 0, '10 - ≤11', 3.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 0, '11 - ≤12', 4, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 0, '12 - ≤13', 4.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 0, '13 - ≤14', 5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 0, '14 - ≤15', 5.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 0, '15 - ≤16', 6, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(15, 0, '16 - ≤17', 6.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(16, 0, '17 - ≤18', 7, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(17, 0, '18 - ≤19', 7.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(18, 0, '19 - ≤20', 8, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(19, 0, '20 - ≤21', 8.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(20, 0, '21 - ≤22', 9, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(21, 0, '22 - ≤23', 9.5, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(22, 0, '23 - ≤24', 10, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(23, 0, '>24', 10, '', 1, NULL, NULL, NULL, NULL, NULL, NULL),
 (24, 0, '﻿≤8', -2, '', 2, NULL, NULL, NULL, NULL, NULL, NULL),
 (25, 0, '8 - ≤15', -1, '', 2, NULL, NULL, NULL, NULL, NULL, NULL),
 (26, 0, '≤25', 0, '', 2, NULL, NULL, NULL, NULL, NULL, NULL),
 (27, 0, '25 - ≤35', -2, '', 2, NULL, NULL, NULL, NULL, NULL, NULL),
 (28, 0, '>35', -5, '', 2, NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 0, '﻿≤ 20', -5, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(30, 0, '20 - ≤40', 3, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(31, 0, '40 - ≤60', 2, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(32, 0, '60 - ≤100', 0, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(33, 0, '100 - ≤150', -1, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(34, 0, '150 - ≤200', -5, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(35, 0, '200 - ≤250', -8, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(36, 0, '250 - ≤300', -10, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(37, 0, '300 - ≤350', -12, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(38, 0, '350 - ≤400', -15, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(39, 0, '400 - ≤500', -20, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
-(40, 0, '>500', -25, '', 3, NULL, NULL, NULL, NULL, NULL, NULL),
 (41, 0, 'Vuông vức', 0, '', 4, NULL, 0, 0, NULL, 0, 0),
 (43, 0, 'Nở hậu', 3, '', 4, NULL, 3, 2, NULL, 2.5, 1.5),
 (44, 0, 'Tóp hậu', -5, '', 4, NULL, -3, -4, NULL, -3.5, -5),
@@ -229,7 +194,36 @@ INSERT INTO `adjust_options` (`id`, `_order`, `description`, `value`, `_limit`, 
 (145, 0, 'Nằm gần nghĩa trang (Trong phạm vi ≤ 100m)', NULL, '', 16, -3, NULL, NULL, -5, NULL, NULL),
 (146, 0, 'Nằm gần đình, chùa, miếu (Trong phạm vi ≤100m)', NULL, '', 16, -3, NULL, NULL, -5, NULL, NULL),
 (147, 0, 'Có trụ điện/ Cây chắn phía trước.', NULL, '', 16, -2, NULL, NULL, -3, NULL, NULL),
-(148, 0, 'Nằm sát đường điện cao thế', NULL, '', 16, -2, NULL, NULL, -4, NULL, NULL);
+(148, 0, 'Nằm sát đường điện cao thế', NULL, '', 16, -2, NULL, NULL, -4, NULL, NULL),
+(149, 0, '≤3', NULL, '', 1, NULL, -3, -2, NULL, -2.5, 1.5),
+(150, 0, '3 - ≤4', NULL, '', 1, NULL, -2, -1, NULL, -1.5, 1),
+(151, 0, '4 - ≤5', NULL, '', 1, NULL, 0, 0, NULL, 0, 0),
+(152, 0, '5 - ≤6', NULL, '', 1, NULL, 2, 1, NULL, 1.5, 0.5),
+(153, 0, '6 - ≤7', NULL, '', 1, NULL, 3, 2, NULL, 2.5, 1.5),
+(154, 0, '7 - ≤8', NULL, '', 1, NULL, 4, 2.5, NULL, 3.5, 2),
+(155, 0, '8 - ≤9', NULL, '', 1, NULL, 4.5, 3, NULL, 4, 2.4),
+(156, 0, '9 - ≤10', NULL, '', 1, NULL, 5, 3.5, NULL, 4.5, 3),
+(157, 0, '10 - ≤11', NULL, '', 1, NULL, 5.5, 4, NULL, 5, 3.5),
+(158, 0, '11 - ≤12', NULL, '', 1, NULL, 6, 4.5, NULL, 5.5, 4),
+(159, 0, '12 - ≤13', NULL, '', 1, NULL, 6.5, 5, NULL, 6, 4.5),
+(160, 0, '13 - ≤14', NULL, '', 1, NULL, 7, 5.5, NULL, 6.5, 5),
+(161, 0, '14 - ≤15', NULL, '', 1, NULL, 7.5, 6, NULL, 7, 5.5),
+(162, 0, '15 - ≤18', NULL, '', 1, NULL, 8, 6.5, 0, 7.5, 6),
+(163, 0, '18 - ≤21', NULL, '', 1, NULL, 9, 7.5, NULL, 8.5, 7),
+(164, 0, '21 - ≤24', NULL, '', 1, NULL, 10, 8.5, NULL, 9.5, 8),
+(165, 0, '>24', NULL, '', 1, NULL, 12, 10, NULL, 11, 8),
+(166, 0, '≤30', NULL, '', 3, NULL, -3, -4, NULL, -4, -5),
+(167, 0, '30 - ≤40', NULL, '', 3, NULL, 2.5, 2.5, NULL, 2, -4),
+(168, 0, '40 - ≤60', NULL, '', 3, NULL, 2, 2, NULL, 1.5, 1),
+(169, 0, '60 - ≤100', NULL, '', 3, NULL, 0, 0, NULL, 0, 0),
+(170, 0, '100 - ≤150', NULL, '', 3, NULL, -1, -1, NULL, -2, -2),
+(171, 0, '150 - ≤200', NULL, '', 3, NULL, -2, -3, NULL, -3, -4),
+(172, 0, '200 - ≤300', NULL, '', 3, NULL, -4, -5, NULL, -7, -8),
+(173, 0, '300 - ≤400', NULL, '', 3, NULL, -7, -8, NULL, -9, -10),
+(174, 0, '400 - ≤500', NULL, '', 3, NULL, -10, -12, NULL, -12, -15),
+(175, 0, '500 - ≤700', NULL, '', 3, NULL, -13, -15, NULL, -17, -20),
+(176, 0, '700 - ≤1000', NULL, '', 3, NULL, -15, -17, NULL, -20, -22),
+(177, 0, '>1000', NULL, '', 3, NULL, -17, -20, NULL, -22, -25);
 
 -- --------------------------------------------------------
 
@@ -1200,6 +1194,7 @@ CREATE TABLE `payments` (
 CREATE TABLE `payment_service` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` float DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -1208,11 +1203,14 @@ CREATE TABLE `payment_service` (
 -- Dumping data for table `payment_service`
 --
 
-INSERT INTO `payment_service` (`id`, `title`, `created_at`, `updated_at`) VALUES
-(1, 'Dịch vụ định giá', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Xem qui hoạch', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'Mua gói tài khoản', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 'Tài sản cùng đơn giá', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `payment_service` (`id`, `title`, `price`, `created_at`, `updated_at`) VALUES
+(5, 'Dịch vụ định giá', 15000, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 'Xem đơn giá', 15000, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 'Dịch vụ Định giá & Xem đơn giá', 30000, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 'Gói 100.000 VND', 100000, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 'Gói 300.000 VND', 300000, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 'Gói 500.000 VND', 500000, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 'Gói 1.000.000 VND', 1000000, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1248,7 +1246,8 @@ CREATE TABLE `plans` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `_show` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1420,13 +1419,13 @@ CREATE TABLE `streets` (
 --
 
 INSERT INTO `streets` (`id`, `name`, `district`, `ward`, `district_id`, `ward_id`, `created_at`, `updated_at`, `start_lat`, `start_lng`, `end_lat`, `end_lng`, `place_id`, `state_price`, `price`, `position`, `photo_plan`, `code`, `province_id`, `user_id`) VALUES
-(1, 'Bàu Cát 1, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '2016-10-05 20:57:56', 10.795184, 106.640711, 10.792949, 106.646172, 'ChIJD5RZpVIpdTERxOGeOEccCQA', 55, 44, '{"type":"rectangle","latlng":[{"lat":10.760735100000288,"lng":106.65390752255917},{"lat":10.762653405586825,"lng":106.65390752255917},{"lat":10.762653405586825,"lng":106.65691159665585},{"lat":10.760735100000288,"lng":106.65691159665585}]}', '', 'aaaa', 79, 0),
+(1, 'Bàu Cát 1, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '2016-11-30 07:15:42', 10.795184, 106.640711, 10.792949, 106.646172, 'ChIJD5RZpVIpdTERxOGeOEccCQA', 55, 100000000, '{"type":"rectangle","latlng":[{"lat":10.760735100000288,"lng":106.65390752255917},{"lat":10.762653405586825,"lng":106.65390752255917},{"lat":10.762653405586825,"lng":106.65691159665585},{"lat":10.760735100000288,"lng":106.65691159665585}]}', '', 'aaaa', 79, 0),
 (2, 'Cộng Hòa, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '2016-09-04 18:44:32', 10.801817, 106.647470, 10.802271, 106.643415, 'ChIJzUcNNUUpdTERLMKxVgUCFMc', 77, 66, '', '', '', 0, 0),
 (5, 'K300 Shop, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '2016-09-05 07:15:06', 10.788774, 106.661400, 0.000000, 0.000000, 'ChIJdy1w_MwudTERyPCqUoAW_Ns', 13, 12, '[{"lat":10.825212975635937,"lng":106.667520403862},{"lat":10.79840332616153,"lng":106.65516078472137},{"lat":10.782046578290121,"lng":106.67713344097137},{"lat":10.804642263459426,"lng":106.70030772686005},{"lat":10.799920917433026,"lng":106.68022334575653},{"lat":10.812061371479,"lng":106.67953670024872},{"lat":10.805991205831036,"lng":106.66408717632294}]', '', '', 0, 0),
 (6, '326 Cô Giang, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 10.764630, 106.696669, 0.000000, 0.000000, 'EkUzMjYgQ8O0IEdpYW5nLCBD4bqndSDDlG5nIEzDo25oLCBRdeG6rW4gMSwgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0', 88, 77, '[{"lat":10.765183020662807,"lng":106.68173879384995},{"lat":10.747981219652845,"lng":106.69941991567612},{"lat":10.767543975575922,"lng":106.71572774648666},{"lat":10.776903293322619,"lng":106.70250982046127}]', '', '', 0, 0),
 (7, 'District 1, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 10.775659, 106.700424, 0.000000, 0.000000, 'ChIJe4jt-TgvdTERiYl2A1ftrRQ', 14, 12, '', '2016_09_10_215102_test.zip', '', 0, 0),
 (8, 'Đường số 10, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 10.752930, 106.627516, 0.000000, 0.000000, 'ChIJrxi1ZiosdTERlzScn272kJg', 13, 12, '', '2016_09_10_215317_test.zip', '', 0, 0),
-(9, 'District 1, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 10.775659, 106.700424, 0.000000, 0.000000, 'ChIJe4jt-TgvdTERiYl2A1ftrRQ', 56, 45, '', '2016_09_10_215655_test.zip', '', 0, 0);
+(9, 'District 1, Hồ Chí Minh, Việt Nam', NULL, NULL, 0, 0, '0000-00-00 00:00:00', '2016-11-30 07:15:00', 10.775659, 106.700424, 0.000000, 0.000000, 'ChIJe4jt-TgvdTERiYl2A1ftrRQ', 56, 100000000, '', '2016_09_10_215655_test.zip', 'ky hieu', 79, 0);
 
 -- --------------------------------------------------------
 
@@ -1544,7 +1543,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `permissions`, `activated`, `act
 (9, 'ks4@cengroup.vn', '$2y$10$XhlWxQCclGgZqPsbp1p2he.i7e/F2BdIcnrWlAI.W5WD1wdRIl9X6', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016-11-01 02:39:51', '2016-11-01 02:39:51'),
 (10, 'ks5@cengroup.vn', '$2y$10$xbbg7.lBaYcBgmWZo23Wwu4cJ9opY/5wAFyQ6JC9vqoc8fwqq6IaG', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016-11-01 02:39:51', '2016-11-01 02:39:51'),
 (11, 'tindv@cengroup.vn', '$2y$10$VjB7LJkYdt/IJhtUGWKrqe9b2adGthjcDz7UCtE0Wev/M7QYo852S', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016-11-01 02:39:51', '2016-11-01 02:39:51'),
-(12, 'thendh@cengroup.vn', '$2y$10$7AdfvwXWBEXjOWU0RhIbCu6Cm9ScRIzdTFoVGIF4T8OyNkxWxiqKi', NULL, 1, NULL, NULL, '2016-11-24 08:19:40', '$2y$10$/MBugD/79wXY0haJWyONnOUi66.kzZJoI65WU5R9acoPdBKM.TaC.', NULL, NULL, NULL, '2016-11-01 02:39:51', '2016-11-24 08:19:40');
+(12, 'thendh@cengroup.vn', '$2y$10$7AdfvwXWBEXjOWU0RhIbCu6Cm9ScRIzdTFoVGIF4T8OyNkxWxiqKi', NULL, 1, NULL, NULL, '2016-11-30 08:38:14', '$2y$10$0CiRXpoYFlVo6OXLEsVcr.Y4Zkvo/cPCRXCmJogNgWmV8m7OMO9IW', NULL, NULL, NULL, '2016-11-01 02:39:51', '2016-11-30 08:38:14');
 
 -- --------------------------------------------------------
 
@@ -12874,7 +12873,7 @@ ALTER TABLE `adjust_groups`
 -- AUTO_INCREMENT for table `adjust_options`
 --
 ALTER TABLE `adjust_options`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 --
 -- AUTO_INCREMENT for table `contacts`
 --
@@ -12904,7 +12903,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `payment_service`
 --
 ALTER TABLE `payment_service`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `plans`
 --

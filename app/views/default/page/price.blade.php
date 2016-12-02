@@ -98,7 +98,7 @@ MAIN
 												<div class="form_row clearfix">
                                                     <div class="form_col">
 														<label>Quận</label>
-														<select name="shape" class="selectQuan">
+														<select class="selectQuan">
                                                           <option value=""></option>
 															@foreach ($districts as $key => $value)
 															<option value="{{ $key }}">{{ $value }}</option>
@@ -136,7 +136,7 @@ MAIN
                                               <div class="form_col">
                                                   <label>Hình dạng thửa đất</label>
                                                   <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">
-                                                  <select name="shape" class="selectMatTienOrHem">
+                                                  <select class="selectMatTienOrHem">
                                                     <option value="mat_tien">Mặt Tiền</option>
                                                     <option value="hem">Hẻm</option>
                                                   </select>                                                  
@@ -159,8 +159,9 @@ MAIN
 														<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
 													</div>
 													<div class="form_col">
-														<label>&nbsp;</label>
-														<input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+                                                      <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                                      <label>&nbsp;</label>                                                      
+                                                      <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
 													</div>
 													<div class="form_col">
 														<label>&nbsp;</label>
@@ -172,7 +173,8 @@ MAIN
 														<label>Diện tích đất phù hợp quy hoạch</label>
 													</div>
 													<div class="form_col">
-														<input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                                                      <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                                      <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
 													</div>
 													<div class="form_col">
 														<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -2121,7 +2123,7 @@ MAIN
 			<div class="modal-body">
 				<div class="modal_info_inner clearfix">
 					<div class="popup_button_group groupThanhToan">
-						Vui lòng <a class="clogin" href="#">Đăng nhập</a> hoặc chọn <a class="cnologin" href="#">Thanh toán nhanh</a>
+						Vui lòng <a class="clogin cursor">Đăng nhập</a> hoặc chọn <a class="cnologin" href="#">Thanh toán nhanh</a>
 						không cần <a class="clogin" href="#">Đăng kí tài khoản </a> để nhận kết quả định giá của bạn
 					</div>
 				</div>
@@ -2152,6 +2154,8 @@ MAIN
       var vitriOptions = [];
       var hinhDangThuaDatOptions = [];
       var yeuToKhacOptions = [];
+      var chieuNgangOptions = [];
+      var dienTichDatOptions = [];
       <?php 
       foreach($viTri as $item){
         ?>
@@ -2185,8 +2189,35 @@ MAIN
             };
             <?php
       }
-      ?>    
+      ?>   
           
+      <?php 
+      foreach($chieuNgang as $item){
+        ?>
+            chieuNgangOptions[<?php echo $item['id']?>] = {
+              quanTrungTamMatTien: <?php echo $item['quanTrungTamMatTien']?>,
+              quanTrungTamHem: <?php echo $item['quanTrungTamHem']?>,
+              quanKhacMatTien: <?php echo $item['quanKhacMatTien']?>,
+              quanKhacHem: <?php echo $item['quanKhacHem']?>,
+              name: '<?php echo $item['description']?>'
+            };
+            <?php
+      }
+      ?>        
+      
+       <?php 
+      foreach($dienTichDat as $item){
+        ?>
+            dienTichDatOptions[<?php echo $item['id']?>] = {
+              quanTrungTamMatTien: <?php echo $item['quanTrungTamMatTien']?>,
+              quanTrungTamHem: <?php echo $item['quanTrungTamHem']?>,
+              quanKhacMatTien: <?php echo $item['quanKhacMatTien']?>,
+              quanKhacHem: <?php echo $item['quanKhacHem']?>,
+              name: '<?php echo $item['description']?>'
+            };
+            <?php
+      }
+      ?>        
 		var formClass = '';
 
 		getOptions(jQuery('#structure_parent').val());
@@ -2198,12 +2229,10 @@ MAIN
 
 		jQuery('#btn_dinhgia').click(function(e) {
 			e.preventDefault();
-			jQuery('#modal_alert').modal('show');
 			formClass = jQuery(this).attr('data');
 		});
 
-		jQuery('.clogin').click(function(e) {
-			e.preventDefault();
+		jQuery('.clogin').click(function(e) {			
 			jQuery('.chooser').val('login');
 			$(formClass).submit();
 		});
@@ -2216,16 +2245,28 @@ MAIN
 
 		jQuery('#modal_dinhgia').modal('show');
         
-        jQuery('.selectQuan, .selectVitri, .selectVitri, .selectMatTienOrHem, .selectHinhDangThuaDat, .selectYeuToKhac').change(function(){
+        function setDinhGiaField(){
+        }
+        jQuery('.selectQuan, .selectVitri, .selectVitri, .selectMatTienOrHem, .selectHinhDangThuaDat,'+
+                ' .selectYeuToKhac, .selectChieuNgang, .selectDienTichDat, .textChieuNgang, .textDienTichDat').change(function(){
           var quan = $(this).parents('.price-form').find('.selectQuan:first').val();
           var idOptionVitri = $(this).parents('.price-form').find('.selectVitri:first').val();
           var idOptionHinhDangThuaDat = $(this).parents('.price-form').find('.selectHinhDangThuaDat:first').val();
           var idOptionYeuToKhac = $(this).parents('.price-form').find('.selectYeuToKhac:first').val();
-          var selectHemMaTien = $(this).parents('.price-form').find('.selectMatTienOrHem:first').val();;
+//          var idOptionChieuNgang = $(this).parents('.price-form').find('.selectChieuNgang:first').val();
+          var idOptionChieuNgang = null;
+          var idOptionDienTichDat = null;
+          var textChieuNgang = $(this).parents('.price-form').find('.textChieuNgang:first').val();
+          var textDienTich = $(this).parents('.price-form').find('.textDienTichDat:first').val();
+//          var idOptionDienTichDat = $(this).parents('.price-form').find('.selectDienTichDat:first').val();
+          var selectHemMaTien = $(this).parents('.price-form').find('.selectMatTienOrHem:first').val();
+          
           var vitriData = '';          
           var hinhDangThuaDatData = ''; 
           var yeuToKhacData = '';
-           
+          var chieuNgangData = '';
+          var dienTichDatData = '';
+          
           if(vitriOptions[idOptionVitri]){
             if(quan == 1 || quan == 3){
               vitriData = vitriOptions[idOptionVitri].quanTrungTam;
@@ -2259,7 +2300,89 @@ MAIN
               yeuToKhacData = yeuToKhacOptions[idOptionYeuToKhac].quanKhac;
             }            
           }
-          $(this).parents('.price-form').find('.inputYeuToKhac:first').val(yeuToKhacData);                    
+          $(this).parents('.price-form').find('.inputYeuToKhac:first').val(yeuToKhacData);             
+                              
+          for(var i in chieuNgangOptions){
+            var partPrice = chieuNgangOptions[i]['name'].split('≤');
+            if(!partPrice[0]){
+              if(partPrice[1] && textChieuNgang*1 <= partPrice[1]*1){
+                idOptionChieuNgang = i;
+                break;
+              }
+            }else{
+              partPrice = chieuNgangOptions[i]['name'].split(' - ≤');
+              if(partPrice[1]){
+                if(textChieuNgang*1 > partPrice[0]*1 && textChieuNgang*1 <= partPrice[1]*1){
+                  idOptionChieuNgang = i;
+                  break;
+                }
+              }else{
+                partPrice = chieuNgangOptions[i]['name'].split('>');
+                if(textChieuNgang*1 > partPrice[0]){
+                  idOptionChieuNgang = i;
+                  break;
+                }
+              }
+            }
+          }
+          
+          if(chieuNgangOptions[idOptionChieuNgang]){
+            if(quan == 1 || quan == 3){
+              if(selectHemMaTien == 'mat_tien'){
+                chieuNgangData = chieuNgangOptions[idOptionChieuNgang].quanTrungTamMatTien;
+              }else{
+                chieuNgangData = chieuNgangOptions[idOptionChieuNgang].quanTrungTamHem;
+              }
+            }else{
+              if(selectHemMaTien == 'mat_tien'){
+                chieuNgangData = chieuNgangOptions[idOptionChieuNgang].quanKhacMatTien;
+              }else{
+                chieuNgangData = chieuNgangOptions[idOptionChieuNgang].quanKhacHem;
+              }
+            }            
+          }
+          $(this).parents('.price-form').find('.inputChieuNgang:first').val(chieuNgangData);
+                    
+          for(var i in dienTichDatOptions){
+            var partPrice = dienTichDatOptions[i]['name'].split('≤');
+            if(!partPrice[0]){
+              if(partPrice[1] && textDienTich*1 <= partPrice[1]*1){
+                idOptionDienTichDat = i;
+                break;
+              }
+            }else{
+              partPrice = dienTichDatOptions[i]['name'].split(' - ≤');
+              if(partPrice[1]){
+                if(textDienTich*1 > partPrice[0]*1 && textDienTich*1 <= partPrice[1]*1){
+                  idOptionDienTichDat = i;
+                  break;
+                }
+              }else{
+                partPrice = dienTichDatOptions[i]['name'].split('>');
+                if(textDienTich*1 > partPrice[0]){
+                  idOptionDienTichDat = i;
+                  break;
+                }
+              }
+            }
+          }
+          if(dienTichDatOptions[idOptionDienTichDat]){
+            if(quan == 1 || quan == 3){
+              if(selectHemMaTien == 'mat_tien'){
+                dienTichDatData = dienTichDatOptions[idOptionDienTichDat].quanTrungTamMatTien;
+              }else{
+                dienTichDatData = dienTichDatOptions[idOptionDienTichDat].quanTrungTamHem;
+              }
+            }else{
+              if(selectHemMaTien == 'mat_tien'){
+                dienTichDatData = dienTichDatOptions[idOptionDienTichDat].quanKhacMatTien;
+              }else{
+                dienTichDatData = dienTichDatOptions[idOptionDienTichDat].quanKhacHem;
+              }
+            }            
+          }
+          $(this).parents('.price-form').find('.inputDienTichDat:first').val(dienTichDatData); 
+          
         });
         
        

@@ -18,7 +18,7 @@ class Price implements PriceRepository
     
     public function result($input)
     {
-        $type = $input['type'];
+        $type = $input['type'];        
 		switch ($type)
 		{
 			case 'vacant_land':
@@ -86,7 +86,8 @@ class Price implements PriceRepository
         $farming_violance_area = $input['farming_violance_area'];
         $total_area = $input['total_area'];
         
-        $unit_price = $this->getUnitPriceAfterConfig($unit_price, $shape_persent);
+//        $unit_price = $this->getUnitPriceAfterConfig($unit_price, $shape_persent);
+        $unit_price = $unit_price*1 + $unit_price*($input['viTri'] + $input['hinhDangThuaDat'] + $input['yeuToKhac'] + $input['chieuNgang']  + $input['dienTichDat'])/100;        
         $price_in_plan = $this->getPriceInPlan($unit_price, $leaving_plan_area, $trade_plan_area, $production_plan_area, $farming_plan_area);
         $price_in_violance = $this->getPriceInViolance($unit_price, $unit_state_price, $leaving_violance_area, $trade_violance_area, $production_violance_area, $farming_violance_area);
        
@@ -99,14 +100,15 @@ class Price implements PriceRepository
             $total_ground_area = $input['total_ground_area'];
             $year_building = $input['year_building'];
             $construction =  $this->getPriceConstruction($structure, $total_ground_area, $year_building);
-        }
+        }        
+        
         return array(
                 'name'=> $name,
                 'total_price' => number_format($total),
                 'unit_price'=> number_format($unit_price),
                 'unit_state_price'=> number_format($unit_state_price),
                 'building_price' => number_format($construction),
-                'total' => number_format($total + $construction)
+                'total' => number_format($total + $construction)                
             );
         
     }

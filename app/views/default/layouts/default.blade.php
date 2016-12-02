@@ -435,22 +435,53 @@
                                                                                                          
                                                                                               </div>
                                                                                             </div>
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group tab_body ngay-sinh-box">
                                                                                               <label  class="col-sm-3 control-label">Ngày sinh:</label>
-                                                                                              <div class="col-sm-9">
-                                                                                                  
-                                                                                                    <div class="input-group">
-                                                                                                      
-<!--                                                                                                        <input type="text" class="form-control" name="ngaysinh"  id="datetimepicker_ngaysinh"/>-->
-                                                                                                        <div class="input-group date" id="datetimepicker_ngaysinh">
-                                                                                                            <input class="form-control" type="text" id="d_ngaySinh" name="d_ngaySinh">
-                                                                                                                    <span class="input-group-addon">
-                                                                                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                                                                                    </span>
-                                                                                                            </div>    
-                                                                                                    
-                                                                                                    </div><!-- /.input group -->
-                                                                                                         
+                                                                                              <div class="col-sm-9 form_row">    
+                                                                                                <div class="form_col">
+                                                                                                  <select name="d_ngaySinh">
+                                                                                                    <option value="">Ngày</option>
+                                                                                                    <?php 
+                                                                                                    for($i = 1; $i <= 31; $i++){
+                                                                                                      ?>
+                                                                                                    <option value="<?php echo $i?>"><?php echo $i?></option>
+                                                                                                    <?php
+                                                                                                    }
+                                                                                                    ?>
+                                                                                                  </select>
+                                                                                                </div>
+                                                                                                <div class="form_col">
+                                                                                                  <select name="m_ngaySinh">
+                                                                                                    <option value="">Tháng</option>
+                                                                                                    <?php 
+                                                                                                    for($i = 1; $i <= 12; $i++){
+                                                                                                      ?>
+                                                                                                    <option value="<?php echo $i?>"><?php echo $i?></option>
+                                                                                                    <?php
+                                                                                                    }
+                                                                                                    ?>
+                                                                                                  </select>
+                                                                                                </div>
+                                                                                                <div class="form_col">
+                                                                                                  <select name="y_ngaySinh">
+                                                                                                    <option value="">Năm</option>
+                                                                                                    <?php 
+                                                                                                    for($i = 1916; $i <= 1998; $i++){
+                                                                                                      ?>
+                                                                                                    <option value="<?php echo $i?>"><?php echo $i?></option>
+                                                                                                    <?php
+                                                                                                    }
+                                                                                                    ?>
+                                                                                                  </select>
+                                                                                                </div>
+<!--                                                                                                <div class="input-group">                                                                                                      
+                                                                                                    <div class="input-group date" id="datetimepicker_ngaysinh">
+                                                                                                        <input class="form-control" type="text" id="d_ngaySinh" name="d_ngaySinh">
+                                                                                                                <span class="input-group-addon">
+                                                                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                                                                </span>
+                                                                                                        </div>                                                                                                        
+                                                                                                </div>                                                                                                         -->
                                                                                               </div>
                                                                                             </div>                                                                                            
                                                                                             <div class="form-group">
@@ -1114,7 +1145,7 @@
 		{{ HTML::script('default/js/bootstrap.min.js') }}
 		{{ HTML::script('default/js/moment.js') }}
 		{{ HTML::script('default/js/moment-vi.js') }}
-		{{ HTML::script('default/js/bootstrap-datetimepicker.js') }}
+		
 		{{ HTML::script('default/js/zjs/z.min.js') }}
 		{{ HTML::script('default/js/jquery.accordion.js') }}
 		{{ HTML::script('default/js/cenvalue.js') }}
