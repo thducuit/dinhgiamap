@@ -46,9 +46,7 @@ class InfoController extends BaseController {
         }
         else
         {
-
             $plan= Plan::find($id)->toArray();
-            //dd($plan); die();
             $plan['position'] = array();
             $planPhoto = PlanPhoto::findByPlanId($id)->toArray();
             for($i = 0; $i<count($planPhoto); $i++ ) {
