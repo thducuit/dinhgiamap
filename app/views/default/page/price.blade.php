@@ -144,7 +144,7 @@ MAIN
                                               <div class="form_col">
                                                   <label>&nbsp;</label>
                                                   <select name="shape" class="selectHinhDangThuaDat">
-                                                    <option value=""></option>
+                                                    <option value="">Hình dạng</option>
                                                     @foreach ($hinhDangThuaDat as $s)
                                                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                                     @endforeach

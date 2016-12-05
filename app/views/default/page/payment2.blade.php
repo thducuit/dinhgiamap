@@ -55,7 +55,7 @@ MAIN
 								<div class="summary_info_item">
 									<div class="summary_info_item_header">thông tin loại dịch vụ </div>
 									<div class="summary_info_item_body">
-										<p>Sử dụng dịch vụ <strong>Định giá</strong></p>
+										<p>Sử dụng <strong>{{$name_service}}</strong></p>
 									</div>
 								</div>
 							</div>
@@ -86,7 +86,7 @@ MAIN
 						    @endif
 							<!--/.errors-->
 							<div class="thanhtoan_left_inner">
-								
+								<?php /*
 								{{ Form::open( array('url' => 'register', 'method' => 'post') ) }}
 								<div class="form_group form_group_thongtinthanhtoan">
 									<div class="form_group_header">
@@ -95,29 +95,50 @@ MAIN
 									<div class="form_group_body clearfix">
 										<div class="form_field field_lastname">
 											<label>Họ và tên(*)</label>
-												<input type="text">
-											</label>
+                                            <input type="text" name="name" value="<?php if($customer)echo $customer->name?>"/>											 
 										</div>
 										<div class="form_field field_company">
 											<label>Đơn vị(*)</label>
-												<input type="text">
-											</label>
+                                            <input type="text" name="donvi" >											
 										</div>
 										<div class="form_field field_email">
 											<label>Email(*)</label>
-												<input type="email">
-											</label>
+                                            <input type="email" name="email" value="<?php if($customer)echo $customer->email?>">											
 										</div>
 										<div class="form_field field_phone">
 											<label>Điện thoại(*)</label>
-												<input type="phone">
-											</label>
+                                            <input type="phone" name="phone" value="<?php if($customer)echo $customer->phone?>">											
 										</div>
 									</div>
 								</div>
-								{{ Form::close() }}
+								{{ Form::close() }} */?>
 								
 								{{ Form::open(array('url'=>'/payment/step2', 'method'=>'post')) }}
+                                
+                                <div class="form_group form_group_thongtinthanhtoan">
+									<div class="form_group_header">
+										<span>Thông tin thanh toán</span>
+									</div>
+									<div class="form_group_body clearfix">
+										<div class="form_field field_lastname">
+											<label>Họ và tên(*)</label>
+                                            <input type="text" name="name" value="<?php if($customer)echo $customer->name?>"/>											 
+										</div>
+										<div class="form_field field_company">
+											<label>Đơn vị(*)</label>
+                                            <input type="text" name="donvi" >											
+										</div>
+										<div class="form_field field_email">
+											<label>Email(*)</label>
+                                            <input type="email" name="email" value="<?php if($customer)echo $customer->email?>">											
+										</div>
+										<div class="form_field field_phone">
+											<label>Điện thoại(*)</label>
+                                            <input type="phone" name="phone" value="<?php if($customer)echo $customer->phone?>">											
+										</div>
+									</div>
+								</div>
+                                
 								<div class="form_group form_group_hinthucthanhtoan">
 									<div class="form_group_header">
 										<span>Hình thức thanh toán</span>
@@ -131,14 +152,14 @@ MAIN
                                                                                                                     
 																
                                                                                                                     <label class="thanhtoan_tt">
-																	<input type="radio" name="hinhthucthanhtoan" id="hinhthucthanhtoan_internetbanking" value="hinhthucthanhtoan_internetbanking" checked data-method="4">
+																	<input type="radio" name="hinhthucthanhtoan" id="hinhthucthanhtoan_internetbanking" value="internetbanking" checked data-method="4">
 																	Internet Banking
 																</label>
 																												
 															
 																
                                                                                                                                  <label class="thanhtoan_tt">
-																	<input type="radio" name="hinhthucthanhtoan" id="hinhthucthanhtoan_sms" value="hinhthucthanhtoan_sms"  data-method="1">
+																	<input type="radio" name="hinhthucthanhtoan" id="hinhthucthanhtoan_sms" value="card"  data-method="1">
 																	SMS (Thẻ cào điện thoại)
 																</label>
 															
@@ -146,12 +167,12 @@ MAIN
                                                                                                                    <div style="width: 225px;float: left; padding-top: 5px;">
                                                                                                                        
 																 <label class="thanhtoan_tt">
-																	<input type="radio" name="hinhthucthanhtoan" id="hinhthucthanhtoan_visa" value="hinhthucthanhtoan_visa" data-method="3">
+																	<input type="radio" name="hinhthucthanhtoan" id="hinhthucthanhtoan_visa" value="visa" data-method="3">
 																	Thanh toán bằng visa
 																</label>
 															
 																 <label class="thanhtoan_tt">
-																	<input type="radio" name="hinhthucthanhtoan" id="hinhthucthanhtoan_taivanphong" value="hinhthucthanhtoan_taivanphong" data-method="2">
+																	<input type="radio" name="hinhthucthanhtoan" id="hinhthucthanhtoan_taivanphong" value="office" data-method="2">
 																	Chuyển khoản & thanh toán tại VP
 																</label>
 															
@@ -560,9 +581,7 @@ MAIN
                                                                                                         </a>
                                                                                                     </div>
                                                                                                     <div class="col-xs-6 text-right">
-                                                                                                        <a href="thanh-toan-hoan-tat.html" class="btn btn-info btn-sm btn_tieptuc">
-                                                                                                             Tiếp tục <span class="glyphicon glyphicon-arrow-right"></span>
-                                                                                                        </a>
+                                                                                                      <button type="submit" class="btn btn-info btn-sm btn_tieptuc">Tiếp tục <span class="glyphicon glyphicon-arrow-right"></span></button>                                                                                                        
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 

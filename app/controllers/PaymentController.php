@@ -17,11 +17,13 @@ class PaymentController extends BaseController {
     public function getIndex()
     {      
         $payment = (Session::get('payment')) ? Session::get('payment') : 0;
-//        $packageService = Pac
+        $packageServices = PaymentService::all();
+        
         return View::make('default.page.payment')
             ->with(array('title'=> 'thanh toán'))
             ->with(array('payment'=> $payment))
-            ->with(array('body_class'=> 'page_thanhtoan'));
+            ->with(array('body_class'=> 'page_thanhtoan'))
+            ->with(array('packageServices' => $packageServices));
     }
 
     public function getStep1()
@@ -35,20 +37,14 @@ class PaymentController extends BaseController {
 
     public function postStep1()
     {
+       
         $rules = array(
-            'payment_package' => 'required'
+            'goidichvu_thanhtoan' => 'required'
         );
 
         $messages = array(
-            'payment_package.required' => 'Chọn gói dịch vụ phù hợp'
-        );
-//        $rules = array(
-//            'goidichvu_thanhtoan' => 'required'
-//        );
-//
-//        $messages = array(
-//            'goidichvu_thanhtoan.required' => 'Chọn gói dịch vụ phù hợp'
-//        );      
+            'goidichvu_thanhtoan.required' => 'Chọn gói dịch vụ phù hợp'
+        );      
 
         $validation = Validator::make(Input::get(), $rules, $messages);
 
@@ -59,14 +55,15 @@ class PaymentController extends BaseController {
             ->withErrors($validation);
         }
 
-        Session::put('payment', (int)Input::get('payment_package'));
-
-        if( (int)Input::get('payment_package') == 1 && Sentry::check() )
+        Session::put('payment', Input::get('goidichvu_thanhtoan'));
+        
+        //if user logged in and made the payment
+        if( Input::get('goidichvu_thanhtoan') && Sentry::check() )
         {
             $user = Sentry::getUser();
 
             $customer = User::find($user->id)->customer;
-
+            //check if customer has enough money
             if( $customer && $this->payment->checkBalanceCustomerWithFee($customer->account) )
             {
                 $this->getResult($customer);
@@ -125,10 +122,16 @@ class PaymentController extends BaseController {
 
     public function getStep2()
     {
+      $user = Sentry::getUser();
+      $customer = null;
+      if($user){
+        $customer = User::find($user->id)->customer;        
+      }
         return View::make('default.page.payment2')
         ->with(array('title'=> 'hình thức thanh toán'))
         ->with(array('name_service'=> $this->getPaymentServiceName()))
-        ->with(array('body_class'=> 'page_thanhtoan'));
+        ->with(array('body_class'=> 'page_thanhtoan'))
+        ->with(array('customer'=> $customer));
     }
 
     public function postStep2()
@@ -151,7 +154,6 @@ class PaymentController extends BaseController {
         }
         
         Session::put('payment_type', Input::get('hinhthucthanhtoan'));
-
         switch( Input::get('hinhthucthanhtoan') )
         {
             case 'card':
@@ -295,7 +297,10 @@ class PaymentController extends BaseController {
     public function getStep3()
     {
         $user = Sentry::getUser();
-        $customer = User::find($user->id)->customer;
+        $customer = null;
+        if($user){
+          $customer = User::find($user->id)->customer;
+        }
         return View::make('default.page.payment3')
             ->with(array('customer'=> $customer))
             ->with(array('name_service'=> $this->getPaymentServiceName()))
@@ -334,7 +339,7 @@ class PaymentController extends BaseController {
     }
 
     private function getPaymentServiceName()
-    {
+    {      
         $name = null;
         if(Session::get('payment'))
         {
