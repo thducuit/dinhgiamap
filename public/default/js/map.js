@@ -103,7 +103,7 @@
                 place_id: object.place_id,
                 lat: object.geometry.location.lat(),
                 lng: object.geometry.location.lng()
-            };
+            };          
             findAddressInformation();
         }
 

@@ -135,22 +135,14 @@ MAIN
                                             <div class="form_row clearfix">
                                               <div class="form_col">
                                                   <label>Hình dạng thửa đất</label>
-                                                  <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">
-                                                  <select class="selectMatTienOrHem">
-                                                    <option value="mat_tien">Mặt Tiền</option>
-                                                    <option value="hem">Hẻm</option>
-                                                  </select>                                                  
-                                              </div>
-                                              <div class="form_col">
-                                                  <label>&nbsp;</label>
+                                                  <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
                                                   <select name="shape" class="selectHinhDangThuaDat">
                                                     <option value="">Hình dạng</option>
                                                     @foreach ($hinhDangThuaDat as $s)
                                                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                                     @endforeach
                                                   </select>
-                                              </div>
-                                              
+                                              </div>                                                                                            
                                             </div>
                                             
 												<div class="form_row clearfix">
@@ -2161,12 +2153,13 @@ MAIN
         ?>
             vitriOptions[<?php echo $item['id']?>] = {
               quanTrungTam: <?php echo $item['quanTrungTam']?>,
-              quanKhac: <?php echo $item['quanKhac']?>
+              quanKhac: <?php echo $item['quanKhac']?>,
+              description: '<?php echo $item['description']?>'
             };
             <?php
       }
       ?>
-          
+       
       <?php 
       foreach($hinhDangThuaDat as $item){
         ?>
@@ -2247,19 +2240,17 @@ MAIN
         
         function setDinhGiaField(){
         }
-        jQuery('.selectQuan, .selectVitri, .selectVitri, .selectMatTienOrHem, .selectHinhDangThuaDat,'+
+        jQuery('.selectQuan, .selectVitri, .selectVitri, .selectHinhDangThuaDat,'+
                 ' .selectYeuToKhac, .selectChieuNgang, .selectDienTichDat, .textChieuNgang, .textDienTichDat').change(function(){
           var quan = $(this).parents('.price-form').find('.selectQuan:first').val();
           var idOptionVitri = $(this).parents('.price-form').find('.selectVitri:first').val();
-          var idOptionHinhDangThuaDat = $(this).parents('.price-form').find('.selectHinhDangThuaDat:first').val();
+          var idOptionHinhDangThuaDat = $(this).parents('.price-form').find('.selectHinhDangThuaDat:first').val();         
           var idOptionYeuToKhac = $(this).parents('.price-form').find('.selectYeuToKhac:first').val();
-//          var idOptionChieuNgang = $(this).parents('.price-form').find('.selectChieuNgang:first').val();
           var idOptionChieuNgang = null;
           var idOptionDienTichDat = null;
           var textChieuNgang = $(this).parents('.price-form').find('.textChieuNgang:first').val();
           var textDienTich = $(this).parents('.price-form').find('.textDienTichDat:first').val();
-//          var idOptionDienTichDat = $(this).parents('.price-form').find('.selectDienTichDat:first').val();
-          var selectHemMaTien = $(this).parents('.price-form').find('.selectMatTienOrHem:first').val();
+          var selectHemMaTien = 'mat_tien';
           
           var vitriData = '';          
           var hinhDangThuaDatData = ''; 
@@ -2272,8 +2263,11 @@ MAIN
               vitriData = vitriOptions[idOptionVitri].quanTrungTam;
             }else{
               vitriData = vitriOptions[idOptionVitri].quanKhac;
-            }            
-          }
+            }
+            if(vitriOptions[idOptionVitri].description.indexOf('hẻm') > -1){
+              selectHemMaTien = 'hem';
+            }
+          }          
           $(this).parents('.price-form').find('.inputViTri:first').val(vitriData);                    
                     
           if(hinhDangThuaDatOptions[idOptionHinhDangThuaDat]){
