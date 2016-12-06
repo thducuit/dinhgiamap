@@ -94,29 +94,38 @@
             marker.setPosition(new google.maps.LatLng(point.lat(), point.lng()));
         }
 
+        var markerLatLng = null;
         function getDragendAddressCallback(list) {
             var object = list[0];
             $('#google-map-autocomplete').val(object.formatted_address);
             $('#placeId').val(object.place_id);
+            var lat = object.geometry.location.lat();
+            var long = object.geometry.location.lng();
+            if(markerLatLng){
+              lat = markerLatLng.lat();
+              long = markerLatLng.lng();
+            }
             place = {
                 name: object.formatted_address,
                 place_id: object.place_id,
-                lat: object.geometry.location.lat(),
-                lng: object.geometry.location.lng()
-            };          
+                lat: lat,
+                lng: long
+            };              
             findAddressInformation();
         }
 
         google.maps.event.addListener(marker, 'dragend', function() {
             if (marker) {
                 var latLng = marker.getPosition();
-                getAddress('latLng', latLng, getDragendAddressCallback);
+                markerLatLng = latLng;
+                getAddress('latLng', latLng,getDragendAddressCallback);
             }
         });
 
         google.maps.event.addListener(mapObject, 'click', function(e) {
             setMarkerPosition(e.latLng);
             mapObject.setCenter(e.latLng);
+            markerLatLng = e.latLng;
             getAddress('latLng', e.latLng, getDragendAddressCallback);
         });
 
@@ -225,20 +234,26 @@
                         $('#modal_info').modal('show');
                     }
                     else {
-                        place.street_id = ContainInPolygon(place);
-                        setContent(place);
+                       ContainInPolygon(place, function(streetId){
+							place.street_id = streetId;							
+                                      setContent(place);
                         $('#modal_info').modal('show');
+                      });
                     }
                 }
             })
         }
 
-        function ContainInPolygon(place){
+        function ContainInPolygon(place, callback){			
             for(var i = polygons.length; i>=0; i--) {
-                if( polygons[i] && google.maps.geometry.poly.containsLocation(new google.maps.LatLng(place.lat, place.lng), polygons[i]) )
-                    return i;
+                if( polygons[i] && google.maps.geometry.poly.containsLocation(new google.maps.LatLng(place.lat, place.lng), polygons[i]) ){
+                    return callback(i);
+				}
+				if(i === 0){
+					return callback(i);
+				}
             }
-            return 0;
+            
         }
 
         marker.addListener('click', function() {
