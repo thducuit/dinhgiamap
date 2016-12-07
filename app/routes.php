@@ -70,9 +70,9 @@
 // });
 
 
-//Route::get('/', 'HomeController@view');
+Route::get('/', 'HomeController@view');
 //Route::get('/index', 'HomeController@view');
-Route::get('/index1', 'HomeController@view');
+Route::get('/index', 'HomeController@view');
 Route::get('/search', 'HomeController@search');
 Route::get('/markers', 'HomeController@getMarkers');
 Route::get('/info', 'HomeController@getInfo');

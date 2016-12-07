@@ -27,7 +27,7 @@
         );
         
         var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(10.762622, 106.660172), // center HCM city
+            //position: new google.maps.LatLng(10.762622, 106.660172), // center HCM city
             map: mapObject,
             icon: myicon,
             animation: google.maps.Animation.DROP,
@@ -40,8 +40,6 @@
 
         autocomplete.addListener('place_changed', function() {
             var place = autocomplete.getPlace();
-            //mapObject.setCenter(place.geometry.location);
-            //console.log('place', place);
             $('#placeId').val(place.place_id);
             isAutoComplete = true;
         });
@@ -129,43 +127,6 @@
             getAddress('latLng', e.latLng, getDragendAddressCallback);
         });
 
-        // function setContent(place) {
-        //     if (!place) return null;
-
-        //     placeInfo = place;
-        //     console.log(place);
-        //     var p = $('#placeId').val();
-        //     var a = $('#google-map-autocomplete').val();
-        //     var s = placeInfo.street_id;
-        //     var contentString = '<div class="popup_map">' +
-        //         '<div class="popup_map_inner clearfix">' +
-        //         '<div class="p_address">' +
-        //         '<p>' + place.name + '</p>' +
-        //         '</div>' +
-        //         '<div class="clearfix">' +
-        //         '<div class="p_half">' +
-        //         '<div class="p_status">' +
-        //         '<p>Trạng thái: </strong></p>' +
-        //         '</div>' +
-        //         '</div>' +
-        //         '<div class="p_half">' +
-        //         '<div class="p_value">' +
-        //         '<p><a href="#"><i class="icon_money"></i><span><strong>Liên hệ định giá</strong></span></a></p>' +
-        //         '</div>' +
-        //         '</div>' +
-        //         '</div>' +
-        //         '<div class="popup_button_group">' +
-        //         '<a id="showDGPopUp" href="#"><div class="btn btn_icon btn_gradient1"><i class="icon_xemdongia"></i><span>Xem đơn giá</span></div></a>' +
-        //         '<a href="' + url.plan + '"><div class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>' +
-        //         '<a id="showDinhGiaPopUp" href="' + url.price + '?placeId=' + p +'&address=' + a + '&street=' + s +  '"><div class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></div></a>' +
-        //         '<a id="priceLink" href="' + url.address + '?lat=' + place.lat + '&lng=' + place.lng + '"><div class="btn btn_icon btn_gradient4"><i class="icon_cungdongia"></i><span>Tài sản cùng đơn giá</span></div></a>' +
-        //         '</div>' +
-        //         '</div>' +
-        //         '</div>';
-
-        //     infowindow.setContent(contentString);
-        // }
-
         function setContent(place) {
             $('#modal_info .p_address p').text(place.name);
 
@@ -194,7 +155,6 @@
         function buildHTMLPopupDG() {
             $('.dongia_highlight_left').html(placeInfo.price_format);
             $('.dongia_highlight_right').html(placeInfo.state_price_format);
-
             $('#modal_dongiathitruong').modal('show');
         }
 
@@ -246,18 +206,19 @@
 
         function ContainInPolygon(place, callback){			
             for(var i = polygons.length; i>=0; i--) {
+
                 if( polygons[i] && google.maps.geometry.poly.containsLocation(new google.maps.LatLng(place.lat, place.lng), polygons[i]) ){
                     return callback(i);
 				}
 				if(i === 0){
 					return callback(i);
 				}
+
             }
             
         }
 
         marker.addListener('click', function() {
-            //infowindow.open(mapObject, marker);
             findAddressInformation();
         });
 
@@ -305,7 +266,6 @@
 
         function init() {
             getAreas();
-            
         }
 
         $('.input_submit').click(function(event) {

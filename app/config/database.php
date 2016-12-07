@@ -65,7 +65,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'dinhgiamap',
+			'database'  => 'beta_digi',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
