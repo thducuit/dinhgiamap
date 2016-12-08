@@ -142,14 +142,21 @@
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgtt_popup_address').html(html);
-
-
-
             if(placeInfo.price_format && placeInfo.state_price_format) {
                 buildHTMLPopupDG();
             }else {
                 getStreetPrice();
             }  
+        });
+
+
+        $('#show-price-temp-pop-up').click(function(e) {
+            e.preventDefault();
+            var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
+            var html = [placeInfo.name, '<br>', street].join('');
+            $('#dgsb_popup_address').html(html);
+
+            $('#modal_dongiasobo').modal('show');
         });
 
         function buildHTMLPopupDG() {

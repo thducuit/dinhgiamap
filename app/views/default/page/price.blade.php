@@ -97,9 +97,9 @@ MAIN
 											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
 												<div class="form_row clearfix">
                                                     <div class="form_col">
-														<label>Quận</label>
+														<label>Quận</label>
 														<select class="selectQuan">
-                                                          <option value=""></option>
+                                                          <option value="">Chọn Quận</option>
 															@foreach ($districts as $key => $value)
 															<option value="{{ $key }}">{{ $value }}</option>
 															@endforeach
@@ -113,7 +113,7 @@ MAIN
 														<input type="hidden" name="address"  value="{{ $address }}" >
                                                         <input type="hidden" name="viTri"  value="" class="inputViTri">
 														<select class="selectVitri">
-                                                          <option value=""></option>
+                                                          <option value="">Chọn Vị trí</option>
                                                           @foreach ($viTri as $s)
 															<option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                                           @endforeach															
@@ -125,25 +125,26 @@ MAIN
                                                       <label>Yếu tố khác</label>
                                                       <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                                                       <select class="selectYeuToKhac">
-                                                        <option value=""></option>
+                                                        <option value="">Yếu tố khác</option>
                                                         @foreach ($yeuToKhac as $s)
                                                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                                         @endforeach															
                                                       </select>
 													</div>	
 												</div>
-                                            <div class="form_row clearfix">
-                                              <div class="form_col">
-                                                  <label>Hình dạng thửa đất</label>
-                                                  <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
-                                                  <select name="shape" class="selectHinhDangThuaDat">
-                                                    <option value="">Hình dạng</option>
-                                                    @foreach ($hinhDangThuaDat as $s)
-                                                    <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
-                                                    @endforeach
-                                                  </select>
-                                              </div>                                                                                            
-                                            </div>
+												
+	                                            <div class="form_row clearfix">
+	                                              <div class="form_col">
+	                                                  <label>Hình dạng thửa đất</label>
+	                                                  <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+	                                                  <select name="shape" class="selectHinhDangThuaDat">
+	                                                    <option value="">Hình dạng</option>
+	                                                    @foreach ($hinhDangThuaDat as $s)
+	                                                    <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+	                                                    @endforeach
+	                                                  </select>
+	                                              </div>                                                                                            
+	                                            </div>
                                             
 												<div class="form_row clearfix">
 													<div class="form_col">

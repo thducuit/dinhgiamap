@@ -181,24 +181,6 @@
 			<!-- Modal -->
 			<div id="modal_info" class="modal fade" role="dialog">
 				<div class="modal-dialog" style="max-width: 480px;">
-					<!-- Modal content-->
-					<!-- <div class="modal-content">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<div class="modal-body">
-							<div class="modal_info_inner clearfix">
-								<div class="p_address">
-									<p>Địa chỉ : 27 Phó Đức Chính, P.Nguyễn Thái Bình, Q.1, TPHCM</p>
-								</div>
-								<div class="popup_button_group">
-									<a href="#" id="show-price-pop-up"><div class="btn btn_icon btn_gradient1"><i class="icon_xemdongia"></i><span>Xem đơn giá</span></div></a>
-									<a class="btn_dinhgia" href="#"><div class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></div></a>
-									<a href="#"><div id="btn_xemquihoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>
-									<a href="#"><div class="btn btn_icon btn_gradient4"><i class="icon_phathanhchungthu"></i><span>Liên hệ phát hành chứng thư</span></div></a>
-								</div>
-							</div>
-						</div>
-					</div> -->
-
 					<div class="modal-content">
 						<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">×</button>
@@ -211,27 +193,28 @@
 							<div class="popup_button_group text-center">
 								<div class="row">
 				                    <div class="col-sm-12">
-
-				                    
 				                          <div class="infortrai">
 				                              <a href="#" id="show-price-pop-up">
 				                            <div class="btn btn_icon btn_gradient1" style="padding-right: 40px;">
 				                                <i class="icon_xemdongia"></i>
 				                                <span>Xem đơn giá    </span>
 				                            </div></a>
-				                          <a href="#"><div id="btn_xemquihoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>
-				                          </div>
-				                          <div class="inforphai">
-				                              <a class="btn_dinhgia" href="#">
+				                          <a class="btn_dinhgia" href="#">
 				                             <div class="btn btn_icon btn_gradient3" style="padding-right: 50px;">
 				                                 <i class="icon_dinhgia"></i><span>Định giá</span>
 				                             </div>
 				                         </a>
-				                         <a href="#">
-				                             <div class="btn btn_icon btn_gradient4" style="padding-right: 68px;">
+				                          </div>
+				                          <div class="inforphai">
+				                              
+				                         <a href="#" id="show-price-temp-pop-up">
+				                             <div class="btn btn_icon btn_gradient4" style="padding-right: 25px;">
 				                                 <i class="icon_phathanhchungthu"></i>
-				                                 <span>Liên hệ</span>
-				                             </div></a>
+				                                 <span>Xem giá sơ bộ</span>
+				                             </div>
+				                         </a>
+
+				                        <a href="#"><div id="btn_xemquihoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>
 				                            </div>
 				                          
 				                    </div> 
@@ -240,11 +223,148 @@
 							</div>
 						</div>
 
-						</div>
+					</div>
 
 				</div>
-			</div>
+			</div><!--end modal-->
+
+			<!-- Modal -->
+			<div id="modal_dongiasobo" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Xem giá sơ bộ</h4>
+				  </div>
+				  <div class="modal-body">
+					<div class="address_row">
+						<p><strong>Địa chỉ</strong></p>
+						<p id="dgsb_popup_address">68 Hai Bà Trưng, P.Bến Nghé, Q.1, Tp.HCM</p>
+					</div>
+					<div class="form_row clearfix">
+                        <div class="tab_body">
+							<div class="tab_body_inner">
+								{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
+									<div class="form_row clearfix">
+                                        <div class="form_col">
+											<label>Quận</label>
+											<select class="selectQuan">
+                                              <option value="">Chọn Quận</option>
+												@foreach ($districts as $key => $value)
+												<option value="{{ $key }}">{{ $value }}</option>
+												@endforeach
+											</select>
+										</div>
+										<div class="form_col">
+											<label class="highlight">Vị trí (*)</label>
+											<input type="hidden" name="type" value='vacant_land'/>
+											<input type="hidden" name="place_id" value='{{ $placeId }}'/>
+											<input type="hidden" name="street_id"  value="{{ $streetId }}" >
+											<input type="hidden" name="address"  value="{{ $address }}" >
+                                            <input type="hidden" name="viTri"  value="" class="inputViTri">
+											<select class="selectVitri">
+                                              <option value="">Chọn Vị trí</option>
+                                              @foreach ($viTri as $s)
+												<option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                                              @endforeach															
+											</select>
+										
+										</div>
+									</div>
+	                                <div class="form_row clearfix">
+	                                  <div class="form_col">
+	                                      <label>Hình dạng thửa đất</label>
+	                                      <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+	                                      <select name="shape" class="selectHinhDangThuaDat">
+	                                        <option value="">Hình dạng</option>
+	                                        @foreach ($hinhDangThuaDat as $s)
+	                                        <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+	                                        @endforeach
+	                                      </select>
+	                                  </div>                                                                                            
+	                                </div>
+                                
+									<div class="form_row clearfix">
+										<div class="form_col">
+											<label class="highlight">Đất sử dụng riêng (*)</label>
+											<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
+										</div>
+										<div class="form_col">
+                                          <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                          <label>&nbsp;</label>                                                      
+                                          <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
+										</div>
+										<div class="form_col">
+											<label>&nbsp;</label>
+											<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
+										</div>
+									</div>														
+									<div class="form_row clearfix">
+										<div class="form_col form_col_first">
+											<label>Diện tích đất phù hợp quy hoạch</label>
+										</div>
+										<div class="form_col">
+                                          <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                          <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
+										</div>
+										<div class="form_col">
+											<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+										</div>																										
+										<div class="form_col">
+											<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+										</div>																								
+										<div class="form_col">
+											<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+										</div>
+									</div>											
+									<div class="form_row clearfix">
+										<div class="form_col form_col_first">
+											<label>Diện tích đất vi phạm lộ giới được công nhận</label>
+										</div>
+										<div class="form_col">
+											<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
+										</div>
+										<div class="form_col">
+											<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+										</div>																										
+										<div class="form_col">
+											<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+										</div>																								
+										<div class="form_col">
+											<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
+										</div>
+									</div>
+									<div class="form_row clearfix">
+										<div class="popup_button_group groupThanhToan">
+
+											<!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
+											@if( !Sentry::check() ) 
+											<button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+											@else
+											<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+											@endif
+										</div>
+									</div>
+									<input type="hidden" class="chooser" name="chooser">
+								{{ Form::close() }}
+							</div>
+						</div>
+						
+					</div>
+				  </div>
+				  <div class="modal-footer">
+					<a id="btn_dinhgiasobo" class="btn btn_icon btn_gradient4"><i class="icon_phathanhchungthu"></i><span>Xem giá sơ bộ</span></a>
+				  </div>
+				</div>
+
+			  </div>
+			</div> <!-- end modal -->
+
 		</div>
+
+
 
 		<!-- Modal -->
 		<div id="modal_dongiathitruong" class="modal fade" role="dialog">
@@ -254,7 +374,7 @@
 			<div class="modal-content">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Đơn giá thị trường</h4>
+				<h4 class="modal-title">Đơn giá đất</h4>
 			  </div>
 			  <div class="modal-body">
 				<div class="address_row">
@@ -270,7 +390,7 @@
 						<p><strong>Đơn giá đất nhà nước đề xuất</strong><br>
 						<span class="price"><span class="dongia_highlight_right"></span>(VNĐ/M<sup>2</sup>)</span></p>
 					</div>
-				  </div>
+				</div>
 			  </div>
 			  <div class="modal-footer">
 				<a id="btn_dinhgia" class="btn btn_dinhgia btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></a>

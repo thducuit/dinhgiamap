@@ -59,3 +59,23 @@
     height: 56px;
 }
 
+#modal_dongiasobo .modal-header {
+    background: #00757b url(../images/modal_dongia_header.png) top right no-repeat;
+    color: #fff;
+    text-transform: uppercase;
+    height: 56px;
+}
+
+#modal_dongiasobo .modal-header .close {
+    width: 56px;
+    height: 56px;
+    background: #e07912;
+    color: #b55c02;
+    opacity: 1;
+    top: 0;
+    right: 0;
+    margin-top: 0;
+    position: absolute;
+    font-size: 40px;
+    text-shadow: none;
+}
