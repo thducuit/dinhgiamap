@@ -1,0 +1,59 @@
+/*=========================*\
+	UPDATE HUONG DAN
+\*=========================*/
+
+.page_huongdan {
+	background: #eee;
+}
+.page_huongdan img {
+	max-width: 100%;
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.page_huongdan .page_wrapper {
+	width: 800px;
+	background: #ffffff;
+	margin: 0 auto;
+	padding: 20px 15px;
+	box-sizing: border-box;
+}
+.page_huongdan .huongdan_header {
+	margin-bottom: 30px;
+}
+.page_huongdan .header_main_title {
+	color: #005459;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	font-size: 35px;
+	text-transform: uppercase;
+	margin: 0;
+	text-align: center;
+}
+.page_huongdan .header_sub_title {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 20px;
+	text-align: center;
+	margin: 0;
+}
+
+.page_gioithieu {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+	
+	.page_huongdan .page_wrapper {
+		width: 100%;
+	}
+	
+}
+@media screen and (max-width: 500px) {
+	
+	.page_huongdan .header_main_title {
+		font-size: 25px;
+	}
+	
+}

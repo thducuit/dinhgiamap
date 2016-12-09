@@ -79,21 +79,23 @@
 				<div id="header">
 					<div class="header_inner">
 						<div class="header_show clearfix">
-                            <div id="logo"><a href="{{ URL::to('/index') }}">cenvalue</a></div>
+                            <div id="logo"><a href="{{ URL::to('/index1') }}">cenvalue</a></div>
 							<div id="menu_button"><span></span></div>
 						</div>
 						<div id="navigation">
 							<div class="navigation_wrapper">
 								<ul class="menu_list clearfix">	
+									@if(!Sentry::check())
 									<li class="menu_item"><a class="clearfix dangNhap" href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap"><i class="menu_icon icon_dangky"></i> <span>Đăng nhập</span></a></li>
-                                    
                                     <li class="menu_item"><a class="clearfix dangKy" href="#dangky" data-toggle="modal" data-target="#modal_dangky"><i class="menu_icon icon_dangky"></i> <span>Đăng ký</span></a></li>
-									
+									@else
+									<li class="menu_item"><a class="clearfix dangNhap" href="{{ URL::to('/info') }}"  ><i class="menu_icon icon_dangky"></i> <span>Thông tin tài khoản</span></a></li>
+									@endif
 									<li class="menu_item {{ isset($current) && $current == 1 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/index') }}"><i class="menu_icon icon_trangchu"></i><span>Trang chủ</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 2 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/about') }}"><i class="menu_icon icon_vechungtoi"></i><span>Về chúng tôi</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 3 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/plan') }}"><i class="menu_icon icon_xemquihoach"></i><span>Xem qui hoạch</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 4 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/question') }}"><i class="menu_icon icon_faq"></i><span>Hỏi đáp</span></a></li>
-									<li class="menu_item {{ isset($current) && $current == 5 ? 'current' : '' }}"><a class="clearfix" href="#"><i class="menu_icon icon_video"></i><span>Hướng dẫn sử dụng</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 5 ? 'current' : '' }}"><a class="clearfix" href="/huongdan/gioi-thieu.html"><i class="menu_icon icon_video"></i><span>Hướng dẫn sử dụng</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/contact') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li>									
 								</ul>
 								<ul class="submenu">
