@@ -428,18 +428,22 @@ $ketCauChinh = User::getKetCauChinh();
       var hinhDangThuaDat = $('#modal_dongiasobo .inputHinhDangThuaDat').val();
       var chieuNgang = $('#modal_dongiasobo .inputChieuNgang').val();
       var dienTichDat = $('#modal_dongiasobo .inputDienTichDat').val();      
+      var dienTichDatText = $('#modal_dongiasobo .textDienTichDat').val();      
       var giaThiTruong = $('#modal_dongiasobo .giaThiTruong').val();
       $('#modal_ketqua_dongiasobo .giaThiTruong').html(giaThiTruong);
       
+    
       giaThiTruong = giaThiTruong.replace(/\,/gm, '');      
-      var giaTriDat = parseInt(giaThiTruong) + parseInt(giaThiTruong)*(parseInt(viTri) + parseInt(hinhDangThuaDat) + parseInt(chieuNgang) + parseInt(dienTichDat))/100;      
+     var giaSauDieuChinh = parseFloat(giaThiTruong) + parseFloat(giaThiTruong)*(parseFloat(viTri) + parseFloat(hinhDangThuaDat) + parseFloat(chieuNgang) + parseFloat(dienTichDat))/100;      
+     
+     var giaTriDat = parseFloat(dienTichDatText)*giaSauDieuChinh;
      
      //giá trị công trình xây dựng
      var ketCauChinh = $('#modal_dongiasobo .selectKetCauChinh').val();
      var dienTichSanXD = $('#modal_dongiasobo .dien-tich-san-xd').val();
      var namXayDung = $('#modal_dongiasobo .selectNamXayDung').val();
      var giaTriCTXD = (ketCauChinh*dienTichSanXD*namXayDung)/100;
-     var tongGiaTriSoBo = parseInt(giaThiTruong) + parseInt(giaTriCTXD);
+     var tongGiaTriSoBo = parseFloat(giaThiTruong) + parseFloat(giaTriCTXD);
      
      
      $('#modal_ketqua_dongiasobo .giaTriDat').html(giaTriDat.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
