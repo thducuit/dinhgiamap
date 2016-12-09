@@ -3310,7 +3310,7 @@ body .zui-popup-close:hover {
 }
 
 
-#modal_ketquadinhgia .close {
+#modal_ketquadinhgia .close, #modal_ketqua_dongiasobo .close  {
 	width: 56px;
 	height: 56px;
 	background: #e07912;
@@ -3324,17 +3324,17 @@ body .zui-popup-close:hover {
     text-shadow: none;
 	z-index: 9;
 }
-#modal_ketquadinhgia .modal-dialog {
+#modal_ketquadinhgia .modal-dialog, #modal_ketqua_dongiasobo .modal-dialog {
 	width: 1040px;
 }
-#modal_ketquadinhgia .modal-body {
+#modal_ketquadinhgia .modal-body, #modal_ketqua_dongiasobo .modal-body{
 	padding: 0;
 }
-#modal_ketquadinhgia .modal_ketquadinhgia_header {
+#modal_ketquadinhgia .modal_ketquadinhgia_header, #modal_ketqua_dongiasobo .modal_ketquadinhgia_header{
 	background: url(../images/modal_ketquadinhgia_header.png) right center no-repeat;
 	height: 105px;
 }
-#modal_ketquadinhgia .modal_ketquadinhgia_header_logo {
+#modal_ketquadinhgia .modal_ketquadinhgia_header_logo, #modal_ketqua_dongiasobo .modal_ketquadinhgia_header_logo{
 /*        background: url(../images/logo-dinhgia-forweb-final.png) right center no-repeat;*/
 /*	float: left;
 	width: 220px;
@@ -3346,33 +3346,33 @@ body .zui-popup-close:hover {
     margin-left: 40px;
     margin-top: 20px;
 }
-#modal_ketquadinhgia .modal_ketquadinhgia_header_right {
+#modal_ketquadinhgia .modal_ketquadinhgia_header_right, #modal_ketqua_dongiasobo .modal_ketquadinhgia_header_right{
 	float: left;
 	width: 690px;
 	margin-top: 10px;
 }
-#modal_ketquadinhgia .modal_ketquadinhgia_header_right_col {
+#modal_ketquadinhgia .modal_ketquadinhgia_header_right_col, #modal_ketqua_dongiasobo .modal_ketquadinhgia_header_right_col{
 /*	width: 50%;*/
         width: 48%;
 	float: left;
 }
-#modal_ketquadinhgia .modal_ketquadinhgia_header_right strong {
+#modal_ketquadinhgia .modal_ketquadinhgia_header_right strong, #modal_ketqua_dongiasobo .modal_ketquadinhgia_header_right strong{
 	color: #00757b;
 } 
-#modal_ketquadinhgia .ketquadinhgia_header .btn {
+#modal_ketquadinhgia .ketquadinhgia_header .btn, #modal_ketqua_dongiasobo .ketquadinhgia_header .btn{
 	position: absolute;
 	top: 10px;
 	right: 10px;
         
 }
-#modal_ketquadinhgia .btn_add_more_row {
+#modal_ketquadinhgia .btn_add_more_row, #modal_ketqua_dongiasobo .btn_add_more_row{
     color: #444444;
     padding: 5px 40px 5px 10px;
     background: url(../images/btn_themcongtrinh.png) right center no-repeat;
     border: 2px solid #aaa;
 }
 
-#modal_ketquadinhgia .btn_subtract_more_row {
+#modal_ketquadinhgia .btn_subtract_more_row, #modal_ketqua_dongiasobo .btn_subtract_more_row{
     color: #444444;
     padding: 5px 40px 5px 10px;
     background: url(../images/btn_trucongtrinh.png) right center no-repeat;

@@ -63,6 +63,7 @@
 		</script>
 	</head>
 	<body class="{{ $body_class }}">
+      <?php // var_dump(Sentry::getUser());?>
 		
 		<div class="page_wrapper">
 			

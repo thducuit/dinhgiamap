@@ -155,7 +155,7 @@
             e.preventDefault();
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
-            $('#dgsb_popup_address').html(html);
+            $('#dgsb_popup_address, .dgsb_popup_address').html(html);
             getStreetPrice(function(place){
               $('#modal_dongiasobo .giaThiTruong').val(place.price_format);
               $('#modal_dongiasobo').modal('show');
