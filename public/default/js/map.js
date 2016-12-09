@@ -8,7 +8,7 @@
 
         var polygons = [];
         
-        var placeInfo = null;
+        
 
         var mapsProperties = {
             center: new google.maps.LatLng(10.762622, 106.660172), //HCM city
@@ -142,6 +142,7 @@
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgtt_popup_address').html(html);
+            
             if(placeInfo.price_format && placeInfo.state_price_format) {
                 buildHTMLPopupDG();
             }else {
@@ -155,8 +156,11 @@
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgsb_popup_address').html(html);
-
-            $('#modal_dongiasobo').modal('show');
+            getStreetPrice(function(place){
+              $('#modal_dongiasobo .giaThiTruong').val(place.price_format);
+              $('#modal_dongiasobo').modal('show');
+            });
+           
         });
 
         function buildHTMLPopupDG() {
@@ -165,7 +169,7 @@
             $('#modal_dongiathitruong').modal('show');
         }
 
-        function getStreetPrice(){
+        function getStreetPrice(cb){
             $.ajax({
                 url: url.priceStreet,
                 type: 'get',
@@ -175,8 +179,12 @@
                 success: function(response) {
                     if(response){
                         placeInfo.price_format = response.price_format;
-                        placeInfo.state_price_format = response.state_price_format;
-                        buildHTMLPopupDG();
+                        placeInfo.state_price_format = response.state_price_format;                                                
+                        if(cb){
+                          cb(placeInfo);
+                        }else{
+                          buildHTMLPopupDG();
+                        }
                     }
                 }
             });

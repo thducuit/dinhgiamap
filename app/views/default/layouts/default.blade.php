@@ -36,6 +36,7 @@
 		<![endif]-->
 		
 		<script>
+            var placeInfo = null;
 			var icon = {
 				home: "{{ URL::asset('default/images/logo_icon2.png') }}",
 				address: "{{ URL::asset('default/images/icon_cenvalue.png') }}"
@@ -50,6 +51,7 @@
 				street: '/public/streets',
 				priceStreet: '/public/streets/price',
 				district: '/public/district',
+                login: '/public/login-ajax'
 			};
 			
 			jQuery(window).keydown(function(event){
@@ -228,139 +230,7 @@
 				</div>
 			</div><!--end modal-->
 
-			<!-- Modal -->
-			<div id="modal_dongiasobo" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-				  <div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Xem giá sơ bộ</h4>
-				  </div>
-				  <div class="modal-body">
-					<div class="address_row">
-						<p><strong>Địa chỉ</strong></p>
-						<p id="dgsb_popup_address">68 Hai Bà Trưng, P.Bến Nghé, Q.1, Tp.HCM</p>
-					</div>
-					<div class="form_row clearfix">
-                        <div class="tab_body">
-							<div class="tab_body_inner">
-								{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
-									<div class="form_row clearfix">
-                                        <div class="form_col">
-											<label>Quận</label>
-											<select class="selectQuan">
-                                              <option value="">Chọn Quận</option>
-												@foreach ($districts as $key => $value)
-												<option value="{{ $key }}">{{ $value }}</option>
-												@endforeach
-											</select>
-										</div>
-										<div class="form_col">
-											<label class="highlight">Vị trí (*)</label>
-											<input type="hidden" name="type" value='vacant_land'/>
-											<input type="hidden" name="place_id" value='{{ $placeId }}'/>
-											<input type="hidden" name="street_id"  value="{{ $streetId }}" >
-											<input type="hidden" name="address"  value="{{ $address }}" >
-                                            <input type="hidden" name="viTri"  value="" class="inputViTri">
-											<select class="selectVitri">
-                                              <option value="">Chọn Vị trí</option>
-                                              @foreach ($viTri as $s)
-												<option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
-                                              @endforeach															
-											</select>
-										
-										</div>
-									</div>
-	                                <div class="form_row clearfix">
-	                                  <div class="form_col">
-	                                      <label>Hình dạng thửa đất</label>
-	                                      <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
-	                                      <select name="shape" class="selectHinhDangThuaDat">
-	                                        <option value="">Hình dạng</option>
-	                                        @foreach ($hinhDangThuaDat as $s)
-	                                        <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
-	                                        @endforeach
-	                                      </select>
-	                                  </div>                                                                                            
-	                                </div>
-                                
-									<div class="form_row clearfix">
-										<div class="form_col">
-											<label class="highlight">Đất sử dụng riêng (*)</label>
-											<input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
-										</div>
-										<div class="form_col">
-                                          <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
-                                          <label>&nbsp;</label>                                                      
-                                          <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
-										</div>
-										<div class="form_col">
-											<label>&nbsp;</label>
-											<input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
-										</div>
-									</div>														
-									<div class="form_row clearfix">
-										<div class="form_col form_col_first">
-											<label>Diện tích đất phù hợp quy hoạch</label>
-										</div>
-										<div class="form_col">
-                                          <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
-                                          <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
-										</div>
-										<div class="form_col">
-											<input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
-										</div>																										
-										<div class="form_col">
-											<input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
-										</div>																								
-										<div class="form_col">
-											<input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
-										</div>
-									</div>											
-									<div class="form_row clearfix">
-										<div class="form_col form_col_first">
-											<label>Diện tích đất vi phạm lộ giới được công nhận</label>
-										</div>
-										<div class="form_col">
-											<input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
-										</div>
-										<div class="form_col">
-											<input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
-										</div>																										
-										<div class="form_col">
-											<input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
-										</div>																								
-										<div class="form_col">
-											<input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
-										</div>
-									</div>
-									<div class="form_row clearfix">
-										<div class="popup_button_group groupThanhToan">
-
-											<!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-											@if( !Sentry::check() ) 
-											<button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
-											@else
-											<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
-											@endif
-										</div>
-									</div>
-									<input type="hidden" class="chooser" name="chooser">
-								{{ Form::close() }}
-							</div>
-						</div>
-						
-					</div>
-				  </div>
-				  <div class="modal-footer">
-					<a id="btn_dinhgiasobo" class="btn btn_icon btn_gradient4"><i class="icon_phathanhchungthu"></i><span>Xem giá sơ bộ</span></a>
-				  </div>
-				</div>
-
-			  </div>
-			</div> <!-- end modal -->
+			{@include('partials.dongiasobo')}
 
 		</div>
 
@@ -402,73 +272,66 @@
 		
 <!--model-->
 
-
 <div class="modal fade" id="modal_dangNhap" role="dialog">
-	<div class="modal-dialog">
+      <div class="modal-dialog">
 
-		<!-- Modal content-->
-		<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title" style="font-weight: bolder;">ĐĂNG NHẬP</h4>
-				</div>
-				<div class="modal-body">
-					<div class="popup_button_group">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" style="font-weight: bolder;">ĐĂNG NHẬP</h4>
+          </div>
+          <div class="modal-body">
+            <div class="popup_button_group">
+              <form class="form-horizontal login-form" role="form" method="post">
+                <span class="the-error"></span>
+                <div class="form-group">
 
+                  <div class="col-sm-10 col-sm-offset-1">
+                    <label  class="control-label">Tên đăng nhập(*):</label>
+                    <input type="text" class="form-control"  placeholder="Tên đăng nhập" name="email">
+                    <div class="help-block"></div>
+                  </div>
+                </div>
+                <div class="form-group">
 
-						<form class="form-horizontal" role="form">
+                  <div class="col-sm-10 col-sm-offset-1">
+                    <label class="control-label">Mật khẩu (*):</label>
+                    <input type="password" class="form-control"  placeholder="Mật khẩu"  name="password">
+                    <div class="help-block"></div>
+                  </div>
+                </div>                                                                                                                                                                  
+                <div class="form-group">
+                  <div class="col-sm-offset-1 col-sm-10">
 
-						<div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-9">
+                        <a class="btn btn-info btn-flat btn-login">Đăng nhập</a>                       
+                        <a class="btn-forgot-password quenMatKhau" href="#">Quên mật khẩu ?</a>                        
+                      </div>
+                      <div class="col-sm-3 dn_dangky">
+                        <a href="#"  class="btn btn-info dangKy2 dangKy-btn" data-toggle="modal" data-target="#modal_dangky">Đăng ký</a>
+                      </div>
 
-							<div class="col-sm-10 col-sm-offset-1">
-								<label  class="control-label">Tên đăng nhập hoặc số điện thoại (*):</label>
-								<input type="text" class="form-control"  placeholder="Tên đăng nhập">
-								<div class="help-block"></div>
-							</div>
-						</div>
-						<div class="form-group">
+                    </div>
+                    <!--                                                                                                  <div class="" style="float: left;">
+                    <button class="btn btn-info btn-flat">Đăng nhập</button>
+                    <a class="btn-forgot-password quenMatKhau" href="#">Quên mật khẩu ?</a>
+                    </div>
+                    <div class="text-right dn_dangky">
+                    <a href="#"  class="btn btn-info dangKy2 dangKy-btn" data-toggle="modal" data-target="#modal_dangky">Đăng ký</a>
+                    </div>-->
+                  </div>
+                </div>
 
-							<div class="col-sm-10 col-sm-offset-1">
-								<label class="control-label">Mật khẩu (*):</label>
-								<input type="password" class="form-control"  placeholder="Mật khẩu">
-								<div class="help-block"></div>
-							</div>
-						</div>                                                                                                                                                                  
-						<div class="form-group">
-							<div class="col-sm-offset-1 col-sm-10">
+              </form>	
+            </div>
+          </div>
 
-								<div class="row">
-									<div class="col-sm-9">
+        </div>
 
-									<button class="btn btn-info btn-flat">Đăng nhập</button>
-									<a class="btn-forgot-password quenMatKhau" href="#">Quên mật khẩu ?</a>
-
-									</div>
-									<div class="col-sm-3 dn_dangky">
-										<a href="#"  class="btn btn-info dangKy2 dangKy-btn" data-toggle="modal" data-target="#modal_dangky">Đăng ký</a>
-									</div>
-
-								</div>
-								<!--                                                                                                  <div class="" style="float: left;">
-								<button class="btn btn-info btn-flat">Đăng nhập</button>
-								<a class="btn-forgot-password quenMatKhau" href="#">Quên mật khẩu ?</a>
-								</div>
-								<div class="text-right dn_dangky">
-								<a href="#"  class="btn btn-info dangKy2 dangKy-btn" data-toggle="modal" data-target="#modal_dangky">Đăng ký</a>
-								</div>-->
-							</div>
-						</div>
-
-						</form>	
-					</div>
-				</div>
-
-		</div>
-
-	</div>
-</div>
-
-
+      </div>
+    </div>
 <!--                        modal dang ky-->
                                   <div class="modal fade" id="modal_dangky" role="dialog">
                                 <div class="modal-dialog">

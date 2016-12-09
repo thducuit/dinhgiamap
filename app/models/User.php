@@ -38,4 +38,37 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->hasMany('Marker');
 	}
+    
+    public static function getKetCauChinh(){
+      return array(
+          array(
+              'label' => 'Nhà phố 1 tầng',
+              'price' => '3000000'
+          ),
+          array(
+              'label' => 'Nhà phố 2 tầng',
+              'price' => '4000000'
+          ),
+          array(
+              'label' => 'Nhà phố 3 tầng',
+              'price' => '4800000'
+          ),
+          array(
+              'label' => 'Nhà phố 4 tầng',
+              'price' => '5500000'
+          ),
+          array(
+              'label' => 'Nhà phố 5 tầng trở lên',
+              'price' => '6000000'
+          ),
+          array(
+              'label' => 'Nhà biệt thự 1 tầng',
+              'price' => '6500000'
+          ),
+          array(
+              'label' => 'Nhà biệt thự 2 tầng trở lên',
+              'price' => '7500000'
+          )
+      );
+    }
 }

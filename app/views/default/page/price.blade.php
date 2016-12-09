@@ -2116,7 +2116,7 @@ MAIN
 			<div class="modal-body">
 				<div class="modal_info_inner clearfix">
 					<div class="popup_button_group groupThanhToan">
-						Vui lòng <a class="clogin cursor">Đăng nhập</a> hoặc chọn <a class="cnologin" href="#">Thanh toán nhanh</a>
+						Vui lòng <a href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap">Đăng nhập</a> hoặc chọn <a class="cnologin" href="#">Thanh toán nhanh</a>
 						không cần <a class="clogin" href="#">Đăng kí tài khoản </a> để nhận kết quả định giá của bạn
 					</div>
 				</div>
@@ -2241,8 +2241,8 @@ MAIN
         
         function setDinhGiaField(){
         }
-        jQuery('.selectQuan, .selectVitri, .selectVitri, .selectHinhDangThuaDat,'+
-                ' .selectYeuToKhac, .selectChieuNgang, .selectDienTichDat, .textChieuNgang, .textDienTichDat').change(function(){
+        jQuery('.selectQuan, .selectVitri, .selectHinhDangThuaDat,'+
+                ' .selectYeuToKhac,.textChieuNgang, .textDienTichDat').change(function(){
           var quan = $(this).parents('.price-form').find('.selectQuan:first').val();
           var idOptionVitri = $(this).parents('.price-form').find('.selectVitri:first').val();
           var idOptionHinhDangThuaDat = $(this).parents('.price-form').find('.selectHinhDangThuaDat:first').val();         

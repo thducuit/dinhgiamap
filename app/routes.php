@@ -71,8 +71,7 @@
 
 
 Route::get('/', 'HomeController@view');
-//Route::get('/index', 'HomeController@view');
-Route::get('/index', 'HomeController@view');
+Route::get('/index1', 'HomeController@view');
 Route::get('/search', 'HomeController@search');
 Route::get('/markers', 'HomeController@getMarkers');
 Route::get('/info', 'HomeController@getInfo');
@@ -147,6 +146,7 @@ Route::get('/register', function() {
 Route::post('/register', 'AuthController@register');
 
 Route::post('/login', 'AuthController@login');
+Route::post('/login-ajax', 'AuthController@loginAjax');
 
 Route::get('/logout', 'AuthController@logout');
 

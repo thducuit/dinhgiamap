@@ -214,4 +214,54 @@ class AuthController extends BaseController {
         }
         return Redirect::to('/');
     }
+    public function loginAjax(){
+      $input = Input::get();      
+      try
+        {
+            $user = Sentry::authenticate(array('email'=>Input::get('email'), 'password'=>Input::get('password')), false);
+            $group = Sentry::findGroupByName('customer');
+            if( Sentry::check() && $user->inGroup($group) )
+            {
+              $users = Sentry::getUser();              
+              Sentry::login($user, false);
+              $message = 'success';
+            }else {
+                $message = 'only customer can login';
+            }
+        }
+        catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+        {
+            $message =  'Vui long nhập email và mật khẩu';
+        }
+        catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+        {
+            $message =  'Vui lòng nhập mật khẩu';
+        }
+        catch (Cartalyst\Sentry\Users\WrongPasswordException $e)
+        {
+            $message =  'Mật khẩu không đúng';
+        }
+        catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
+            $message =  'Email không đúng';
+        }
+        catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
+        {
+            $message =  'Tài khoản không tồn tại';
+        }
+        
+        // The following is only required if the throttling is enabled
+        catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+        {
+            $message =  'Tài khoản ddang bị khóa';
+        }
+        catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+        {
+            $message =  'Tài khoản ddang bị khóa';
+        }
+        
+        echo $message;
+        exit();
+
+    }
 }
