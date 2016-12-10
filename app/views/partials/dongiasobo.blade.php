@@ -36,7 +36,7 @@ $ketCauChinh = User::getKetCauChinh();
                   <select class="selectQuan">
                     <option value="">Chọn Quận</option>
                     @foreach ($districts as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
+                    <option {{ ($key==11) ? 'selected':'' }} value="{{ $key }}">{{ $value }}</option>
                     @endforeach
                   </select>
                 </div>
