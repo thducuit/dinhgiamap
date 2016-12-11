@@ -63,8 +63,6 @@
 		</script>
 	</head>
 	<body class="{{ $body_class }}">
-      <?php // var_dump(Sentry::getUser());?>
-		
 		<div class="page_wrapper">
 			
 			
@@ -87,8 +85,8 @@
 							<div class="navigation_wrapper">
 								<ul class="menu_list clearfix">	
 									@if(!Sentry::check())
-									<li class="menu_item"><a class="clearfix dangNhap" href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap"><i class="menu_icon icon_dangky"></i> <span>Đăng nhập</span></a></li>
-                                    <li class="menu_item"><a class="clearfix dangKy" href="#dangky" data-toggle="modal" data-target="#modal_dangky"><i class="menu_icon icon_dangky"></i> <span>Đăng ký</span></a></li>
+									<li class="menu_item login-menu-item"><a class="clearfix dangNhap" href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap"><i class="menu_icon icon_dangky"></i> <span>Đăng nhập</span></a></li>
+                                    <li class="menu_item register-menu-item"><a class="clearfix dangKy" href="#dangky" data-toggle="modal" data-target="#modal_dangky"><i class="menu_icon icon_dangky"></i> <span>Đăng ký</span></a></li>
 									@else
 									<li class="menu_item"><a class="clearfix dangNhap" href="{{ URL::to('/info') }}"  ><i class="menu_icon icon_dangky"></i> <span>Thông tin tài khoản</span></a></li>
 									@endif

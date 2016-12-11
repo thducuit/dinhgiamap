@@ -92,17 +92,15 @@ class HomeController extends BaseController {
 	
 	
 	public function getPrice()
-	{
-		// dd(Input::get()); die();
+	{		
 		$rules = array(
-			'leaving_plan_area' => 'required|numeric'
+			'leaving_plan_area' => 'required'
 		);
 		
 		$messages = array(
 		    'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch',
 		    'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch',
-		);
-		
+		);		
 		$validation = Validator::make(Input::get(), $rules, $messages);
         
         if( $validation->fails() )
