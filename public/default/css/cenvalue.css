@@ -3385,3 +3385,6 @@ body .zui-popup-close:hover {
     color : red;
     margin: 10px;
 }
+#modal_dongiasobo.modal .tab_body .form_row .form_col{
+  width: 33%;
+}

@@ -18,7 +18,7 @@ $ketCauChinh = User::getKetCauChinh();
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Xem giá sơ bộ</h4>
+        <h4 class="modal-title">Định giá sơ bộ</h4>
       </div>
       <div class="modal-body">
         <input type="hidden" class="giaThiTruong"/>
@@ -47,42 +47,40 @@ $ketCauChinh = User::getKetCauChinh();
               <div class="form_row clearfix">
                 <div class="form_col">
                   <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">
-                  <label class="highlight">Diện tích đất (*)</label>
+                  <label class="highlight">Tổng Diện tích đất (*)</label>
                   <input type="text" name="textDienTichDat" class="textDienTichDat" placeholder="Tổng diện tích (m2)" value="">
                 </div>
-                <div class="form_col"  style="width: 30%;">
+                <div class="form_col"  style="">
                   <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
                   <label>&nbsp;</label>                                                      
-                  <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="">                                                      
+                  <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền" value="">                                                      
                 </div>
-                <div class="form_col"  style="width: 30%;">
+                <div class="form_col"  style="">
                   <label>&nbsp;</label>
-                  <input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="">
+                  <input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m2)" value="">
                 </div>
               </div>	
               <div class="form_row clearfix">
                 <div class="form_col">
-                  <label class="highlight">Vị trí (*)</label>                    
+                  <label class="highlight">Vị trí tiếp giáp(*)</label>                    
                   <input type="hidden" name="viTri"  value="" class="inputViTri">
-                  <select class="selectVitri">
-                    <option value="">Chọn Vị trí</option>
+                  <select class="selectVitri">                    
                     @foreach ($viTri as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach															
                   </select>
 
                 </div>
-                <div class="form_col" style="width: 30%;">
+                <div class="form_col" style="">
                   <label>Hình dạng thửa đất</label>
                   <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
-                  <select name="shape" class="selectHinhDangThuaDat">
-                    <option value="">Hình dạng</option>
+                  <select name="shape" class="selectHinhDangThuaDat">                    
                     @foreach ($hinhDangThuaDat as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach
                   </select>
                 </div>                                                                                            
-                <div class="form_col" style="width: 30%;">
+                <div class="form_col" style="">
                   <label>Công trình xây dựng</label>                  
                   <select name="shape" class="selectCongTrinhXayDung">                    
                     <option value="">Không</option>
@@ -96,11 +94,11 @@ $ketCauChinh = User::getKetCauChinh();
                   <label>Kết cấu  chính</label>                  
                   <select name="shape" class="selectKetCauChinh" disabled=""></select>
                 </div>     
-                <div class="form_col" style="width: 30%;">
+                <div class="form_col" style="">
                   <label>Tổng diện tích sàn xd</label>                  
                   <input type="text" name="dien-tich-san-xd" class="dien-tich-san-xd" disabled="">
                 </div>     
-                <div class="form_col" style="width: 30%;">
+                <div class="form_col" style="">
                   <label>Năm xây dựng</label>                  
                   <select name="year_building" disabled="" class='selectNamXayDung'>
                     @foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)

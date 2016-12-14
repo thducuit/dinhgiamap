@@ -198,26 +198,26 @@
 				                    <div class="col-sm-12">
 				                          <div class="infortrai">
 				                              <a href="#" id="show-price-pop-up">
-				                            <div class="btn btn_icon btn_gradient1" style="padding-right: 40px;">
+				                            <div class="btn btn_icon btn_gradient1" style="padding-right: 50px;">
 				                                <i class="icon_xemdongia"></i>
-				                                <span>Xem đơn giá    </span>
+				                                <span>Xem đơn giá đất </span>
 				                            </div></a>
 				                          <a class="btn_dinhgia" href="#">
 				                             <div class="btn btn_icon btn_gradient3" style="padding-right: 50px;">
-				                                 <i class="icon_dinhgia"></i><span>Định giá</span>
+				                                 <i class="icon_dinhgia"></i><span>Thẩm Định giá </span>
 				                             </div>
 				                         </a>
 				                          </div>
 				                          <div class="inforphai">
 				                              
-				                         <a href="#" id="show-price-temp-pop-up">
-				                             <div class="btn btn_icon btn_gradient4" style="padding-right: 25px;">
+				                         <a href="#" class="show-price-temp-pop-up">
+				                             <div class="btn btn_icon btn_gradient2" style="padding-right: 70px;">
 				                                 <i class="icon_phathanhchungthu"></i>
-				                                 <span>Xem giá sơ bộ</span>
+				                                 <span>Định giá sơ bộ</span>
 				                             </div>
 				                         </a>
 
-				                        <a href="#"><div id="btn_xemquihoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>
+				                        <a href="#"><div id="btn_xemquihoach" class="btn btn_icon btn_gradient4"><i class="icon_xemquihoach"></i><span>Tài sản đang giao dịch</span></div></a>
 				                            </div>
 				                          
 				                    </div> 
@@ -258,13 +258,14 @@
 						<span class="price"><span class="dongia_highlight_left"></span>(VNĐ/M<sup>2</sup>)</span></p>
 					</div>
 					<div class="modal_half">
-						<p><strong>Đơn giá đất nhà nước đề xuất</strong><br>
+						<p><strong>Đơn giá đất nhà nước</strong><br>
 						<span class="price"><span class="dongia_highlight_right"></span>(VNĐ/M<sup>2</sup>)</span></p>
 					</div>
 				</div>
 			  </div>
 			  <div class="modal-footer">
-				<a id="btn_dinhgia" class="btn btn_dinhgia btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></a>
+				<a id="btn_dinhgia" class="btn btn_dinhgia btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></a>
+                <a class="btn btn_icon btn_gradient2 show-price-temp-pop-up"><i class="icon_dinhgia"></i><span>Đinh giá sơ bộ</span></a>
 			  </div>
 			</div>
 
