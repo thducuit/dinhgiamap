@@ -218,7 +218,8 @@ MAIN
 									<div class="tab_body">
 										<div class="tab_body_inner">
 											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
-												<div class="form_row clearfix">
+											<input type="hidden" name="textDistrict" class="textDistrict"/>	
+                                            <div class="form_row clearfix">
 													<div class="form_col">
 														<label class="highlight">Vị trí (*)</label>
 														<input type="hidden" name="type" value='house'/>

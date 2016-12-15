@@ -3388,3 +3388,7 @@ body .zui-popup-close:hover {
 #modal_dongiasobo.modal .tab_body .form_row .form_col{
   width: 33%;
 }
+
+#modal_ketqua_dongiasobo .col-chitietsobo .chitietsobo-item{
+  margin-bottom: 6px;
+}

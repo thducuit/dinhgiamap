@@ -146,7 +146,12 @@
             if(placeInfo.price_format && placeInfo.state_price_format) {
                 buildHTMLPopupDG();
             }else {
-                getStreetPrice();
+                getStreetPrice(function(place){              
+                  $('.giaThiTruong').val(place.price_format);
+                  $('.giaUB').val(place.state_price_format);
+                  $('.textDistrict').val(place.districtName);              
+                  $('#modal_dongiasobo').modal('show');
+                });
             }  
         });
 
@@ -157,8 +162,13 @@
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgsb_popup_address, .dgsb_popup_address').html(html);
-            getStreetPrice(function(place){
-              $('#modal_dongiasobo .giaThiTruong').val(place.price_format);
+            getStreetPrice(function(place){              
+              console.log(place.state_price_format);
+              $('.giaThiTruong').val(place.price_format);
+              $('.giaUB').val(place.state_price_format);
+              $('.giaUBLabel').html(place.state_price_format);
+              
+              $('.textDistrict').val(place.districtName);              
               $('#modal_dongiasobo').modal('show');
             });
            
@@ -181,6 +191,7 @@
                     if(response){
                         placeInfo.price_format = response.price_format;
                         placeInfo.state_price_format = response.state_price_format;                                                
+                        placeInfo.districtName = response.districtName;
                         if(cb){
                           cb(placeInfo);
                         }else{
@@ -204,7 +215,7 @@
                 data: {
                     placeId: placeId
                 },
-                success: function(response) {
+                success: function(response) {                  
                     if (response && response.name) {
                         setContent(response);
                         $('#modal_info').modal('show');

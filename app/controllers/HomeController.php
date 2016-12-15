@@ -163,6 +163,8 @@ class HomeController extends BaseController {
     		$streets = Street::find((int)Input::get('id'));
 	    	$response['price_format'] = number_format($streets->price);
 		    $response['state_price_format'] = number_format($streets->state_price);
+            $district = District::find($streets->district_id);
+            $response['districtName'] = $district->type.' '.$district->name;
     	}
     	return Response::json($response);
     }
