@@ -231,7 +231,7 @@
 				</div>
 			</div><!--end modal-->
 
-			{@include('partials.dongiasobo')}
+			@include('partials.dongiasobo')
 
 		</div>
 

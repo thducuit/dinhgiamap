@@ -1,7 +1,6 @@
 <?php
 $viTri = AdjustOption::findByGroupId(15)->get()->toArray();
 $hinhDangThuaDat = AdjustOption::findByGroupId(4)->get()->toArray();
-$yeuToKhac = AdjustOption::findByGroupId(16)->get()->toArray();
 $chieuNgang = AdjustOption::findByGroupId(1)->get()->toArray();
 $dienTichDat = AdjustOption::findByGroupId(3)->get()->toArray();
 $ketCauChinh = User::getKetCauChinh();
