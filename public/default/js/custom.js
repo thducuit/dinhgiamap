@@ -33,10 +33,13 @@
     
     $('.login-form .btn-login').click(function(){
       $.post(url.login, $('.login-form').serialize(), function(data){
-        if(data == 'success'){
+        if(data.id){
           $('.menu_list').find('.login-menu-item:first').hide();
           $('.menu_list').find('.register-menu-item:first').hide();
-          $('#modal_dangNhap').modal('hide');
+          $('#modal_dangNhap').modal('hide');          
+          if($('.vacant_land_form').prop('tagName') !== 'undefined'){
+            $('.vacantBtnSubmit').trigger('click');
+          }
         }else{
           $('.login-form').find('.the-error:first').html(data);
         }

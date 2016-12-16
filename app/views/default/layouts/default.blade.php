@@ -63,8 +63,6 @@
 		</script>
 	</head>
 	<body class="{{ $body_class }}">
-      <?php // var_dump(Sentry::getUser());?>
-		
 		<div class="page_wrapper">
 			<!--
 			/*==============================*\
@@ -82,8 +80,8 @@
 							<div class="navigation_wrapper">
 								<ul class="menu_list clearfix">	
 									@if(!Sentry::check())
-									<li class="menu_item"><a class="clearfix dangNhap" href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap"><i class="menu_icon icon_dangky"></i> <span>Đăng nhập</span></a></li>
-                                    <li class="menu_item"><a class="clearfix dangKy" href="#dangky" data-toggle="modal" data-target="#modal_dangky"><i class="menu_icon icon_dangky"></i> <span>Đăng ký</span></a></li>
+									<li class="menu_item login-menu-item"><a class="clearfix dangNhap" href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap"><i class="menu_icon icon_dangky"></i> <span>Đăng nhập</span></a></li>
+                                    <li class="menu_item register-menu-item"><a class="clearfix dangKy" href="#dangky" data-toggle="modal" data-target="#modal_dangky"><i class="menu_icon icon_dangky"></i> <span>Đăng ký</span></a></li>
 									@else
 									<li class="menu_item"><a class="clearfix dangNhap" href="{{ URL::to('/info') }}"  ><i class="menu_icon icon_dangky"></i> <span>Thông tin tài khoản</span></a></li>
 									@endif
@@ -170,20 +168,28 @@
 				</div>
 			</footer>
 
-			{@include('partials.dongiasobo')}
-			{@include('partials.active-email')}
-			{@include('partials.active')}
-			{@include('partials.activesuccess')}
-			{@include('partials.changepassword-email')}
-			{@include('partials.changepassword')}
-			{@include('partials.codeactive')}
-			{@include('partials.getpassword-email')}
-			{@include('partials.login')}
-			{@include('partials.lostpassword')}
-			{@include('partials.popup')}
-			{@include('partials.price')}
-			{@include('partials.register')}
-			{@include('partials.registersuccess')}
+
+			@include('partials.dongiasobo')
+			@include('partials.active-email')
+			@include('partials.active')
+			@include('partials.activesuccess')
+			@include('partials.changepassword-email')
+			@include('partials.changepassword')
+			@include('partials.codeactive')
+			@include('partials.getpassword-email')
+			@include('partials.login')
+			@include('partials.lostpassword')
+			@include('partials.popup')
+			@include('partials.price')
+			@include('partials.register')
+			@include('partials.registersuccess')
+
+		</div>
+			
+			
+			
+
+			@include('partials.dongiasobo')
 
 		</div>
 

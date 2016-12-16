@@ -215,6 +215,7 @@ class AuthController extends BaseController {
         return Redirect::to('/');
     }
     public function loginAjax(){
+
       $input = Input::get();      
       try
         {
@@ -222,9 +223,8 @@ class AuthController extends BaseController {
             $group = Sentry::findGroupByName('customer');
             if( Sentry::check() && $user->inGroup($group) )
             {
-              $users = Sentry::getUser();              
-              Sentry::login($user, false);
-              $message = 'success';
+              $users = Sentry::getUser();                                   
+              return Response::json($user); 
             }else {
                 $message = 'only customer can login';
             }

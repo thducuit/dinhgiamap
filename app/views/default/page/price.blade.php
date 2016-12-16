@@ -198,13 +198,9 @@ MAIN
 												</div>
 												<div class="form_row clearfix">
 													<div class="popup_button_group groupThanhToan">
-
-														<!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-														@if( !Sentry::check() ) 
-														<button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
-														@else
-														<button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></button>
-														@endif
+                                                        <button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3 @if( Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Định giá</span></button>
+                                                        <button type='submit' class="btn btn_icon btn_gradient3 vacantBtnSubmit @if( !Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Định giá</span></button>														                                                                                                                
+														<!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->														
 													</div>
 												</div>
 												<input type="hidden" class="chooser" name="chooser">
@@ -222,7 +218,8 @@ MAIN
 									<div class="tab_body">
 										<div class="tab_body_inner">
 											{{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
-												<div class="form_row clearfix">
+											<input type="hidden" name="textDistrict" class="textDistrict"/>	
+                                            <div class="form_row clearfix">
 													<div class="form_col">
 														<label class="highlight">Vị trí (*)</label>
 														<input type="hidden" name="type" value='house'/>

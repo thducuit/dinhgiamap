@@ -1,16 +1,10 @@
 <?php
-$districts = [];
-for ($i = 1; $i <= 9; $i++) {
-  $districts[$i] = 'Quận ' . $i;
-}
-$districts[] = 'Quận Tân Bình';
-$districts[] = 'Quận Tân Phú';
 $viTri = AdjustOption::findByGroupId(15)->get()->toArray();
 $hinhDangThuaDat = AdjustOption::findByGroupId(4)->get()->toArray();
-$yeuToKhac = AdjustOption::findByGroupId(16)->get()->toArray();
 $chieuNgang = AdjustOption::findByGroupId(1)->get()->toArray();
 $dienTichDat = AdjustOption::findByGroupId(3)->get()->toArray();
 $ketCauChinh = User::getKetCauChinh();
+$namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 ?>
 <div id="modal_dongiasobo" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -18,10 +12,11 @@ $ketCauChinh = User::getKetCauChinh();
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Xem giá sơ bộ</h4>
+        <h4 class="modal-title">Định giá sơ bộ</h4>
       </div>
       <div class="modal-body">
         <input type="hidden" class="giaThiTruong"/>
+        <input type="hidden" class="giaUB"/>
         <div class="tab_header address_row">
           <h3 class="tab_header_title">Địa chỉ</h3>
           <p id="dgsb_popup_address">68 Hai Bà Trưng, P.Bến Nghé, Q.1, Tp.HCM</p>
@@ -30,62 +25,49 @@ $ketCauChinh = User::getKetCauChinh();
           <div class="tab_body">
             <div class="tab_body_inner">
               {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
-              <div class="form_row clearfix">
-                <div class="form_col">
-                  <label>Quận</label>
-                  <select class="selectQuan">
-                    <option value="">Chọn Quận</option>
-                    @foreach ($districts as $key => $value)
-                    <option {{ ($key==11) ? 'selected':'' }} value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                  </select>
-                </div>
 
-              </div>
-
+              <input type="hidden" name="textDistrict" class="textDistrict"/>             
 
               <div class="form_row clearfix">
                 <div class="form_col">
                   <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">
-                  <label class="highlight">Diện tích đất (*)</label>
+                  <label class="highlight">Tổng Diện tích đất (*)</label>
                   <input type="text" name="textDienTichDat" class="textDienTichDat" placeholder="Tổng diện tích (m2)" value="">
                 </div>
-                <div class="form_col"  style="width: 30%;">
+                <div class="form_col"  style="">
                   <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
                   <label>&nbsp;</label>                                                      
-                  <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="">                                                      
+                  <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền" value="">                                                      
                 </div>
-                <div class="form_col"  style="width: 30%;">
+                <div class="form_col"  style="">
                   <label>&nbsp;</label>
-                  <input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="">
+                  <input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m2)" class="textChieuDai" value="">
                 </div>
               </div>	
               <div class="form_row clearfix">
                 <div class="form_col">
-                  <label class="highlight">Vị trí (*)</label>                    
+                  <label class="highlight">Vị trí tiếp giáp(*)</label>                    
                   <input type="hidden" name="viTri"  value="" class="inputViTri">
-                  <select class="selectVitri">
-                    <option value="">Chọn Vị trí</option>
+                  <select class="selectVitri">                    
                     @foreach ($viTri as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach															
                   </select>
 
                 </div>
-                <div class="form_col" style="width: 30%;">
+                <div class="form_col" style="">
                   <label>Hình dạng thửa đất</label>
                   <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
-                  <select name="shape" class="selectHinhDangThuaDat">
-                    <option value="">Hình dạng</option>
+                  <select name="shape" class="selectHinhDangThuaDat">                    
                     @foreach ($hinhDangThuaDat as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach
                   </select>
                 </div>                                                                                            
-                <div class="form_col" style="width: 30%;">
+                <div class="form_col" style="">
                   <label>Công trình xây dựng</label>                  
                   <select name="shape" class="selectCongTrinhXayDung">                    
-                    <option value="">Không</option>
+                    <option value="">Không có CTXD</option>
                     <option value="nha_pho">Nhà phố</option>
                     <option value="biet_thu">Biệt thự</option>
                   </select>
@@ -96,17 +78,14 @@ $ketCauChinh = User::getKetCauChinh();
                   <label>Kết cấu  chính</label>                  
                   <select name="shape" class="selectKetCauChinh" disabled=""></select>
                 </div>     
-                <div class="form_col" style="width: 30%;">
+                <div class="form_col" style="">
                   <label>Tổng diện tích sàn xd</label>                  
                   <input type="text" name="dien-tich-san-xd" class="dien-tich-san-xd" disabled="">
                 </div>     
-                <div class="form_col" style="width: 30%;">
+                <div class="form_col" style="">
                   <label>Năm xây dựng</label>                  
-                  <select name="year_building" disabled="" class='selectNamXayDung'>
-                    @foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
-                    <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
-                    @endforeach
-                  </select>
+                  <input type="hidden" name="namXD" class="namXD">
+                  <input type="text" name="textNamXD" class="textNamXD" disabled="">
                 </div>     
               </div>
               {{ Form::close() }}
@@ -158,9 +137,26 @@ $ketCauChinh = User::getKetCauChinh();
 						<div class="popup_middle_body">
 							<div class="ketquadinhgia_wrapper">
 								<div class="ketquadinhgia_header">
-									<h3 class="ketquadinhgia_title">KẾT QUẢ XEM GIÁ SƠ BỘ</h3>									
-									<h3 class="ketquadinhgia_title">ĐỊA CHỈ ĐỊNH GIÁ TÀI SẢN</h3>
-									<p class='dgsb_popup_address'></p>																											
+									<h3 class="ketquadinhgia_title">KẾT QUẢ XEM GIÁ SƠ BỘ</h3>																		
+									<p class='dgsb_popup_address'></p>
+                                    <strong>Chi Tiết:</strong>
+                                    <div class="row">
+                                      <div class="col-md-4 col-chitietsobo">
+                                        <div class="chitietsobo-item">Tổng diện tích đất(m2): <span class="tongDienTichLabel"></span></div>
+                                        <div class="chitietsobo-item">Chiều ngang: <span class="chieuNgangLabel"></span></div>
+                                        <div class="chitietsobo-item">Chiều dài: <span class="chieuDaiLabel"></span></div>
+                                      </div>
+                                      <div class="col-md-4 col-chitietsobo">
+                                        <div class="chitietsobo-item">Vị trí tiếp giáp: <span class="vitriLabel"></span></div>
+                                        <div class="chitietsobo-item">Hình dạng thử đất: <span class="hinhDangLabel"></span></div>
+                                      </div>
+                                      <div class="col-md-4 col-chitietsobo">
+                                        <div class="chitietsobo-item">Công trình xây dựng: <span class="CTXDLabel"></span></div>
+                                        <div class="chitietsobo-item">Kết cấu: <span class="ketCauLabel"></span></div>
+                                        <div class="chitietsobo-item">Tổng diện tích sàn xây dựng: <span class="tongDienTichSanLabel"></span></div>
+                                        <div class="chitietsobo-item">Năm xây dựng: <span class="namXDLabel"></span></div>
+                                      </div>
+                                    </div>
 								</div>
 								<div class="ketquadinhgia_body">
 									<table class="ketquadinhgia_table">
@@ -174,16 +170,16 @@ $ketCauChinh = User::getKetCauChinh();
 										</thead>
 										<tbody>
 											<tr>
-												<td>I</td>
+												<td></td>
 												<td><strong>Đơn giá thị trường đề xuất</strong></td>
                                                 <td><span class='giaThiTruong'></span></td>
-												<td>VNĐ</td>
+												<td>VNĐ/M2</td>
 											</tr>
 											<tr>
-												<td></td>
+												<td>I</td>
 												<td>Giá trị đất</td>
 												<td><span class='giaTriDat'></span></td>
-												<td>VNĐ/M2</td>
+												<td>VNĐ</td>
 											</tr>
 											<tr>
 												<td>II</td>
@@ -199,7 +195,8 @@ $ketCauChinh = User::getKetCauChinh();
 											</tr>													
 										</tbody>
 									</table>
-								
+                                  <p>* Đơn giá đất ở UB mặt tiền đương XXXXX là: <span class="giaUBLabel"></span></p>
+								  <p>* Biên độ chênh lệch ± 10% giữa giá trị sơ bộ và giá trị thực tế  khi Chuyên viên thẩm định giá khảo sát thực tế hiện trạng tài sản.</p>
 								</div>
 								<div id="show_ketquadinhgia_popup_note" class="btn btn_arrow btn_arrow00757b"><a>Xem thông tin lưu ý<i></i></a></div>
 								<div class="ketquadinhgia_popup_note">
@@ -240,7 +237,7 @@ $ketCauChinh = User::getKetCauChinh();
     var chieuNgangOptions = [];
     var dienTichDatOptions = [];
     var ketCauChinhOptions = <?php echo json_encode($ketCauChinh)?>;
-    
+    var namXDOptions = [];
     <?php 
       foreach($viTri as $item){
         ?>
@@ -260,7 +257,8 @@ $ketCauChinh = User::getKetCauChinh();
               quanTrungTamMatTien: <?php echo $item['quanTrungTamMatTien']?>,
               quanTrungTamHem: <?php echo $item['quanTrungTamHem']?>,
               quanKhacMatTien: <?php echo $item['quanKhacMatTien']?>,
-              quanKhacHem: <?php echo $item['quanKhacHem']?>
+              quanKhacHem: <?php echo $item['quanKhacHem']?>,
+              description: '<?php echo $item['description']?>'
             };
             <?php
       }
@@ -293,11 +291,19 @@ $ketCauChinh = User::getKetCauChinh();
       }
       ?> 
       
+       <?php 
+      foreach($namXayDung as $item){
+        ?>
+            namXDOptions[<?php echo $item['description']?>] = <?php echo $item['value']?>;
+            <?php
+      }
+      ?> 
+      
       
           
-      jQuery('#modal_dongiasobo .selectQuan,#modal_dongiasobo  .selectVitri,#modal_dongiasobo  .selectHinhDangThuaDat,'+
+      jQuery('#modal_dongiasobo  .selectVitri,#modal_dongiasobo  .selectHinhDangThuaDat,'+
             '#modal_dongiasobo  .textChieuNgang,#modal_dongiasobo  .textDienTichDat').change(function(){
-      var quan = $(this).parents('.price-form').find('.selectQuan:first').val();
+      var quan = $(this).parents('.price-form').find('.textDistrict:first').val();
       var idOptionVitri = $(this).parents('.price-form').find('.selectVitri:first').val();
       var idOptionHinhDangThuaDat = $(this).parents('.price-form').find('.selectHinhDangThuaDat:first').val();               
       var idOptionChieuNgang = null;
@@ -312,7 +318,7 @@ $ketCauChinh = User::getKetCauChinh();
       var dienTichDatData = '';
 
       if(vitriOptions[idOptionVitri]){
-        if(quan == 1 || quan == 3){
+        if(quan == 'Quận 1' || quan == 'Quận 3'){
           vitriData = vitriOptions[idOptionVitri].quanTrungTam;
         }else{
           vitriData = vitriOptions[idOptionVitri].quanKhac;
@@ -324,7 +330,7 @@ $ketCauChinh = User::getKetCauChinh();
       $(this).parents('.price-form').find('.inputViTri:first').val(vitriData);                    
 
       if(hinhDangThuaDatOptions[idOptionHinhDangThuaDat]){
-        if(quan == 1 || quan == 3){
+        if(quan == 'Quận 1' || quan == 'Quận 3'){
           if(selectHemMaTien == 'mat_tien'){
             hinhDangThuaDatData = hinhDangThuaDatOptions[idOptionHinhDangThuaDat].quanTrungTamMatTien;
           }else{
@@ -365,7 +371,7 @@ $ketCauChinh = User::getKetCauChinh();
       }
 
       if(chieuNgangOptions[idOptionChieuNgang]){
-        if(quan == 1 || quan == 3){
+        if(quan == 'Quận 1' || quan == 'Quận 3'){
           if(selectHemMaTien == 'mat_tien'){
             chieuNgangData = chieuNgangOptions[idOptionChieuNgang].quanTrungTamMatTien;
           }else{
@@ -405,7 +411,7 @@ $ketCauChinh = User::getKetCauChinh();
         }
       }
       if(dienTichDatOptions[idOptionDienTichDat]){
-        if(quan == 1 || quan == 3){
+        if(quan == 'Quận 1' || quan == 'Quận 3'){
           if(selectHemMaTien == 'mat_tien'){
             dienTichDatData = dienTichDatOptions[idOptionDienTichDat].quanTrungTamMatTien;
           }else{
@@ -428,33 +434,55 @@ $ketCauChinh = User::getKetCauChinh();
       var hinhDangThuaDat = $('#modal_dongiasobo .inputHinhDangThuaDat').val();
       var chieuNgang = $('#modal_dongiasobo .inputChieuNgang').val();
       var dienTichDat = $('#modal_dongiasobo .inputDienTichDat').val();      
+      var dienTichDatText = $('#modal_dongiasobo .textDienTichDat').val();      
       var giaThiTruong = $('#modal_dongiasobo .giaThiTruong').val();
-      $('#modal_ketqua_dongiasobo .giaThiTruong').html(giaThiTruong);
-      
+      var textChieuNgang = $('#modal_dongiasobo .textChieuNgang').val();
+      var textChieuDai = $('#modal_dongiasobo .textChieuDai').val();                                 
+     
       giaThiTruong = giaThiTruong.replace(/\,/gm, '');      
-      var giaTriDat = parseInt(giaThiTruong) + parseInt(giaThiTruong)*(parseInt(viTri) + parseInt(hinhDangThuaDat) + parseInt(chieuNgang) + parseInt(dienTichDat))/100;      
+     var giaSauDieuChinh = parseFloat(giaThiTruong) + parseFloat(giaThiTruong)*(parseFloat(viTri) + parseFloat(hinhDangThuaDat) + parseFloat(chieuNgang) + parseFloat(dienTichDat))/100;      
+     
+     var giaTriDat = parseFloat(dienTichDatText)*giaSauDieuChinh;
      
      //giá trị công trình xây dựng
      var ketCauChinh = $('#modal_dongiasobo .selectKetCauChinh').val();
      var dienTichSanXD = $('#modal_dongiasobo .dien-tich-san-xd').val();
-     var namXayDung = $('#modal_dongiasobo .selectNamXayDung').val();
+     var namXayDung = $('#modal_dongiasobo .namXD').val();
      var giaTriCTXD = (ketCauChinh*dienTichSanXD*namXayDung)/100;
-     var tongGiaTriSoBo = parseInt(giaThiTruong) + parseInt(giaTriCTXD);
+     var tongGiaTriSoBo = parseFloat(giaTriDat) + parseFloat(giaTriCTXD);
      
-     
+     $('#modal_ketqua_dongiasobo .giaThiTruong').html(giaSauDieuChinh.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
      $('#modal_ketqua_dongiasobo .giaTriDat').html(giaTriDat.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
      $('#modal_ketqua_dongiasobo .giaTriCTXD').html(giaTriCTXD.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
      $('#modal_ketqua_dongiasobo .tongGiaTriSoBo').html(tongGiaTriSoBo.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
      
+     $('.tongDienTichLabel').html(dienTichDatText);
+     $('.chieuNgangLabel').html(textChieuNgang);
+     $('.chieuDaiLabel').html(textChieuDai);
+     $('.vitriLabel').html($('#modal_dongiasobo .selectHinhDangThuaDat option:selected').text());
+     $('.hinhDangLabel').html($('#modal_dongiasobo .selectVitri option:selected').text());
+     $('.CTXDLabel').html($('#modal_dongiasobo .selectCongTrinhXayDung option:selected').text());
+     $('.ketCauLabel').html($('#modal_dongiasobo .selectKetCauChinh option:selected').text());
+     $('.tongDienTichSanLabel').html(dienTichSanXD);
+     $('.namXDLabel').html($('.textNamXD').val());  
+         
      $('#modal_ketqua_dongiasobo').modal('show');
     });
     
+    $('.textNamXD').keyup(function(){
+      var textNamXD = $(this).val();
+      if(textNamXD.length == 4){
+        if(namXDOptions[textNamXD]){
+          $('.namXD').val(namXDOptions[textNamXD]);
+        }
+      }
+    });
     $('.selectCongTrinhXayDung').change(function(){
       var congTrinh = $(this).val();
       if(congTrinh){
         $('.selectKetCauChinh').removeAttr('disabled');
         $('.dien-tich-san-xd').removeAttr('disabled');
-        $('.selectNamXayDung').removeAttr('disabled');        
+        $('.textNamXD').removeAttr('disabled');        
         var options = '';
         if(congTrinh == 'nha_pho'){
           for(var i in ketCauChinhOptions){
@@ -473,7 +501,7 @@ $ketCauChinh = User::getKetCauChinh();
       }else{
         $('.selectKetCauChinh').attr('disabled', 'true');
         $('.dien-tich-san-xd').attr('disabled', 'true');
-        $('.selectNamXayDung').attr('disabled', 'true');
+        $('.textNamXD').attr('disabled', 'true');
       }        
     });
   });

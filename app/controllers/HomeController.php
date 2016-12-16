@@ -92,17 +92,15 @@ class HomeController extends BaseController {
 	
 	
 	public function getPrice()
-	{
-		// dd(Input::get()); die();
+	{		
 		$rules = array(
-			'leaving_plan_area' => 'required|numeric'
+			'leaving_plan_area' => 'required'
 		);
 		
 		$messages = array(
 		    'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch',
 		    'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch',
-		);
-		
+		);		
 		$validation = Validator::make(Input::get(), $rules, $messages);
         
         if( $validation->fails() )
@@ -165,6 +163,8 @@ class HomeController extends BaseController {
     		$streets = Street::find((int)Input::get('id'));
 	    	$response['price_format'] = number_format($streets->price);
 		    $response['state_price_format'] = number_format($streets->state_price);
+            $district = District::find($streets->district_id);
+            $response['districtName'] = $district->type.' '.$district->name;
     	}
     	return Response::json($response);
     }
