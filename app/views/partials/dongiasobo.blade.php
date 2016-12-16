@@ -198,7 +198,7 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
 											</tr>													
 										</tbody>
 									</table>
-                                  <p>* Đơn giá đất UB mặt tiền đường là: <span class="giaUBLabel"></span> VND/m2</p>
+                                  <p>* Đơn giá đất UB mặt tiền đường là: <span class="giaUBLabel"></span> VNĐ/m2</p>
 								  <p>* Biên độ chênh lệch ± 10% giữa giá trị sơ bộ và giá trị thực tế  khi Chuyên viên thẩm định giá khảo sát thực tế hiện trạng tài sản.</p>
 								</div>
 								<div id="show_ketquadinhgia_popup_note" class="btn btn_arrow btn_arrow00757b"><a>Xem thông tin lưu ý<i></i></a></div>
