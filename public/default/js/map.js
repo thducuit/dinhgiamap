@@ -159,6 +159,8 @@
         $('.show-price-temp-pop-up').click(function(e) {
             e.preventDefault();
             $('#modal_dongiathitruong').modal('hide');
+            $('#modal_info').modal('hide');
+            
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgsb_popup_address, .dgsb_popup_address').html(html);
