@@ -24,8 +24,8 @@ MAIN
 							<div class="contact_item">
 								<div class="contact_item_header">Địa Chỉ:</div>
 								<div class="contact_item_body">
-									<p>TP.HCM : 36 Bùi Thị Xuân,<br>
-									Phường Bến Thành, Quận 1, TP.HCM</p>
+									<p>TP.HCM : lầu 3 toà nhà SAMCO, 326 VÕ Văn Kiệt,<br>
+									Phường Cô Giang, Quận 1, TP.HCM</p>
 									<p>HÀ NỘI : Tầng 20,Tòa nhà 319 Bộ Quốc phòng,<br>
 									63 Lê Văn Lương, Trung Hòa, Cầu Giấy, Hà Nội</p>
 								</div>
@@ -36,14 +36,14 @@ MAIN
 								<div class="contact_item">
 									<div class="contact_item_header">Điện thoại:</div>
 									<div class="contact_item_body">
-										<p>(08) 39 256 973<br>
-										(04) 32222.786</p>												
+										<p>(08) 3925 6972<br>											
 									</div>
 								</div>
 								<div class="contact_item">
 									<div class="contact_item_header">Email liên hệ hỗ trợ:</div>
 									<div class="contact_item_body">
-										<p>hi@cenvalue.vn  </p>												
+										<p>hotro@dinhgiatructuyen.vn </p>												
+										<p>dinhgiaonline@gmail.com </p>												
 									</div>
 								</div>
 							</div>
@@ -51,7 +51,7 @@ MAIN
 								<div class="contact_item">
 									<div class="contact_item_header">Hotline:</div>
 									<div class="contact_item_body">
-										<p>1900 9079</p>												
+										<p>(08) 3925 6972</p>												
 									</div>
 								</div>
 								<div class="contact_item">
@@ -93,31 +93,47 @@ MAIN
 						<div class="block_contact_form_left">
 							{{ Form::open( array( 'url'=>'/contact/add', 'method'=>'post' ) ) }}
 								<div class="form_group clearfix">
-									<div class="form_label">Tên</div>
+									<div class="form_label">Họ và Tên</div>
 									<div class="form_field">
 										<input type="text" id="hoten" name="name" value="">
 									</div>
 								</div>
 								<div class="form_group clearfix">
-									<div class="form_label">Số điện thoại</div>
+									<div class="form_label">Điện thoại</div>
 									<div class="form_field">
 										<input type="text" id="sodienthoai" name="phone" value="">
 									</div>
 								</div>
 								<div class="form_group clearfix">
-									<div class="form_label">Địa chỉ email</div>
+									<div class="form_label">Email</div>
 									<div class="form_field">
 										<input type="email" id="diachiemail" name="email"  value="">
 									</div>
 								</div>
 								<div class="form_group clearfix">
-									<div class="form_label">Tiêu đề</div>
+									<div class="form_label">Vị trí tài sản</div>
 									<div class="form_field">
-										<input type="text" id="tieude" name="title" value="">
+										<input type="text" id="vitri" name="address" value="">
 									</div>
 								</div>
 								<div class="form_group clearfix">
-									<div class="form_label">Câu hỏi</div>
+									<div class="form_label">Mục đích</div>
+									<div class="form_field">
+										<select name="aim" id="">
+											<option value="Mua bán, chuyển nhượng">Mua bán, chuyển nhượng</option>
+											<option value="Vay vốn ngân hàng">Vay vốn ngân hàng</option>
+											<option value="Cổ phần hoá, Góp vốn kinh doanh">Cổ phần hoá, Góp vốn kinh doanh</option>
+											<option value="Thành lập doanh nghiệp">Thành lập doanh nghiệp</option>
+											<option value="Hoạch toán kế toán, tính thuế">Hoạch toán kế toán, tính thuế</option>
+											<option value="Tư vấn lập dự án đầu tư">Tư vấn lập dự án đầu tư</option>
+											<option value="Mua sắm mới trang thiết bị vật chất">Mua sắm mới trang thiết bị vật chất</option>
+											<option value="Bồi thường giải phóng mặt bằng">Bồi thường giải phóng mặt bằng</option>
+											<option value="Khác">Khác</option>
+										</select>
+									</div>
+								</div>
+								<div class="form_group clearfix">
+									<div class="form_label">Ghi chú</div>
 									<div class="form_field">
 										<textarea name="content" rows="5"></textarea>
 									</div>
@@ -127,7 +143,7 @@ MAIN
 								</div>
 							{{ Form::close() }}
 						</div>
-						<div class="block_contact_form_right">
+						<!-- <div class="block_contact_form_right">
 							<div class="contact_item">
 								<div class="contact_item_header">Báo chí, hợp tác:</div>
 								<div class="contact_item_body">
@@ -146,7 +162,7 @@ MAIN
 									<p>hi@cenvalue.vn</p>												
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

@@ -41,6 +41,6 @@ MAIN
 	</div>
 	
 	{{ HTML::script('default/js/map.js') }}
-	{{ HTML::style('default/css/custom.css') }}
+	<!-- {{ HTML::style('default/css/custom.css') }} -->
 </div>
 @endsection

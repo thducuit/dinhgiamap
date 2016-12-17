@@ -75,6 +75,7 @@ Route::get('/index1', 'HomeController@view');
 Route::get('/search', 'HomeController@search');
 Route::get('/markers', 'HomeController@getMarkers');
 Route::get('/info', 'HomeController@getInfo');
+Route::get('/thong-tin-tai-khoan', 'CustomerController@getInfo');
 Route::get('/address', 'HomeController@getAddress');
 Route::get('/streets', 'HomeController@getStreet');
 Route::get('/streets/price', 'HomeController@getStreetPrice');
@@ -82,12 +83,32 @@ Route::get('/streets/price', 'HomeController@getStreetPrice');
 
 
 
-Route::get('/about', function() {
+Route::get('/ve-chung-toi.html', function() {
      return View::make('default.page.about')
-        ->with(array('title'=> 'về chúng tôi'))
+        ->with(array('title'=> 'Về chúng tôi'))
         ->with('current', 2)
         ->with(array('body_class'=> 'page_xemquihoach'));
 });
+Route::get('/huong-dan.html', function() {
+     return View::make('default.page.guide')
+        ->with(array('title'=> 'Hướng dẫn sử dụng'))
+        ->with('current', 5)
+        ->with(array('body_class'=> 'page_xemquihoach'));
+});
+Route::get('/dieu-khoan.html', function() {
+     return View::make('default.page.law')
+        ->with(array('title'=> 'Điều khoản bảo mật'))
+        ->with('current', 7)
+        ->with(array('body_class'=> 'page_xemquihoach'));
+});
+Route::get('/chinh-sach.html', function() {
+     return View::make('default.page.rule')
+        ->with(array('title'=> 'Chính sách sử dụng'))
+        ->with('current', 8)
+        ->with(array('body_class'=> 'page_xemquihoach'));
+});
+
+
 Route::get('/price', function() {
      $marker = Marker::findByPlaceId(Input::get('placeId'));
      $street = Street::find(Input::get('street'));

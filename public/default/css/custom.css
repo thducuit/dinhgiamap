@@ -79,3 +79,17 @@
     font-size: 40px;
     text-shadow: none;
 }
+
+.page_contact_right .block_contact_form .form_group .form_field select {
+    width: 100%;
+    background: #e8e8e8;
+    border-radius: 5px;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    border: 0;
+    color: #8d8d8d;
+}
+.page_contact_right .block_contact_form .form_group .form_field textarea{
+    height: 100px
+}

@@ -8,7 +8,7 @@
             type: 'post',
             data: {id:val},
             success: function(response) {
-                var select = '<option value="0">Quận/Huyện</option>';
+                var select = '<option value="">Quận/Huyện</option>';
                 var district_id = $('#district_id').val();
                 $.each(response, function(i,data)
                 {

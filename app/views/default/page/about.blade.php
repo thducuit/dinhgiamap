@@ -6,7 +6,7 @@
 MAIN 
 /*==============================*\
 -->
-<div id="main" class="screen">
+<!-- <div id="main" class="screen">
 	<div class="main_wrapper">
 		
 		<div class="about_us_wrapper">
@@ -119,6 +119,21 @@ MAIN
 		</div>					
 		
 	</div>
-</div>
+</div> -->
 
+
+<!--
+/*==============================*\
+MAIN
+/*==============================*\
+-->
+<div id="main" class="screen">
+    <div class="">
+
+        <div class="about_us_wrapper">
+            	<img src="{{ URL::asset('default/images/gioi-thieu.png') }}" style="width:100%;">
+        </div>
+
+    </div>
+</div>
 @endsection

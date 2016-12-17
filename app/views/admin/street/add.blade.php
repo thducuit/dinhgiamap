@@ -7,7 +7,7 @@
 			    <span class="pull-left">Thông tin Đoạn đường / Khu vực</span>
 			</div>
 			<div class="panel-body">
-			    {{ Form::open(array( 'url' => 'admin/streets/add', 'enctype'=>'multipart/form-data' )) }}
+			    {{ Form::open(array( 'url' => 'admin/streets/add', 'enctype'=>'multipart/form-data', 'id'=>'street-form' )) }}
 			        <div class="col-md-12">
 			            <div class="form-group">
 			                <div class="pull-right">
@@ -56,7 +56,7 @@
 			            <div class="form-group">
 			                <label for="district_id">Quận/Huyện</label>
 			                <select name="district_id"  class="district_id form-control">
-			                	<option value="0"></option>
+			                	<option value=""></option>
 			                </select>
 			                <input type="hidden" id="district_id" class="form-control" value="{{ Input::old('district_id') }}">
 			            </div>
@@ -86,5 +86,6 @@
 </div> 
    
 {{ HTML::script('admin/js/custom/leaflet-street.js') }}     
-{{ HTML::script('admin/js/custom/province.js') }}  
+{{ HTML::script('admin/js/custom/province.js') }} 
+
 @endsection

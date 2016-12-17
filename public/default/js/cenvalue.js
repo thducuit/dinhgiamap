@@ -62,15 +62,15 @@ zjs.onready('image.slider.theme.linear, ui.tabpanel, ui.popup', function(){
                                             
                                     }
                             });
-//                            $('#datetimepicker_ngaybatdau').datetimepicker({
-//				'sideBySide':true,
-//			});
-//			$('#datetimepicker_ngayketthuc').datetimepicker({
-//				'sideBySide':true,
-//			});
-//                        $('#datetimepicker_ngaysinh').datetimepicker({
-//				'sideBySide':true,
-//			});
+                            $('#datetimepicker_ngaybatdau').datetimepicker({
+				'sideBySide':true,
+			});
+			$('#datetimepicker_ngayketthuc').datetimepicker({
+				'sideBySide':true,
+			});
+                        $('#datetimepicker_ngaysinh').datetimepicker({
+				'sideBySide':true,
+			});
                             
                             function disablePopup() {
                                            $('#modal_dangNhap').modal('hide');
