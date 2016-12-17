@@ -132,7 +132,8 @@ class StreetController extends AdminController {
             'name' => 'required',
             'code' => 'required',
             'price' => 'required',
-            'state_price' => 'required'
+            'state_price' => 'required',
+            'district_id' => 'required'
         );
 
         $messages = array(
@@ -140,6 +141,7 @@ class StreetController extends AdminController {
             'code.required' => 'Nhập tên ký hiệu', 
             'price.required' => 'Nhập giá thị trường', 
             'state_price.required' => 'Nhập giá nhà nước', 
+            'district_id.required' => 'Chọn quận' 
         );
         
         $inputs = Input::get();
@@ -147,6 +149,7 @@ class StreetController extends AdminController {
         
         if( $validation->fails() )
         {
+            
             return Redirect::to('admin/streets/add')
             ->withInput(Input::all())
             ->withErrors($validation);
@@ -191,13 +194,15 @@ class StreetController extends AdminController {
             'name' => 'required',
             'code' => 'required',
             'price' => 'required',
-            'state_price' => 'required'
+            'state_price' => 'required',
+            'district_id' => 'required'
         );
         $messages = array(
             'name.required' => 'Nhập tên khu vực', 
             'code.required' => 'Nhập tên ký hiệu', 
             'price.required' => 'Nhập giá thị trường', 
             'state_price.required' => 'Nhập giá nhà nước', 
+            'district_id.required' => 'Chọn quận'
         );
         $inputs = Input::get();
         $validation = Validator::make($inputs, $rules, $messages);

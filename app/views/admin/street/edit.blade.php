@@ -7,7 +7,7 @@
 			    <span class="pull-left">Thông tin đoạn đường</span>
 			</div>
 			<div class="panel-body">
-			    {{ Form::open(array( 'url' => 'admin/streets/edit' )) }}
+			    {{ Form::open(array( 'url' => 'admin/streets/edit' , 'id'=>'street-form' )) }}
 			        <div class="col-md-12">
 			            <div class="form-group">
 			                <div class="pull-right">
