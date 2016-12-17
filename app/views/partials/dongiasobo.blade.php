@@ -1,10 +1,10 @@
 <?php
-$viTri = AdjustOption::findByGroupId(15)->get()->toArray();
-$hinhDangThuaDat = AdjustOption::findByGroupId(4)->get()->toArray();
-$chieuNgang = AdjustOption::findByGroupId(1)->get()->toArray();
-$dienTichDat = AdjustOption::findByGroupId(3)->get()->toArray();
+$viTri = AdjustOption::findByGroupId(15, null , 1)->get()->toArray();
+$hinhDangThuaDat = AdjustOption::findByGroupId(4, null , 1)->get()->toArray();
+$chieuNgang = AdjustOption::findByGroupId(1, null , 1)->get()->toArray();
+$dienTichDat = AdjustOption::findByGroupId(3, null , 1)->get()->toArray();
 $ketCauChinh = User::getKetCauChinh();
-$namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
+$namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
 ?>
 <div id="modal_dongiasobo" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -49,6 +49,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                   <label class="highlight">Vị trí tiếp giáp(*)</label>                    
                   <input type="hidden" name="viTri"  value="" class="inputViTri">
                   <select class="selectVitri">                    
+                    <option value="">Chọn vị trí tiếp giáp</option>
                     @foreach ($viTri as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach															
@@ -58,7 +59,8 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                 <div class="form_col" style="">
                   <label>Hình dạng thửa đất</label>
                   <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
-                  <select name="shape" class="selectHinhDangThuaDat">                    
+                  <select name="shape" class="selectHinhDangThuaDat"> 
+                    <option value="">Chọn hình dạng thửa đất</option>
                     @foreach ($hinhDangThuaDat as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach
@@ -67,13 +69,14 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                 <div class="form_col" style="">
                   <label>Công trình xây dựng</label>                  
                   <select name="shape" class="selectCongTrinhXayDung">                    
+                    <option value="">Chọn CTXD</option>
                     <option value="">Không có CTXD</option>
                     <option value="nha_pho">Nhà phố</option>
                     <option value="biet_thu">Biệt thự</option>
                   </select>
                 </div>                                                                                            
               </div>
-              <div class="form_row clearfix">
+              <div class="form_row clearfix row-ket-cau-chinh" style="display: none;">
                 <div class="form_col">
                   <label>Kết cấu  chính</label>                  
                   <select name="shape" class="selectKetCauChinh" disabled=""></select>
@@ -120,17 +123,17 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 							<div class="modal_ketquadinhgia_header_right clearfix">
 								<div class="modal_ketquadinhgia_header_right_col">
 									<p><strong>Công ty Cổ Phần Thẩm Định Giá Thế Kỷ</strong></p>
-									<p>Miền Nam:</br>
-									Tầng 2, tòa nhà HDTC, 36 Bùi Thị Xuân, Q1, Tp HCM</br>
-									<strong>Tel:</strong> (84.8) 3925 6973   -   <strong>Fax:</strong> (84.8) 3925 6955
+									<p>TpHCM:</br>
+									Tầng 3, Tòa nhà Samco, số 326 Võ Văn Kiệt, Phường Cô Giang , quận 1. Tp Hồ Chí Minh.</br>
+									<strong>Tel:</strong> ( 08 ) 3925 6972   -   <strong>Fax:</strong> ( 08 ) 3925 6955
 									</p>
 								</div>
 								<div class="modal_ketquadinhgia_header_right_col">
 									<p><strong>Email:</strong></br>
 									dinhgiaonline@gmail.com</br>
-									thamdinhgiatheky@cengroup.vn</p>
+									hotro@dinhgiatructuyen.vn</p>
 									<p><strong>Website:</strong></br>
-									www.thamdinhgiatheky.vn</p>
+									www.dinhgiatructuyen.vn</p>
 								</div>
 							</div>									
 						</div	>
@@ -142,13 +145,13 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                                     <strong>Chi Tiết:</strong>
                                     <div class="row">
                                       <div class="col-md-4 col-chitietsobo">
-                                        <div class="chitietsobo-item">Tổng diện tích đất(m2): <span class="tongDienTichLabel"></span></div>
-                                        <div class="chitietsobo-item">Chiều ngang: <span class="chieuNgangLabel"></span></div>
-                                        <div class="chitietsobo-item">Chiều dài: <span class="chieuDaiLabel"></span></div>
+                                        <div class="chitietsobo-item">Tổng diện tích đất( m2 ): <span class="tongDienTichLabel"></span></div>
+                                        <div class="chitietsobo-item">Chiều ngang( m ): <span class="chieuNgangLabel"></span></div>
+                                        <div class="chitietsobo-item">Chiều dài( m ): <span class="chieuDaiLabel"></span></div>
                                       </div>
                                       <div class="col-md-4 col-chitietsobo">
                                         <div class="chitietsobo-item">Vị trí tiếp giáp: <span class="vitriLabel"></span></div>
-                                        <div class="chitietsobo-item">Hình dạng thử đất: <span class="hinhDangLabel"></span></div>
+                                        <div class="chitietsobo-item">Hình dạng thửa đất: <span class="hinhDangLabel"></span></div>
                                       </div>
                                       <div class="col-md-4 col-chitietsobo">
                                         <div class="chitietsobo-item">Công trình xây dựng: <span class="CTXDLabel"></span></div>
@@ -171,50 +174,35 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 										<tbody>
 											<tr>
 												<td></td>
-												<td><strong>Đơn giá thị trường đề xuất</strong></td>
-                                                <td><span class='giaThiTruong'></span></td>
+												<td class="text-left"><strong>Đơn giá thị trường đề xuất</strong></td>
+                                                <td class="text-left"><span class='giaThiTruong'></span></td>
 												<td>VNĐ/M2</td>
 											</tr>
 											<tr>
 												<td>I</td>
-												<td>Giá trị đất</td>
-												<td><span class='giaTriDat'></span></td>
+												<td class="text-left">Giá trị đất</td>
+												<td class="text-left"><span class='giaTriDat'></span></td>
 												<td>VNĐ</td>
 											</tr>
 											<tr>
 												<td>II</td>
-												<td><strong>Giá trị công trình xây dựng</strong></td>
-												<td><span class='giaTriCTXD'></span></td>
+												<td class="text-left"><strong>Giá trị công trình xây dựng</strong></td>
+												<td class="text-left"><span class='giaTriCTXD'></span></td>
 												<td>VNĐ</td>
 											</tr>
 											<tr>
 												<td>III</td>
-												<td><strong>Tổng giá trị (I+II)</strong></td>
-												<td><span class='tongGiaTriSoBo'></span></td>
+												<td class="text-left"><strong>Tổng giá trị (I+II)</strong></td>
+												<td class="text-left"><span class='tongGiaTriSoBo'></span></td>
 												<td>VNĐ</td>
 											</tr>													
 										</tbody>
 									</table>
-                                  <p>* Đơn giá đất ở UB mặt tiền đương XXXXX là: <span class="giaUBLabel"></span></p>
+                                  <p>* Đơn giá đất UB mặt tiền đường là: <span class="giaUBLabel"></span> VNĐ/m2</p>
 								  <p>* Biên độ chênh lệch ± 10% giữa giá trị sơ bộ và giá trị thực tế  khi Chuyên viên thẩm định giá khảo sát thực tế hiện trạng tài sản.</p>
 								</div>
 								<div id="show_ketquadinhgia_popup_note" class="btn btn_arrow btn_arrow00757b"><a>Xem thông tin lưu ý<i></i></a></div>
-								<div class="ketquadinhgia_popup_note">
-									<div class="ketquadinhgia_popup_note_header">
-										<p>Xem thông tin lưu ý</p>
-										<div class="btn btn_close"><a>Đóng lại</a></div>
-									</div>
-									<div class="ketquadinhgia_popup_note_body">
-										<p>- Cen Value cung cấp kết quả thẩm định giá sơ bộ mang tính chất tư vấn theo đúng mục đích yêu cầu và sử dụng hệ thống cơ sở dữ liệu thị trường kết hợp với các phân tích khu vực Bất động sản tọa lạc sẵn có mà chưa thực hiện khảo sát hiện trạng, do đó kết quả sơ bộ chưa phải là quyết định cuối cùng. Kết quả thẩm định chỉ được xác nhận khi Cen Value hoàn thành việc khảo sát thực tế.</p>
-										<p>-  Cen Value không thẩm định tính sở hữu hợp pháp hay những thay đổi pháp lý trên giấy tờ gốc mà có thể hiện hoặc không thể hiện trên bản sao đã được cung cấp, và  Cen Value giả định rằng tất cả thông tin mà quý khách đã cung cấp là trung thực và chính xác.</p>
-										<p>- Để các kết quả sơ bộ chính xác hơn, Cen Value đề xuất khách hàng cung cấp các thông tin liên quan đến tài sản một cách thực tế và khách quan nhất nhằm có đánh gia tối ưu nhất về giá trị tài sản của mình. <br>Hoặc liên hệ ngay với chúng tôi để được các chuyên viên hỗ trợ.</p>
-										<p>- Chuyên viên định giá của Cen Value sẽ TRỰC TIẾP KHẢO SÁT, ĐÁNH GIÁ THỰC TẾ nhằm tư vấn tốt nhất, tối ưu nhất về giá trị tài sản, cũng như pháp lý, đồng thời Cen Value sẽ cung cấp cho khách hàng MỘT BẢN CHỨNG THƯ  & MỘT BẢN BÁO CÁO ĐẦY ĐỦ về hiện trạng và giá trị tài sản khi có yêu cầu.</p>
-										<p>- CENVALUE PHÁT HÀNH CHỨNG THƯ THẨM ĐỊNH GIÁ với các mục đích THẾ CHẤP VAY VỐN / CHỨNG MINH NĂNG LỰC TÀI CHÍNH / BẢO LÃNH / MUA BÁN / DU HỌC	/ ĐỊNH CƯ NƯỚC NGOÀI / KIỂM TOÁN ……</p>
-										<p>- Quý khách vui lòng liên hệ <strong>Hotline - 090 231 7679</strong> hoặc Chuyên viên của chúng tôi khi có các phản hồi hoặc nhu cầu về thẩm định gíá để được hỗ trợ.</p>
-										<p>- Kết quả sơ bộ có hiệu lực trong thời gian 3 (ba) ngày kể từ ngày thông báo.</p> 
-										<p>Rất mong sự phản hồi của Quý khách.</p>
-									</div>
-								</div>
+								
 								<div class="ketquadinhgia_bottom_button">
 									<a class="hotline" href="tel:0902317679">Hotline</a>
 									<a class="print" href="#">Print</a>
@@ -347,22 +335,22 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
       $(this).parents('.price-form').find('.inputHinhDangThuaDat:first').val(hinhDangThuaDatData);      
 
       for(var i in chieuNgangOptions){
-        var partPrice = chieuNgangOptions[i]['name'].split('≤');
+        var partPrice = chieuNgangOptions[i]['name'].split('<');
         if(!partPrice[0]){
-          if(partPrice[1] && textChieuNgang*1 <= partPrice[1]*1){
+          if(partPrice[1] && textChieuNgang*1 < partPrice[1]*1){
             idOptionChieuNgang = i;
             break;
           }
         }else{
-          partPrice = chieuNgangOptions[i]['name'].split(' - ≤');
+          partPrice = chieuNgangOptions[i]['name'].split(' - <');
           if(partPrice[1]){
-            if(textChieuNgang*1 > partPrice[0]*1 && textChieuNgang*1 <= partPrice[1]*1){
+            if(textChieuNgang*1 >= partPrice[0]*1 && textChieuNgang*1 < partPrice[1]*1){
               idOptionChieuNgang = i;
               break;
             }
           }else{
-            partPrice = chieuNgangOptions[i]['name'].split('>');
-            if(textChieuNgang*1 > partPrice[0]){
+            partPrice = chieuNgangOptions[i]['name'].split('≥');
+            if(partPrice[1] && textChieuNgang*1 >= partPrice[1]){
               idOptionChieuNgang = i;
               break;
             }
@@ -403,7 +391,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
             }
           }else{
             partPrice = dienTichDatOptions[i]['name'].split('>');
-            if(textDienTich*1 > partPrice[0]){
+            if(partPrice[1] && textDienTich*1 > partPrice[1]){
               idOptionDienTichDat = i;
               break;
             }
@@ -459,8 +447,8 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
      $('.tongDienTichLabel').html(dienTichDatText);
      $('.chieuNgangLabel').html(textChieuNgang);
      $('.chieuDaiLabel').html(textChieuDai);
-     $('.vitriLabel').html($('#modal_dongiasobo .selectHinhDangThuaDat option:selected').text());
-     $('.hinhDangLabel').html($('#modal_dongiasobo .selectVitri option:selected').text());
+     $('.vitriLabel').html($('#modal_dongiasobo .selectVitri option:selected').text());
+     $('.hinhDangLabel').html($('#modal_dongiasobo .selectHinhDangThuaDat option:selected').text());
      $('.CTXDLabel').html($('#modal_dongiasobo .selectCongTrinhXayDung option:selected').text());
      $('.ketCauLabel').html($('#modal_dongiasobo .selectKetCauChinh option:selected').text());
      $('.tongDienTichSanLabel').html(dienTichSanXD);
@@ -497,8 +485,10 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
             }
           }
         }
+        $('.row-ket-cau-chinh').show();
         $('.selectKetCauChinh').html(options);
       }else{
+        $('.row-ket-cau-chinh').hide();
         $('.selectKetCauChinh').attr('disabled', 'true');
         $('.dien-tich-san-xd').attr('disabled', 'true');
         $('.textNamXD').attr('disabled', 'true');
