@@ -7094,7 +7094,7 @@ body .zui-popup-close:hover {
 }
 .gm-style img {
 	z-index: 100;
-	background-color: #ddd;
+	/*background-color: #ddd;*/
 }
 
 /** page role & policy */

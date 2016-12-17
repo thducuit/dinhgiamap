@@ -15,8 +15,8 @@ MAIN
 				<div class="page_contact_right_inner">
 					
 					<div class="page_contact_sidelink">
-						<a href="{{ URL::to('/contact') }}">Liên hệ tư vấn</a>
-						<a class="current" href="{{ URL::to('/question') }}">Câu hỏi thường gặp</a>
+						<a href="{{ URL::to('/lien-he.html') }}">Liên hệ tư vấn</a>
+						<a class="current" href="{{ URL::to('/hoi-dap.html') }}">Câu hỏi thường gặp</a>
 					</div>
 					<div class="page_contact_right_header">
 						Câu hỏi thường gặp

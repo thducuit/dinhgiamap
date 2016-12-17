@@ -4,7 +4,7 @@ class ContactController extends BaseController {
     public function getIndex()
     {
         return View::make('default.page.contact')
-        ->with(array('title'=> 'liên hệ'))
+        ->with(array('title'=> 'Liên hệ'))
         ->with('current', 6)
         ->with(array('body_class'=> 'page_contact'));
     }

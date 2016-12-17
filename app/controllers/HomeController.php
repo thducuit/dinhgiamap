@@ -35,7 +35,7 @@ class HomeController extends BaseController {
 	public function view()
 	{
 		return View::make('default.index.view')
-		->with('title', 'home page')
+		->with('title', 'Trang chủ')
 		->with('current', 1)
 		->with('body_class', 'page_home');
 	}
@@ -46,7 +46,7 @@ class HomeController extends BaseController {
 	    return View::make('default.index.map')
 	    ->with('address', Input::get('address'))
 	    ->with('placeId', Input::get('placeId'))
-		->with('title', 'search')
+		->with('title', 'Tìm kiếm')
 		->with('body_class', 'page_search');
 	}
 	

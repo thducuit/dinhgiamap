@@ -75,7 +75,8 @@ Route::get('/index1', 'HomeController@view');
 Route::get('/search', 'HomeController@search');
 Route::get('/markers', 'HomeController@getMarkers');
 Route::get('/info', 'HomeController@getInfo');
-Route::get('/thong-tin-tai-khoan', 'CustomerController@getInfo');
+Route::get('/thong-tin-tai-khoan.html', 'CustomerController@getInfo');
+Route::get('/lien-he.html', 'ContactController@getIndex');
 Route::get('/address', 'HomeController@getAddress');
 Route::get('/streets', 'HomeController@getStreet');
 Route::get('/streets/price', 'HomeController@getStreetPrice');
@@ -152,9 +153,9 @@ Route::get('/plan', function() {
 Route::controller('/payment', 'PaymentController');
 Route::controller('/customer', 'CustomerController');
 
-Route::get('/question', function() {
+Route::get('/hoi-dap.html', function() {
      return View::make('default.page.qa')
-        ->with(array('title'=> 'câu hỏi thường gặp'))
+        ->with(array('title'=> 'Câu hỏi thường gặp'))
         ->with('current', 4)
         ->with(array('body_class'=> 'page_contact'));
 });
