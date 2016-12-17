@@ -465,6 +465,7 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
         }
       }
     });
+    
     $('.selectCongTrinhXayDung').change(function(){
       var congTrinh = $(this).val();
       if(congTrinh){
@@ -494,5 +495,6 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
         $('.textNamXD').attr('disabled', 'true');
       }        
     });
+    
   });
 </script>

@@ -96,24 +96,16 @@ MAIN
                       <div class="tab_body_inner">
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
                         <div class="form_row clearfix">
+                          <input type="hidden" name="textDistrict" class="textDistrict" value="{{$disTrict->type}} {{$disTrict->name}}"/>             
                           <div class="form_col">
-                            <label>Quận</label>
-                            <select class="selectQuan">
-                              <option value="">Chọn Quận</option>
-                              @foreach ($districts as $key => $value)
-                              <option value="{{ $key }}">{{ $value }}</option>
-                              @endforeach
-                            </select>
-                          </div>
-                          <div class="form_col">
-                            <label class="highlight">Vị trí (*)</label>
+                            <label class="highlight">Vị trí tiếp giáp(*)</label>
                             <input type="hidden" name="type" value='vacant_land'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
                             <input type="hidden" name="viTri"  value="" class="inputViTri">
                             <select class="selectVitri">
-                              <option value="">Chọn Vị trí</option>
+
                               @foreach ($viTri as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach															
@@ -125,25 +117,23 @@ MAIN
                             <label>Yếu tố khác</label>
                             <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                             <select class="selectYeuToKhac">
-                              <option value="">Yếu tố khác</option>
+                              <option value="">Bình Thường</option>
                               @foreach ($yeuToKhac as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach															
                             </select>
-                          </div>	
-                        </div>
+                          </div>
 
-                        <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Hình dạng thửa đất</label>
                             <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
                             <select name="shape" class="selectHinhDangThuaDat">
-                              <option value="">Hình dạng</option>
+
                               @foreach ($hinhDangThuaDat as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
-                          </div>                                                                                            
+                          </div>    
                         </div>
 
                         <div class="form_row clearfix">
@@ -218,32 +208,40 @@ MAIN
                     <div class="tab_body">
                       <div class="tab_body_inner">
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
-                        <input type="hidden" name="textDistrict" class="textDistrict"/>	
+                        <input type="hidden" name="textDistrict" class="textDistrict" value="{{$disTrict->type}} {{$disTrict->name}}"/>             
                         <div class="form_row clearfix">
                           <div class="form_col">
-                            <label class="highlight">Vị trí (*)</label>
+                            <label class="highlight">Vị trí tiếp giáp(*)</label>                            
                             <input type="hidden" name="type" value='house'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
-                            <select>
-                              <option>1 hẻm</option>
-                              <option>2 hẻm</option>
+                            <input type="hidden" name="viTri"  value="" class="inputViTri">
+                            <select class="selectVitri">
+
+                              @foreach ($viTri as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                           <div class="form_col">
                             <label>Hình dạng thửa đất</label>
-                            <select name="shape">
-                              @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                            <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                            <select name="shape" class="selectHinhDangThuaDat">
+
+                              @foreach ($hinhDangThuaDat as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
                           </div>
                           <div class="form_col"  style="width: 50%;">
                             <label>Yếu tố khác</label>
-                            <select>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
+                            <select class="selectYeuToKhac">
+                              <option value="">Bình Thường</option>
+                              @foreach ($yeuToKhac as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                         </div>
@@ -253,8 +251,9 @@ MAIN
                             <input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
                           </div>
                           <div class="form_col">
-                            <label>&nbsp;</label>
-                            <input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+                            <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                            <label>&nbsp;</label>                                                      
+                            <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                           </div>
                           <div class="form_col">
                             <label>&nbsp;</label>
@@ -266,7 +265,8 @@ MAIN
                             <label>Diện tích đất phù hợp quy hoạch</label>
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                            <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                            <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -298,6 +298,12 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Công trình xây dựng</label>
+                            <select name="shape" class="selectCongTrinhXayDung">                    
+                              <option value="">Chọn CTXD</option>
+                              <option value="">Không có CTXD</option>
+                              <option value="nha_pho">Nhà phố</option>
+                              <option value="biet_thu">Biệt thự</option>
+                            </select>
                           </div>
                         </div>																												
                         <div class="form_row clearfix">
@@ -370,29 +376,37 @@ MAIN
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form vila_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
-                            <label class="highlight">Vị trí (*)</label>
+                            <label class="highlight">Vị trí tiếp giáp(*)</label>
                             <input type="hidden" name="type" value='house'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
-                            <select>
-                              <option>1 hẻm</option>
-                              <option>2 hẻm</option>
+                            <input type="hidden" name="viTri"  value="" class="inputViTri">
+                            <select class="selectVitri">
+
+                              @foreach ($viTri as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                           <div class="form_col">
                             <label>Hình dạng thửa đất</label>
-                            <select name="shape">
-                              @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                            <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                            <select name="shape" class="selectHinhDangThuaDat">
+
+                              @foreach ($hinhDangThuaDat as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
                           </div>
                           <div class="form_col"  style="width: 50%;">
                             <label>Yếu tố khác</label>
-                            <select>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
+                            <select class="selectYeuToKhac">
+                              <option value="">Bình Thường</option>
+                              @foreach ($yeuToKhac as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                         </div>
@@ -402,8 +416,9 @@ MAIN
                             <input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
                           </div>
                           <div class="form_col">
-                            <label>&nbsp;</label>
-                            <input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+                            <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                            <label>&nbsp;</label>                                                      
+                            <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                           </div>
                           <div class="form_col">
                             <label>&nbsp;</label>
@@ -415,7 +430,8 @@ MAIN
                             <label>Diện tích đất phù hợp quy hoạch</label>
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                            <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                            <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -447,6 +463,12 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Công trình xây dựng</label>
+                            <select name="shape" class="selectCongTrinhXayDung">                    
+                              <option value="">Chọn CTXD</option>
+                              <option value="">Không có CTXD</option>
+                              <option value="nha_pho">Nhà phố</option>
+                              <option value="biet_thu">Biệt thự</option>
+                            </select>
                           </div>
                         </div>																												
                         <div class="form_row clearfix">
@@ -520,29 +542,37 @@ MAIN
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form flat_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
-                            <label class="highlight">Vị trí (*)</label>
+                            <label class="highlight">Vị trí tiếp giáp(*)</label>
                             <input type="hidden" name="type" value='house'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
-                            <select>
-                              <option>1 hẻm</option>
-                              <option>2 hẻm</option>
+                            <input type="hidden" name="viTri"  value="" class="inputViTri">
+                            <select class="selectVitri">
+
+                              @foreach ($viTri as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                           <div class="form_col">
                             <label>Hình dạng thửa đất</label>
-                            <select name="shape">
-                              @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                            <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                            <select name="shape" class="selectHinhDangThuaDat">
+
+                              @foreach ($hinhDangThuaDat as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
                           </div>
                           <div class="form_col"  style="width: 50%;">
                             <label>Yếu tố khác</label>
-                            <select>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
+                            <select class="selectYeuToKhac">
+                              <option value="">Bình Thường</option>
+                              @foreach  ($yeuToKhac as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                         </div>
@@ -552,8 +582,9 @@ MAIN
                             <input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
                           </div>
                           <div class="form_col">
-                            <label>&nbsp;</label>
-                            <input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+                            <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                            <label>&nbsp;</label>                                                      
+                            <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                           </div>
                           <div class="form_col">
                             <label>&nbsp;</label>
@@ -565,7 +596,8 @@ MAIN
                             <label>Diện tích đất phù hợp quy hoạch</label>
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                            <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                            <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -597,6 +629,12 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Công trình xây dựng</label>
+                            <select name="shape" class="selectCongTrinhXayDung">                    
+                              <option value="">Chọn CTXD</option>
+                              <option value="">Không có CTXD</option>
+                              <option value="nha_pho">Nhà phố</option>
+                              <option value="biet_thu">Biệt thự</option>
+                            </select>
                           </div>
                         </div>																												
                         <div class="form_row clearfix">
@@ -670,29 +708,37 @@ MAIN
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form hotel_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
-                            <label class="highlight">Vị trí (*)</label>
+                            <label class="highlight">Vị trí tiếp giáp(*)</label>
                             <input type="hidden" name="type" value='house'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
-                            <select>
-                              <option>1 hẻm</option>
-                              <option>2 hẻm</option>
+                            <input type="hidden" name="viTri"  value="" class="inputViTri">
+                            <select class="selectVitri">
+
+                              @foreach ($viTri as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                           <div class="form_col">
                             <label>Hình dạng thửa đất</label>
-                            <select name="shape">
-                              @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                            <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                            <select name="shape" class="selectHinhDangThuaDat">
+
+                              @foreach ($hinhDangThuaDat as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
                           </div>
                           <div class="form_col"  style="width: 50%;">
                             <label>Yếu tố khác</label>
-                            <select>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
+                            <select class="selectYeuToKhac">
+                              <option value="">Bình Thường</option>
+                              @foreach ($yeuToKhac as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                         </div>
@@ -702,8 +748,9 @@ MAIN
                             <input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
                           </div>
                           <div class="form_col">
-                            <label>&nbsp;</label>
-                            <input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+                            <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                            <label>&nbsp;</label>                                                      
+                            <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                           </div>
                           <div class="form_col">
                             <label>&nbsp;</label>
@@ -715,7 +762,8 @@ MAIN
                             <label>Diện tích đất phù hợp quy hoạch</label>
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                            <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                            <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -747,6 +795,12 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Công trình xây dựng</label>
+                            <select name="shape" class="selectCongTrinhXayDung">                    
+                              <option value="">Chọn CTXD</option>
+                              <option value="">Không có CTXD</option>
+                              <option value="nha_pho">Nhà phố</option>
+                              <option value="biet_thu">Biệt thự</option>
+                            </select>
                           </div>
                         </div>																												
                         <div class="form_row clearfix">
@@ -820,29 +874,37 @@ MAIN
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form office_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
-                            <label class="highlight">Vị trí (*)</label>
+                            <label class="highlight">Vị trí tiếp giáp(*)</label>
                             <input type="hidden" name="type" value='house'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
-                            <select>
-                              <option>1 hẻm</option>
-                              <option>2 hẻm</option>
+                            <input type="hidden" name="viTri"  value="" class="inputViTri">
+                            <select class="selectVitri">
+
+                              @foreach ($viTri as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                           <div class="form_col">
                             <label>Hình dạng thửa đất</label>
-                            <select name="shape">
-                              @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                            <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                            <select name="shape" class="selectHinhDangThuaDat">
+
+                              @foreach ($hinhDangThuaDat as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
                           </div>
                           <div class="form_col"  style="width: 50%;">
                             <label>Yếu tố khác</label>
-                            <select>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
+                            <select class="selectYeuToKhac">
+                              <option value="">Bình Thường</option>
+                              @foreach ($yeuToKhac as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                         </div>
@@ -852,8 +914,9 @@ MAIN
                             <input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
                           </div>
                           <div class="form_col">
-                            <label>&nbsp;</label>
-                            <input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+                            <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                            <label>&nbsp;</label>                                                      
+                            <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                           </div>
                           <div class="form_col">
                             <label>&nbsp;</label>
@@ -865,7 +928,8 @@ MAIN
                             <label>Diện tích đất phù hợp quy hoạch</label>
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                            <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                            <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -897,6 +961,12 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Công trình xây dựng</label>
+                            <select name="shape" class="selectCongTrinhXayDung">                    
+                              <option value="">Chọn CTXD</option>
+                              <option value="">Không có CTXD</option>
+                              <option value="nha_pho">Nhà phố</option>
+                              <option value="biet_thu">Biệt thự</option>
+                            </select>
                           </div>
                         </div>																												
                         <div class="form_row clearfix">
@@ -970,29 +1040,37 @@ MAIN
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form warehouse_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
-                            <label class="highlight">Vị trí (*)</label>
+                            <label class="highlight">Vị trí tiếp giáp(*)</label>
                             <input type="hidden" name="type" value='house'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
-                            <select>
-                              <option>1 hẻm</option>
-                              <option>2 hẻm</option>
+                            <input type="hidden" name="viTri"  value="" class="inputViTri">
+                            <select class="selectVitri">
+
+                              @foreach ($viTri as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                           <div class="form_col">
                             <label>Hình dạng thửa đất</label>
-                            <select name="shape">
-                              @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                            <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                            <select name="shape" class="selectHinhDangThuaDat">
+
+                              @foreach ($hinhDangThuaDat as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
                           </div>
                           <div class="form_col"  style="width: 50%;">
                             <label>Yếu tố khác</label>
-                            <select>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
-                              <option>BĐS nằm gần trung tâm thương mại, siêu thị,... </option>
+                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
+                            <select class="selectYeuToKhac">
+                              <option value="">Bình Thường</option>
+                              @foreach ($yeuToKhac as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
                             </select>
                           </div>
                         </div>
@@ -1002,8 +1080,9 @@ MAIN
                             <input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
                           </div>
                           <div class="form_col">
-                            <label>&nbsp;</label>
-                            <input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+                            <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                            <label>&nbsp;</label>                                                      
+                            <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                           </div>
                           <div class="form_col">
                             <label>&nbsp;</label>
@@ -1015,7 +1094,8 @@ MAIN
                             <label>Diện tích đất phù hợp quy hoạch</label>
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                            <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                            <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -1047,6 +1127,12 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Công trình xây dựng</label>
+                            <select name="shape" class="selectCongTrinhXayDung">                    
+                              <option value="">Chọn CTXD</option>
+                              <option value="">Không có CTXD</option>
+                              <option value="nha_pho">Nhà phố</option>
+                              <option value="biet_thu">Biệt thự</option>
+                            </select>
                           </div>
                         </div>																												
                         <div class="form_row clearfix">
@@ -1143,7 +1229,9 @@ MAIN
                                 <input type="text" name="total_area" placeholder="Tổng diện tích (m2)" value="{{ Input::old('total_area') }}">
                               </div>
                               <div class="form_col">
-                                <input type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">
+                                <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                <label>&nbsp;</label>                                                      
+                                <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                               </div>																										
                               <div class="form_col">
                                 <input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m)" value="{{ Input::old('vertical') }}">
@@ -1154,9 +1242,11 @@ MAIN
                                 <label>Hình dạng thửa đất</label>
                               </div>
                               <div class="form_col">
-                                <select name="shape">
-                                  @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                                  <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                                <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                                <select name="shape" class="selectHinhDangThuaDat">
+
+                                  @foreach ($hinhDangThuaDat as $s)
+                                  <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -1166,7 +1256,8 @@ MAIN
                                 <label>Diện tích đất phù hợp quy hoạch</label>
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                                <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                               </div>
                               <div class="form_col">
                                 <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -1228,6 +1319,7 @@ MAIN
                         <div class="tab_body">
                           <div class="tab_body_inner">
                             {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
+                            <input type="hidden" name="textDistrict" class="textDistrict" value="{{$disTrict->type}} {{$disTrict->name}}"/>             
                             <div class="form_row clearfix">
                               <div class="form_col form_col_first">
                                 <label class="highlight">Đất sử dụng riêng (*)</label>
@@ -1241,7 +1333,9 @@ MAIN
                                 <input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+                                <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                <label>&nbsp;</label>                                                      
+                                <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                               </div>																										
                               <div class="form_col">
                                 <input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
@@ -1252,9 +1346,11 @@ MAIN
                                 <label>Hình dạng thửa đất</label>
                               </div>
                               <div class="form_col">
-                                <select name="shape">
-                                  @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                                  <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                                <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                                <select name="shape" class="selectHinhDangThuaDat">
+
+                                  @foreach ($hinhDangThuaDat as $s)
+                                  <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -1264,7 +1360,8 @@ MAIN
                                 <label>Diện tích đất phù hợp quy hoạch</label>
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                                <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                               </div>
                               <div class="form_col">
                                 <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -1296,6 +1393,12 @@ MAIN
                             <div class="form_row clearfix">
                               <div class="form_col">
                                 <label>Công trình xây dựng</label>
+                                <select name="shape" class="selectCongTrinhXayDung">                    
+                                  <option value="">Chọn CTXD</option>
+                                  <option value="">Không có CTXD</option>
+                                  <option value="nha_pho">Nhà phố</option>
+                                  <option value="biet_thu">Biệt thự</option>
+                                </select>
                               </div>
                             </div>																												
                             <div class="form_row clearfix">
@@ -1386,7 +1489,9 @@ MAIN
                                 <input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+                                <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                <label>&nbsp;</label>                                                      
+                                <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                               </div>																										
                               <div class="form_col">
                                 <input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
@@ -1397,9 +1502,11 @@ MAIN
                                 <label>Hình dạng thửa đất</label>
                               </div>
                               <div class="form_col">
-                                <select name="shape">
-                                  @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                                  <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                                <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                                <select name="shape" class="selectHinhDangThuaDat">
+
+                                  @foreach ($hinhDangThuaDat as $s)
+                                  <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -1409,7 +1516,8 @@ MAIN
                                 <label>Diện tích đất phù hợp quy hoạch</label>
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                                <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                               </div>
                               <div class="form_col">
                                 <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -1441,6 +1549,12 @@ MAIN
                             <div class="form_row clearfix">
                               <div class="form_col">
                                 <label>Công trình xây dựng</label>
+                                <select name="shape" class="selectCongTrinhXayDung">                    
+                                  <option value="">Chọn CTXD</option>
+                                  <option value="">Không có CTXD</option>
+                                  <option value="nha_pho">Nhà phố</option>
+                                  <option value="biet_thu">Biệt thự</option>
+                                </select>
                               </div>
                             </div>																												
                             <div class="form_row clearfix">
@@ -1532,7 +1646,9 @@ MAIN
                                 <input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+                                <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                <label>&nbsp;</label>                                                      
+                                <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                               </div>																										
                               <div class="form_col">
                                 <input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
@@ -1543,9 +1659,11 @@ MAIN
                                 <label>Hình dạng thửa đất</label>
                               </div>
                               <div class="form_col">
-                                <select name="shape">
-                                  @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                                  <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                                <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                                <select name="shape" class="selectHinhDangThuaDat">
+
+                                  @foreach ($hinhDangThuaDat as $s)
+                                  <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -1555,7 +1673,8 @@ MAIN
                                 <label>Diện tích đất phù hợp quy hoạch</label>
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                                <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                               </div>
                               <div class="form_col">
                                 <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -1587,6 +1706,12 @@ MAIN
                             <div class="form_row clearfix">
                               <div class="form_col">
                                 <label>Công trình xây dựng</label>
+                                <select name="shape" class="selectCongTrinhXayDung">                    
+                                  <option value="">Chọn CTXD</option>
+                                  <option value="">Không có CTXD</option>
+                                  <option value="nha_pho">Nhà phố</option>
+                                  <option value="biet_thu">Biệt thự</option>
+                                </select>
                               </div>
                             </div>																												
                             <div class="form_row clearfix">
@@ -1677,7 +1802,9 @@ MAIN
                                 <input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+                                <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                <label>&nbsp;</label>                                                      
+                                <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                               </div>																										
                               <div class="form_col">
                                 <input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
@@ -1688,9 +1815,11 @@ MAIN
                                 <label>Hình dạng thửa đất</label>
                               </div>
                               <div class="form_col">
-                                <select name="shape">
-                                  @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                                  <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                                <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                                <select name="shape" class="selectHinhDangThuaDat">
+
+                                  @foreach ($hinhDangThuaDat as $s)
+                                  <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -1700,7 +1829,8 @@ MAIN
                                 <label>Diện tích đất phù hợp quy hoạch</label>
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                                <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                               </div>
                               <div class="form_col">
                                 <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -1732,6 +1862,12 @@ MAIN
                             <div class="form_row clearfix">
                               <div class="form_col">
                                 <label>Công trình xây dựng</label>
+                                <select name="shape" class="selectCongTrinhXayDung">                    
+                                  <option value="">Chọn CTXD</option>
+                                  <option value="">Không có CTXD</option>
+                                  <option value="nha_pho">Nhà phố</option>
+                                  <option value="biet_thu">Biệt thự</option>
+                                </select>
                               </div>
                             </div>																												
                             <div class="form_row clearfix">
@@ -1822,7 +1958,9 @@ MAIN
                                 <input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+                                <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                <label>&nbsp;</label>                                                      
+                                <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                               </div>																										
                               <div class="form_col">
                                 <input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
@@ -1833,9 +1971,11 @@ MAIN
                                 <label>Hình dạng thửa đất</label>
                               </div>
                               <div class="form_col">
-                                <select name="shape">
-                                  @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                                  <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                                <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                                <select name="shape" class="selectHinhDangThuaDat">
+
+                                  @foreach ($hinhDangThuaDat as $s)
+                                  <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -1845,7 +1985,8 @@ MAIN
                                 <label>Diện tích đất phù hợp quy hoạch</label>
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                                <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                               </div>
                               <div class="form_col">
                                 <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -1877,6 +2018,12 @@ MAIN
                             <div class="form_row clearfix">
                               <div class="form_col">
                                 <label>Công trình xây dựng</label>
+                                <select name="shape" class="selectCongTrinhXayDung">                    
+                                  <option value="">Chọn CTXD</option>
+                                  <option value="">Không có CTXD</option>
+                                  <option value="nha_pho">Nhà phố</option>
+                                  <option value="biet_thu">Biệt thự</option>
+                                </select>
                               </div>
                             </div>																												
                             <div class="form_row clearfix">
@@ -1968,7 +2115,9 @@ MAIN
                                 <input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Chiều ngang mặt tiền (m)" name="horizontal" value="{{ Input::old('horizontal') }}">
+                                <input type="hidden" name="chieuNgang"  value="" class="inputChieuNgang">
+                                <label>&nbsp;</label>                                                      
+                                <input  class="textChieuNgang" type="text" name="horizontal" placeholder="Chiều ngang mặt tiền (m)" value="{{ Input::old('horizontal') }}">                                                      
                               </div>																										
                               <div class="form_col">
                                 <input type="text" placeholder="Chiều dài lớn nhất (m)" name="vertical" value="{{ Input::old('vertical') }}">
@@ -1979,9 +2128,11 @@ MAIN
                                 <label>Hình dạng thửa đất</label>
                               </div>
                               <div class="form_col">
-                                <select name="shape">
-                                  @foreach (AdjustOption::findByGroupId(4)->get()->toArray() as $s)
-                                  <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
+                                <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
+                                <select name="shape" class="selectHinhDangThuaDat">
+
+                                  @foreach ($hinhDangThuaDat as $s)
+                                  <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -1991,7 +2142,8 @@ MAIN
                                 <label>Diện tích đất phù hợp quy hoạch</label>
                               </div>
                               <div class="form_col">
-                                <input type="text" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">
+                                <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
+                                <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                               </div>
                               <div class="form_col">
                                 <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
@@ -2023,6 +2175,12 @@ MAIN
                             <div class="form_row clearfix">
                               <div class="form_col">
                                 <label>Công trình xây dựng</label>
+                                <select name="shape" class="selectCongTrinhXayDung">                    
+                                  <option value="">Chọn CTXD</option>
+                                  <option value="">Không có CTXD</option>
+                                  <option value="nha_pho">Nhà phố</option>
+                                  <option value="biet_thu">Biệt thự</option>
+                                </select>
                               </div>
                             </div>																												
                             <div class="form_row clearfix">
@@ -2240,7 +2398,7 @@ foreach ($dienTichDat as $item) {
       }
       jQuery('.selectQuan, .selectVitri, .selectHinhDangThuaDat,' +
               ' .selectYeuToKhac,.textChieuNgang, .textDienTichDat').change(function () {
-        var quan = $(this).parents('.price-form').find('.selectQuan:first').val();
+        var quan = $(this).parents('.price-form').find('.textDistrict:first').val();
         var idOptionVitri = $(this).parents('.price-form').find('.selectVitri:first').val();
         var idOptionHinhDangThuaDat = $(this).parents('.price-form').find('.selectHinhDangThuaDat:first').val();
         var idOptionYeuToKhac = $(this).parents('.price-form').find('.selectYeuToKhac:first').val();
@@ -2257,7 +2415,7 @@ foreach ($dienTichDat as $item) {
         var dienTichDatData = '';
 
         if (vitriOptions[idOptionVitri]) {
-          if (quan == 1 || quan == 3) {
+          if (quan == 'Quận 1' || quan == 'Quận 3') {
             vitriData = vitriOptions[idOptionVitri].quanTrungTam;
           } else {
             vitriData = vitriOptions[idOptionVitri].quanKhac;
@@ -2269,7 +2427,7 @@ foreach ($dienTichDat as $item) {
         $(this).parents('.price-form').find('.inputViTri:first').val(vitriData);
 
         if (hinhDangThuaDatOptions[idOptionHinhDangThuaDat]) {
-          if (quan == 1 || quan == 3) {
+          if (quan == 'Quận 1' || quan == 'Quận 3') {
             if (selectHemMaTien == 'mat_tien') {
               hinhDangThuaDatData = hinhDangThuaDatOptions[idOptionHinhDangThuaDat].quanTrungTamMatTien;
             } else {
@@ -2286,7 +2444,7 @@ foreach ($dienTichDat as $item) {
         $(this).parents('.price-form').find('.inputHinhDangThuaDat:first').val(hinhDangThuaDatData);
 
         if (yeuToKhacOptions[idOptionYeuToKhac]) {
-          if (quan == 1 || quan == 3) {
+          if (quan == 'Quận 1' || quan == 'Quận 3') {
             yeuToKhacData = yeuToKhacOptions[idOptionYeuToKhac].quanTrungTam;
           } else {
             yeuToKhacData = yeuToKhacOptions[idOptionYeuToKhac].quanKhac;
@@ -2319,7 +2477,7 @@ foreach ($dienTichDat as $item) {
         }
 
         if (chieuNgangOptions[idOptionChieuNgang]) {
-          if (quan == 1 || quan == 3) {
+          if (quan == 'Quận 1' || quan == 'Quận 3') {
             if (selectHemMaTien == 'mat_tien') {
               chieuNgangData = chieuNgangOptions[idOptionChieuNgang].quanTrungTamMatTien;
             } else {
@@ -2359,7 +2517,7 @@ foreach ($dienTichDat as $item) {
           }
         }
         if (dienTichDatOptions[idOptionDienTichDat]) {
-          if (quan == 1 || quan == 3) {
+          if (quan == 'Quận 1' || quan == 'Quận 3') {
             if (selectHemMaTien == 'mat_tien') {
               dienTichDatData = dienTichDatOptions[idOptionDienTichDat].quanTrungTamMatTien;
             } else {
