@@ -2381,5 +2381,5 @@ foreach ($dienTichDat as $item) {
     });
   </script>
   {{ HTML::script('default/js/map.js') }}
-  {{ HTML::style('default/css/custom.css') }}
+  <!-- {{ HTML::style('default/css/custom.css') }} -->
   @endsection

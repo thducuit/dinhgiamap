@@ -18,6 +18,7 @@
 		{{ HTML::style('default/css/normalize.min.css') }}
 		{{ HTML::style('//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css') }}
 		{{ HTML::style('default/css/cenvalue.css') }}
+		{{ HTML::style('default/css/custom.css') }}
 		{{ HTML::style('default/css/responsive.css') }}
 		<!-- {{ HTML::style('default/css/styles.css') }} -->
 		{{ HTML::style('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css') }}
@@ -83,20 +84,25 @@
 									<li class="menu_item login-menu-item"><a class="clearfix dangNhap" href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap"><i class="menu_icon icon_dangky"></i> <span>Đăng nhập</span></a></li>
                                     <li class="menu_item register-menu-item"><a class="clearfix dangKy" href="#dangky" data-toggle="modal" data-target="#modal_dangky"><i class="menu_icon icon_dangky"></i> <span>Đăng ký</span></a></li>
 									@else
-									<li class="menu_item"><a class="clearfix dangNhap" href="{{ URL::to('/info') }}"  ><i class="menu_icon icon_dangky"></i> <span>Thông tin tài khoản</span></a></li>
+									<li class="menu_item"><a class="clearfix dangNhap" href="{{ URL::to('/thong-tin-tai-khoan') }}"  ><i class="menu_icon icon_dangky"></i> <span>Thông tin tài khoản</span></a></li>
 									@endif
 									<li class="menu_item {{ isset($current) && $current == 1 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/index') }}"><i class="menu_icon icon_trangchu"></i><span>Trang chủ</span></a></li>
-									<li class="menu_item {{ isset($current) && $current == 2 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/about') }}"><i class="menu_icon icon_vechungtoi"></i><span>Về chúng tôi</span></a></li>
-									<li class="menu_item {{ isset($current) && $current == 3 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/plan') }}"><i class="menu_icon icon_xemquihoach"></i><span>Xem qui hoạch</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 2 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/ve-chung-toi.html') }}"><i class="menu_icon icon_vechungtoi"></i><span>Về chúng tôi</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 3 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/plan') }}"><i class="menu_icon icon_xemquihoach"></i><span>Xem quy hoạch</span></a></li>
+									<li class="menu_item"><a class="clearfix" href="#"><i class="menu_icon icon_cungdongia"></i><span>Tài sản đang giao dịch</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 4 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/question') }}"><i class="menu_icon icon_faq"></i><span>Hỏi đáp</span></a></li>
-									<li class="menu_item {{ isset($current) && $current == 5 ? 'current' : '' }}"><a class="clearfix" href="/huongdan/gioi-thieu.html"><i class="menu_icon icon_video"></i><span>Hướng dẫn sử dụng</span></a></li>
-									<li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/contact') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li>									
+									<li class="menu_item {{ isset($current) && $current == 5 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/huong-dan.html') }}"><i class="menu_icon icon_video"></i><span>Hướng dẫn sử dụng</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/contact') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li>	
+
+
+									<li class="menu_item {{ isset($current) && $current == 7 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/dieu-khoan.html') }}"><span>Điều khoản bảo mật</span></a></li>									
+									<li class="menu_item {{ isset($current) && $current == 8 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/chinh-sach.html') }}"><span>Chính sách sử dụng</span></a></li>									
 								</ul>
-								<ul class="submenu">
+								<!-- <ul class="submenu">
 									<li><a href="#"><span>Điều khoản bảo mật</span></a></li>
 									<li><a href="#"><span>Chính sách sử dụng</span></a></li>
-								</ul>								
-								<div class="nav_social">
+								</ul> -->								
+								<!-- <div class="nav_social">
                                                                         
 									<p>Kết nối chúng tôi qua</p>
                                     <p>Hotline</p>
@@ -107,7 +113,7 @@
 										<a class="social_item social_item_linkedin" href="#">Linkedin</a>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
