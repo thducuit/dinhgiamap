@@ -90,13 +90,10 @@ Route::get('/about', function() {
 });
 Route::get('/price', function() {
      $marker = Marker::findByPlaceId(Input::get('placeId'));
+     $street = Street::find(Input::get('street'));
+     $disTrict = District::find($street->district_id);
      $address = ($marker) ? $marker->name : Input::get('address');
-     $districts = [];
-     for($i = 1; $i <= 9; $i++){
-       $districts[$i] = 'Quận '.$i; 
-     }
-     $districts[] = 'Quận Tân Bình';
-     $districts[] = 'Quận Tân Phú';
+     
      $viTri = AdjustOption::findByGroupId(15, 1, null)->get()->toArray();
      $hinhDangThuaDat = AdjustOption::findByGroupId(4, 1, null)->get()->toArray();
      $yeuToKhac = AdjustOption::findByGroupId(16, 1, null)->get()->toArray();
@@ -107,13 +104,13 @@ Route::get('/price', function() {
         ->with('placeId', Input::get('placeId'))
 	    ->with('streetId', Input::get('street'))
         ->with(array('title'=> 'định giá'))
-        ->with(array('body_class'=> 'page_search'))
-        ->with(array('districts'=> $districts))
+        ->with(array('body_class'=> 'page_search'))     
         ->with(array('viTri'=> $viTri))
         ->with(array('hinhDangThuaDat'=> $hinhDangThuaDat))
         ->with(array('yeuToKhac'=> $yeuToKhac))
         ->with(array('chieuNgang'=> $chieuNgang))
-        ->with(array('dienTichDat'=> $dienTichDat));
+        ->with(array('dienTichDat'=> $dienTichDat))
+        ->with(array('disTrict' => $disTrict));
 });
 
 Route::post('/district', function() {
