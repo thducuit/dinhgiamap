@@ -32,11 +32,11 @@
               <div class="col-sm-offset-1 col-sm-10">
 
                 <div class="row">
-                  <div class="col-sm-9">
+                  <div class="col-sm-8">
                     <a class="btn btn-info btn-flat btn-login">Đăng nhập</a>                       
                     <a class="btn-forgot-password quenMatKhau" href="#">Quên mật khẩu ?</a>                        
                   </div>
-                  <div class="col-sm-3 dn_dangky">
+                  <div class="col-sm-4 dn_dangky">
                     <a href="#"  class="btn btn-info dangKy2 dangKy-btn" data-toggle="modal" data-target="#modal_dangky">Đăng ký</a>
                   </div>
 

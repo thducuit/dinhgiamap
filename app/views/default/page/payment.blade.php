@@ -72,7 +72,7 @@ MAIN
                     <div class="row">
                       <?php foreach($packageServices as $item){?>
                       <div class="col-sm-4">
-                        <div class="form_field field_goidichvu">
+                        <div class="field_goidichvu">
                           <label>
                             <input type="radio" name="goidichvu_thanhtoan" value="<?php echo $item->id;?>">
                             <?php echo $item->title;?>

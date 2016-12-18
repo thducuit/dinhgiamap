@@ -4,7 +4,7 @@ $hinhDangThuaDat = AdjustOption::findByGroupId(4, null , 1)->get()->toArray();
 $chieuNgang = AdjustOption::findByGroupId(1, null , 1)->get()->toArray();
 $dienTichDat = AdjustOption::findByGroupId(3, null , 1)->get()->toArray();
 $ketCauChinh = User::getKetCauChinh();
-$namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
+$namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 ?>
 <div id="modal_dongiasobo" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -41,7 +41,7 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
                 </div>
                 <div class="form_col"  style="">
                   <label>&nbsp;</label>
-                  <input type="text" name="vertical" placeholder="Chiều dài lớn nhất (m2)" class="textChieuDai" value="">
+                  <input type="text" name="vertical" placeholder="Chiều dài lớn nhất" class="textChieuDai" value="">
                 </div>
               </div>	
               <div class="form_row clearfix">
@@ -49,7 +49,7 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
                   <label class="highlight">Vị trí tiếp giáp(*)</label>                    
                   <input type="hidden" name="viTri"  value="" class="inputViTri">
                   <select class="selectVitri">                    
-                    <option value="">Chọn vị trí tiếp giáp</option>
+                    <option value="">Chọn vị trí</option>
                     @foreach ($viTri as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach															
@@ -60,7 +60,7 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
                   <label>Hình dạng thửa đất</label>
                   <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
                   <select name="shape" class="selectHinhDangThuaDat"> 
-                    <option value="">Chọn hình dạng thửa đất</option>
+                    <option value="">Chọn hình dạng</option>
                     @foreach ($hinhDangThuaDat as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach
@@ -200,8 +200,7 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
 									</table>
                                   <p>* Đơn giá đất UB mặt tiền đường là: <span class="giaUBLabel"></span> VNĐ/m2</p>
 								  <p>* Biên độ chênh lệch ± 10% giữa giá trị sơ bộ và giá trị thực tế  khi Chuyên viên thẩm định giá khảo sát thực tế hiện trạng tài sản.</p>
-								</div>
-								<div id="show_ketquadinhgia_popup_note" class="btn btn_arrow btn_arrow00757b"><a>Xem thông tin lưu ý<i></i></a></div>
+								</div>								
 								
 								<div class="ketquadinhgia_bottom_button">
 									<a class="hotline" href="tel:0902317679">Hotline</a>
@@ -286,7 +285,7 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
             <?php
       }
       ?> 
-      
+      console.log(namXDOptions);
       
           
       jQuery('#modal_dongiasobo  .selectVitri,#modal_dongiasobo  .selectHinhDangThuaDat,'+
@@ -436,6 +435,9 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
      var ketCauChinh = $('#modal_dongiasobo .selectKetCauChinh').val();
      var dienTichSanXD = $('#modal_dongiasobo .dien-tich-san-xd').val();
      var namXayDung = $('#modal_dongiasobo .namXD').val();
+     console.log(ketCauChinh);
+     console.log(dienTichSanXD);
+     console.log(namXayDung);
      var giaTriCTXD = (ketCauChinh*dienTichSanXD*namXayDung)/100;
      var tongGiaTriSoBo = parseFloat(giaTriDat) + parseFloat(giaTriCTXD);
      
@@ -459,6 +461,8 @@ $namXayDung = AdjustOption::findByGroupId(9, null , 1)->get()->toArray();
     
     $('.textNamXD').keyup(function(){
       var textNamXD = $(this).val();
+      console.log(textNamXD);
+      console.log(namXDOptions);
       if(textNamXD.length == 4){
         if(namXDOptions[textNamXD]){
           $('.namXD').val(namXDOptions[textNamXD]);

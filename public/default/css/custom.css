@@ -79,6 +79,9 @@
     font-size: 40px;
     text-shadow: none;
 }
+#modal_dongiasobo .form_col{
+  width: 32%;
+}
 
 .page_contact_right .block_contact_form .form_group .form_field select {
     width: 100%;
