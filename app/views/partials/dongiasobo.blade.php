@@ -284,9 +284,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
             namXDOptions[<?php echo $item['description']?>] = <?php echo $item['value']?>;
             <?php
       }
-      ?> 
-      console.log(namXDOptions);
-      
+      ?>       
           
       jQuery('#modal_dongiasobo  .selectVitri,#modal_dongiasobo  .selectHinhDangThuaDat,'+
             '#modal_dongiasobo  .textChieuNgang,#modal_dongiasobo  .textDienTichDat').change(function(){

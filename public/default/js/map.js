@@ -141,16 +141,16 @@
             e.preventDefault();
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
-            $('#dgtt_popup_address').html(html);
-            
+            $('#dgtt_popup_address').html(html);            
             if(placeInfo.price_format && placeInfo.state_price_format) {
                 buildHTMLPopupDG();
             }else {
                 getStreetPrice(function(place){              
+                  console.log(place);
                   $('.giaThiTruong').val(place.price_format);
                   $('.giaUB').val(place.state_price_format);
                   $('.textDistrict').val(place.districtName);              
-                  $('#modal_dongiathitruong').modal('show');
+                  buildHTMLPopupDG();
                 });
             }  
         });
@@ -175,7 +175,7 @@
            
         });
 
-        function buildHTMLPopupDG() {
+        function buildHTMLPopupDG() {          
             $('.dongia_highlight_left').html(placeInfo.price_format);
             $('.dongia_highlight_right').html(placeInfo.state_price_format);
             $('#modal_dongiathitruong').modal('show');
