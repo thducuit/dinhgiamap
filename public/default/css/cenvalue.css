@@ -7159,3 +7159,6 @@ body .zui-popup-close:hover {
 .role-wrapper .role-content {
 	margin-top: 50px;
 }
+.isShownCacLoaiDatKhac{
+  display: none;
+}

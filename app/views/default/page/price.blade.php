@@ -78,8 +78,8 @@ MAIN
                 <div class="ztabpanel clearfix">
                   <ul>
                     <li class="clearfix"><i class="icon_tabpanel icon_dattrong"></i> <span>Đất trống</span></li>
-                    <li class="clearfix"><i class="icon_tabpanel icon_nhapho"></i> <span>Nhà phố</span></li>
-                    <li class="clearfix"><i class="icon_tabpanel icon_bietthu"></i> <span>Biệt thự</span></li>
+                    <li class="clearfix"><i class="icon_tabpanel icon_nhapho"></i> <span>Nhà phố - Biệt thự</span></li>
+<!--                    <li class="clearfix"><i class="icon_tabpanel icon_bietthu"></i> <span>Biệt thự</span></li>-->
                     <li class="clearfix"><i class="icon_tabpanel icon_canho"></i> <span>Căn hộ</span></li>
                     <li class="clearfix"><i class="icon_tabpanel icon_khachsan"></i> <span>Khách sạn</span></li>
                     <li class="clearfix"><i class="icon_tabpanel icon_toanha"></i> <span>Tòa nhà văn phòng</span></li>
@@ -153,21 +153,27 @@ MAIN
                         </div>														
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
-                            <label>Diện tích đất phù hợp quy hoạch</label>
+                            <div class="col-md-6" style="padding: 0;">
+                              <label>Diện tích đất phù hợp quy hoạch</label>
+                            </div>
+                            <div class="col-md-6">
+                              <label><input type="checkbox" class="cacLoaiDatKhac" value="1"/> Các loại đất khác</label>
+                            </div>
                           </div>
                           <div class="form_col">
                             <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
                             <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
-                          </div>																										
-                          <div class="form_col">
-                            <input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
-                          </div>																								
-                          <div class="form_col">
                             <input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
                           </div>
+                          <div class="form_col isShownCacLoaiDatKhac">
+                            <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
+                          </div>																										
+                          <div class="form_col isShownCacLoaiDatKhac">
+                            <input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
+                          </div>																								
+                          
                         </div>											
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
@@ -177,14 +183,15 @@ MAIN
                             <input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
-                          </div>																										
-                          <div class="form_col">
-                            <input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
-                          </div>																								
-                          <div class="form_col">
                             <input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
                           </div>
+                          <div class="form_col isShownCacLoaiDatKhac">
+                            <input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+                          </div>																										
+                          <div class="form_col isShownCacLoaiDatKhac">
+                            <input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+                          </div>																								
+                          
                         </div>
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
@@ -298,8 +305,7 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Công trình xây dựng</label>
-                            <select name="shape" class="selectCongTrinhXayDung">                    
-                              <option value="">Chọn CTXD</option>
+                            <select name="shape" class="selectCongTrinhXayDung">                                                  
                               <option value="">Không có CTXD</option>
                               <option value="nha_pho">Nhà phố</option>
                               <option value="biet_thu">Biệt thự</option>
@@ -309,11 +315,12 @@ MAIN
                         <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                             <label>Kết cấu chính</label>
-                            <select name="structure" id="">
+                            <select name="structure" id="" class="selectKetCauChinh"></select>
+<!--                            <select name="structure" id="" class="selectKetCauChinh">
                               @foreach (Structure::findByAlias('nha-pho')->structure_options()->get()->toArray() as $s)
                               <option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
                               @endforeach
-                            </select>
+                            </select>-->
                           </div>
                           <div class="form_col">
                             <label>Tổng diện tích sàn xd</label>
@@ -357,6 +364,19 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
+                        <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
+                        <br/><br/>
+                        <p>
+                          <strong>Công ty cổ phần thẩm định giá Thế Kỷ - CEN VALUE</strong><br/>
+                          Địa Chỉ: Lầu 3, tòa nhà SAMCO, 326 Võ Văn Kiệt, Phường Cô Giang, Quận 1, TP. HCM
+                        </p>
+                        <br/><br/>
+                        <p><strong>Điện thoại: (08)39 256 973 Hotline: 1900 9079</strong></p>
+                        <br/><br/>
+                        <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
+                        <br/><br/>
+                        <p><strong>Website: dinhgiatructuyen.vn</strong></p>
+                        <?php /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form vila_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
@@ -494,6 +514,7 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
+                        */?>
                       </div>
                     </div>
                   </div>
@@ -506,6 +527,19 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
+                        <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
+                        <br/><br/>
+                        <p>
+                          <strong>Công ty cổ phần thẩm định giá Thế Kỷ - CEN VALUE</strong><br/>
+                          Địa Chỉ: Lầu 3, tòa nhà SAMCO, 326 Võ Văn Kiệt, Phường Cô Giang, Quận 1, TP. HCM
+                        </p>
+                        <br/><br/>
+                        <p><strong>Điện thoại: (08)39 256 973 Hotline: 1900 9079</strong></p>
+                        <br/><br/>
+                        <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
+                        <br/><br/>
+                        <p><strong>Website: dinhgiatructuyen.vn</strong></p>
+                        <?php /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form flat_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
@@ -644,6 +678,8 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
+                         * 
+                         */?>
                       </div>
                     </div>
                   </div>
@@ -656,6 +692,19 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
+                        <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
+                        <br/><br/>
+                        <p>
+                          <strong>Công ty cổ phần thẩm định giá Thế Kỷ - CEN VALUE</strong><br/>
+                          Địa Chỉ: Lầu 3, tòa nhà SAMCO, 326 Võ Văn Kiệt, Phường Cô Giang, Quận 1, TP. HCM
+                        </p>
+                        <br/><br/>
+                        <p><strong>Điện thoại: (08)39 256 973 Hotline: 1900 9079</strong></p>
+                        <br/><br/>
+                        <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
+                        <br/><br/>
+                        <p><strong>Website: dinhgiatructuyen.vn</strong></p>
+                        <?php /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form hotel_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
@@ -794,6 +843,8 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
+                         * 
+                         */?>
                       </div>
                     </div>
                   </div>
@@ -806,6 +857,19 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
+                        <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
+                        <br/><br/>
+                        <p>
+                          <strong>Công ty cổ phần thẩm định giá Thế Kỷ - CEN VALUE</strong><br/>
+                          Địa Chỉ: Lầu 3, tòa nhà SAMCO, 326 Võ Văn Kiệt, Phường Cô Giang, Quận 1, TP. HCM
+                        </p>
+                        <br/><br/>
+                        <p><strong>Điện thoại: (08)39 256 973 Hotline: 1900 9079</strong></p>
+                        <br/><br/>
+                        <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
+                        <br/><br/>
+                        <p><strong>Website: dinhgiatructuyen.vn</strong></p>
+                        <?php /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form office_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
@@ -944,6 +1008,8 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
+                         * 
+                         */?>
                       </div>
                     </div>
                   </div>
@@ -956,6 +1022,19 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
+                        <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
+                        <br/><br/>
+                        <p>
+                          <strong>Công ty cổ phần thẩm định giá Thế Kỷ - CEN VALUE</strong><br/>
+                          Địa Chỉ: Lầu 3, tòa nhà SAMCO, 326 Võ Văn Kiệt, Phường Cô Giang, Quận 1, TP. HCM
+                        </p>
+                        <br/><br/>
+                        <p><strong>Điện thoại: (08)39 256 973 Hotline: 1900 9079</strong></p>
+                        <br/><br/>
+                        <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
+                        <br/><br/>
+                        <p><strong>Website: dinhgiatructuyen.vn</strong></p>
+                        <?php /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form warehouse_form') ) }}
                         <div class="form_row clearfix">
                           <div class="form_col">
@@ -1094,6 +1173,8 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
+                         * 
+                         */?>
                       </div>
                     </div>
                   </div>
@@ -2174,6 +2255,7 @@ foreach ($dienTichDat as $item) {
   <?php
 }
 ?>
+    var ketCauChinhOptions = <?php echo json_encode($ketCauChinh)?>;
       var formClass = '';
 
       getOptions(jQuery('#structure_parent').val());
@@ -2345,12 +2427,33 @@ foreach ($dienTichDat as $item) {
       $('.selectCongTrinhXayDung').change(function () {
         var congTrinh = $(this).val();
         if (congTrinh) {         
-          $('.row-ket-cau-chinh').show();          
+          var options = '';
+          if(congTrinh == 'nha_pho'){
+            for(var i in ketCauChinhOptions){
+              if(i < 5){
+                options += '<option value="'+ketCauChinhOptions[i].price+'">'+ketCauChinhOptions[i].label+'</option>';
+              }
+            }
+          }else if(congTrinh == 'biet_thu'){
+            for(var i in ketCauChinhOptions){
+              if(i >= 5){
+                options += '<option value="'+ketCauChinhOptions[i].price+'">'+ketCauChinhOptions[i].label+'</option>';
+              }
+            }
+          }
+          $('.row-ket-cau-chinh').show();
+          $('.selectKetCauChinh').html(options);              
         } else {
           $('.row-ket-cau-chinh').hide();          
         }
       });
-      
+      $('.cacLoaiDatKhac').change(function(){
+        if($(this).is(":checked")) {
+            $(".isShownCacLoaiDatKhac").show();
+        } else {
+            $(".isShownCacLoaiDatKhac").hide();
+        }
+      });
       setTimeout(function(){
         $('.row-ket-cau-chinh').hide();
       }, 2000);

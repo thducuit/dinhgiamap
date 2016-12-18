@@ -121,6 +121,7 @@ Route::get('/price', function() {
      $yeuToKhac = AdjustOption::findByGroupId(16, 1, null)->get()->toArray();
      $chieuNgang = AdjustOption::findByGroupId(1, 1, null)->get()->toArray();
      $dienTichDat = AdjustOption::findByGroupId(3, 1, null)->get()->toArray();
+     $ketCauChinh = User::getKetCauChinh();
      return View::make('default.page.price')
         ->with('address', $address)
         ->with('placeId', Input::get('placeId'))
@@ -132,7 +133,8 @@ Route::get('/price', function() {
         ->with(array('yeuToKhac'=> $yeuToKhac))
         ->with(array('chieuNgang'=> $chieuNgang))
         ->with(array('dienTichDat'=> $dienTichDat))
-        ->with(array('disTrict' => $disTrict));
+        ->with(array('disTrict' => $disTrict))
+        ->with(array('ketCauChinh' => $ketCauChinh));
 });
 
 Route::post('/district', function() {
