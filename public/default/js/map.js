@@ -150,7 +150,7 @@
                   $('.giaThiTruong').val(place.price_format);
                   $('.giaUB').val(place.state_price_format);
                   $('.textDistrict').val(place.districtName);              
-                  $('#modal_dongiasobo').modal('show');
+                  $('#modal_dongiathitruong').modal('show');
                 });
             }  
         });

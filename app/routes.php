@@ -125,7 +125,7 @@ Route::get('/price', function() {
         ->with('address', $address)
         ->with('placeId', Input::get('placeId'))
 	    ->with('streetId', Input::get('street'))
-        ->with(array('title'=> 'định giá'))
+        ->with(array('title'=> 'Định giá'))
         ->with(array('body_class'=> 'page_search'))     
         ->with(array('viTri'=> $viTri))
         ->with(array('hinhDangThuaDat'=> $hinhDangThuaDat))
@@ -142,7 +142,7 @@ Route::post('/district', function() {
 
 Route::get('/plan', function() {
      return View::make('default.page.plan')
-        ->with(array('title'=> 'xem quy hoạch'))
+        ->with(array('title'=> 'Xem quy hoạch'))
         ->with('current', 3)
         ->with(array('body_class'=> 'page_xemquihoach'));
 });

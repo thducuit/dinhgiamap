@@ -5,7 +5,7 @@
 						<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">×</button>
 
-						<div class="p_address">
+						<div class="pp_address">
 						<p>Địa chỉ : 27 Phó Đức Chính, P.Nguyễn Thái Bình, Q.1, TPHCM</p>
 						</div>
 						</div>
