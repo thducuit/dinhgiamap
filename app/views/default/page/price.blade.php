@@ -306,7 +306,7 @@ MAIN
                             </select>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
+                        <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                             <label>Kết cấu chính</label>
                             <select name="structure" id="">
@@ -328,28 +328,12 @@ MAIN
                             </select>
                           </div>
                         </div>	
-                        <div class="form_row form_add_row_wrapper clearfix">
+                        <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                           <div class="form_col">
                             <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
-                          <div class="form_col form_col2">
-                            <label>Kết cấu chính</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Tổng diện tích sàn xd</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Năm xây dựng</label>
-                            <select>
-                              <option>2016</option>
-                              <option>2015</option>
-                            </select>
-                          </div>
-                        </div>	
+                        
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -471,7 +455,7 @@ MAIN
                             </select>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
+                        <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                             <label>Kết cấu chính</label>
                             <select name="structure" id="">
@@ -494,28 +478,11 @@ MAIN
                           </div>
 
                         </div>	
-                        <div class="form_row form_add_row_wrapper clearfix">
+                        <div class="form_row form_add_row_wrapper clearfix row-ket-cau-chinh">
                           <div class="form_col">
                             <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                           </div>
-                        </div>																												
-                        <div class="form_row clearfix">
-                          <div class="form_col form_col2">
-                            <label>Kết cấu chính</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Tổng diện tích sàn xd</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Năm xây dựng</label>
-                            <select>
-                              <option>2016</option>
-                              <option>2015</option>
-                            </select>
-                          </div>
-                        </div>	
+                        </div>																												                        
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -637,7 +604,7 @@ MAIN
                             </select>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
+                        <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                             <label>Kết cấu chính</label>
                             <select name="structure" id="">
@@ -660,28 +627,12 @@ MAIN
                           </div>
 
                         </div>	
-                        <div class="form_row form_add_row_wrapper clearfix">
+                        <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                           <div class="form_col">
                             <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
-                          <div class="form_col form_col2">
-                            <label>Kết cấu chính</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Tổng diện tích sàn xd</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Năm xây dựng</label>
-                            <select>
-                              <option>2016</option>
-                              <option>2015</option>
-                            </select>
-                          </div>
-                        </div>	
+                        
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -803,7 +754,7 @@ MAIN
                             </select>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
+                        <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                             <label>Kết cấu chính</label>
                             <select name="structure" id="">
@@ -826,28 +777,12 @@ MAIN
                           </div>
 
                         </div>	
-                        <div class="form_row form_add_row_wrapper clearfix">
+                        <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                           <div class="form_col">
                             <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
-                          <div class="form_col form_col2">
-                            <label>Kết cấu chính</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Tổng diện tích sàn xd</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Năm xây dựng</label>
-                            <select>
-                              <option>2016</option>
-                              <option>2015</option>
-                            </select>
-                          </div>
-                        </div>	
+                        
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -969,7 +904,7 @@ MAIN
                             </select>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
+                        <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                             <label>Kết cấu chính</label>
                             <select name="structure" id="">
@@ -992,28 +927,12 @@ MAIN
                           </div>
 
                         </div>	
-                        <div class="form_row form_add_row_wrapper clearfix">
+                        <div class="form_row form_add_row_wrapper clearfix row-ket-cau-chinh">
                           <div class="form_col">
                             <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
-                          <div class="form_col form_col2">
-                            <label>Kết cấu chính</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Tổng diện tích sàn xd</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Năm xây dựng</label>
-                            <select>
-                              <option>2016</option>
-                              <option>2015</option>
-                            </select>
-                          </div>
-                        </div>	
+                        
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -1135,7 +1054,7 @@ MAIN
                             </select>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
+                        <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                             <label>Kết cấu chính</label>
                             <select name="structure_parent" id="structure_parent">
@@ -1158,28 +1077,12 @@ MAIN
                           </div>
 
                         </div>	
-                        <div class="form_row form_add_row_wrapper clearfix">
+                        <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                           <div class="form_col">
                             <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                           </div>
                         </div>																												
-                        <div class="form_row clearfix">
-                          <div class="form_col form_col2">
-                            <label>Kết cấu chính</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Tổng diện tích sàn xd</label>
-                            <input type="text" placeholder="" value="">
-                          </div>
-                          <div class="form_col">
-                            <label>Năm xây dựng</label>
-                            <select>
-                              <option>2016</option>
-                              <option>2015</option>
-                            </select>
-                          </div>
-                        </div>	
+                        
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -1401,7 +1304,7 @@ MAIN
                                 </select>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
+                            <div class="form_row clearfix row-ket-cau-chinh">
                               <div class="form_col">
                                 <label>Kết cấu chính</label>
                                 <select name="structure" id="">
@@ -1424,28 +1327,12 @@ MAIN
                               </div>
 
                             </div>	
-                            <div class="form_row form_add_row_wrapper clearfix">
+                            <div class="form_row form_add_row_wrapper clearfix row-ket-cau-chinh">
                               <div class="form_col">
                                 <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
-                              <div class="form_col">
-                                <label>Kết cấu chính</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Tổng diện tích sàn xd</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Năm xây dựng</label>
-                                <select>
-                                  <option>2016</option>
-                                  <option>2015</option>
-                                </select>
-                              </div>
-                            </div>	
+                            	
                             <div class="form_row clearfix">
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -1557,7 +1444,7 @@ MAIN
                                 </select>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
+                            <div class="form_row clearfix row-ket-cau-chinh">
                               <div class="form_col">
                                 <label>Kết cấu chính</label>
                                 <select name="structure" id="">
@@ -1580,28 +1467,12 @@ MAIN
                               </div>
 
                             </div>	
-                            <div class="form_row form_add_row_wrapper clearfix">
+                            <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                               <div class="form_col">
                                 <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
-                              <div class="form_col">
-                                <label>Kết cấu chính</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Tổng diện tích sàn xd</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Năm xây dựng</label>
-                                <select>
-                                  <option>2016</option>
-                                  <option>2015</option>
-                                </select>
-                              </div>
-                            </div>	
+                            
                             <div class="form_row clearfix">
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -1714,7 +1585,7 @@ MAIN
                                 </select>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
+                            <div class="form_row clearfix row-ket-cau-chinh">
                               <div class="form_col">
                                 <label>Kết cấu chính</label>
                                 <select name="structure" id="">
@@ -1737,28 +1608,12 @@ MAIN
                               </div>
 
                             </div>	
-                            <div class="form_row form_add_row_wrapper clearfix">
+                            <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                               <div class="form_col">
                                 <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
-                              <div class="form_col">
-                                <label>Kết cấu chính</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Tổng diện tích sàn xd</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Năm xây dựng</label>
-                                <select>
-                                  <option>2016</option>
-                                  <option>2015</option>
-                                </select>
-                              </div>
-                            </div>	
+                            
                             <div class="form_row clearfix">
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -1870,7 +1725,7 @@ MAIN
                                 </select>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
+                            <div class="form_row clearfix  row-ket-cau-chinh">
                               <div class="form_col">
                                 <label>Kết cấu chính</label>
                                 <select name="structure" id="">
@@ -1893,28 +1748,12 @@ MAIN
                               </div>
 
                             </div>	
-                            <div class="form_row form_add_row_wrapper clearfix">
+                            <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                               <div class="form_col">
                                 <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
-                              <div class="form_col">
-                                <label>Kết cấu chính</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Tổng diện tích sàn xd</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Năm xây dựng</label>
-                                <select>
-                                  <option>2016</option>
-                                  <option>2015</option>
-                                </select>
-                              </div>
-                            </div>	
+                            
                             <div class="form_row clearfix">
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -2026,7 +1865,7 @@ MAIN
                                 </select>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
+                            <div class="form_row clearfix  row-ket-cau-chinh">
                               <div class="form_col">
                                 <label>Kết cấu chính</label>
                                 <select name="structure" id="">
@@ -2049,28 +1888,12 @@ MAIN
                               </div>
 
                             </div>	
-                            <div class="form_row form_add_row_wrapper clearfix">
+                            <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                               <div class="form_col">
                                 <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
-                              <div class="form_col">
-                                <label>Kết cấu chính</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Tổng diện tích sàn xd</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Năm xây dựng</label>
-                                <select>
-                                  <option>2016</option>
-                                  <option>2015</option>
-                                </select>
-                              </div>
-                            </div>	
+                            
                             <div class="form_row clearfix">
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -2183,7 +2006,7 @@ MAIN
                                 </select>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
+                            <div class="form_row clearfix row-ket-cau-chinh">
                               <div class="form_col">
                                 <label>Loại CTXD</label>
                                 <select name="structure_parent" id="structure_parent">
@@ -2211,28 +2034,12 @@ MAIN
                               </div>
 
                             </div>	
-                            <div class="form_row form_add_row_wrapper clearfix">
+                            <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
                               <div class="form_col">
                                 <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                               </div>
                             </div>																												
-                            <div class="form_row clearfix">
-                              <div class="form_col">
-                                <label>Kết cấu chính</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Tổng diện tích sàn xd</label>
-                                <input type="text" placeholder="" value="">
-                              </div>
-                              <div class="form_col">
-                                <label>Năm xây dựng</label>
-                                <select>
-                                  <option>2016</option>
-                                  <option>2015</option>
-                                </select>
-                              </div>
-                            </div>	
+                            
                             <div class="form_row clearfix">
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
@@ -2535,7 +2342,18 @@ foreach ($dienTichDat as $item) {
 
       });
 
-
+      $('.selectCongTrinhXayDung').change(function () {
+        var congTrinh = $(this).val();
+        if (congTrinh) {         
+          $('.row-ket-cau-chinh').show();          
+        } else {
+          $('.row-ket-cau-chinh').hide();          
+        }
+      });
+      
+      setTimeout(function(){
+        $('.row-ket-cau-chinh').hide();
+      }, 2000);
     });
   </script>
   {{ HTML::script('default/js/map.js') }}

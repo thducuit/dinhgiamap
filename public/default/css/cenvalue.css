@@ -6490,7 +6490,9 @@ body .zui-popup-close:hover {
     margin-top: 20px;
 
 }
-
+.modal_ketquadinhgia_header_logo img{
+  width: 95%;
+}
 #modal_ketquadinhgia .modal_ketquadinhgia_header_right, #modal_ketqua_dongiasobo .modal_ketquadinhgia_header_right {
 
 	float: left;

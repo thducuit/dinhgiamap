@@ -48,8 +48,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                 <div class="form_col">
                   <label class="highlight">Vị trí tiếp giáp(*)</label>                    
                   <input type="hidden" name="viTri"  value="" class="inputViTri">
-                  <select class="selectVitri">                    
-                    <option value="">Chọn vị trí</option>
+                  <select class="selectVitri">                                        
                     @foreach ($viTri as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach															
@@ -59,8 +58,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                 <div class="form_col" style="">
                   <label>Hình dạng thửa đất</label>
                   <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
-                  <select name="shape" class="selectHinhDangThuaDat"> 
-                    <option value="">Chọn hình dạng</option>
+                  <select name="shape" class="selectHinhDangThuaDat">                     
                     @foreach ($hinhDangThuaDat as $s)
                     <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                     @endforeach
@@ -68,8 +66,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                 </div>                                                                                            
                 <div class="form_col" style="">
                   <label>Công trình xây dựng</label>                  
-                  <select name="shape" class="selectCongTrinhXayDung">                    
-                    <option value="">Chọn CTXD</option>
+                  <select name="shape" class="selectCongTrinhXayDung">                                        
                     <option value="">Không có CTXD</option>
                     <option value="nha_pho">Nhà phố</option>
                     <option value="biet_thu">Biệt thự</option>
@@ -118,7 +115,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 						
 						<div class="modal_ketquadinhgia_header clearfix">
 							<div class="modal_ketquadinhgia_header_logo">
-								<img src="{{ URL::asset('default/images/logo_ketquadinhgia.png') }}">
+								<img src="{{ URL::asset('default/images/logo-dinhgia-forweb-final_1.png') }}">
 							</div>									
 							<div class="modal_ketquadinhgia_header_right clearfix">
 								<div class="modal_ketquadinhgia_header_right_col">

@@ -26,7 +26,7 @@ MAIN
 						
 						<div class="modal_ketquadinhgia_header clearfix">
 							<div class="modal_ketquadinhgia_header_logo">
-								<img src="{{ URL::asset('default/images/logo_ketquadinhgia.png') }}">
+								<img src="{{ URL::asset('default/images/logo-dinhgia-forweb-final_1.png') }}">
 							</div>									
 							<div class="modal_ketquadinhgia_header_right clearfix">
 								<div class="modal_ketquadinhgia_header_right_col">
