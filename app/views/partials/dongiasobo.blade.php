@@ -142,9 +142,9 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                                     <strong>Chi Tiết:</strong>
                                     <div class="row">
                                       <div class="col-md-4 col-chitietsobo">
-                                        <div class="chitietsobo-item">Tổng diện tích đất( m2 ): <span class="tongDienTichLabel"></span></div>
-                                        <div class="chitietsobo-item">Chiều ngang( m ): <span class="chieuNgangLabel"></span></div>
-                                        <div class="chitietsobo-item">Chiều dài( m ): <span class="chieuDaiLabel"></span></div>
+                                        <div class="chitietsobo-item">Tổng diện tích đất(m2): <span class="tongDienTichLabel"></span></div>
+                                        <div class="chitietsobo-item">Chiều ngang(m): <span class="chieuNgangLabel"></span></div>
+                                        <div class="chitietsobo-item">Chiều dài(m): <span class="chieuDaiLabel"></span></div>
                                       </div>
                                       <div class="col-md-4 col-chitietsobo">
                                         <div class="chitietsobo-item">Vị trí tiếp giáp: <span class="vitriLabel"></span></div>
@@ -430,10 +430,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
      //giá trị công trình xây dựng
      var ketCauChinh = $('#modal_dongiasobo .selectKetCauChinh').val();
      var dienTichSanXD = $('#modal_dongiasobo .dien-tich-san-xd').val();
-     var namXayDung = $('#modal_dongiasobo .namXD').val();
-     console.log(ketCauChinh);
-     console.log(dienTichSanXD);
-     console.log(namXayDung);
+     var namXayDung = $('#modal_dongiasobo .namXD').val();   
      var giaTriCTXD = (ketCauChinh*dienTichSanXD*namXayDung)/100;
      var tongGiaTriSoBo = parseFloat(giaTriDat) + parseFloat(giaTriCTXD);
      
@@ -456,9 +453,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
     });
     
     $('.textNamXD').keyup(function(){
-      var textNamXD = $(this).val();
-      console.log(textNamXD);
-      console.log(namXDOptions);
+      var textNamXD = $(this).val();    
       if(textNamXD.length == 4){
         if(namXDOptions[textNamXD]){
           $('.namXD').val(namXDOptions[textNamXD]);

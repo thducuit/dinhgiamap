@@ -19,7 +19,7 @@
 							<span class="price"><span class="dongia_highlight_left"></span>(VNĐ/M<sup>2</sup>)</span></p>
 						</div>
 						<div class="modal_half">
-							<p><strong>Đơn giá đất nhà nước đề xuất</strong><br>
+							<p><strong>Đơn giá đất nhà nước</strong><br>
 								<span class="price"><span class="dongia_highlight_right"></span>(VNĐ/M<sup>2</sup>)</span></p>
 							</div>
 						</div>
@@ -31,7 +31,7 @@
 								<span>Định giá sơ bộ</span>
 							</div>
 						</a>
-						<a id="btn_dinhgia" class="btn btn_dinhgia btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Định giá</span></a>
+						<a id="btn_dinhgia" class="btn btn_dinhgia btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></a>
 					</div>
 				</div>
 

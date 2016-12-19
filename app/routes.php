@@ -136,7 +136,8 @@ Route::get('/price', function() {
      $yeuToKhac = AdjustOption::findByGroupId(16, 1, null)->get()->toArray();
      $chieuNgang = AdjustOption::findByGroupId(1, 1, null)->get()->toArray();
      $dienTichDat = AdjustOption::findByGroupId(3, 1, null)->get()->toArray();
-     $ketCauChinh = User::getKetCauChinh();
+//     $ketCauChinh = User::getKetCauChinh();
+     $ketCauChinh = Structure::findByAlias('nha-pho')->structure_options()->get()->toArray();
      $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
      return View::make('default.page.price')
         ->with('address', $address)
