@@ -57,6 +57,7 @@ class Price implements PriceRepository
     
     public function calc($input, $hasConstruction=false) 
     {
+        $finalTotal = 0;
         $marker = $this->getMarker($input['place_id']);
         $street = $this->getStreet($input['street_id']);
         $name = !empty($marker) ? $marker->name : $input['address'];
@@ -93,13 +94,23 @@ class Price implements PriceRepository
        
         
         $total = $this->total($price_in_plan, $price_in_violance);
+        $finalTotal += $total;
         $construction =   0;
+        $constructionMore =   [];
         if($hasConstruction)
         {
             $structure = $input['structure'];
             $total_ground_area = $input['total_ground_area'];
             $year_building = $input['year_building'];
             $construction =  $this->getPriceConstruction($structure, $total_ground_area, $year_building);
+            $finalTotal+=$construction;
+            if(isset($input['structureMore']) && count($input['structureMore'])){
+              foreach($input['structureMore'] as $key => $value){
+                $constructionPriceMore = $this->getPriceConstruction($value, $input['total_ground_area_more'][$key], $input['year_building_more'][$key]);
+                $constructionMore[] = number_format($constructionPriceMore);
+                $finalTotal += $constructionPriceMore;
+              }
+            }
         }        
         
         return array(
@@ -108,7 +119,9 @@ class Price implements PriceRepository
                 'unit_price'=> number_format($unit_price),
                 'unit_state_price'=> number_format($unit_state_price),
                 'building_price' => number_format($construction),
-                'total' => number_format($total + $construction)                
+                'buildingPriceMore' => $constructionMore,
+                'total' => number_format($finalTotal),
+                
             );
         
     }

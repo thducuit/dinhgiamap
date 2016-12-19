@@ -105,7 +105,7 @@ class HomeController extends BaseController {
         
         if( $validation->fails() )
         {
-        	$url = '/price?placeId=' . Input::get('place_id');
+        	$url = '/price?placeId=' . Input::get('place_id').'&street='.Input::get('street');
             return Redirect::to($url)
             ->withInput(Input::all())
             ->withErrors($validation)
@@ -113,7 +113,7 @@ class HomeController extends BaseController {
         }
 		
         
-		$result = $this->getResult();
+		$result = $this->getResult();        
 
 		$result['place_id'] = Input::get('place_id');
 
@@ -172,6 +172,7 @@ class HomeController extends BaseController {
     public function showResult()
     {
     	$result = $this->cart->getLastResult();
+        
      	return View::make('default.page.result')
         ->with(array('title'=> 'kết quả định giá'))
         ->with(array('result'=> $result))

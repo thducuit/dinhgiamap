@@ -86,6 +86,18 @@ MAIN
 												<td>{{ $result['building_price'] }}</td>
 												<td>VNĐ</td>
 											</tr>
+                                            <?php 
+                                            if($result['buildingPriceMore']){                                              
+                                              foreach($result['buildingPriceMore'] as $key => $price){?>
+                                            <tr>
+												<td>II</td>
+												<td><strong>Quyền sở hữu công trình xây dựng <?php echo $key+2?></strong></td>
+												<td>{{ $price }}</td>
+												<td>VNĐ</td>
+											</tr>
+                                            <?php 
+                                              }
+                                            }?>
 											<tr>
 												<td>III</td>
 												<td><strong>Tổng giá trị (I+II)</strong></td>

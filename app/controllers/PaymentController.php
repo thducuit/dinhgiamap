@@ -103,9 +103,10 @@ class PaymentController extends BaseController {
             'unit_price' => $result['unit_price'],
             'building_price' => $result['building_price'],
             'total_price' => $result['total_price'],
+            'buidingPriceMore' => json_encode($result['buildingPriceMore']),
             'total' => $result['total']
         );
-
+      
         $result = Result::create($data);
 
         //Save payment

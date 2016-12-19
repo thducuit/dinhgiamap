@@ -329,15 +329,15 @@ MAIN
                           <div class="form_col">
                             <label>Năm xây dựng</label>
                             <select name="year_building">
-                              @foreach (AdjustOption::findByGroupId(9)->get()->toArray() as $s)
+                              @foreach ($namXayDung as $s)
                               <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
                           </div>
                         </div>	
-                        <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
+                        <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh cursor">
                           <div class="form_col">
-                            <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+                            <a class="btn btn_add_more_row">+ Thêm công trình xây dựng</a>
                           </div>
                         </div>																												
                         
@@ -1410,7 +1410,7 @@ MAIN
                             </div>	
                             <div class="form_row form_add_row_wrapper clearfix row-ket-cau-chinh">
                               <div class="form_col">
-                                <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
+                                <a class="btn btn_add_more_row cursor">+ Thêm công trình xây dựng</a>
                               </div>
                             </div>																												
                             	
@@ -2424,25 +2424,26 @@ foreach ($dienTichDat as $item) {
 
       });
 
+      var optionsKetCauChinh = '';
       $('.selectCongTrinhXayDung').change(function () {
         var congTrinh = $(this).val();
         if (congTrinh) {         
-          var options = '';
+          optionsKetCauChinh = '';
           if(congTrinh == 'nha_pho'){
             for(var i in ketCauChinhOptions){
               if(i < 5){
-                options += '<option value="'+ketCauChinhOptions[i].price+'">'+ketCauChinhOptions[i].label+'</option>';
+                optionsKetCauChinh += '<option value="'+ketCauChinhOptions[i].price+'">'+ketCauChinhOptions[i].label+'</option>';
               }
             }
           }else if(congTrinh == 'biet_thu'){
             for(var i in ketCauChinhOptions){
               if(i >= 5){
-                options += '<option value="'+ketCauChinhOptions[i].price+'">'+ketCauChinhOptions[i].label+'</option>';
+                optionsKetCauChinh += '<option value="'+ketCauChinhOptions[i].price+'">'+ketCauChinhOptions[i].label+'</option>';
               }
             }
           }
           $('.row-ket-cau-chinh').show();
-          $('.selectKetCauChinh').html(options);              
+          $('.selectKetCauChinh').html(optionsKetCauChinh);              
         } else {
           $('.row-ket-cau-chinh').hide();          
         }
@@ -2457,6 +2458,41 @@ foreach ($dienTichDat as $item) {
       setTimeout(function(){
         $('.row-ket-cau-chinh').hide();
       }, 2000);
+      $('.form_add_row_wrapper').click(function(){
+        var rowKetCauChinh = '<div class="form_row clearfix row-ket-cau-chinh">'+
+                          '<div class="form_col form_col2">'+
+                            '<label>Kết cấu chính</label>'+
+                            '<select name="structureMore[]" id="" class="selectKetCauChinh">'+optionsKetCauChinh+'</select>'+
+                          '</div>'+
+                          '<div class="form_col">'+
+                            '<label>Tổng diện tích sàn xd</label>'+
+                            '<input type="text" placeholder="" name="total_ground_area_more[]" value="">'+
+                          '</div>'+
+                          '<div class="form_col">'+
+                            '<label>Năm xây dựng</label>'+
+                            '<select name="year_building_more[]">'+
+                              <?php foreach ($namXayDung as $s){ ?>
+                              '<option value="<?php echo $s['value']?>"><?php echo  $s['description'] ?></option>'+
+                              <?php } ?>
+                            '</select>'
+                          '</div>'
+                        '</div>';
+        $(this).after(rowKetCauChinh);
+        var heightOfRightBox = $(this).parents('.zui-tabpanel-content').height();        
+        $('#modal_dinhgia .desktop .dinhgia_tabpanel .ztabpanel').height(heightOfRightBox);
+      });
+      $('#modal_dinhgia .dinhgia_tabpanel .ztabpanel li').click(function(){        
+          setTimeout(function(){
+            var heightOfRightBox = $('#modal_dinhgia .zui-tabpanel-content.zui-active').height();
+            var heightOfWrapRightBox = $('#modal_dinhgia .zui-tabpanel-content-wrapper').height();;
+            var heightOfLeftMenu = heightOfWrapRightBox;                      
+            if(heightOfWrapRightBox < heightOfRightBox){
+              heightOfLeftMenu = heightOfRightBox;
+            }
+            $('#modal_dinhgia .desktop .dinhgia_tabpanel .ztabpanel').height(heightOfLeftMenu);
+          }, 1000);                  
+      });
+      
     });
   </script>
   {{ HTML::script('default/js/map.js') }}

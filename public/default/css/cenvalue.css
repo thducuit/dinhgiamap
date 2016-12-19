@@ -4712,6 +4712,9 @@ body.menu_mobile_active {
 	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4);
 
 }
+#modal_dinhgia .zui-tabpanel-content{
+  background: white;
+}
 
 .modal .dinhgia_tabpanel {
 
