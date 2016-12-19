@@ -335,7 +335,7 @@ MAIN
                           </div>
                           <div class="form_col">
                             <label>Năm xây dựng</label>
-                            <input type="hidden" name="year_building" class="namXD">
+                            <input type="hidden" name="year_building" class="namXD1">
                             <input type="text" name="textNamXD" class="textNamXD">
                             <?php /*
                               <select name="year_building">
@@ -2486,7 +2486,7 @@ foreach ($dienTichDat as $item) {
                 '</div>' +
                 '<div class="form_col">' +
                 '<label>Năm xây dựng</label>' +
-                '<input type="hidden" name="year_building_more[]" class="namXD">' +
+                '<input type="hidden" name="year_building_more[]" class="namXD1">' +
                 '<input type="text" name="textNamXD" class="textNamXD"/>' +
                 '</div>'
         '</div>';
@@ -2516,10 +2516,10 @@ foreach ($namXayDung as $item) {
 }
 ?>
       jQuery(document.body).on('keyup', '.textNamXD', function (event) {        
-        var textNamXD = $(this).val();
-        if (textNamXD.length == 4) {
+        var textNamXD = $(this).val();       
+        if (textNamXD.length == 4) {          
           if (namXDOptions[textNamXD]) {
-            $(this).parent().find('.namXD:first').val(namXDOptions[textNamXD]);
+            $(this).parent().find(".namXD1:first").val(namXDOptions[textNamXD]);                        
           }
         }
       });
