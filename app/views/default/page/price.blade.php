@@ -269,21 +269,27 @@ MAIN
                         </div>														
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
-                            <label>Diện tích phù hợp quy hoạch</label>
+                            <div class="col-md-6" style="padding: 0;">
+                              <label>Diện tích phù hợp quy hoạch</label>
+                            </div>
+                            <div class="col-md-6">
+                              <label><input type="checkbox" class="cacLoaiDatKhac" value="1"/> Các loại đất khác</label>
+                            </div>
+                          </div>
+                           <div class="form_col">
+                            <input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
                           </div>
                           <div class="form_col">
                             <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
                             <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
-                          <div class="form_col">
+                          <div class="form_col isShownCacLoaiDatKhac">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
                           </div>																										
-                          <div class="form_col">
+                          <div class="form_col isShownCacLoaiDatKhac">
                             <input type="text" placeholder="Đất SXKD" name="production_plan_area" value="{{ Input::old('production_plan_area') }}">
                           </div>																								
-                          <div class="form_col">
-                            <input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
-                          </div>
+                         
                         </div>											
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
@@ -293,14 +299,15 @@ MAIN
                             <input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
-                          </div>																										
-                          <div class="form_col">
-                            <input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
-                          </div>																								
-                          <div class="form_col">
                             <input type="text" placeholder="Đất Nông Nghiệp" name="farming_violance_area" value="{{ Input::old('farming_violance_area') }}">
                           </div>
+                          <div class="form_col isShownCacLoaiDatKhac">
+                            <input type="text" placeholder="Đất TMDV" name="trade_violance_area" value="{{ Input::old('trade_violance_area') }}">
+                          </div>																										
+                          <div class="form_col isShownCacLoaiDatKhac">
+                            <input type="text" placeholder="Đất SXKD" name="production_violance_area" value="{{ Input::old('production_violance_area') }}">
+                          </div>																								
+                          
                         </div>
                         <div class="form_row clearfix">
                           <div class="form_col">
@@ -2309,7 +2316,7 @@ foreach ($dienTichDat as $item) {
           } else {
             vitriData = vitriOptions[idOptionVitri].quanKhac;
           }
-          if (vitriOptions[idOptionVitri].description.indexOf('hẻm') > -1) {
+          if (vitriOptions[idOptionVitri].description.indexOf('hẻm') > -1) {
             selectHemMaTien = 'hem';
           }
         }

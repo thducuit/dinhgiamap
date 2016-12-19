@@ -119,6 +119,7 @@ class HomeController extends BaseController {
 
 		$this->cart->store($result);
 		
+        return Redirect::to('/result');
 		if( empty(Input::get('chooser')) || Input::get('chooser') == 'nologin' )
 		{
 			Session::put('step', 2);

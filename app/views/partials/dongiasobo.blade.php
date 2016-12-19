@@ -305,10 +305,11 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
         }else{
           vitriData = vitriOptions[idOptionVitri].quanKhac;
         }
-        if(vitriOptions[idOptionVitri].description.indexOf('hẻm') > -1){
+        if(vitriOptions[idOptionVitri].description.indexOf('hẻm') > -1){
           selectHemMaTien = 'hem';
         }
-      }          
+      }  
+      console.log(selectHemMaTien);
       $(this).parents('.price-form').find('.inputViTri:first').val(vitriData);                    
 
       if(hinhDangThuaDatOptions[idOptionHinhDangThuaDat]){
