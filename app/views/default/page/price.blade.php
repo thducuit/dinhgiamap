@@ -154,7 +154,7 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
                             <div class="col-md-6" style="padding: 0;">
-                              <label>Diện tích đất phù hợp quy hoạch</label>
+                              <label>Diện tích phù hợp quy hoạch</label>
                             </div>
                             <div class="col-md-6">
                               <label><input type="checkbox" class="cacLoaiDatKhac" value="1"/> Các loại đất khác</label>
@@ -177,7 +177,7 @@ MAIN
                         </div>											
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
-                            <label>Diện tích đất vi phạm lộ giới được công nhận</label>
+                            <label>Diện tích vi phạm lộ giới</label>
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
@@ -269,7 +269,7 @@ MAIN
                         </div>														
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
-                            <label>Diện tích đất phù hợp quy hoạch</label>
+                            <label>Diện tích phù hợp quy hoạch</label>
                           </div>
                           <div class="form_col">
                             <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
@@ -287,7 +287,7 @@ MAIN
                         </div>											
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
-                            <label>Diện tích đất vi phạm lộ giới được công nhận</label>
+                            <label>Diện tích vi phạm lộ giới</label>
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">

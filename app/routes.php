@@ -116,6 +116,14 @@ Route::get('/tai-san-dang-giao-dich.html', function() {
         ->with(array('body_class'=> 'page_search'));
 });
 
+Route::get('/chi-tiet-tai-san-dang-giao-dich.html', function() {
+     return View::make('default.real.detail')
+        ->with(array('title'=> 'Tài sản đang giao dịch'))
+        ->with('current', 9)
+        ->with(array('body_class'=> 'page_search'));
+});
+
+
 
 Route::get('/price', function() {
      $marker = Marker::findByPlaceId(Input::get('placeId'));
@@ -151,7 +159,7 @@ Route::post('/district', function() {
     return Response::json($districts);
 });
 
-Route::get('/plan', function() {
+Route::get('/xem-quy-hoach.html', function() {
      return View::make('default.page.plan')
         ->with(array('title'=> 'Xem quy hoạch'))
         ->with('current', 3)

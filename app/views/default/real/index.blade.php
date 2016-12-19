@@ -76,7 +76,7 @@ MAIN
                                 <div class="property_thumbbnail"
                                      style="background: url(images/hinh_taisancungdongia_35823583.png) center no-repeat; background-size: cover;"></div>
                                 <div class="popup_button_group">
-                                    <a href="#">
+                                    <a href="{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}">
                                         <div class="btn btn_icon btn_gradient4"><i class="icon_cungdongia"></i><span>Xem chi tiết</span>
                                         </div>
                                     </a>
@@ -238,9 +238,9 @@ MAIN
                         <div class="popup_right" style="padding-top:0px;">\
                         <button type="button" class="close hidden-xs" id="btn_close_info_window" style="float:right;margin-right:-15px;">×</button>\
                       \
-                            <div class="property_thumbbnail" style="background: url(images/hinh_taisancungdongia_35823583.png) center no-repeat; background-size: cover;margin-top:32px;"></div>\
+                            <div class="property_thumbbnail" style="background: url(default/images/hinh_taisancungdongia_35823583.png) center no-repeat; background-size: cover;margin-top:32px;"></div>\
                           <div class="popup_button_group">\
-                              <a href="chi-tiet.html">\
+                              <a href="chi-tiet-tai-san-dang-giao-dich.html">\
                                   <div class="btn btn_icon btn_gradient4"><i class="icon_cungdongia"></i><span>Xem chi tiết</span></div>\
                               </a>\
                           </div>\
