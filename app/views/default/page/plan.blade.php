@@ -81,7 +81,7 @@ MAIN
 	</div>
 </div>
 
-<div id="map_photo" style="width: 700px; height: 500px"></div>
+<!-- <div id="map_photo" style="width: 700px; height: 500px"></div> -->
 <script>
     var map = L.map('map_photo').setView([0, 0], 2);
     L.tileLayer('/upload/h/{z}/{x}/{y}.png', {

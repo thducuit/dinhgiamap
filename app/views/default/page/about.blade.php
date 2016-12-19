@@ -1,6 +1,10 @@
 @extends('default.layouts.default')
 @section('content')
-
+<style type="text/css">
+	#main {
+		height: auto!important
+	}
+</style>
 <!--
 /*==============================*\
 MAIN 

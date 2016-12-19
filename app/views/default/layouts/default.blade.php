@@ -40,7 +40,8 @@
             var placeInfo = null;
 			var icon = {
 				home: "{{ URL::asset('default/images/logo_icon2.png') }}",
-				address: "{{ URL::asset('default/images/icon_cenvalue.png') }}"
+				real: "{{ URL::asset('default/images/icon_marker.png') }}",
+				address: "{{ URL::asset('default/images/icon_cenvalue.png') }}",
 			};
 			
 			var url = {
@@ -89,7 +90,7 @@
 									<li class="menu_item {{ isset($current) && $current == 1 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/index') }}"><i class="menu_icon icon_trangchu"></i><span>Trang chủ</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 2 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/ve-chung-toi.html') }}"><i class="menu_icon icon_vechungtoi"></i><span>Về chúng tôi</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 3 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/plan') }}"><i class="menu_icon icon_xemquihoach"></i><span>Xem quy hoạch</span></a></li>
-									<li class="menu_item"><a class="clearfix" href="#"><i class="menu_icon icon_cungdongia"></i><span>Tài sản đang giao dịch</span></a></li>
+									<li class="menu_item {{ isset($current) && $current == 9 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><i class="menu_icon icon_cungdongia"></i><span>Tài sản đang giao dịch</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 4 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/hoi-dap.html') }}"><i class="menu_icon icon_faq"></i><span>Hỏi đáp</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 5 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/huong-dan.html') }}"><i class="menu_icon icon_video"></i><span>Hướng dẫn sử dụng</span></a></li>
 									<li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/lien-he.html') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li>	

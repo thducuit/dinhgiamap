@@ -109,6 +109,13 @@ Route::get('/chinh-sach.html', function() {
         ->with(array('body_class'=> 'page_xemquihoach'));
 });
 
+Route::get('/tai-san-dang-giao-dich.html', function() {
+     return View::make('default.real.index')
+        ->with(array('title'=> 'Tài sản đang giao dịch'))
+        ->with('current', 9)
+        ->with(array('body_class'=> 'page_search'));
+});
+
 
 Route::get('/price', function() {
      $marker = Marker::findByPlaceId(Input::get('placeId'));
