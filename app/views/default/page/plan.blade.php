@@ -14,7 +14,7 @@ MAIN
 			<div class="page_xemquihoach_right">
 				<div class="page_xemquihoach_right_inner">
 					<div class="xemquihoach_header">
-						<p><strong>xem qui hoạch 1 địa điểm tài sản</strong></p>
+						<p><strong>xem quy hoạch 1 địa điểm tài sản</strong></p>
 						<p>(Chọn lựa các thông tin bên dưới để xem qui hoạch)</p>
 					</div>
 					
@@ -53,7 +53,7 @@ MAIN
 							<label>Phân loại</label>
 							<select>
 								<option>Số thửa</option>
-								<option>Diện tích</option>
+								<option>Số tờ</option>
 							</select>
 						</div>
 						<div class="filter_col">
@@ -81,14 +81,45 @@ MAIN
 	</div>
 </div>
 
-
 <script>
-    var map = L.map('map_photo').setView([0, 0], 2);
+  // var layer;
+  // function init() {
+  //   var mapMinZoom = 0;
+  //   var mapMaxZoom = 7;
+  //   var map = L.map('map', {
+  //     maxZoom: mapMaxZoom,
+  //     minZoom: mapMinZoom,
+  //     crs: L.CRS.Simple
+  //   }).setView([0, 0], mapMaxZoom);
+    
+  //   var mapBounds = new L.LatLngBounds(
+  //       map.unproject([0, 19968], mapMaxZoom),
+  //       map.unproject([28160, 0], mapMaxZoom));
+        
+  //   map.fitBounds(mapBounds);
+  //   layer = L.tileLayer('{z}/{x}/{y}.png', {
+  //     minZoom: mapMinZoom, maxZoom: mapMaxZoom,
+  //     bounds: mapBounds,
+  //     attribution: 'Rendered with <a href="http://www.maptiler.com/">MapTiler</a>',
+  //     noWrap: true,
+  //     tms: false
+  //   }).addTo(map);
+  // }
+</script>
+<script>
+	var mapMinZoom = 0;
+	var mapMaxZoom = 7;
+    var map = L.map('map_photo', {
+		minZoom: mapMinZoom,
+		maxZoom: mapMaxZoom
+    }).setView([0, 0], 7);
+
     L.tileLayer('/public/plans/HIEPTANQUYHOACH/{z}/{x}/{y}.png', {
-        minZoom: 1,
-        maxZoom: 6,
+        minZoom: mapMinZoom,
+        maxZoom: mapMaxZoom,
         attribution: 'dinhgiatructuyen.vn',
-        tms: true
+        tms: false,
+        noWrap: true
     }).addTo(map);
 
     var drawnItems = new L.FeatureGroup();

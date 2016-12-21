@@ -31,7 +31,7 @@
 		{{ HTML::script('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js') }}
 		{{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyCFEQBvTi6zuAx2lh4Lte_bofdG8eMknlI&sensor=false&libraries=places,geometry') }}
 
-		{{	HTML::script('http://matchingnotes.com/javascripts/leaflet-google.js') }}
+		{{	HTML::script('default/js/leaflet-google.js') }}
 		{{	HTML::script('admin/js/custom/Google.js') }}
 		{{ HTML::script('admin/js/custom/leaflet.draw.js') }}
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -273,11 +273,11 @@
                     if(triangleCoords.latlng && $.isArray(triangleCoords.latlng) && triangleCoords.latlng.length)  {
                         polygons[index] = new google.maps.Polygon({
                                           paths: triangleCoords.latlng,
-                                          strokeColor: '#FF0000',
-                                          strokeOpacity: 0.5,
+                                          strokeColor: '#fff',
+                                          strokeOpacity: 0.2,
                                           strokeWeight: 1,
-                                          fillColor: '#FF0000',
-                                          fillOpacity: 0.35
+                                          fillColor: '#fff',
+                                          fillOpacity: 0.2
                                         });
                         polygons[index].setMap(mapObject);
                     }
