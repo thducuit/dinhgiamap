@@ -7165,3 +7165,6 @@ body .zui-popup-close:hover {
 .isShownCacLoaiDatKhac{
   display: none;
 }
+.col-chitietsobo .chitietsobo-item{
+  margin: 10px;
+}

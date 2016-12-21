@@ -104,8 +104,7 @@ MAIN
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
                             <input type="hidden" name="viTri"  value="" class="inputViTri">
-                            <select class="selectVitri">
-
+                            <select class="selectVitri" name='selectVitri'>
                               @foreach ($viTri as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach															
@@ -116,7 +115,7 @@ MAIN
                           <div class="form_col">
                             <label>Yếu tố khác</label>
                             <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
-                            <select class="selectYeuToKhac">
+                            <select class="selectYeuToKhac" name='selectYeuToKhac'>
                               <option value="">Bình Thường</option>
                               @foreach ($yeuToKhac as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
@@ -224,7 +223,7 @@ MAIN
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
                             <input type="hidden" name="viTri"  value="" class="inputViTri">
-                            <select class="selectVitri">
+                            <select class="selectVitri" name='selectVitri'>
 
                               @foreach ($viTri as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
@@ -244,7 +243,7 @@ MAIN
                           <div class="form_col"  style="width: 50%;">
                             <label>Yếu tố khác</label>
                             <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
-                            <select class="selectYeuToKhac">
+                            <select class="selectYeuToKhac" name='selectYeuToKhac'>
                               <option value="">Bình Thường</option>
                               @foreach ($yeuToKhac as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
@@ -277,12 +276,13 @@ MAIN
                             </div>
                           </div>
                           <div class="form_col">
-                            <input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
-                          </div>
-                          <div class="form_col">
                             <input type="hidden" name="dienTichDat"  value="" class="inputDienTichDat">                                                      
                             <input type="text" class="textDienTichDat" placeholder="Đất ở (m)" name="leaving_plan_area" value="{{ Input::old('leaving_plan_area') }}">                                                      
                           </div>
+                          <div class="form_col">
+                            <input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
+                          </div>
+                          
                           <div class="form_col isShownCacLoaiDatKhac">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
                           </div>																										
@@ -2172,7 +2172,7 @@ MAIN
           <div class="modal_info_inner clearfix">
             <div class="popup_button_group groupThanhToan">
               Vui lòng <a href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap">Đăng nhập</a> hoặc chọn <a class="cnologin" href="#">Thanh toán nhanh</a>
-              không cần <a class="clogin" href="#">Đăng kí tài khoản </a> để nhận kết quả định giá của bạn
+              không cần <a class="clogin" href="#">Đăng ký tài khoản </a> để nhận kết quả định giá của bạn
             </div>
           </div>
         </div>
@@ -2487,7 +2487,7 @@ foreach ($dienTichDat as $item) {
                 '<div class="form_col">' +
                 '<label>Năm xây dựng</label>' +
                 '<input type="hidden" name="year_building_more[]" class="namXD1">' +
-                '<input type="text" name="textNamXD" class="textNamXD"/>' +
+                '<input type="text" name="textNamXDMore[]" class="textNamXD"/>' +
                 '</div>'
         '</div>';
         $(this).after(rowKetCauChinh);

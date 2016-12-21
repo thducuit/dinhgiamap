@@ -128,9 +128,9 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 								<div class="modal_ketquadinhgia_header_right_col">
 									<p><strong>Email:</strong></br>
 									dinhgiaonline@gmail.com</br>
-									hotro@dinhgiatructuyen.vn</p>
+									thamdinhgiatheky@cengroup.vn</p>
 									<p><strong>Website:</strong></br>
-									www.dinhgiatructuyen.vn</p>
+									www.thamdinhgiatheky.vn</p>
 								</div>
 							</div>									
 						</div	>
@@ -138,7 +138,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 							<div class="ketquadinhgia_wrapper">
 								<div class="ketquadinhgia_header">
 									<h3 class="ketquadinhgia_title">KẾT QUẢ XEM GIÁ SƠ BỘ</h3>																		
-									<p class='dgsb_popup_address'></p>
+                                    <p>Địa chỉ: <span class='dgsb_popup_address'></span></p>
                                     <strong>Chi Tiết:</strong>
                                     <div class="row">
                                       <div class="col-md-4 col-chitietsobo">
@@ -172,25 +172,25 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 											<tr>
 												<td></td>
 												<td class="text-left"><strong>Đơn giá thị trường đề xuất</strong></td>
-                                                <td class="text-left"><span class='giaThiTruong'></span></td>
+                                                <td class="text-right"><span class='giaThiTruong'></span></td>
 												<td>VNĐ/M2</td>
 											</tr>
 											<tr>
 												<td>I</td>
 												<td class="text-left">Giá trị đất</td>
-												<td class="text-left"><span class='giaTriDat'></span></td>
+												<td class="text-right"><span class='giaTriDat'></span></td>
 												<td>VNĐ</td>
 											</tr>
 											<tr>
 												<td>II</td>
 												<td class="text-left"><strong>Giá trị công trình xây dựng</strong></td>
-												<td class="text-left"><span class='giaTriCTXD'></span></td>
+												<td class="text-right"><span class='giaTriCTXD'></span></td>
 												<td>VNĐ</td>
 											</tr>
 											<tr>
 												<td>III</td>
 												<td class="text-left"><strong>Tổng giá trị (I+II)</strong></td>
-												<td class="text-left"><span class='tongGiaTriSoBo'></span></td>
+												<td class="text-right"><span class='tongGiaTriSoBo'></span></td>
 												<td>VNĐ</td>
 											</tr>													
 										</tbody>

@@ -111,7 +111,13 @@ class HomeController extends BaseController {
             ->withErrors($validation)
             ->withType(Input::get('type'));
         }
-		
+		$inputThamDinhGia = Input::get();
+        unset($inputThamDinhGia['_token']);
+        unset($inputThamDinhGia['address']);
+        unset($inputThamDinhGia['textDistrict']);
+        unset($inputThamDinhGia['place_id']);
+        unset($inputThamDinhGia['street']);
+        Session::put('inputThamDinhGia', $inputThamDinhGia);
         
 		$result = $this->getResult();        
 
@@ -173,10 +179,52 @@ class HomeController extends BaseController {
     public function showResult()
     {
     	$result = $this->cart->getLastResult();
+        $inputThamDinhGia = Session::get('inputThamDinhGia');
+      
+        $inputThamDinhGia['vitri'] = '';
+        $inputThamDinhGia['yeuToKhac'] = '';        
+        $inputThamDinhGia['hinhDangThuaDat'] = '';
+        $inputThamDinhGia['ketCauChinh'] = '';
+        
+        $hinhDangThuaDat = AdjustOption::findByGroupId(4, 1, null)->get()->toArray();
+        $yeuToKhac = AdjustOption::findByGroupId(16, 1, null)->get()->toArray();
+        $chieuNgang = AdjustOption::findByGroupId(1, 1, null)->get()->toArray();
+        $dienTichDat = AdjustOption::findByGroupId(3, 1, null)->get()->toArray();   
+        $ketCauChinh = Structure::findByAlias('nha-pho')->structure_options()->get()->toArray();
+        
+        $viTri = AdjustOption::findByGroupId(15, 1, null)->get()->toArray();
+        foreach($viTri as $item){
+          if($item['id'] == $inputThamDinhGia['selectVitri']){
+            $inputThamDinhGia['vitri'] = $item['description'];
+          }
+        }
+        foreach($yeuToKhac as $item){
+          if($item['id'] == $inputThamDinhGia['selectYeuToKhac']){
+            $inputThamDinhGia['yeuToKhac'] = $item['description'];
+          }
+        }
+        foreach($hinhDangThuaDat as $item){
+          if($item['id'] == $inputThamDinhGia['shape']){
+            $inputThamDinhGia['hinhDangThuaDat'] = $item['description'];
+          }
+        }
+        foreach($ketCauChinh as $item){
+          if($item['price'] == $inputThamDinhGia['structure']){
+            $inputThamDinhGia['ketCauChinh'] = $item['structure'];
+          }          
+          if(count($inputThamDinhGia['structureMore'])){
+            foreach($inputThamDinhGia['structureMore'] as &$struct){
+              if($item['price'] == $struct){           
+                $struct = $item['structure'];
+              }
+            }
+          }
+        }
         
      	return View::make('default.page.result')
         ->with(array('title'=> 'kết quả định giá'))
         ->with(array('result'=> $result))
-        ->with(array('body_class'=> 'page_thanhtoan'));
+        ->with(array('body_class'=> 'page_thanhtoan'))
+        ->with(array('inputThamDinhGia'=> $inputThamDinhGia));
     }
 }

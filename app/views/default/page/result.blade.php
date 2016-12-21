@@ -31,9 +31,9 @@ MAIN
 							<div class="modal_ketquadinhgia_header_right clearfix">
 								<div class="modal_ketquadinhgia_header_right_col">
 									<p><strong>Công ty Cổ Phần Thẩm Định Giá Thế Kỷ</strong></p>
-									<p>Miền Nam:</br>
-									Tầng 2, tòa nhà HDTC, 36 Bùi Thị Xuân, Q1, Tp HCM</br>
-									<strong>Tel:</strong> (84.8) 3925 6973   -   <strong>Fax:</strong> (84.8) 3925 6955
+									<p>TpHCM:</br>
+									Tầng 3, Tòa nhà Samco, số 326 Võ Văn Kiệt, Phường Cô Giang , quận 1. Tp Hồ Chí Minh.</br>
+									<strong>Tel:</strong> ( 08 ) 3925 6972   -   <strong>Fax:</strong> ( 08 ) 3925 6955
 									</p>
 								</div>
 								<div class="modal_ketquadinhgia_header_right_col">
@@ -49,13 +49,87 @@ MAIN
 							<div class="ketquadinhgia_wrapper">
 								<div class="ketquadinhgia_header">
 									<h3 class="ketquadinhgia_title">KẾT QUẢ ĐỊNH GIÁ BẤT ĐỘNG SẢN</h3>
-									<p>Kính gửi: Quý khách hàng</p>
+									<p>Địa chỉ: {{ $result['name'] }}</p>
+                                    
+                                    <strong>Chi Tiết:</strong>
+                                    
+                                    <?php /*
+                                    <p>Kính gửi: Quý khách hàng</p>
 									<p><strong>Công ty Cổ Phần Thẩm Định Giá Thế Kỷ (Cen Value)</strong> cám ơn sự tín nhiệm của Quý khách về dịch vụ thẩm định giá của chúng tôi. Sau khi nhận được yêu cầu và mục đích thẩm định giá của Quý khách hàng. Qua quá trình nghiên cứu và đưa ra các biên pháp thực hiện, căn cứ vào tình hình giao dich thực tế của thị trường và đặc tính công việc, chúng tôi trân trọng thông báo đến Quý khách Kết quả đánh giá sơ bộ thị trường tài sản bất động sản của Qúy khách hàng, cụ thể như sau:</p>
 									<h3 class="ketquadinhgia_title">ĐỊA CHỈ ĐỊNH GIÁ TÀI SẢN</h3>
-									<p>{{ $result['name'] }}</p>
-									
-									<div id="btn_xemtaisandinhgia" class="btn btn_icon btn_gradient3"><a href="#"><i class="icon_dinhgia"></i><span>Xem tài sản đã định giá</span></a></div>
-									
+                                    <p>{{ $result['name'] }}</p>
+									*/?>
+                                    <div class="row">
+                                      <div class="col-md-3 col-chitietsobo">
+                                        <div class="chitietsobo-item">Tổng diện tích đất(m2): {{$inputThamDinhGia['total_area']}}</div>
+                                        <div class="chitietsobo-item">Chiều ngang(m): {{$inputThamDinhGia['horizontal']}}</div>
+                                        <div class="chitietsobo-item">Chiều dài(m): {{$inputThamDinhGia['vertical']}}</div>
+                                      </div>
+                                      <div class="col-md-3 col-chitietsobo">
+                                        <div class="chitietsobo-item">Vị trí tiếp giáp: {{$inputThamDinhGia['vitri']}}</div>
+                                        <div class="chitietsobo-item">Yếu tố khác: {{$inputThamDinhGia['yeuToKhac']}}</div>
+                                        <div class="chitietsobo-item">Hình dạng thửa đất: {{$inputThamDinhGia['hinhDangThuaDat']}}</div>
+                                      </div>
+                                      <div class="col-md-3 col-chitietsobo">                                        
+                                        <div class="chitietsobo-item">Diện tích phù hợp quy hoạch</div>
+                                        <div class="chitietsobo-item">Đất ở: {{$inputThamDinhGia['leaving_plan_area']}}</div>
+                                        <div class="chitietsobo-item">Đất nông nghiệp: {{$inputThamDinhGia['farming_plan_area']}}</div>
+                                        <div class="chitietsobo-item">Đất TMDV: {{$inputThamDinhGia['trade_plan_area']}}</div>
+                                        <div class="chitietsobo-item">Đất SXKD: {{$inputThamDinhGia['production_plan_area']}}</div>
+                                      </div>
+                                      <div class="col-md-3 col-chitietsobo">                                        
+                                        <div class="chitietsobo-item">Diện tích vi phạm lộ giới</div>
+                                        <div class="chitietsobo-item">Đất ở: {{$inputThamDinhGia['leaving_violance_area']}}</div>
+                                        <div class="chitietsobo-item">Đất nông nghiệp: {{$inputThamDinhGia['farming_violance_area']}}</div>
+                                        <div class="chitietsobo-item">Đất TMDV: {{$inputThamDinhGia['trade_violance_area']}}</div>
+                                        <div class="chitietsobo-item">Đất SXKD: {{$inputThamDinhGia['production_violance_area']}}</div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        Công trình xây dựng: 
+                                        <?php 
+                                        switch($inputThamDinhGia['shape']){
+                                          case 'nha_pho': echo 'Nhà phố';break;
+                                          case 'biet_thu': echo 'Biệt thự';break;
+                                          default: echo 'Không có CTXD';break;
+                                        }
+                                        ?>
+                                      </div>                                        
+                                    </div>
+                                    <?php if($inputThamDinhGia['shape']){?>
+                                    <div class="row">                                      
+                                      <div class="col-md-3 col-chitietsobo">
+                                        <div class="chitietsobo-item">Công trình xây dựng 1</div>                                        
+                                      </div>  
+                                      <div class="col-md-3 col-chitietsobo">                                        
+                                        <div class="chitietsobo-item">Kết cấu chính: {{$inputThamDinhGia['ketCauChinh']}}</div>                                        
+                                      </div>  
+                                      <div class="col-md-3 col-chitietsobo">                                        
+                                        <div class="chitietsobo-item">Tổng diện tích sàn xd: {{$inputThamDinhGia['total_ground_area']}}</div>                                        
+                                      </div>  
+                                      <div class="col-md-3 col-chitietsobo">                                        
+                                        <div class="chitietsobo-item">Năm xây dựng: {{$inputThamDinhGia['textNamXD']}}</div>
+                                      </div>                                                          
+                                    </div>
+                                    <?php }?> 
+                                    <?php for($i=0; $i < count($inputThamDinhGia['structureMore']); $i++){?>
+                                      <div class="row">                                      
+                                        <div class="col-md-3 col-chitietsobo">
+                                          <div class="chitietsobo-item">Công trình xây dựng <?php echo $i + 2;?></div>                                        
+                                        </div>  
+                                        <div class="col-md-3 col-chitietsobo">                                        
+                                          <div class="chitietsobo-item">Kết cấu chính: {{$inputThamDinhGia['structureMore'][$i]}}</div>                                        
+                                        </div>  
+                                        <div class="col-md-3 col-chitietsobo">                                        
+                                          <div class="chitietsobo-item">Tổng diện tích sàn xd: {{$inputThamDinhGia['total_ground_area_more'][$i]}}</div>                                        
+                                        </div>  
+                                        <div class="col-md-3 col-chitietsobo">                                        
+                                          <div class="chitietsobo-item">Năm xây dựng: {{$inputThamDinhGia['textNamXDMore'][$i]}}</div>
+                                        </div>                                                          
+                                      </div>
+                                    <?php }?>
+									<div id="btn_xemtaisandinhgia" class="btn btn_icon btn_gradient3"><a href="#"><i class="icon_dinhgia"></i><span>Xem tài sản đã định giá</span></a></div>									
 								</div>
 								<div class="ketquadinhgia_body">
 									<table class="ketquadinhgia_table">
