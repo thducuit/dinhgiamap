@@ -6449,7 +6449,7 @@ body .zui-popup-close:hover {
 	z-index: 9;
 
 }
-#modal_ketqua_dongiasobo a.close {
+#modal_ketquadinhgia a.close, #modal_ketqua_dongiasobo a.close {
   padding: 4px 0 0 13px;
 }
 
