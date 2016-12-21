@@ -14,7 +14,7 @@ MAIN
 			<div class="page_xemquihoach_right">
 				<div class="page_xemquihoach_right_inner">
 					<div class="xemquihoach_header">
-						<p><strong>xem qui hoạch 1 địa điểm tài sản</strong></p>
+						<p><strong>xem quy hoạch 1 địa điểm tài sản</strong></p>
 						<p>(Chọn lựa các thông tin bên dưới để xem qui hoạch)</p>
 					</div>
 					
@@ -53,7 +53,7 @@ MAIN
 							<label>Phân loại</label>
 							<select>
 								<option>Số thửa</option>
-								<option>Diện tích</option>
+								<option>Số tờ</option>
 							</select>
 						</div>
 						<div class="filter_col">
@@ -62,7 +62,7 @@ MAIN
 						</div>
 						<div class="filter_col">
 							<div class="popup_button_group">
-								<a href="xem-qui-hoach.html"><div id="btn_submit_xem_qui_hoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>
+								<a href="#"><div id="btn_submit_xem_qui_hoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>
 							</div>
 						</div>
 					</div>
@@ -70,7 +70,7 @@ MAIN
 					<!-- Map -->
 					<div id="map_xemquihoach">
 						<div class="map_xemquihoach_inner">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.604542970737!2d105.80625651527107!3d21.00848344384546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac9f04e4c2fd%3A0x5aa736c30ee5060e!2sCEN+Group!5e0!3m2!1sen!2s!4v1470474804079" width="100%" height="100" frameborder="0" style="border:0" allowfullscreen></iframe>
+							<div id="map_photo" style="height: 410px"></div>
 						</div>
 					</div>
 					
@@ -81,14 +81,78 @@ MAIN
 	</div>
 </div>
 
-<!-- <div id="map_photo" style="width: 700px; height: 500px"></div> -->
 <script>
-    var map = L.map('map_photo').setView([0, 0], 2);
-    L.tileLayer('/upload/h/{z}/{x}/{y}.png', {
-        minZoom: 1,
-        maxZoom: 6,
-        attribution: 'ESO/INAF-VST/OmegaCAM',
-        tms: true
+  // var layer;
+  // function init() {
+  //   var mapMinZoom = 0;
+  //   var mapMaxZoom = 7;
+  //   var map = L.map('map', {
+  //     maxZoom: mapMaxZoom,
+  //     minZoom: mapMinZoom,
+  //     crs: L.CRS.Simple
+  //   }).setView([0, 0], mapMaxZoom);
+    
+  //   var mapBounds = new L.LatLngBounds(
+  //       map.unproject([0, 19968], mapMaxZoom),
+  //       map.unproject([28160, 0], mapMaxZoom));
+        
+  //   map.fitBounds(mapBounds);
+  //   layer = L.tileLayer('{z}/{x}/{y}.png', {
+  //     minZoom: mapMinZoom, maxZoom: mapMaxZoom,
+  //     bounds: mapBounds,
+  //     attribution: 'Rendered with <a href="http://www.maptiler.com/">MapTiler</a>',
+  //     noWrap: true,
+  //     tms: false
+  //   }).addTo(map);
+  // }
+</script>
+<script>
+	var mapMinZoom = 0;
+	var mapMaxZoom = 7;
+    var map = L.map('map_photo', {
+		minZoom: mapMinZoom,
+		maxZoom: mapMaxZoom
+    }).setView([0, 0], 7);
+
+    L.tileLayer('/public/plans/HIEPTANQUYHOACH/{z}/{x}/{y}.png', {
+        minZoom: mapMinZoom,
+        maxZoom: mapMaxZoom,
+        attribution: 'dinhgiatructuyen.vn',
+        tms: false,
+        noWrap: true
     }).addTo(map);
+
+    var drawnItems = new L.FeatureGroup();
+	map.addLayer(drawnItems);
+
+    var drawControl = new L.Control.Draw({
+		draw: {
+			position: 'topleft',
+			polygon: {
+				title: 'Draw a sexy polygon!',
+				allowIntersection: false,
+				drawError: {
+					color: '#b00b00',
+					timeout: 1000
+				},
+				shapeOptions: {
+					color: '#bada55'
+				},
+				showArea: true
+			},
+			polyline: {
+				metric: false
+			},
+			circle: {
+				shapeOptions: {
+					color: '#662d91'
+				}
+			}
+		},
+		edit: {
+			featureGroup: drawnItems
+		}
+	});
+	map.addControl(drawControl);
 </script>
 @endsection

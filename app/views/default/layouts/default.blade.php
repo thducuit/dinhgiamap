@@ -21,14 +21,19 @@
 		{{ HTML::style('default/css/custom.css') }}
 		{{ HTML::style('default/css/responsive.css') }}
 		<!-- {{ HTML::style('default/css/styles.css') }} -->
-		{{ HTML::style('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css') }}
+
+		{{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
+		{{ HTML::style('admin/css/leaflet.draw.css') }}
+
 		
 		{{ HTML::script('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}
 		{{ HTML::script('https://code.jquery.com/ui/1.12.0/jquery-ui.js') }}
-		{{ HTML::script('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js') }}
+		{{ HTML::script('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js') }}
 		{{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyCFEQBvTi6zuAx2lh4Lte_bofdG8eMknlI&sensor=false&libraries=places,geometry') }}
 
-		
+		{{	HTML::script('default/js/leaflet-google.js') }}
+		{{	HTML::script('admin/js/custom/Google.js') }}
+		{{ HTML::script('admin/js/custom/leaflet.draw.js') }}
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>

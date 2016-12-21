@@ -533,6 +533,7 @@ MAIN
 				</div>
 				<div id="collapseFour" class="panel-collapse collapse">
 					<div class="panel-body">
+						<img src="{{ URL::asset('default/images/chi-tiet/area-facility.png') }}" class="img-responsive">
 						<table id="table_area_facility" class="table_option table">
 							<tbody>
 								<tr>
