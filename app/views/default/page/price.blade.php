@@ -113,17 +113,6 @@ MAIN
                           </div>
 
                           <div class="form_col">
-                            <label>Yếu tố khác</label>
-                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
-                            <select class="selectYeuToKhac" name='selectYeuToKhac'>
-                              <option value="">Bình Thường</option>
-                              @foreach ($yeuToKhac as $s)
-                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
-                              @endforeach															
-                            </select>
-                          </div>
-
-                          <div class="form_col">
                             <label>Hình dạng thửa đất</label>
                             <input type="hidden" name="hinhDangThuaDat"  value="" class="inputHinhDangThuaDat">                                                  
                             <select name="shape" class="selectHinhDangThuaDat">
@@ -132,7 +121,20 @@ MAIN
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach
                             </select>
-                          </div>    
+                          </div>
+                          
+                          <div class="form_col">
+                            <label>Yếu tố khác</label>
+                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
+                            <select class="selectYeuToKhac" name='selectYeuToKhac'>
+                              
+                              @foreach ($yeuToKhac as $s)
+                              <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
+                              @endforeach															
+                            </select>
+                          </div>
+
+                              
                         </div>
 
                         <div class="form_row clearfix">
@@ -244,7 +246,7 @@ MAIN
                             <label>Yếu tố khác</label>
                             <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                             <select class="selectYeuToKhac" name='selectYeuToKhac'>
-                              <option value="">Bình Thường</option>
+                              
                               @foreach ($yeuToKhac as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach															
@@ -419,7 +421,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          <option value="">Bình Thường</option>
+                          
                           @foreach ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -582,7 +584,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          <option value="">Bình Thường</option>
+                          
                           @foreach  ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -747,7 +749,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          <option value="">Bình Thường</option>
+                          
                           @foreach ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -912,7 +914,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          <option value="">Bình Thường</option>
+                          
                           @foreach ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -1077,7 +1079,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          <option value="">Bình Thường</option>
+                          
                           @foreach ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
