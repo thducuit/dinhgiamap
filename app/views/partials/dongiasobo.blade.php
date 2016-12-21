@@ -195,7 +195,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 								</div>								
 								
                                 <div class="thamdinhgia-btn-box">
-                                    <a class="btn btn_icon btn_gradient2 btn_dinhgia" href="{{ URL::to('/xem-quy-hoach.html') }}"><i class="icon_xemquihoach"></i><span>Xem Quy hoạch</span></a>
+                                    <a class="btn btn_icon btn_gradient2" href="{{ URL::to('/xem-quy-hoach.html') }}"><i class="icon_xemquihoach"></i><span>Xem Quy hoạch</span></a>
                                     <a class="btn btn_icon btn_gradient3 btn_dinhgia" ><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></a>
 									<a class="btn btn_icon btn_gradient4" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><i class="icon_xemquihoach"></i><span>Tài sản đang giao dịch</span></a>
 								</div>
