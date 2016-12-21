@@ -25,7 +25,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
           <div class="tab_body">
             <div class="tab_body_inner">
               {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
-
+              <ul class="error error-dongiasobo"></ul>
               <input type="hidden" name="textDistrict" class="textDistrict"/>             
 
               <div class="form_row clearfix">
@@ -80,7 +80,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                 </div>     
                 <div class="form_col" style="">
                   <label>Tổng diện tích sàn xd</label>                  
-                  <input type="text" name="dien-tich-san-xd" class="dien-tich-san-xd" disabled="">
+                  <input type="text" name="dien-tich-san-xd" class="dien-tich-san-xd" disabled="">                  
                 </div>     
                 <div class="form_col" style="">
                   <label>Năm xây dựng</label>                  
@@ -110,7 +110,8 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 
 				<!-- Modal content-->
 				<div class="modal-content">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+<!--					<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <a class="close" href="{{action('HomeController@view')}}">&times;</a>
 					<div class="modal-body">
 						
 						<div class="modal_ketquadinhgia_header clearfix">
@@ -120,14 +121,13 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 							<div class="modal_ketquadinhgia_header_right clearfix">
 								<div class="modal_ketquadinhgia_header_right_col">
 									<p><strong>Công ty Cổ Phần Thẩm Định Giá Thế Kỷ</strong></p>
-									<p>TpHCM:</br>
+									<p>
 									Tầng 3, Tòa nhà Samco, số 326 Võ Văn Kiệt, Phường Cô Giang , quận 1. Tp Hồ Chí Minh.</br>
-									<strong>Tel:</strong> ( 08 ) 3925 6972   -   <strong>Fax:</strong> ( 08 ) 3925 6955
+									<strong>Hotline:</strong> 1900 6088 
 									</p>
 								</div>
 								<div class="modal_ketquadinhgia_header_right_col">
-									<p><strong>Email:</strong></br>
-									dinhgiaonline@gmail.com</br>
+									<p><strong>Email:</strong></br>									
 									thamdinhgiatheky@cengroup.vn</p>
 									<p><strong>Website:</strong></br>
 									www.thamdinhgiatheky.vn</p>
@@ -164,39 +164,34 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 											<tr>
 												<th>STT</th>
 												<th>HẠNG MỤC</th>
-												<th>GIÁ TRỊ</th>
-												<th>ĐƠN VỊ TÍNH</th>
+												<th>GIÁ TRỊ(VNĐ)</th>												
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<td></td>
 												<td class="text-left"><strong>Đơn giá thị trường đề xuất</strong></td>
-                                                <td class="text-right"><span class='giaThiTruong'></span></td>
-												<td>VNĐ/M2</td>
+                                                <td class="text-right"><span class='giaThiTruong'></span></td>												
 											</tr>
 											<tr>
 												<td>I</td>
 												<td class="text-left">Giá trị đất</td>
-												<td class="text-right"><span class='giaTriDat'></span></td>
-												<td>VNĐ</td>
+												<td class="text-right"><span class='giaTriDat'></span></td>												
 											</tr>
 											<tr>
 												<td>II</td>
 												<td class="text-left"><strong>Giá trị công trình xây dựng</strong></td>
-												<td class="text-right"><span class='giaTriCTXD'></span></td>
-												<td>VNĐ</td>
+												<td class="text-right"><span class='giaTriCTXD'></span></td>												
 											</tr>
 											<tr>
 												<td>III</td>
 												<td class="text-left"><strong>Tổng giá trị (I+II)</strong></td>
-												<td class="text-right"><span class='tongGiaTriSoBo'></span></td>
-												<td>VNĐ</td>
+												<td class="text-right"><span class='tongGiaTriSoBo'></span></td>												
 											</tr>													
 										</tbody>
 									</table>
                                   <p>* Đơn giá đất UB mặt tiền đường là: <span class="giaUBLabel"></span> VNĐ/m2</p>
-								  <p>* Biên độ chênh lệch ± 10% giữa giá trị sơ bộ và giá trị thực tế  khi Chuyên viên thẩm định giá khảo sát thực tế hiện trạng tài sản.</p>
+                                  <br>
 								</div>								
 								
 								<div class="ketquadinhgia_bottom_button">
@@ -215,7 +210,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 
 
 <script>
-  jQuery(document).ready(function() {
+  
     var vitriOptions = [];
     var hinhDangThuaDatOptions = [];
     var chieuNgangOptions = [];
@@ -309,7 +304,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
           selectHemMaTien = 'hem';
         }
       }  
-      console.log(selectHemMaTien);
+      
       $(this).parents('.price-form').find('.inputViTri:first').val(vitriData);                    
 
       if(hinhDangThuaDatOptions[idOptionHinhDangThuaDat]){
@@ -411,7 +406,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
       $(this).parents('.price-form').find('.inputDienTichDat:first').val(dienTichDatData); 
 
     });
-    $('#modal_dongiasobo #btn_dinhgiasobo').click(function(){
+    $('#modal_dongiasobo #btn_dinhgiasobo').unbind().click(function(){
       //Gia tri dat
       var viTri = $('#modal_dongiasobo .inputViTri').val();
       var hinhDangThuaDat = $('#modal_dongiasobo .inputHinhDangThuaDat').val();
@@ -421,35 +416,57 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
       var giaThiTruong = $('#modal_dongiasobo .giaThiTruong').val();
       var textChieuNgang = $('#modal_dongiasobo .textChieuNgang').val();
       var textChieuDai = $('#modal_dongiasobo .textChieuDai').val();                                 
-     
+      var ctxd = $('#modal_dongiasobo .selectCongTrinhXayDung').val();
       giaThiTruong = giaThiTruong.replace(/\,/gm, '');      
-     var giaSauDieuChinh = parseFloat(giaThiTruong) + parseFloat(giaThiTruong)*(parseFloat(viTri) + parseFloat(hinhDangThuaDat) + parseFloat(chieuNgang) + parseFloat(dienTichDat))/100;      
-     
-     var giaTriDat = parseFloat(dienTichDatText)*giaSauDieuChinh;
-     
-     //giá trị công trình xây dựng
+      
+       //giá trị công trình xây dựng
      var ketCauChinh = $('#modal_dongiasobo .selectKetCauChinh').val();
      var dienTichSanXD = $('#modal_dongiasobo .dien-tich-san-xd').val();
      var namXayDung = $('#modal_dongiasobo .namXD').val();   
-     var giaTriCTXD = (ketCauChinh*dienTichSanXD*namXayDung)/100;
-     var tongGiaTriSoBo = parseFloat(giaTriDat) + parseFloat(giaTriCTXD);
+     var hasError = false;
      
-     $('#modal_ketqua_dongiasobo .giaThiTruong').html(giaSauDieuChinh.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
-     $('#modal_ketqua_dongiasobo .giaTriDat').html(giaTriDat.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
-     $('#modal_ketqua_dongiasobo .giaTriCTXD').html(giaTriCTXD.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
-     $('#modal_ketqua_dongiasobo .tongGiaTriSoBo').html(tongGiaTriSoBo.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1,'));
+     if(ctxd){
+       if(!dienTichSanXD){
+         $('.error-dongiasobo').append('<li>Vui lòng nhập Tổng diện tích sàn xd</li>');
+          hasError = true;
+       }
+       if(!namXayDung){
+         $('.error-dongiasobo').append('<li>Vui lòng nhập Năm xây dựng</li>');
+         hasError = true;
+       }
+     }
      
-     $('.tongDienTichLabel').html(dienTichDatText);
-     $('.chieuNgangLabel').html(textChieuNgang);
-     $('.chieuDaiLabel').html(textChieuDai);
-     $('.vitriLabel').html($('#modal_dongiasobo .selectVitri option:selected').text());
-     $('.hinhDangLabel').html($('#modal_dongiasobo .selectHinhDangThuaDat option:selected').text());
-     $('.CTXDLabel').html($('#modal_dongiasobo .selectCongTrinhXayDung option:selected').text());
-     $('.ketCauLabel').html($('#modal_dongiasobo .selectKetCauChinh option:selected').text());
-     $('.tongDienTichSanLabel').html(dienTichSanXD);
-     $('.namXDLabel').html($('.textNamXD').val());  
-         
-     $('#modal_ketqua_dongiasobo').modal('show');
+     if(!hasError){
+        var giaSauDieuChinh = parseFloat(giaThiTruong) + parseFloat(giaThiTruong)*(parseFloat(viTri) + parseFloat(hinhDangThuaDat) + parseFloat(chieuNgang) + parseFloat(dienTichDat))/100;           
+        var giaTriDat = parseFloat(dienTichDatText)*giaSauDieuChinh;
+        var giaTriCTXD = (ketCauChinh*dienTichSanXD*namXayDung)/100;
+        var tongGiaTriSoBo = parseFloat(giaTriDat) + parseFloat(giaTriCTXD);
+        $('#modal_ketqua_dongiasobo .giaThiTruong').html(giaSauDieuChinh.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1.'));
+        $('#modal_ketqua_dongiasobo .giaTriDat').html(giaTriDat.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1.'));
+        $('#modal_ketqua_dongiasobo .giaTriCTXD').html(giaTriCTXD.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1.'));
+        $('#modal_ketqua_dongiasobo .tongGiaTriSoBo').html(tongGiaTriSoBo.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g, '$1.'));
+
+        $('.tongDienTichLabel').html(dienTichDatText);
+        $('.chieuNgangLabel').html(textChieuNgang);
+        $('.chieuDaiLabel').html(textChieuDai);
+        $('.vitriLabel').html($('#modal_dongiasobo .selectVitri option:selected').text());
+        $('.hinhDangLabel').html($('#modal_dongiasobo .selectHinhDangThuaDat option:selected').text());
+        $('.CTXDLabel').html($('#modal_dongiasobo .selectCongTrinhXayDung option:selected').text());
+        if(ctxd){          
+          $('.ketCauLabel').html($('#modal_dongiasobo .selectKetCauChinh option:selected').text());
+          $('.tongDienTichSanLabel').html(dienTichSanXD);
+          $('.namXDLabel').html($('.textNamXD').val());
+        }else{
+          $('.ketCauLabel').html('');
+          $('.tongDienTichSanLabel').html('');
+          $('.namXDLabel').html('');
+        }
+          
+          
+        $('#modal_dongiasobo').modal('show');
+        $('#modal_ketqua_dongiasobo').modal('show');
+     }
+     
     });
     
     $('.textNamXD').keyup(function(){
@@ -489,7 +506,8 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
         $('.dien-tich-san-xd').attr('disabled', 'true');
         $('.textNamXD').attr('disabled', 'true');
       }        
+            
     });
     
-  });
+  
 </script>

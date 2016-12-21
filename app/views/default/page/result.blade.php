@@ -31,14 +31,13 @@ MAIN
 							<div class="modal_ketquadinhgia_header_right clearfix">
 								<div class="modal_ketquadinhgia_header_right_col">
 									<p><strong>Công ty Cổ Phần Thẩm Định Giá Thế Kỷ</strong></p>
-									<p>TpHCM:</br>
+									<p>
 									Tầng 3, Tòa nhà Samco, số 326 Võ Văn Kiệt, Phường Cô Giang , quận 1. Tp Hồ Chí Minh.</br>
-									<strong>Tel:</strong> ( 08 ) 3925 6972   -   <strong>Fax:</strong> ( 08 ) 3925 6955
+									<strong>Hotline:</strong> 1900 6088 
 									</p>
 								</div>
 								<div class="modal_ketquadinhgia_header_right_col">
-									<p><strong>Email:</strong></br>
-									dinhgiaonline@gmail.com</br>
+									<p><strong>Email:</strong></br>									
 									thamdinhgiatheky@cengroup.vn</p>
 									<p><strong>Website:</strong></br>
 									www.thamdinhgiatheky.vn</p>
@@ -144,20 +143,20 @@ MAIN
 										<tbody>
 											<tr>
 												<td>I</td>
-												<td><strong>Quyền sử dụng đất</strong></td>
-												<td>{{ $result['total_price'] }}</td>
+												<td class="text-left"><strong>Quyền sử dụng đất</strong></td>
+												<td class="text-right">{{ $result['total_price'] }}</td>
 												<td>VNĐ</td>
 											</tr>
 											<tr>
 												<td></td>
-												<td>Đơn giá thị trường đất ở bình quân</td>
-												<td>{{ $result['unit_price'] }}</td>
+												<td class="text-left">Đơn giá thị trường đất ở bình quân</td>
+												<td class="text-right">{{ $result['unit_price'] }}</td>
 												<td>VNĐ/M2</td>
 											</tr>
 											<tr>
 												<td>II</td>
-												<td><strong>Quyền sở hữu công trình xây dựng</strong></td>
-												<td>{{ $result['building_price'] }}</td>
+												<td class="text-left"><strong>Quyền sở hữu công trình xây dựng</strong></td>
+												<td class="text-right">{{ $result['building_price'] }}</td>
 												<td>VNĐ</td>
 											</tr>
                                             <?php 
@@ -165,8 +164,8 @@ MAIN
                                               foreach($result['buildingPriceMore'] as $key => $price){?>
                                             <tr>
 												<td>II</td>
-												<td><strong>Quyền sở hữu công trình xây dựng <?php echo $key+2?></strong></td>
-												<td>{{ $price }}</td>
+												<td class="text-left"><strong>Quyền sở hữu công trình xây dựng <?php echo $key+2?></strong></td>
+												<td class="text-right">{{ $price }}</td>
 												<td>VNĐ</td>
 											</tr>
                                             <?php 
@@ -174,14 +173,13 @@ MAIN
                                             }?>
 											<tr>
 												<td>III</td>
-												<td><strong>Tổng giá trị (I+II)</strong></td>
-												<td>{{ $result['total'] }}</td>
+												<td class="text-left"><strong>Tổng giá trị (I+II)</strong></td>
+												<td class="text-right">{{ $result['total'] }}</td>
 												<td>VNĐ</td>
 											</tr>													
 										</tbody>
 									</table>
-									<p>* Đơn giá đất ở UB mặt tiền đương XXXXX là: 15,000,000</p>
-									<p>* Biên độ chênh lệch ± 10% giữa giá trị sơ bộ và giá trị thực tế  khi Chuyên viên thẩm định giá khảo sát thực tế hiện trạng tài sản.</p>
+									<p>* Đơn giá đất UB mặt tiền đường là: 15,000,000 VNĐ/m2</p>									
 								</div>
 								<div id="show_ketquadinhgia_popup_note" class="btn btn_arrow btn_arrow00757b"><a>Xem thông tin lưu ý<i></i></a></div>
 								<div class="ketquadinhgia_popup_note">

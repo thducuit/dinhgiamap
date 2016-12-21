@@ -6449,6 +6449,9 @@ body .zui-popup-close:hover {
 	z-index: 9;
 
 }
+#modal_ketqua_dongiasobo a.close {
+  padding: 4px 0 0 13px;
+}
 
 #modal_ketquadinhgia .modal-dialog, #modal_ketqua_dongiasobo .modal-dialog{
 
@@ -7167,4 +7170,10 @@ body .zui-popup-close:hover {
 }
 .col-chitietsobo .chitietsobo-item{
   margin: 10px;
+}
+.error{
+  color: red;
+}
+.error-dongiasobo{
+  margin: 7px;
 }
