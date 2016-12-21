@@ -128,9 +128,9 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 								</div>
 								<div class="modal_ketquadinhgia_header_right_col">
 									<p><strong>Email:</strong></br>									
-									thamdinhgiatheky@cengroup.vn</p>
+									hotro@dinhgiatructuyen.vn</p>
 									<p><strong>Website:</strong></br>
-									www.thamdinhgiatheky.vn</p>
+									dinhgiatructuyen.vn</p>
 								</div>
 							</div>									
 						</div	>
@@ -150,7 +150,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                                         <div class="chitietsobo-item">Vị trí tiếp giáp: <span class="vitriLabel"></span></div>
                                         <div class="chitietsobo-item">Hình dạng thửa đất: <span class="hinhDangLabel"></span></div>
                                       </div>
-                                      <div class="col-md-4 col-chitietsobo">
+                                      <div class="col-md-4 col-chitietsobo ctxd-input-shown">
                                         <div class="chitietsobo-item">Công trình xây dựng: <span class="CTXDLabel"></span></div>
                                         <div class="chitietsobo-item">Kết cấu: <span class="ketCauLabel"></span></div>
                                         <div class="chitietsobo-item">Tổng diện tích sàn xây dựng: <span class="tongDienTichSanLabel"></span></div>
@@ -164,7 +164,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 											<tr>
 												<th>STT</th>
 												<th>HẠNG MỤC</th>
-												<th>GIÁ TRỊ(VNĐ)</th>												
+												<th>GIÁ TRỊ ( VNĐ ) </th>												
 											</tr>
 										</thead>
 										<tbody>
@@ -190,10 +190,15 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 											</tr>													
 										</tbody>
 									</table>
-                                  <p>* Đơn giá đất UB mặt tiền đường là: <span class="giaUBLabel"></span> VNĐ/m2</p>
+                                  <p>* Đơn giá đất ủy ban mặt tiền đường là: <span class="giaUBLabel"></span> VNĐ/m2</p>
                                   <br>
 								</div>								
 								
+                                <div class="thamdinhgia-btn-box">
+                                    <a class="btn btn_icon btn_gradient2 btn_dinhgia" href="{{ URL::to('/xem-quy-hoach.html') }}"><span>Xem Quy hoạch</span></a>
+                                    <a class="btn btn_icon btn_gradient3 btn_dinhgia" ><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></a>
+									<a class="btn btn_icon btn_gradient4" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><i class="icon_xemquihoach"></i><span>Tài sản đang giao dịch</span></a>
+								</div>
 								<div class="ketquadinhgia_bottom_button">
 									<a class="hotline" href="tel:0902317679">Hotline</a>
 									<a class="print" href="#">Print</a>
@@ -453,6 +458,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
         $('.hinhDangLabel').html($('#modal_dongiasobo .selectHinhDangThuaDat option:selected').text());
         $('.CTXDLabel').html($('#modal_dongiasobo .selectCongTrinhXayDung option:selected').text());
         if(ctxd){          
+          $('.ctxd-input-shown').show();
           $('.ketCauLabel').html($('#modal_dongiasobo .selectKetCauChinh option:selected').text());
           $('.tongDienTichSanLabel').html(dienTichSanXD);
           $('.namXDLabel').html($('.textNamXD').val());
@@ -460,6 +466,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
           $('.ketCauLabel').html('');
           $('.tongDienTichSanLabel').html('');
           $('.namXDLabel').html('');
+          $('.ctxd-input-shown').hide();
         }
           
           

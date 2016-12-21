@@ -5346,7 +5346,11 @@ body.menu_mobile_active {
 
 }
 
-
+#modal_ketqua_dongiasobo .thamdinhgia-btn-box, #modal_ketquadinhgia .thamdinhgia-btn-box{
+  position: absolute;
+  right: 134px;
+  bottom: 0px;
+}
 
 
 

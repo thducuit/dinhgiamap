@@ -39,9 +39,9 @@ MAIN
 								</div>
 								<div class="modal_ketquadinhgia_header_right_col">
 									<p><strong>Email:</strong></br>									
-									thamdinhgiatheky@cengroup.vn</p>
+									hotro@dinhgiatructuyen.vn</p>
 									<p><strong>Website:</strong></br>
-									www.thamdinhgiatheky.vn</p>
+									dinhgiatructuyen.vn</p>
 								</div>
 							</div>									
 						</div	>
@@ -141,7 +141,7 @@ MAIN
 											<tr>
 												<th>STT</th>
 												<th>HẠNG MỤC</th>
-												<th>GIÁ TRỊ(VNĐ)</th>												
+												<th>GIÁ TRỊ ( VNĐ ) </th>												
 											</tr>
 										</thead>
 										<tbody>
@@ -178,7 +178,7 @@ MAIN
 											</tr>													
 										</tbody>
 									</table>
-									<p>* Đơn giá đất UB mặt tiền đường là: {{$result['unit_state_price']}} VNĐ/m2</p>									
+									<p>* Đơn giá đất ủy ban mặt tiền đường là: {{$result['unit_state_price']}} VNĐ/m2</p>									
 								</div>
 								<div id="show_ketquadinhgia_popup_note" class="btn btn_arrow btn_arrow00757b"><a>Xem thông tin lưu ý<i></i></a></div>
 								<div class="ketquadinhgia_popup_note">
@@ -196,6 +196,10 @@ MAIN
 										<p>- Kết quả sơ bộ có hiệu lực trong thời gian 30 (ba mươi) ngày kể từ ngày thông báo.</p> 
 										<p>Rất mong sự phản hồi của Quý khách.</p>
 									</div>
+								</div>
+                                <div class="thamdinhgia-btn-box">
+                                    <a class="btn btn_icon btn_gradient2 btn_dinhgia" href="{{ URL::to('/xem-quy-hoach.html') }}"><span>Xem Quy hoạch</span></a>                                    
+									<a class="btn btn_icon btn_gradient4" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><i class="icon_xemquihoach"></i><span>Tài sản đang giao dịch</span></a>
 								</div>
 								<div class="ketquadinhgia_bottom_button">
 									<a class="hotline" href="tel:0902317679">Hotline</a>
