@@ -128,7 +128,7 @@
         });
 
         function setContent(place) {
-            $('#modal_info .p_address p').text(place.name);
+            $('#modal_info .pp_address p').text(place.name);
 
             placeInfo = place;
             var a = $('#google-map-autocomplete').val();
