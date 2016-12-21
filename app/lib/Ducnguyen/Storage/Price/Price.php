@@ -107,7 +107,7 @@ class Price implements PriceRepository
             if(isset($input['structureMore']) && count($input['structureMore'])){
               foreach($input['structureMore'] as $key => $value){
                 $constructionPriceMore = $this->getPriceConstruction($value, $input['total_ground_area_more'][$key], $input['year_building_more'][$key]);
-                $constructionMore[] = number_format($constructionPriceMore);
+                $constructionMore[] = number_format($constructionPriceMore, null, null, '.');
                 $finalTotal += $constructionPriceMore;
               }
             }
@@ -115,12 +115,12 @@ class Price implements PriceRepository
         
         return array(
                 'name'=> $name,
-                'total_price' => number_format($total),
-                'unit_price'=> number_format($unit_price),
-                'unit_state_price'=> number_format($unit_state_price),
-                'building_price' => number_format($construction),
+                'total_price' => number_format($total, null, null, '.'),
+                'unit_price'=> number_format($unit_price, null, null, '.'),
+                'unit_state_price'=> number_format($unit_state_price, null, null, '.'),
+                'building_price' => number_format($construction, null, null, '.'),
                 'buildingPriceMore' => $constructionMore,
-                'total' => number_format($finalTotal),
+                'total' => number_format($finalTotal, null, null, '.'),
                 
             );
         

@@ -167,7 +167,7 @@
             getStreetPrice(function(place){                            
               $('.giaThiTruong').val(place.price_format);
               $('.giaUB').val(place.state_price_format);
-              $('.giaUBLabel').html(place.state_price_format);
+              $('.giaUBLabel').html(place.state_price_format.replace(/,/gm, '.'));
               
               $('.textDistrict').val(place.districtName);              
               $('#modal_dongiasobo').modal('show');
