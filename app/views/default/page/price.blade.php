@@ -176,7 +176,7 @@ MAIN
                         </div>											
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
-                            <label>Diện tích vi phạm lộ giới</label>
+                            <label>Diện tích vi phạm lộ giới được công nhận</label>
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">
@@ -293,7 +293,7 @@ MAIN
                         </div>											
                         <div class="form_row clearfix">
                           <div class="form_col form_col_first">
-                            <label>Diện tích vi phạm lộ giới</label>
+                            <label>Diện tích vi phạm lộ giới được công nhận</label>
                           </div>
                           <div class="form_col">
                             <input type="text" placeholder="Đất ở (m)" name="leaving_violance_area" value="{{ Input::old('leaving_violance_area') }}">

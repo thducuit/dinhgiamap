@@ -78,7 +78,7 @@ MAIN
                                         <div class="chitietsobo-item">Đất SXKD: {{$inputThamDinhGia['production_plan_area']}}</div>
                                       </div>
                                       <div class="col-md-3 col-chitietsobo">                                        
-                                        <div class="chitietsobo-item">Diện tích vi phạm lộ giới</div>
+                                        <div class="chitietsobo-item">Diện tích vi phạm lộ giới được công nhận</div>
                                         <div class="chitietsobo-item">Đất ở: {{$inputThamDinhGia['leaving_violance_area']}}</div>
                                         <div class="chitietsobo-item">Đất nông nghiệp: {{$inputThamDinhGia['farming_violance_area']}}</div>
                                         <div class="chitietsobo-item">Đất TMDV: {{$inputThamDinhGia['trade_violance_area']}}</div>
