@@ -127,8 +127,12 @@ Route::get('/chi-tiet-tai-san-dang-giao-dich.html', function() {
 
 Route::get('/price', function() {
      $marker = Marker::findByPlaceId(Input::get('placeId'));
-     $street = Street::find(Input::get('street'));
-     $disTrict = District::find($street->district_id);
+     $districtName = 'Quận 1';
+     if(Input::get('street')){
+      $street = Street::find(Input::get('street'));
+      $disTrict = District::find($street->district_id);
+      $districtName = $disTrict->type.' '.$disTrict->name;
+     }
      $address = ($marker) ? $marker->name : Input::get('address');
      
      $viTri = AdjustOption::findByGroupId(15, 1, null)->get()->toArray();
@@ -150,7 +154,7 @@ Route::get('/price', function() {
         ->with(array('yeuToKhac'=> $yeuToKhac))
         ->with(array('chieuNgang'=> $chieuNgang))
         ->with(array('dienTichDat'=> $dienTichDat))
-        ->with(array('disTrict' => $disTrict))
+        ->with(array('districtName' => $districtName))
         ->with(array('ketCauChinh' => $ketCauChinh))
         ->with(array('namXayDung' => $namXayDung));
 });

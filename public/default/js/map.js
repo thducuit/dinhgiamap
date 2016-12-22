@@ -164,12 +164,15 @@
             var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgsb_popup_address, .dgsb_popup_address').html(html);
-            getStreetPrice(function(place){                            
-              $('.giaThiTruong').val(place.price_format);
-              $('.giaUB').val(place.state_price_format);
-              $('.giaUBLabel').html(place.state_price_format.replace(/,/gm, '.'));
+            getStreetPrice(function(place){                
+              var priceFormat = (place.price_format)?place.price_format:'0';
+              var statePriceFormat = (place.state_price_format)?place.state_price_format:'0';
+              var districtName = (place.districtName)?place.districtName:'Quận 1';
+              $('.giaThiTruong').val(priceFormat);
+              $('.giaUB').val(statePriceFormat);
+              $('.giaUBLabel').html(priceFormat.replace(/,/gm, '.'));
               
-              $('.textDistrict').val(place.districtName);              
+              $('.textDistrict').val(districtName);              
               $('#modal_dongiasobo').modal('show');
             });
            

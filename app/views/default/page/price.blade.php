@@ -96,7 +96,7 @@ MAIN
                       <div class="tab_body_inner">
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
                         <div class="form_row clearfix">
-                          <input type="hidden" name="textDistrict" class="textDistrict" value="{{$disTrict->type}} {{$disTrict->name}}"/>             
+                            <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                           <div class="form_col">
                             <label class="highlight">Vị trí tiếp giáp(*)</label>
                             <input type="hidden" name="type" value='vacant_land'/>
@@ -123,7 +123,7 @@ MAIN
                             </select>
                           </div>
                           
-                          <div class="form_col">
+                          <div class="form_col" style="width: 50%">
                             <label>Yếu tố khác</label>
                             <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                             <select class="selectYeuToKhac" name='selectYeuToKhac'>
@@ -216,7 +216,7 @@ MAIN
                     <div class="tab_body">
                       <div class="tab_body_inner">
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
-                        <input type="hidden" name="textDistrict" class="textDistrict" value="{{$disTrict->type}} {{$disTrict->name}}"/>             
+                        <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label class="highlight">Vị trí tiếp giáp(*)</label>                            
@@ -1317,7 +1317,7 @@ MAIN
                         <div class="tab_body">
                           <div class="tab_body_inner">
                             {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
-                            <input type="hidden" name="textDistrict" class="textDistrict" value="{{$disTrict->type}} {{$disTrict->name}}"/>             
+                            <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                             <div class="form_row clearfix">
                               <div class="form_col form_col_first">
                                 <label class="highlight">Đất sử dụng riêng (*)</label>
