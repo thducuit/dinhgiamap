@@ -85,6 +85,7 @@ MAIN
                                         <div class="chitietsobo-item">Đất SXKD: {{$inputThamDinhGia['production_violance_area']}}</div>
                                       </div>
                                     </div>
+                                    <?php if($inputThamDinhGia['shape']){?>
                                     <div class="row">
                                       <div class="col-md-12">
                                         Công trình xây dựng: 
@@ -97,6 +98,7 @@ MAIN
                                         ?>
                                       </div>                                        
                                     </div>
+                                    <?php }?>
                                     <?php if($inputThamDinhGia['shape'] && $inputThamDinhGia['ketCauChinh']){?>
                                     <div class="row">                                      
                                       <div class="col-md-3 col-chitietsobo">
