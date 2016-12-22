@@ -192,7 +192,7 @@ class HomeController extends BaseController {
         if ($item['price'] == $inputThamDinhGia['structure']) {
           $inputThamDinhGia['ketCauChinh'] = $item['structure'];
         }
-        if (count($inputThamDinhGia['structureMore'])) {
+        if (isset($inputThamDinhGia['structureMore']) && count($inputThamDinhGia['structureMore'])) {
           foreach ($inputThamDinhGia['structureMore'] as &$struct) {
             if ($item['price'] == $struct) {
               $struct = $item['structure'];
