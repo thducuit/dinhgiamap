@@ -20,7 +20,7 @@
 		{{ HTML::style('default/css/cenvalue.css') }}
 		{{ HTML::style('default/css/custom.css') }}
 		{{ HTML::style('default/css/responsive.css') }}
-		<!-- {{ HTML::style('default/css/styles.css') }} -->
+		{{ HTML::style('default/css/detail.css') }}
 
 		{{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
 		{{ HTML::style('admin/css/leaflet.draw.css') }}
