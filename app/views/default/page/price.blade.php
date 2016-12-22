@@ -96,7 +96,7 @@ MAIN
                       <div class="tab_body_inner">
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
                         <div class="form_row clearfix">
-                            <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
+                          <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                           <div class="form_col">
                             <label class="highlight">Vị trí tiếp giáp(*)</label>
                             <input type="hidden" name="type" value='vacant_land'/>
@@ -122,19 +122,19 @@ MAIN
                               @endforeach
                             </select>
                           </div>
-                          
+
                           <div class="form_col" style="width: 50%">
                             <label>Yếu tố khác</label>
                             <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                             <select class="selectYeuToKhac" name='selectYeuToKhac'>
-                              
+
                               @foreach ($yeuToKhac as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach															
                             </select>
                           </div>
 
-                              
+
                         </div>
 
                         <div class="form_row clearfix">
@@ -246,7 +246,7 @@ MAIN
                             <label>Yếu tố khác</label>
                             <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                             <select class="selectYeuToKhac" name='selectYeuToKhac'>
-                              
+
                               @foreach ($yeuToKhac as $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach															
@@ -284,7 +284,7 @@ MAIN
                           <div class="form_col">
                             <input type="text" placeholder="Đất Nông Nghiệp" name="farming_plan_area" value="{{ Input::old('farming_plan_area') }}">
                           </div>
-                          
+
                           <div class="form_col isShownCacLoaiDatKhac">
                             <input type="text" placeholder="Đất TMDV" name="trade_plan_area" value="{{ Input::old('trade_plan_area') }}">
                           </div>																										
@@ -421,7 +421,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          
+
                           @foreach ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -584,7 +584,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          
+
                           @foreach  ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -749,7 +749,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          
+
                           @foreach ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -914,7 +914,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          
+
                           @foreach ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -1079,7 +1079,7 @@ MAIN
                           <label>Yếu tố khác</label>
                           <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
                           <select class="selectYeuToKhac">
-                          
+
                           @foreach ($yeuToKhac as $s)
                           <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                           @endforeach
@@ -2397,22 +2397,22 @@ foreach ($dienTichDat as $item) {
         $(this).parents('.price-form').find('.inputChieuNgang:first').val(chieuNgangData);
 
         for (var i in dienTichDatOptions) {
-          var partPrice = dienTichDatOptions[i]['name'].split('≤');
+          var partPrice = dienTichDatOptions[i]['name'].split('<');
           if (!partPrice[0]) {
-            if (partPrice[1] && textDienTich * 1 <= partPrice[1] * 1) {
+            if (partPrice[1] && textDienTich * 1 < partPrice[1] * 1) {
               idOptionDienTichDat = i;
               break;
             }
           } else {
-            partPrice = dienTichDatOptions[i]['name'].split(' - ≤');
+            partPrice = dienTichDatOptions[i]['name'].split(' - ');
             if (partPrice[1]) {
-              if (textDienTich * 1 > partPrice[0] * 1 && textDienTich * 1 <= partPrice[1] * 1) {
+              if (textDienTich * 1 >= partPrice[0] * 1 && textDienTich * 1 <= partPrice[1] * 1) {
                 idOptionDienTichDat = i;
                 break;
               }
             } else {
-              partPrice = dienTichDatOptions[i]['name'].split('>');
-              if (textDienTich * 1 > partPrice[0]) {
+              partPrice = dienTichDatOptions[i]['name'].split('≥');
+              if (partPrice[1] && textDienTich * 1 >= partPrice[1]) {
                 idOptionDienTichDat = i;
                 break;
               }
@@ -2517,11 +2517,11 @@ foreach ($namXayDung as $item) {
   <?php
 }
 ?>
-      jQuery(document.body).on('keyup', '.textNamXD', function (event) {        
-        var textNamXD = $(this).val();       
-        if (textNamXD.length == 4) {          
+      jQuery(document.body).on('keyup', '.textNamXD', function (event) {
+        var textNamXD = $(this).val();
+        if (textNamXD.length == 4) {
           if (namXDOptions[textNamXD]) {
-            $(this).parent().find(".namXD1:first").val(namXDOptions[textNamXD]);                        
+            $(this).parent().find(".namXD1:first").val(namXDOptions[textNamXD]);
           }
         }
       });

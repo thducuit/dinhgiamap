@@ -61,34 +61,35 @@ MAIN
 									*/?>
                                     <div class="row">
                                       <div class="col-md-3 col-chitietsobo">
-                                        <div class="chitietsobo-item">Tổng diện tích đất(m2): {{$inputThamDinhGia['total_area']}}</div>
-                                        <div class="chitietsobo-item">Chiều ngang(m): {{$inputThamDinhGia['horizontal']}}</div>
-                                        <div class="chitietsobo-item">Chiều dài(m): {{$inputThamDinhGia['vertical']}}</div>
+                                        <div class="chitietsobo-item">Tổng diện tích đất ( m2 ) : {{$inputThamDinhGia['total_area']}}</div>
+                                        <div class="chitietsobo-item">Vị trí tiếp giáp: {{$inputThamDinhGia['vitri']}}</div>
                                       </div>
                                       <div class="col-md-3 col-chitietsobo">
-                                        <div class="chitietsobo-item">Vị trí tiếp giáp: {{$inputThamDinhGia['vitri']}}</div>
-                                        <div class="chitietsobo-item">Yếu tố khác: {{$inputThamDinhGia['yeuToKhac']}}</div>
+                                        <div class="chitietsobo-item">Chiều ngang ( m ) : {{$inputThamDinhGia['horizontal']}}</div>
                                         <div class="chitietsobo-item">Hình dạng thửa đất: {{$inputThamDinhGia['hinhDangThuaDat']}}</div>
                                       </div>
-                                      <div class="col-md-3 col-chitietsobo">                                        
-                                        <div class="chitietsobo-item">Diện tích phù hợp quy hoạch</div>
-                                        <div class="chitietsobo-item">Đất ở: {{$inputThamDinhGia['leaving_plan_area']}}</div>
-                                        <div class="chitietsobo-item">Đất nông nghiệp: {{$inputThamDinhGia['farming_plan_area']}}</div>
-                                        <div class="chitietsobo-item">Đất TMDV: {{$inputThamDinhGia['trade_plan_area']}}</div>
-                                        <div class="chitietsobo-item">Đất SXKD: {{$inputThamDinhGia['production_plan_area']}}</div>
-                                      </div>
-                                      <div class="col-md-3 col-chitietsobo">                                        
-                                        <div class="chitietsobo-item">Diện tích vi phạm lộ giới được công nhận</div>
-                                        <div class="chitietsobo-item">Đất ở: {{$inputThamDinhGia['leaving_violance_area']}}</div>
-                                        <div class="chitietsobo-item">Đất nông nghiệp: {{$inputThamDinhGia['farming_violance_area']}}</div>
-                                        <div class="chitietsobo-item">Đất TMDV: {{$inputThamDinhGia['trade_violance_area']}}</div>
-                                        <div class="chitietsobo-item">Đất SXKD: {{$inputThamDinhGia['production_violance_area']}}</div>
+                                      <div class="col-md-3 col-chitietsobo">
+                                        <div class="chitietsobo-item">Chiều dài ( m ) : {{$inputThamDinhGia['vertical']}}</div>
                                       </div>
                                     </div>
+                                    <div class="row">
+                                      <div class="col-md-12 col-chitietsobo"><div class="chitietsobo-item">Diện tích phù hợp quy hoạch:</div></div>
+                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất ở ( m ) :  {{$inputThamDinhGia['leaving_plan_area']}}</div></div>
+                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất nông nghiệp ( m ) : {{$inputThamDinhGia['farming_plan_area']}}</div></div>
+                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất TMDV ( m ) : {{$inputThamDinhGia['trade_plan_area']}}</div></div>
+                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất SXKD ( m ) : {{$inputThamDinhGia['production_plan_area']}}</div></div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12 col-chitietsobo"><div class="chitietsobo-item">Diện tích vi phạm lộ giới được công nhận:</div></div>
+                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất ở ( m ) :  {{$inputThamDinhGia['leaving_violance_area']}}</div></div>
+                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất nông nghiệp ( m ) : {{$inputThamDinhGia['farming_violance_area']}}</div></div>
+                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất TMDV ( m ) : {{$inputThamDinhGia['trade_violance_area']}}</div></div>
+                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất SXKD ( m ) : {{$inputThamDinhGia['production_violance_area']}}</div></div>
+                                    </div>                                    
                                     <?php if($inputThamDinhGia['shape']){?>
                                     <div class="row">
-                                      <div class="col-md-12">
-                                        Công trình xây dựng: 
+                                      <div class="col-md-12 col-chitietsobo">
+                                        <div class="chitietsobo-item">Công trình xây dựng: 
                                         <?php 
                                         switch($inputThamDinhGia['shape']){
                                           case 'nha_pho': echo 'Nhà phố';break;
@@ -96,6 +97,7 @@ MAIN
                                           default: echo 'Không có CTXD';break;
                                         }
                                         ?>
+                                        </div>
                                       </div>                                        
                                     </div>
                                     <?php }?>
@@ -140,43 +142,37 @@ MAIN
 								<div class="ketquadinhgia_body">
 									<table class="ketquadinhgia_table">
 										<thead>
-											<tr>
-												<th>STT</th>
+											<tr>											
 												<th>HẠNG MỤC</th>
 												<th>GIÁ TRỊ ( VNĐ ) </th>												
 											</tr>
 										</thead>
 										<tbody>
-                                            <tr>
-												<td></td>
+                                            <tr>												
 												<td class="text-left">Đơn giá thị trường đất ở bình quân</td>
 												<td class="text-right">{{ $result['unit_price'] }}</td>												
 											</tr>
-											<tr>
-												<td>I</td>
+											<tr>												
 												<td class="text-left"><strong>Quyền sử dụng đất</strong></td>
 												<td class="text-right">{{ $result['total_price'] }}</td>												
 											</tr>
 											
-											<tr>
-												<td>II</td>
+											<tr>												
 												<td class="text-left"><strong>Quyền sở hữu công trình xây dựng</strong></td>
 												<td class="text-right">{{ $result['building_price'] }}</td>												
 											</tr>
                                             <?php 
                                             if($result['buildingPriceMore']){                                              
                                               foreach($result['buildingPriceMore'] as $key => $price){?>
-                                            <tr>
-												<td>II</td>
+                                            <tr>												
 												<td class="text-left"><strong>Quyền sở hữu công trình xây dựng <?php echo $key+2?></strong></td>
 												<td class="text-right">{{ $price }}</td>												
 											</tr>
                                             <?php 
                                               }
                                             }?>
-											<tr>
-												<td>III</td>
-												<td class="text-left"><strong>Tổng giá trị (I+II)</strong></td>
+											<tr>												
+												<td class="text-left"><strong>Tổng giá trị</strong></td>
 												<td class="text-right">{{ $result['total'] }}</td>												
 											</tr>													
 										</tbody>

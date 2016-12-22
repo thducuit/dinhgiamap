@@ -161,31 +161,27 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 								<div class="ketquadinhgia_body">
 									<table class="ketquadinhgia_table">
 										<thead>
-											<tr>
-												<th>STT</th>
+											<tr>												
 												<th>HẠNG MỤC</th>
 												<th>GIÁ TRỊ ( VNĐ ) </th>												
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td></td>
+												
 												<td class="text-left"><strong>Đơn giá thị trường đề xuất</strong></td>
                                                 <td class="text-right"><span class='giaThiTruong'></span></td>												
 											</tr>
-											<tr>
-												<td>I</td>
+											<tr>												
 												<td class="text-left">Giá trị đất</td>
 												<td class="text-right"><span class='giaTriDat'></span></td>												
 											</tr>
-											<tr>
-												<td>II</td>
+											<tr>												
 												<td class="text-left"><strong>Giá trị công trình xây dựng</strong></td>
 												<td class="text-right"><span class='giaTriCTXD'></span></td>												
 											</tr>
-											<tr>
-												<td>III</td>
-												<td class="text-left"><strong>Tổng giá trị (I+II)</strong></td>
+											<tr>												
+												<td class="text-left"><strong>Tổng giá trị</strong></td>
 												<td class="text-right"><span class='tongGiaTriSoBo'></span></td>												
 											</tr>													
 										</tbody>
@@ -371,22 +367,22 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
       $(this).parents('.price-form').find('.inputChieuNgang:first').val(chieuNgangData);
 
       for(var i in dienTichDatOptions){
-        var partPrice = dienTichDatOptions[i]['name'].split('≤');
+        var partPrice = dienTichDatOptions[i]['name'].split('<');
         if(!partPrice[0]){
-          if(partPrice[1] && textDienTich*1 <= partPrice[1]*1){
+          if(partPrice[1] && textDienTich*1 < partPrice[1]*1){
             idOptionDienTichDat = i;
             break;
           }
         }else{
-          partPrice = dienTichDatOptions[i]['name'].split(' - ≤');
+          partPrice = dienTichDatOptions[i]['name'].split(' - ');
           if(partPrice[1]){
-            if(textDienTich*1 > partPrice[0]*1 && textDienTich*1 <= partPrice[1]*1){
+            if(textDienTich*1 >= partPrice[0]*1 && textDienTich*1 <= partPrice[1]*1){
               idOptionDienTichDat = i;
               break;
             }
           }else{
-            partPrice = dienTichDatOptions[i]['name'].split('>');
-            if(partPrice[1] && textDienTich*1 > partPrice[1]){
+            partPrice = dienTichDatOptions[i]['name'].split('≥');
+            if(partPrice[1] && textDienTich*1 >= partPrice[1]){
               idOptionDienTichDat = i;
               break;
             }
