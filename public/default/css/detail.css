@@ -1,0 +1,63 @@
+.detail-info .desc .info li {
+     width: 49%; 
+    display: inline-block; 
+    font-size: 18px; 
+    line-height: 2.0; 
+    vertical-align: top; 
+}
+
+.detail-info .desc {
+    font-family: Arial,sans-serif;
+    color: #848484;
+    font-size: 16px;
+}
+
+.block-utilities {
+    padding-top: 5px;
+}
+
+.detail-info .desc .info {
+    margin-left: 0;
+}
+
+.detail-info .desc .info li {
+    line-height: 25px;
+    padding-top: 4px;
+    padding-right: 10px;
+    font-family: Arial,sans-serif;
+    font-size: 16px;
+}
+
+.block-utilities .acreage {
+    background-image: url(../images/chi-tiet/acreage.webp);
+}
+.block-utilities .floor {
+    background-image: url(../images/chi-tiet/floor.webp);
+}
+.block-utilities .height {
+    background-image: url(../images/chi-tiet/height.webp);
+}
+.block-utilities .width {
+    background-image: url(../images/chi-tiet/width.webp);
+}
+.block-utilities .incense {
+    background-image: url(../images/chi-tiet/incense-small.webp);
+}
+.block-utilities .utilities {
+    background-position: left top;
+    background-repeat: no-repeat;
+    padding-left: 37px;
+    min-height: 32px;
+    margin: 10px 0;
+    background-size: 35px;
+    font-family: Arial,sans-serif;
+    height: 40px;
+}
+
+.detail-info .desc-info{
+	font-size: 16px;
+	padding: 0px 10px;
+}
+.detail-info .desc-info p{
+	margin-bottom: 10px;
+}
