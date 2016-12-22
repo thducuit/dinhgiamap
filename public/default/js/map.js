@@ -170,7 +170,7 @@
               var districtName = (place.districtName)?place.districtName:'Quận 1';
               $('.giaThiTruong').val(priceFormat);
               $('.giaUB').val(statePriceFormat);
-              $('.giaUBLabel').html(priceFormat.replace(/,/gm, '.'));
+              $('.giaUBLabel').html(statePriceFormat.replace(/,/gm, '.'));
               
               $('.textDistrict').val(districtName);              
               $('#modal_dongiasobo').modal('show');
