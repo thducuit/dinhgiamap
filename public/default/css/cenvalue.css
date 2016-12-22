@@ -2839,7 +2839,7 @@ body.menu_mobile_active {
 
 	padding: 10px 0px 10px 50px;
 
-	max-width: 1170px;
+	max-width: 1318px;
 
 }
 
@@ -2847,7 +2847,7 @@ body.menu_mobile_active {
 
 	float: left;
 
-	width: 16%;
+	width: 171px;
 
 	padding-right: 20px;
 
@@ -2932,11 +2932,8 @@ body.menu_mobile_active {
 	padding: 8px;
 
 }
-
-#btn_submit_xem_qui_hoach {
-
-	margin: 20px 0 0;
-
+.filter_group .btn{
+  margin: 20px 0 0;
 }
 
 .page_xemquihoach_wrapper #map_xemquihoach {

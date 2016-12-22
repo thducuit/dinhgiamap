@@ -62,9 +62,12 @@ MAIN
 						</div>
 						<div class="filter_col">
 							<div class="popup_button_group">
-								<a href="#"><div id="btn_submit_xem_qui_hoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>
+								<a href="#"><div id="btn_submit_xem_qui_hoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>                               
 							</div>
 						</div>
+                      <div class="filter_col">                        
+                         <a href="{{ URL::to('/tai-san-dang-giao-dich.html') }}" class="btn btn_icon btn_gradient4"><i class="icon_xemquihoach"></i><span>Tài sản đang giao dịch</span></a>                        
+                      </div>
 					</div>
 					
 					<!-- Map -->
