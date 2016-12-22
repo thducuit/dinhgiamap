@@ -147,16 +147,17 @@ MAIN
 											</tr>
 										</thead>
 										<tbody>
+                                            <tr>
+												<td></td>
+												<td class="text-left">Đơn giá thị trường đất ở bình quân</td>
+												<td class="text-right">{{ $result['unit_price'] }}</td>												
+											</tr>
 											<tr>
 												<td>I</td>
 												<td class="text-left"><strong>Quyền sử dụng đất</strong></td>
 												<td class="text-right">{{ $result['total_price'] }}</td>												
 											</tr>
-											<tr>
-												<td></td>
-												<td class="text-left">Đơn giá thị trường đất ở bình quân</td>
-												<td class="text-right">{{ $result['unit_price'] }}</td>												
-											</tr>
+											
 											<tr>
 												<td>II</td>
 												<td class="text-left"><strong>Quyền sở hữu công trình xây dựng</strong></td>
