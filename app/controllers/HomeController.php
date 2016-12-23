@@ -81,18 +81,43 @@ class HomeController extends BaseController {
   }
 
   public function getPrice() {
-    $rules = array(
-        'leaving_plan_area' => 'required'
+    $rules = array(        
+        'total_area' => 'required',
+        'horizontal' => 'required',
+        'vertical' => 'required',
+        'leaving_plan_area' => 'required',        
+        'farming_plan_area' => 'required',
+        'leaving_violance_area' => 'required',
+        'farming_violance_area' => 'required'
     );
 
     $messages = array(
-        'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch',
-        'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch',
+        'total_area.required' => 'Nhập tổng diện tích',
+        'total_area.numeric' => 'Nhập số tổng diện tích',
+        
+        'horizontal.required' => 'Nhập chiều ngang mặt tiền',
+        'horizontal.numeric' => 'Nhập số chiều ngang mặt tiền',
+        
+        'vertical.required' => 'Nhập chiều dài lớn nhất',
+        'vertical.numeric' => 'Nhập số chiều dài lớn nhất',
+        
+        'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch ( đất ở )',
+        'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch ( đất ở )',
+        
+        'farming_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch ( đất nông nghiệp )',
+        'farming_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch ( đất nông nghiệp )',
+        
+        'leaving_violance_area.required' => 'Nhập diện tích vi phạm lộ giới được công nhận ( đất ở )',
+        'leaving_violance_area.numeric' => 'Nhập số diện tích vi phạm lộ giới được công nhận ( đất ở )',
+        
+        'farming_violance_area.required' => 'Nhập diện tích vi phạm lộ giới được công nhận ( đất nông nghiệp )',
+        'farming_violance_area.numeric' => 'Nhập số diện tích vi phạm lộ giới được công nhận ( đất nông nghiệp )',
     );
     $validation = Validator::make(Input::get(), $rules, $messages);
 
     if ($validation->fails()) {
-      $url = '/price?placeId=' . Input::get('place_id') . '&street=' . Input::get('street');
+      
+      $url = '/price?placeId=' . Input::get('place_id') . '&address='.Input::get('address') .'&street=' . Input::get('street_id');
       return Redirect::to($url)
                       ->withInput(Input::all())
                       ->withErrors($validation)
@@ -201,6 +226,7 @@ class HomeController extends BaseController {
         }
       }
     }
+    
     return View::make('default.page.result')
                     ->with(array('title' => 'kết quả định giá'))
                     ->with(array('result' => $result))

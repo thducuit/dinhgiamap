@@ -48,17 +48,7 @@ MAIN
         <div class="modal-content">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <div class="modal-body">
-            <!--.errors-->
-            @if( $errors->has() )
-            <div class="row the-error">
-              <div class="col-md-12">
-                @foreach( $errors->all() as $error )
-                <p class="error">{{ $error }} </p>
-                @endforeach
-              </div>
-            </div>
-            @endif
-            <!--/.errors-->
+
 
             <!--.alert-->
             @if( Session::get('message') )
@@ -93,6 +83,17 @@ MAIN
                       <p>Địa chỉ : {{ $address }}</p>
                     </div>
                     <div class="tab_body">
+                      <!--.errors-->
+                      @if( $errors->has() )
+                      <div class="row the-error">
+                        <div class="col-md-12">
+                          @foreach( $errors->all() as $error )
+                          <p class="error">{{ $error }} </p>
+                          @endforeach
+                        </div>
+                      </div>
+                      @endif
+                      <!--/.errors-->
                       <div class="tab_body_inner">
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form vacant_land_form') ) }}
                         <div class="form_row clearfix">
@@ -214,6 +215,17 @@ MAIN
                       <p>Địa chỉ : {{ $address }}</p>
                     </div>
                     <div class="tab_body">
+                      <!--.errors-->
+                      @if( $errors->has() )
+                      <div class="row the-error">
+                        <div class="col-md-12">
+                          @foreach( $errors->all() as $error )
+                          <p class="error">{{ $error }} </p>
+                          @endforeach
+                        </div>
+                      </div>
+                      @endif
+                      <!--/.errors-->
                       <div class="tab_body_inner">
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix price-form house_form') ) }}
                         <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
@@ -314,7 +326,7 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label>Công trình xây dựng</label>
-                            <select name="shape" class="selectCongTrinhXayDung">                                                  
+                            <select name="congTrinhXD" class="selectCongTrinhXayDung">                                                  
                               <option value="">Không có CTXD</option>
                               <option value="nha_pho">Nhà phố</option>
                               <option value="biet_thu">Biệt thự</option>
