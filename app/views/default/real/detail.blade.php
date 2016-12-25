@@ -21,10 +21,10 @@ MAIN
                     	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">		
 	                    	<div class="carousel-inner">
 	                    		<div class="item active">
-					               <img src="images/chi-tiet/real-estate-002.jpg" alt="Chania">
+					               <img src="{{ URL::asset('default/images/chi-tiet/real-estate-002.jpg') }}" alt="Chania">
 					            </div>
 					            <div class="item">
-					               <img src="images/chi-tiet/real-estate-001.jpg" alt="Chania">
+					               <img src="{{ URL::asset('default/images/chi-tiet/real-estate-001.jpg') }}" alt="Chania">
 					            </div>       
 
 					        </div>
@@ -33,10 +33,10 @@ MAIN
 					        <div class="">
 					        	 <!-- Controls -->
 					        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-					            <img src="images/slider_arrow_left.png" class="icon-prev">
+					            <img src="{{ URL::asset('default/images/slider_arrow_left.png') }}" class="icon-prev">
 					        </a>
 					        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-					           <img src="images/slider_arrow_right.png" class="icon-next">
+					           <img src="{{ URL::asset('default/images/slider_arrow_right.png') }}" class="icon-next">
 					        </a>	
 					        </div>			  
 						  	
@@ -65,21 +65,21 @@ MAIN
                     <div class="property-meta">
                         <ul>
                             <li class="">
-                            	<span><img src="images/property_icon_1.png"/> 5</span>
+                            	<span><img src="{{ URL::asset('default/images/property_icon_1.png') }}"/> 5</span>
                             </li>
                             <li class="">
-                            	<span><img src="images/property_icon_2.png"/>5</span>
+                            	<span><img src="{{ URL::asset('default/images/property_icon_2.png') }}"/>5</span>
                         	</li>
                             <li class="">
-                            	<span><img src="images/property_icon_3.png"/>3</span>
+                            	<span><img src="{{ URL::asset('default/images/property_icon_3.png') }}"/>3</span>
                         	</li>
                             <li class="">
                             	<span>
-                            		<img src="images/property_icon_4.png"/>105 m<sup>2</sup>
+                            		<img src="{{ URL::asset('default/images/property_icon_4.png') }}"/>105 m<sup>2</sup>
                             	</span>
                         	</li>
-                            <li class=""><img src="images/property_icon_5.png"/> 33.33 triệu/m<sup>2</sup></li>
-                            <li class=""><img src="images/property_icon_6.png"/> Giá bán 3.5 tỷ</li>
+                            <li class=""><img src="{{ URL::asset('default/images/property_icon_5.png') }}"/> 33.33 triệu/m<sup>2</sup></li>
+                            <li class=""><img src="{{ URL::asset('default/images/property_icon_6.png') }}"/> Giá bán 3.5 tỷ</li>
                         </ul>
                     </div>
                     <div class="meta-content">
@@ -429,7 +429,7 @@ MAIN
 		                        </div>
 		                        <div id="collapseFour" class="panel-collapse collapse">
 		                            <div class="panel-body" style="border-top: none;">
-		                            	<img src="images/chi-tiet/area-facility.png" class="img-responsive">
+		                            	<img src="{{ URL::asset('default/images/chi-tiet/area-facility.png') }}" class="img-responsive">
 		                            </div>
 		                        </div>
 		                    </div>
