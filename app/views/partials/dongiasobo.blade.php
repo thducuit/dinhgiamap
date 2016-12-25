@@ -408,6 +408,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 
     });
     $('#modal_dongiasobo #btn_dinhgiasobo').unbind().click(function(){
+      $('.error-dongiasobo').html('');
       //Gia tri dat
       var viTri = $('#modal_dongiasobo .inputViTri').val();
       var hinhDangThuaDat = $('#modal_dongiasobo .inputHinhDangThuaDat').val();
@@ -418,13 +419,25 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
       var textChieuNgang = $('#modal_dongiasobo .textChieuNgang').val();
       var textChieuDai = $('#modal_dongiasobo .textChieuDai').val();                                 
       var ctxd = $('#modal_dongiasobo .selectCongTrinhXayDung').val();
+      var hasError = false;
+      if(!dienTichDatText){
+        hasError = true;
+        $('.error-dongiasobo').append('<li>Vui lòng nhập Tổng diện tích</li>');
+      }
+      if(!textChieuNgang){
+        hasError = true;
+        $('.error-dongiasobo').append('<li>Vui lòng nhập Chiều ngang mặt tiền</li>');
+      }
+      if(!textChieuDai){
+        hasError = true;
+        $('.error-dongiasobo').append('<li>Vui lòng nhập Chiều dài lớn nhất</li>');
+      }
       giaThiTruong = giaThiTruong.replace(/\,/gm, '');      
       
        //giá trị công trình xây dựng
      var ketCauChinh = $('#modal_dongiasobo .selectKetCauChinh').val();
      var dienTichSanXD = $('#modal_dongiasobo .dien-tich-san-xd').val();
-     var namXayDung = $('#modal_dongiasobo .namXD').val();   
-     var hasError = false;
+     var namXayDung = $('#modal_dongiasobo .namXD').val();        
      
      if(ctxd){
        if(!dienTichSanXD){

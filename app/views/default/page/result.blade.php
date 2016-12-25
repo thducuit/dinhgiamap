@@ -76,22 +76,30 @@ MAIN
                                       <div class="col-md-12 col-chitietsobo"><div class="chitietsobo-item">Diện tích phù hợp quy hoạch:</div></div>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất ở ( m ) :  {{$inputThamDinhGia['leaving_plan_area']}}</div></div>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất nông nghiệp ( m ) : {{$inputThamDinhGia['farming_plan_area']}}</div></div>
+                                      <?php if($inputThamDinhGia['trade_plan_area']){?>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất TMDV ( m ) : {{$inputThamDinhGia['trade_plan_area']}}</div></div>
+                                      <?php }?>
+                                      <?php if($inputThamDinhGia['production_plan_area']){?>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất SXKD ( m ) : {{$inputThamDinhGia['production_plan_area']}}</div></div>
+                                      <?php }?>
                                     </div>
                                     <div class="row">
                                       <div class="col-md-12 col-chitietsobo"><div class="chitietsobo-item">Diện tích vi phạm lộ giới được công nhận:</div></div>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất ở ( m ) :  {{$inputThamDinhGia['leaving_violance_area']}}</div></div>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất nông nghiệp ( m ) : {{$inputThamDinhGia['farming_violance_area']}}</div></div>
+                                      <?php if($inputThamDinhGia['trade_violance_area']){?>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất TMDV ( m ) : {{$inputThamDinhGia['trade_violance_area']}}</div></div>
+                                      <?php }?>
+                                      <?php if($inputThamDinhGia['production_violance_area']){?>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất SXKD ( m ) : {{$inputThamDinhGia['production_violance_area']}}</div></div>
+                                      <?php }?>
                                     </div>                                    
-                                    <?php if($inputThamDinhGia['shape']){?>
+                                    <?php if(isset($inputThamDinhGia['congTrinhXD']) && $inputThamDinhGia['congTrinhXD']){?>
                                     <div class="row">
                                       <div class="col-md-12 col-chitietsobo">
                                         <div class="chitietsobo-item">Công trình xây dựng: 
                                         <?php 
-                                        switch($inputThamDinhGia['shape']){
+                                        switch($inputThamDinhGia['congTrinhXD']){
                                           case 'nha_pho': echo 'Nhà phố';break;
                                           case 'biet_thu': echo 'Biệt thự';break;
                                           default: echo 'Không có CTXD';break;
@@ -101,7 +109,7 @@ MAIN
                                       </div>                                        
                                     </div>
                                     <?php }?>
-                                    <?php if($inputThamDinhGia['shape'] && $inputThamDinhGia['ketCauChinh']){?>
+                                    <?php if(isset($inputThamDinhGia['congTrinhXD']) && $inputThamDinhGia['congTrinhXD'] && $inputThamDinhGia['ketCauChinh']){?>
                                     <div class="row">                                      
                                       <div class="col-md-3 col-chitietsobo">
                                         <div class="chitietsobo-item">Công trình xây dựng 1</div>                                        
