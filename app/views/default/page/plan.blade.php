@@ -115,7 +115,7 @@ MAIN
     var map = L.map('map_photo', {
 		minZoom: mapMinZoom,
 		maxZoom: mapMaxZoom
-    }).setView([0, 0], 7);
+    }).setView([0, 0], 3);
 
     L.tileLayer('/public/plans/HIEPTANQUYHOACH/{z}/{x}/{y}.png', {
         minZoom: mapMinZoom,
