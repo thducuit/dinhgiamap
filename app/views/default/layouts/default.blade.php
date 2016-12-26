@@ -144,7 +144,7 @@
 
 						</div>
 					<div class="footer_col text-center" style="text-align: center;">
-						<a href="#lienhe">
+						<a href="{{ URL::to('/lien-he.html') }}">
 							<span>Liên hệ định giá</span>
 							<img src="{{ URL::asset('default/images/footer_lienhe3.png') }}" style="  padding-bottom: 4px;">
 						</a>

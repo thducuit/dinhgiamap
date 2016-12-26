@@ -9,18 +9,25 @@ class MarkerTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		$results = Excel::load('public/data/diachi phu trung.xlsx')->get();
+		$list = array(
+			'Hiep Tan', 'Hoa Thanh', 'Phu Thanh', 'Phu Tho Hoa', 'Phu Trung', 'Son Ky', 'Tan Quy', 'Tan Son Nhi', 'Tay Thanh'
+		);
+		//DB::table('markers')->truncate();
 
-		DB::table('markers')->truncate();
+		$results = Excel::load('public/data/Tay Thanh.xlsx')->get();
+
 		foreach($results as $row) {
 			//dd($row); die();
 			$name = join(', ', array($row->dia_chi, $row->duong, $row->phuong, $row->quan));
-			//echo $name; die();
+			$gia_thi_truong = ($row->gia_thi_truong) ? $row->gia_thi_truong : 0;
+			$gia_ubnd = ($row->gia_ubnd) ? $row->gia_ubnd : 0;
+			echo $name;
 			DB::table('markers')->insert(array(
-		         array('name'=> $name)
-		        ));
-			
+			        array('name'=> $name, 'price' => $gia_thi_truong, 'state_price' => $gia_ubnd)
+			   ));
 		}
+		
+		
 	}
 
 }
