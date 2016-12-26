@@ -70,6 +70,7 @@ MAIN
                                       </div>
                                       <div class="col-md-3 col-chitietsobo">
                                         <div class="chitietsobo-item">Chiều dài ( m ) : {{$inputThamDinhGia['vertical']}}</div>
+                                        <div class="chitietsobo-item">Yếu tố khác: {{$inputThamDinhGia['yeuToKhac']}}</div>
                                       </div>
                                     </div>
                                     <div class="row">

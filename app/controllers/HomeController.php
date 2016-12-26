@@ -81,6 +81,7 @@ class HomeController extends BaseController {
   }
 
   public function getPrice() {
+    
     $rules = array(        
         'total_area' => 'required',
         'horizontal' => 'required',
@@ -114,7 +115,10 @@ class HomeController extends BaseController {
         'farming_violance_area.numeric' => 'Nhập số diện tích vi phạm lộ giới được công nhận ( đất nông nghiệp )',
     );
     $validation = Validator::make(Input::get(), $rules, $messages);
-
+    
+    if(!count(Input::get('selectYeuToKhac'))){
+      $validator->getMessageBag()->add('selectYeuToKhac', 'Vui lòng chọn yếu tố khác');
+    }
     if ($validation->fails()) {
       
       $url = '/price?placeId=' . Input::get('place_id') . '&address='.Input::get('address') .'&street=' . Input::get('street_id');
@@ -184,7 +188,7 @@ class HomeController extends BaseController {
   public function showResult() {
     $result = $this->cart->getLastResult();
     $inputThamDinhGia = Session::get('inputThamDinhGia');
-
+  
     $inputThamDinhGia['vitri'] = '';
     $inputThamDinhGia['yeuToKhac'] = '';
     $inputThamDinhGia['hinhDangThuaDat'] = '';
@@ -202,11 +206,17 @@ class HomeController extends BaseController {
         $inputThamDinhGia['vitri'] = $item['description'];
       }
     }
+    
+    
     foreach ($yeuToKhac as $item) {
-      if ($item['id'] == $inputThamDinhGia['selectYeuToKhac']) {
-        $inputThamDinhGia['yeuToKhac'] = $item['description'];
+      foreach($inputThamDinhGia['selectYeuToKhac'] as $yeuTo){
+        if ($item['id'] == $yeuTo) {    
+          $inputThamDinhGia['yeuToKhac'] .= $item['description'].', ';
+        }
       }
+      
     }
+    
     foreach ($hinhDangThuaDat as $item) {
       if ($item['id'] == $inputThamDinhGia['shape']) {
         $inputThamDinhGia['hinhDangThuaDat'] = $item['description'];

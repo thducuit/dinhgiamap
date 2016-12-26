@@ -124,12 +124,12 @@ MAIN
                             </select>
                           </div>
 
-                          <div class="form_col" style="width: 50%">
+                          <div class="form_col yeu-to-khac-box" style="width: 50%">
                             <label>Yếu tố khác</label>
-                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
-                            <select class="selectYeuToKhac" name='selectYeuToKhac'>
 
-                              @foreach ($yeuToKhac as $s)
+                            <div class="box-input-yeutokhac"></div>
+                            <select class="selectYeuToKhac" name='selectYeuToKhac[]'  multiple="multiple">
+                              @foreach ($yeuToKhac as $key => $s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach															
                             </select>
@@ -254,12 +254,11 @@ MAIN
                               @endforeach
                             </select>
                           </div>
-                          <div class="form_col"  style="width: 50%;">
+                          <div class="form_col yeu-to-khac-box"  style="width: 50%;">
                             <label>Yếu tố khác</label>
-                            <input type="hidden" name="yeuToKhac"  value="" class="inputYeuToKhac">
-                            <select class="selectYeuToKhac" name='selectYeuToKhac'>
-
-                              @foreach ($yeuToKhac as $s)
+                            <div class="box-input-yeutokhac"></div>
+                            <select class="selectYeuToKhac" name='selectYeuToKhac[]' multiple="">
+                              @foreach ($yeuToKhac as $key=>$s)
                               <option value="{{ $s['id'] }}">{{ $s['description'] }}</option>
                               @endforeach															
                             </select>
@@ -2311,12 +2310,12 @@ foreach ($dienTichDat as $item) {
 
       function setDinhGiaField() {
       }
+      var quan = '';
       jQuery('.selectQuan, .selectVitri, .selectHinhDangThuaDat,' +
-              ' .selectYeuToKhac,.textChieuNgang, .textDienTichDat').change(function () {
-        var quan = $(this).parents('.price-form').find('.textDistrict:first').val();
+              '.textChieuNgang, .textDienTichDat').change(function () {
+        quan = $(this).parents('.price-form').find('.textDistrict:first').val();
         var idOptionVitri = $(this).parents('.price-form').find('.selectVitri:first').val();
         var idOptionHinhDangThuaDat = $(this).parents('.price-form').find('.selectHinhDangThuaDat:first').val();
-        var idOptionYeuToKhac = $(this).parents('.price-form').find('.selectYeuToKhac:first').val();
         var idOptionChieuNgang = null;
         var idOptionDienTichDat = null;
         var textChieuNgang = $(this).parents('.price-form').find('.textChieuNgang:first').val();
@@ -2357,15 +2356,6 @@ foreach ($dienTichDat as $item) {
           }
         }
         $(this).parents('.price-form').find('.inputHinhDangThuaDat:first').val(hinhDangThuaDatData);
-
-        if (yeuToKhacOptions[idOptionYeuToKhac]) {
-          if (quan == 'Quận 1' || quan == 'Quận 3') {
-            yeuToKhacData = yeuToKhacOptions[idOptionYeuToKhac].quanTrungTam;
-          } else {
-            yeuToKhacData = yeuToKhacOptions[idOptionYeuToKhac].quanKhac;
-          }
-        }
-        $(this).parents('.price-form').find('.inputYeuToKhac:first').val(yeuToKhacData);
 
         for (var i in chieuNgangOptions) {
           var partPrice = chieuNgangOptions[i]['name'].split('<');
@@ -2449,7 +2439,24 @@ foreach ($dienTichDat as $item) {
         $(this).parents('.price-form').find('.inputDienTichDat:first').val(dienTichDatData);
 
       });
+      
+      $('.selectYeuToKhac').change(function () {
+        var idOptions = $(this).val();        
+        var inputs = '';
+        var yeuToKhacData = '';
+        for (var i = 0; i < idOptions.length; i++) {                    
+          if (yeuToKhacOptions[idOptions[i]]) {
+            if (quan == 'Quận 1' || quan == 'Quận 3') {
+              yeuToKhacData = yeuToKhacOptions[idOptions[i]].quanTrungTam;
+            } else {
+              yeuToKhacData = yeuToKhacOptions[idOptions[i]].quanKhac;
+            }
+          }
+          inputs += '<input type="hidden" name="yeuToKhac[]"  value="' + yeuToKhacData + '"/>';
 
+        }
+        $(this).parent().find('.box-input-yeutokhac:first').html(inputs);
+      });
       var optionsKetCauChinh = '';
       $('.selectCongTrinhXayDung').change(function () {
         var congTrinh = $(this).val();
@@ -2537,6 +2544,11 @@ foreach ($namXayDung as $item) {
           }
         }
       });
+      
+      $('.selectYeuToKhac').val($('.selectYeuToKhac option:first').val());
+      $('.selectYeuToKhac').trigger('change');
+      $('.selectYeuToKhac').multiselect();
+      
     });
   </script>
   {{ HTML::script('default/js/map.js') }}

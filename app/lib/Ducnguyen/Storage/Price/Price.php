@@ -88,7 +88,12 @@ class Price implements PriceRepository
         $total_area = $input['total_area'];
         
 //        $unit_price = $this->getUnitPriceAfterConfig($unit_price, $shape_persent);
-        $unit_price = $unit_price*1 + $unit_price*($input['viTri'] + $input['hinhDangThuaDat'] + $input['yeuToKhac'] + $input['chieuNgang']  + $input['dienTichDat'])/100;        
+        $yeuToKhac = 0;
+        foreach($input['yeuToKhac'] as $item){
+          $yeuToKhac += $item*1;
+        }
+        
+        $unit_price = $unit_price*1 + $unit_price*($input['viTri'] + $input['hinhDangThuaDat'] + $yeuToKhac + $input['chieuNgang']  + $input['dienTichDat'])/100;        
         $price_in_plan = $this->getPriceInPlan($unit_price, $leaving_plan_area, $trade_plan_area, $production_plan_area, $farming_plan_area);
         $price_in_violance = $this->getPriceInViolance($unit_price, $unit_state_price, $leaving_violance_area, $trade_violance_area, $production_violance_area, $farming_violance_area);
        
