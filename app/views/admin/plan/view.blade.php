@@ -4,7 +4,7 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-				    <span class="pull-left">Danh sách Quy hoạch</span>
+				    <span class="pull-left">Danh sách Bản đồ Quy hoạch</span>
 				    <!-- <a href="{{ URL::to('admin/plans/add') }}" class="btn btn-info btn-md pull-right">Thêm</a> -->
 				</div>
 				<div class="panel-body">
@@ -18,7 +18,7 @@
 		                                <thead>
                     					    <tr>
                     					        <th style=""><div class="th-inner ">Tên bản đồ quy hoạch</div></th>
-                    					        <th style=""><div class="th-inner ">Trạng thái</div></th>
+                                                <th style=""><div class="th-inner ">Trạng thái</div></th>
                     					        <th style=""><div class="th-inner "></div></th>
                     					    </tr>
 					                    </thead>
@@ -27,6 +27,7 @@
     					                        @foreach($plans as $e)
     					                        <tr>
     					                            <td>{{ $e->name }}</td>
+                                                    <td></td>
     					                            <td>
     					                            	<div class="btn-group">
     					                            		
@@ -43,8 +44,11 @@
     					                            		@else
     					                            			<a href="{{ URL::to('admin/plans/show/' . $e->id) }}" class='btn btn-warning'>Đang ẩn</a>
     					                            		@endif
+
+                                                            
     					                            	</div>
     					                            </td>
+
     					                        </tr>
     					                        @endforeach
     					                        @else

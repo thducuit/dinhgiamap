@@ -7,7 +7,7 @@ class PlanController extends AdminController {
     public function __construct()
     {
         parent::__construct();
-        $this->active('quy-hoach');
+        $this->active('ban-do-quy-hoach');
         $this->uploadPath = public_path() . '/upload/';
         $this->listPosition = array();
     }
@@ -77,7 +77,7 @@ class PlanController extends AdminController {
         
         return View::make('admin.plan.view')
             ->with(array('menu' => $this->menuInstance() ))
-            ->with(array('title' => 'Quy hoạch', 'plans' => $plans, 'pager' => $pager));
+            ->with(array('title' => 'Bản đồ Quy hoạch', 'plans' => $plans, 'pager' => $pager));
     }
 
     public function getUpdate($name = '')
