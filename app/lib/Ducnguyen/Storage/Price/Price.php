@@ -78,13 +78,13 @@ class Price implements PriceRepository
         
         $shape_persent = $input['shape'];
         $leaving_plan_area = $input['leaving_plan_area'];
-        $trade_plan_area = $input['trade_plan_area'];
-        $production_plan_area = $input['production_plan_area'];
-        $farming_plan_area = $input['farming_plan_area'];
-        $leaving_violance_area = $input['leaving_violance_area'];
-        $trade_violance_area = $input['trade_violance_area'];
-        $production_violance_area = $input['production_violance_area'];
-        $farming_violance_area = $input['farming_violance_area'];
+        $trade_plan_area = ($input['trade_plan_area'])?$input['trade_plan_area']:0;
+        $production_plan_area = ($input['production_plan_area'])?$input['production_plan_area']:0;
+        $farming_plan_area = ($input['farming_plan_area'])?$input['farming_plan_area']:0;
+        $leaving_violance_area = ($input['leaving_violance_area'])?$input['leaving_violance_area']:0;
+        $trade_violance_area = ($input['trade_violance_area'])?$input['trade_violance_area']:0;
+        $production_violance_area = ($input['production_violance_area'])?$input['production_violance_area']:0;
+        $farming_violance_area = ($input['farming_violance_area'])?$input['farming_violance_area']:0;
         $total_area = $input['total_area'];
         
 //        $unit_price = $this->getUnitPriceAfterConfig($unit_price, $shape_persent);

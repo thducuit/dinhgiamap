@@ -69,14 +69,15 @@ MAIN
                                         <div class="chitietsobo-item">Hình dạng thửa đất: {{$inputThamDinhGia['hinhDangThuaDat']}}</div>
                                       </div>
                                       <div class="col-md-6 col-chitietsobo">
-                                        <div class="chitietsobo-item">Chiều dài ( m ) : {{$inputThamDinhGia['vertical']}}</div>
-                                        <div class="chitietsobo-item">Yếu tố khác: {{$inputThamDinhGia['yeuToKhac']}}</div>
+                                        <?php if($inputThamDinhGia['vertical']){?><div class="chitietsobo-item">Chiều dài ( m ) : {{$inputThamDinhGia['vertical']}}</div><?php }?>
+                                        <?php if($inputThamDinhGia['yeuToKhac']){?><div class="chitietsobo-item">Yếu tố khác: {{$inputThamDinhGia['yeuToKhac']}}</div><?php }?>
                                       </div>
                                     </div>
+                                    <?php if($inputThamDinhGia['farming_plan_area'] || $inputThamDinhGia['trade_plan_area'] || $inputThamDinhGia['production_plan_area']){?>
                                     <div class="row">
                                       <div class="col-md-12 col-chitietsobo"><div class="chitietsobo-item">Diện tích phù hợp quy hoạch:</div></div>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất ở ( m ) :  {{$inputThamDinhGia['leaving_plan_area']}}</div></div>
-                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất nông nghiệp ( m ) : {{$inputThamDinhGia['farming_plan_area']}}</div></div>
+                                      <?php if($inputThamDinhGia['farming_plan_area']){?><div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất nông nghiệp ( m ) : {{$inputThamDinhGia['farming_plan_area']}}</div></div><?php }?>
                                       <?php if($inputThamDinhGia['trade_plan_area']){?>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất TMDV ( m ) : {{$inputThamDinhGia['trade_plan_area']}}</div></div>
                                       <?php }?>
@@ -84,10 +85,11 @@ MAIN
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất SXKD ( m ) : {{$inputThamDinhGia['production_plan_area']}}</div></div>
                                       <?php }?>
                                     </div>
+                                    <?php ?>
                                     <div class="row">
                                       <div class="col-md-12 col-chitietsobo"><div class="chitietsobo-item">Diện tích vi phạm lộ giới được công nhận:</div></div>
-                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất ở ( m ) :  {{$inputThamDinhGia['leaving_violance_area']}}</div></div>
-                                      <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất nông nghiệp ( m ) : {{$inputThamDinhGia['farming_violance_area']}}</div></div>
+                                      <?php if($inputThamDinhGia['leaving_violance_area']){?><div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất ở ( m ) :  {{$inputThamDinhGia['leaving_violance_area']}}</div></div><?php }?>
+                                      <?php if($inputThamDinhGia['farming_violance_area']){?><div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất nông nghiệp ( m ) : {{$inputThamDinhGia['farming_violance_area']}}</div></div><?php }?>
                                       <?php if($inputThamDinhGia['trade_violance_area']){?>
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất TMDV ( m ) : {{$inputThamDinhGia['trade_violance_area']}}</div></div>
                                       <?php }?>
