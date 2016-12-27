@@ -17,11 +17,12 @@
 		{{ HTML::style('default/css/bootstrap.min.css') }}
 		{{ HTML::style('default/css/normalize.min.css') }}
 		{{ HTML::style('//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css') }}
+        {{ HTML::style('default/css/bootstrap-multiselect.css') }}
 		{{ HTML::style('default/css/cenvalue.css') }}
 		{{ HTML::style('default/css/custom.css') }}
 		{{ HTML::style('default/css/responsive.css') }}
 		{{ HTML::style('default/css/detail.css') }}
-
+        
 		{{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
 		{{ HTML::style('admin/css/leaflet.draw.css') }}
 
@@ -220,6 +221,7 @@
 		
 		{{ HTML::script('default/js/zjs/z.min.js') }}
 		{{ HTML::script('default/js/jquery.accordion.js') }}
+        {{ HTML::script('default/js/bootstrap-multiselect.js') }}
 		{{ HTML::script('default/js/cenvalue.js') }}
 		{{ HTML::script('default/js/custom.js') }}
 	</body>

@@ -96,4 +96,20 @@
 .page_contact_right .block_contact_form .form_group .form_field textarea{
     height: 100px
 }
+.yeu-to-khac-box .btn-group, .yeu-to-khac-box .btn-group .btn{
+  background: #e8e8e8;
+}
 
+.yeu-to-khac-box .btn-group, .yeu-to-khac-box .btn-group .btn, .yeu-to-khac-box .btn-group .multiselect-container{
+      width: 100%;
+}
+.yeu-to-khac-box .btn-group .btn{
+  overflow: hidden;
+}
+.yeu-to-khac-box .btn-group .multiselect-container{
+  background: white;  
+  overflow: hidden;
+}
+.yeu-to-khac-box .btn-group span.multiselect-selected-text{  
+  color: #8d8d8d;
+}
