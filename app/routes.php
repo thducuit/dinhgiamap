@@ -159,6 +159,39 @@ Route::get('/price', function() {
         ->with(array('namXayDung' => $namXayDung));
 });
 
+Route::post('/xem-quy-hoach.html', function() {
+    $rules = array(
+        'district_id' => 'required',
+        'ward_id' => 'required'
+    );
+
+    $messages = array(
+        'district_id.required' => 'Chọn quận', 
+        'ward_id.required' => 'Chọn phường xã'
+    );
+    
+    $inputs = Input::get();
+    $validation = Validator::make($inputs, $rules, $messages);
+    
+    if( $validation->fails() )
+    {
+        return Redirect::to('/xem-quy-hoach.html')
+        ->withInput(Input::all())
+        ->withName($name)
+        ->withErrors($validation);
+    }
+    
+    $plan = PlanMap::findByWard(Input::get('ward_id'));
+    $name = '';
+    if($plan) {
+        $name = $plan->name;
+    }
+    return Redirect::to('/xem-quy-hoach.html')
+            ->withName($name)
+            ->withInput(Input::all());
+    
+});
+
 Route::post('/district', function() {
     $districts = Province::find(Input::get('id'))->districts;
     return Response::json($districts);

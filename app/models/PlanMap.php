@@ -26,4 +26,9 @@ class PlanMap extends Eloquent{
         }
         return $options;
     }
+
+    public static function findByWard($ward_id)
+    {
+        return PlanMap::where('status', '=', 1)->where('_show', '=', 1)->where('ward_id', '=', $ward_id)->first();
+    }
 }

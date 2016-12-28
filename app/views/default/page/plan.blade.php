@@ -17,37 +17,37 @@ MAIN
 						<p><strong>xem quy hoạch 1 địa điểm tài sản</strong></p>
 						<p>(Chọn lựa các thông tin bên dưới để xem qui hoạch)</p>
 					</div>
-					
+					{{ Form::open(array('url'=>'/xem-quy-hoach.html', 'method'=>'post')) }}
+					<!--.errors-->
+					@if( $errors->has() )
+					<div class="row the-error">
+					<div class="col-md-12">
+					  @foreach( $errors->all() as $error )
+					  <p class="error">{{ $error }} </p>
+					  @endforeach
+					</div>
+					</div>
+					@endif
+					<!--/.errors-->
 					<!-- Filter -->
 					<div class="filter_group clearfix">
 						<div class="filter_col">
 							<label>Tỉnh/Thành Phố</label>
-							<select>
-								<option>Hồ Chí Minh</option>
-								<option>Hà Nội</option>
-								<option>Đà Nẵng</option>
-								<option>Cần Thơ</option>
-							</select>
+							{{ Form::select('province_id', Province::getOptions(), Input::old('province_id'), ['class'=>'province_id']) }}
 						</div>
 						<div class="filter_col">
 							<label>Quận/Huyện</label>
-							<select>
-								<option>Quận Tân Phú</option>
-								<option>Quận 1</option>
-								<option>Quận 2</option>
-								<option>Quận 3</option>
-								<option>Quận 4</option>
+							<select name="district_id"  class="district_id">
+								<option>Quận/Huyện</option>
 							</select>
+							<input type="hidden" id="district_id" class="form-control" value="{{ Input::old('district_id') }}">
 						</div>
 						<div class="filter_col">
 							<label>Phường/Xã</label>
-							<select>
-								<option>Phường Tân Quý</option>
-								<option>Phường Tân Kỳ</option>
-								<option>Phường Tân Sơn</option>
-								<option>Phường Tây Thạnh</option>
-								<option>Phường An Phú</option>
+							<select name="ward_id"  class="ward_id">
+								<option>Phường/Xã</option>
 							</select>
+							<input type="hidden" id="ward_id" class="form-control" value="{{ Input::old('ward_id') }}">
 						</div>
 						<div class="filter_col">
 							<label>Phân loại</label>
@@ -62,14 +62,15 @@ MAIN
 						</div>
 						<div class="filter_col">
 							<div class="popup_button_group">
-								<a href="#"><div id="btn_submit_xem_qui_hoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></div></a>                               
+								<button type="submit" id="btn_submit_xem_qui_hoach" class="btn btn_icon btn_gradient2"><i class="icon_xemquihoach"></i><span>Xem qui hoạch</span></button>                               
 							</div>
 						</div>
                       <div class="filter_col">                        
                          <a href="{{ URL::to('/tai-san-dang-giao-dich.html') }}" class="btn btn_icon btn_gradient4"><i class="icon_xemquihoach"></i><span>Tài sản đang giao dịch</span></a>                        
                       </div>
 					</div>
-					
+					{{ Form::close() }}
+
 					<!-- Map -->
 					<div id="map_xemquihoach">
 						<div class="map_xemquihoach_inner">
@@ -83,7 +84,7 @@ MAIN
 		
 	</div>
 </div>
-
+{{ HTML::script('admin/js/custom/province.js') }} 
 <script>
   // var layer;
   // function init() {
@@ -109,6 +110,7 @@ MAIN
   //   }).addTo(map);
   // }
 </script>
+@if( Session::get('name') )
 <script>
 	var mapMinZoom = 0;
 	var mapMaxZoom = 7;
@@ -117,7 +119,7 @@ MAIN
 		maxZoom: mapMaxZoom
     }).setView([0, 0], 3);
 
-    L.tileLayer('/public/plans/HIEPTANQUYHOACH/{z}/{x}/{y}.png', {
+    L.tileLayer('/public/plans/{{ Session::get('name') }}/{z}/{x}/{y}.png', {
         minZoom: mapMinZoom,
         maxZoom: mapMaxZoom,
         attribution: 'dinhgiatructuyen.vn',
@@ -158,4 +160,5 @@ MAIN
 	});
 	map.addControl(drawControl);
 </script>
+@endif
 @endsection
