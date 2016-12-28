@@ -84,12 +84,8 @@ class HomeController extends BaseController {
     
     $rules = array(        
         'total_area' => 'required',
-        'horizontal' => 'required',
-        'vertical' => 'required',
-        'leaving_plan_area' => 'required',        
-        'farming_plan_area' => 'required',
-        'leaving_violance_area' => 'required',
-        'farming_violance_area' => 'required'
+        'horizontal' => 'required',        
+        'leaving_plan_area' => 'required',                
     );
 
     $messages = array(
@@ -97,28 +93,12 @@ class HomeController extends BaseController {
         'total_area.numeric' => 'Nhập số tổng diện tích',
         
         'horizontal.required' => 'Nhập chiều ngang mặt tiền',
-        'horizontal.numeric' => 'Nhập số chiều ngang mặt tiền',
-        
-        'vertical.required' => 'Nhập chiều dài lớn nhất',
-        'vertical.numeric' => 'Nhập số chiều dài lớn nhất',
+        'horizontal.numeric' => 'Nhập số chiều ngang mặt tiền',        
         
         'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch ( đất ở )',
-        'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch ( đất ở )',
-        
-        'farming_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch ( đất nông nghiệp )',
-        'farming_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch ( đất nông nghiệp )',
-        
-        'leaving_violance_area.required' => 'Nhập diện tích vi phạm lộ giới được công nhận ( đất ở )',
-        'leaving_violance_area.numeric' => 'Nhập số diện tích vi phạm lộ giới được công nhận ( đất ở )',
-        
-        'farming_violance_area.required' => 'Nhập diện tích vi phạm lộ giới được công nhận ( đất nông nghiệp )',
-        'farming_violance_area.numeric' => 'Nhập số diện tích vi phạm lộ giới được công nhận ( đất nông nghiệp )',
+        'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch ( đất ở )'             
     );
-    $validation = Validator::make(Input::get(), $rules, $messages);
-    
-    if(!count(Input::get('selectYeuToKhac'))){
-      $validator->getMessageBag()->add('selectYeuToKhac', 'Vui lòng chọn yếu tố khác');
-    }
+    $validation = Validator::make(Input::get(), $rules, $messages);        
     if ($validation->fails()) {
       
       $url = '/price?placeId=' . Input::get('place_id') . '&address='.Input::get('address') .'&street=' . Input::get('street_id');
@@ -207,14 +187,15 @@ class HomeController extends BaseController {
       }
     }
     
-    
-    foreach ($yeuToKhac as $item) {
-      foreach($inputThamDinhGia['selectYeuToKhac'] as $yeuTo){
-        if ($item['id'] == $yeuTo) {    
-          $inputThamDinhGia['yeuToKhac'] .= $item['description'].', ';
+    if(isset($inputThamDinhGia['selectYeuToKhac'])){
+      foreach ($yeuToKhac as $item) {
+        foreach($inputThamDinhGia['selectYeuToKhac'] as $yeuTo){
+          if ($item['id'] == $yeuTo) {    
+            $inputThamDinhGia['yeuToKhac'] .= $item['description'].', ';
+          }
         }
+
       }
-      
     }
     
     foreach ($hinhDangThuaDat as $item) {
