@@ -50,9 +50,14 @@ class QuestionController extends AdminController {
             'question' => 'required',
             'answers' => 'required'
         );
+
+        $messages = array(
+            'question.required' => 'Nhập câu hỏi', 
+            'answers.required' => 'Nhập câu trả lời'
+        );
         
         $inputs = Input::get();
-        $validation = Validator::make($inputs, $rules);
+        $validation = Validator::make($inputs, $rules, $messages);
         
         if( $validation->fails() )
         {
@@ -81,9 +86,14 @@ class QuestionController extends AdminController {
             'question' => 'required',
             'answers' => 'required'
         );
+
+        $messages = array(
+            'question.required' => 'Nhập câu hỏi', 
+            'answers.required' => 'Nhập câu trả lời'
+        );
         
         $inputs = Input::get();
-        $validation = Validator::make($inputs, $rules);
+        $validation = Validator::make($inputs, $rules, $messages);
         
         if( $validation->fails() )
         {

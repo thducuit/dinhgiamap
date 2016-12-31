@@ -20,11 +20,12 @@ class AdminController extends BaseController {
     {
         $this->menu = array(
 				array('alias'=>'khu-vuc' ,'title'=>'Đoạn đường / Khu vực', 'url'=>'admin/streets', 'icon'=>'road', 'active'=>false, 'show'=>true),
-				array('alias'=>'quy-hoach' ,'title'=>'Bản đồ Quy hoạch', 'url'=>'admin/plans', 'icon'=>'tower', 'active'=>false, 'show'=>true),
+				array('alias'=>'ban-do-quy-hoach' ,'title'=>'Bản đồ Quy hoạch', 'url'=>'admin/plans', 'icon'=>'tower', 'active'=>false, 'show'=>true),
 				array('alias'=>'dia-chi' ,'title'=>'Địa chỉ / Vị trí', 'url'=>'admin/markers', 'icon'=>'home', 'active'=>false, 'show'=>true),
 				array('alias'=>'hoi-dap' ,'title'=>'Hỏi đáp', 'url'=>'admin/questions', 'icon'=>'question-sign', 'active'=>false, 'show'=>$this->isAdmin()),
 				array('alias'=>'lien-he' ,'title'=>'Liên hệ', 'url'=>'admin/contacts', 'icon'=>'envelope', 'active'=>false, 'show'=>$this->isAdmin()),
-				array('alias'=>'khach-hang' ,'title'=>'Khách hàng', 'url'=>'admin/customers', 'icon'=>'shopping-cart', 'active'=>false, 'show'=>$this->isAdmin()),
+				// array('alias'=>'khach-hang' ,'title'=>'Khách hàng', 'url'=>'admin/customers', 'icon'=>'shopping-cart', 'active'=>false, 'show'=>$this->isAdmin()),
+				array('alias'=>'quy-hoach' ,'title'=>'Quy hoạch', 'url'=>'admin/maps', 'icon'=>'tower', 'active'=>false, 'show'=>true),
 				array('alias'=>'thanh-vien' ,'title'=>'Thành viên', 'url'=>'admin/users', 'icon'=>'user', 'active'=>false, 'show'=>$this->isAdmin())
 			);
     }

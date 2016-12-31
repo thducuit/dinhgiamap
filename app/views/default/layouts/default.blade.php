@@ -59,6 +59,7 @@
 				street: '/public/streets',
 				priceStreet: '/public/streets/price',
 				district: '/public/district',
+				ward: '/public/admin/info/ward',
                 login: '/public/login-ajax'
 			};
 			

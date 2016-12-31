@@ -14,17 +14,17 @@ class MarkerTableSeeder extends Seeder {
 		);
 		//DB::table('markers')->truncate();
 
-		$results = Excel::load('public/data/Tay Thanh.xlsx')->get();
+		$results = Excel::load('public/data/P Hoa Thanh.xlsx')->get();
 
 		foreach($results as $row) {
-			//dd($row); die();
+			dd((array)$row); die();
 			$name = join(', ', array($row->dia_chi, $row->duong, $row->phuong, $row->quan));
 			$gia_thi_truong = ($row->gia_thi_truong) ? $row->gia_thi_truong : 0;
 			$gia_ubnd = ($row->gia_ubnd) ? $row->gia_ubnd : 0;
 			echo $name;
-			DB::table('markers')->insert(array(
-			        array('name'=> $name, 'price' => $gia_thi_truong, 'state_price' => $gia_ubnd)
-			   ));
+			// DB::table('markers')->insert(array(
+			//         array('name'=> $name, 'price' => $gia_thi_truong, 'state_price' => $gia_ubnd)
+			//    ));
 		}
 		
 		

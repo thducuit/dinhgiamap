@@ -30,7 +30,7 @@
             type: 'post',
             data: {id:val},
             success: function(response) {
-                var select = '<option value="0">Phường/Xã</option>';
+                var select = '<option value="">Phường/Xã</option>';
                 var ward_id = $('#ward_id').val();
                 $.each(response, function(i,data)
                 {
