@@ -14,7 +14,7 @@
 			        </tr>
 			        <tr>
 			            <td>Đoạn đường</td>
-			            <td>{{ $street->name }}</td>
+			            <td>{{ ($street) ? $street->name : '' }}</td>
 			        </tr>
 			        <tr>
 			            <td>Đơn giá thị trường vnđ/m<sup>2</sup></td>
@@ -37,10 +37,12 @@
 			            <td>{{ $marker->sale_price }}</td>
 			        </tr>
 			        
+			        @if($ward && $district && $province )
 			        <tr>
 			            <td>Khu vực</td>
 			            <td>{{ $ward->name }}, {{ $district->name }}, {{ $province->name }} </td>
 			        </tr>
+					@endif
 			        <tr>
 			            <td>Phân loại</td>
 			            <td>
@@ -67,7 +69,7 @@
 			    <div class="col-md-12">
 		            <div class="form-group">
 		                <div class="pull-right">
-		                    <a href="{{ URL::to('admin/markers') }}" class='btn btn-default'>Trở lại</a>
+		                    <a href="{{ URL::to('admin/markers?page=' . $page) }}" class='btn btn-default'>Trở lại</a>
 		                </div>
 		            </div>
 		        </div>

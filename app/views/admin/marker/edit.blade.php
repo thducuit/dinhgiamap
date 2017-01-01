@@ -7,12 +7,12 @@
 			    <span class="pull-left">Thông tin các địa chỉ trên đoạn đường</span>
 			</div>
 			<div class="panel-body">
-			    {{ Form::open(array( 'url' => 'admin/markers/edit', 'enctype'=>'multipart/form-data', 'class' => 'markers-form', 'id' => 'markers-form' )) }}
+			    {{ Form::open(array( 'url' => 'admin/markers/edit?page=' . $page, 'enctype'=>'multipart/form-data', 'class' => 'markers-form', 'id' => 'markers-form' )) }}
 			        <div class="col-md-12">
 			            <div class="form-group">
 			                <div class="pull-right">
 			                    <button type='submit' class='btn btn-primary submit'>Cập nhật</button>
-			                    <a href="{{ URL::to('admin/markers') }}" class='btn btn-default'>Bỏ qua</a>
+			                    <a href="{{ URL::to('admin/markers?page=' . $page) }}" class='btn btn-default'>Bỏ qua</a>
 			                </div>
 			            </div>
 			        </div>
