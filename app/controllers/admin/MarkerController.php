@@ -16,11 +16,12 @@ class MarkerController extends AdminController {
             $markers = $markers->where('user_id', '=', $this->getUser());
         }
 
-        $markers = $markers->orderBy('created_at', 'desc')
+        $markers = $markers->orderBy('id', 'desc')
 	    ->paginate(Config::get('constant.admin.pager'));
 	    $pager = $markers->links();
 	    
         return View::make('admin.marker.view')
+            ->with(array('page' => Input::get('page')))
             ->with(array('menu' => $this->menuInstance() ))
             ->with(array('title' => 'Vị trí', 'markers' => $markers, 'pager' => $pager));
     }
@@ -36,6 +37,7 @@ class MarkerController extends AdminController {
     {
         $marker = Marker::find($id);
         return View::make('admin.marker.edit')
+            ->with(array('page' => Input::get('page')))
             ->with(array('menu' => $this->menuInstance() ))
             ->with('marker', $marker)
             ->with(array('title'=> 'Cập nhật vị trí'));
@@ -50,6 +52,7 @@ class MarkerController extends AdminController {
         $ward = Ward::find($marker->ward_id);
         return View::make('admin.marker.show')
             ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('page' => Input::get('page')))
             ->with('marker', $marker)
             ->with('street', $street)
             ->with('province', $province)
@@ -207,7 +210,7 @@ class MarkerController extends AdminController {
         $marker->photo_plan = $name; 
         $marker->save();
         
-        return Redirect::to('admin/markers')
+        return Redirect::to('admin/markers?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));
@@ -217,7 +220,7 @@ class MarkerController extends AdminController {
     {
         $marker = Marker::find($id);
         $marker->delete();
-        return Redirect::to('admin/markers')
+        return Redirect::to('admin/markers?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));
