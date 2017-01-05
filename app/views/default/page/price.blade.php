@@ -197,8 +197,8 @@ MAIN
                         </div>
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
-                            <button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3 @if( Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            <button type='submit' class="btn btn_icon btn_gradient3 vacantBtnSubmit @if( !Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>														                                                                                                                
+                            <button data='.vacant_land_form' type='submit' id="btn_dinhgia" land-type="dat_trong" class="btn btn_icon btn_gradient3 btn_dinhgia @if( Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
+                            <button type='submit' class="btn btn_icon btn_gradient3 vacantBtnSubmit dat_trong_btnsubmit @if( !Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>														                                                                                                                
                             <!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->														
                           </div>
                         </div>
@@ -369,11 +369,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            @if( !Sentry::check() ) 
-                            <button data='.house_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @else
-                            <button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @endif
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="nha_pho" class="btn btn_icon btn_gradient3 btn_dinhgia @if( Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
+                            <button type='submit' class="btn btn_icon btn_gradient3 vacantBtnSubmit nha_pho_btnsubmit @if( !Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>														                                                                                                                                            
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -563,7 +560,7 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label class="highlight">Vị trí tiếp giáp(*)</label>                            
-                            <input type="hidden" name="type" value='house'/>
+                            <input type="hidden" name="type" value='flat'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
@@ -699,11 +696,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            @if( !Sentry::check() ) 
-                            <button data='.house_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @else
-                            <button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @endif
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="can_ho" class="btn btn_icon btn_gradient3 btn_dinhgia @if( Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
+                            <button type='submit' class="btn btn_icon btn_gradient3 vacantBtnSubmit can_ho_btnsubmit @if( !Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>														                                                                                                                                                                        
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -739,7 +733,7 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label class="highlight">Vị trí tiếp giáp(*)</label>                            
-                            <input type="hidden" name="type" value='house'/>
+                            <input type="hidden" name="type" value='hotel'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
@@ -875,11 +869,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            @if( !Sentry::check() ) 
-                            <button data='.house_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @else
-                            <button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @endif
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="khach_san" class="btn btn_icon btn_gradient3 btn_dinhgia @if( Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
+                            <button type='submit' class="btn btn_icon btn_gradient3 vacantBtnSubmit khach_san_btnsubmit @if( !Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>														                                                                                                                                                                                                    
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -918,7 +909,7 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label class="highlight">Vị trí tiếp giáp(*)</label>                            
-                            <input type="hidden" name="type" value='house'/>
+                            <input type="hidden" name="type" value='office'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
@@ -1054,11 +1045,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            @if( !Sentry::check() ) 
-                            <button data='.house_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @else
-                            <button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @endif
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="toa_nha_van_phong" class="btn btn_icon btn_gradient3 btn_dinhgia @if( Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
+                            <button type='submit' class="btn btn_icon btn_gradient3 vacantBtnSubmit toa_nha_van_phong_btnsubmit @if( !Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>														                                                                                                                                                                                                                                                            
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -1075,7 +1063,7 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
-                       
+                       <?php /*
                         <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
                         <br/><br/>
                         <p>
@@ -1088,15 +1076,14 @@ MAIN
                         <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
                         <br/><br/>
                         <p><strong>Website: dinhgiatructuyen.vn</strong></p>
+                       */?>
                        
-                        <?php
-                        /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form warehouse_form price-forms') ) }}
                         <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                         <div class="form_row clearfix">
                           <div class="form_col">
                             <label class="highlight">Vị trí tiếp giáp(*)</label>                            
-                            <input type="hidden" name="type" value='house'/>
+                            <input type="hidden" name="type" value='warehouse'/>
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
@@ -1200,17 +1187,17 @@ MAIN
                           <div class="form_col">
                             <label>Loại CTXD</label>
                             <select name="structure_parent" class="structure_parent">
-                              @foreach (Structure::findByParent('kho-xuong')->get()->toArray() as $s)
+                              @foreach ($ketCauChinhKhoXuong as $s)
                               <option value="{{ $s['id'] }}">{{ $s['name'] }}</option>
                               @endforeach
                             </select>
                           </div>
-                          <div class="form_col form_col2">
+                          <div class="form_col">
                               <label>Kết cấu chính</label>
-                              <select name="structure_parent" class="structure_parent">
-                                @foreach ($ketCauChinhKhoXuong as $s)
-                                  <option value="{{ $s['id'] }}">{{ $s['name'] }}</option>
-                                @endforeach
+                              <select name="structure" class="structure_child">
+                                @foreach ($childKhoXuong as $s)
+                                  <option value="{{ $s['price'] }}">{{ $s['structure'] }}</option>
+                                @endforeach                                
                               </select>
                           </div>
                           <div class="form_col">
@@ -1224,7 +1211,7 @@ MAIN
                            
                           </div>
                         </div>	
-                        <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh cursor" type="kho_xuong">
+                        <div class="form_row form_add_row_wrapper_kho_xuong clearfix  row-ket-cau-chinh cursor" type="kho_xuong">
                           <div class="form_col">
                             <a class="btn btn_add_more_row">+ Thêm công trình xây dựng</a>
                           </div>
@@ -1233,15 +1220,12 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            @if( !Sentry::check() ) 
-                            <button data='.house_form' type='submit' id="btn_dinhgia" class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @else
-                            <button  type='submit' class="btn btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
-                            @endif
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="kho_xuong" class="btn btn_icon btn_gradient3 btn_dinhgia @if( Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>
+                            <button type='submit' class="btn btn_icon btn_gradient3 vacantBtnSubmit kho_xuong_btnsubmit @if( !Sentry::check() ) hidden @endif"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></button>														                                                                                                                                                                                                                                
                           </div>
                         </div>
                         {{ Form::close() }}
-                        */?>
+                        
                       </div>
                     </div>
                   </div>
@@ -2165,7 +2149,7 @@ MAIN
                               </div>
                               <div class="form_col">
                                 <label>Kết cấu chính</label>
-                                <select name="structure" id="structure_child">
+                                <select name="structure" class="structure_child">
                                 </select>
                               </div>
                               <div class="form_col">
@@ -2182,7 +2166,7 @@ MAIN
                               </div>
 
                             </div>	
-                            <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh">
+                            <div class="form_row form_add_row_wrapper_kho_xuong clearfix  row-ket-cau-chinh">
                               <div class="form_col">
                                 <button class="btn btn_add_more_row">+ Thêm công trình xây dựng</button>
                               </div>
@@ -2236,7 +2220,7 @@ MAIN
     </div>
   </div>
   <script>
-    function getOptions(val) {
+    function getOptions(val, ele) {      
       $.ajax({
         url: '/public/structure',
         type: 'get',
@@ -2246,8 +2230,8 @@ MAIN
           $.each(response, function (i, data)
           {
             select += '<option value="' + data.price + '">' + data.structure + '</option>';
-          });
-          $('#structure_child').html(select);
+          });          
+          ele.parent().parent().find('.structure_child:first').html(select);
         }
       });
 
@@ -2324,16 +2308,15 @@ foreach ($dienTichDat as $item) {
 ?>
       var ketCauChinhOptions = <?php echo json_encode($ketCauChinhNhaPho) ?>;
       var formClass = '';
-
-      getOptions(jQuery('.structure_parent').val());
-      jQuery('.structure_parent').change(function () {
+      jQuery(document.body).on('change', '.structure_parent', function () {
         var _this = jQuery(this);
         var val = _this.val();
-        getOptions(val);
-      });
+        getOptions(val, _this);
+      });      
 
-      jQuery('#btn_dinhgia').click(function (e) {
-        e.preventDefault();
+      jQuery('.btn_dinhgia').click(function (e) {
+        e.preventDefault();        
+        $('.login-form .btn-login').attr('land-type', $(this).attr('land-type'));
         formClass = jQuery(this).attr('data');
       });
 
@@ -2555,9 +2538,7 @@ foreach ($dienTichDat as $item) {
           ketCauChinhToaNhaVanPhongOptions += '<option value="<?php echo $s['price'] ?>"><?php echo $s['structure'] ?></option>';
       <?php } ?>  
         
-      <?php foreach ($ketCauChinhKhoXuong as $s) { ?>
-          ketCauChinhKhoXuongOptions += '<option value="<?php echo $s['id'] ?>"><?php echo $s['name'] ?></option>';
-      <?php } ?>    
+        
         
       $('.form_add_row_wrapper').click(function () {
         var ketCauType = $(this).attr('type');
@@ -2570,8 +2551,6 @@ foreach ($dienTichDat as $item) {
           ketCauOptions = ketCauChinhKhachSanOptions;
         }else if(ketCauType == 'toa_nha_van_phong'){
           ketCauOptions = ketCauChinhToaNhaVanPhongOptions;
-        }else if(ketCauType == 'kho_xuong'){
-          ketCauOptions = ketCauChinhKhoXuongOptions;
         }
         var rowKetCauChinh = '<div class="form_row clearfix row-ket-cau-chinh">' +
                 '<div class="form_col form_col2">' +
@@ -2586,12 +2565,47 @@ foreach ($dienTichDat as $item) {
                 '<label>Năm xây dựng</label>' +
                 '<input type="hidden" name="year_building_more[]" class="namXD1">' +
                 '<input type="text" name="textNamXDMore[]" class="textNamXD"/>' +
-                '</div>'
+                '</div>'+
         '</div>';
         $(this).after(rowKetCauChinh);
         var heightOfRightBox = $(this).parents('.zui-tabpanel-content').height();
         $('#modal_dinhgia .desktop .dinhgia_tabpanel .ztabpanel').height(heightOfRightBox);
       });
+      
+      $('.form_add_row_wrapper_kho_xuong').click(function(){
+        var rowKetCauChinh = '<div class="form_row clearfix row-ket-cau-chinh">' +
+                '<div class="form_col">' +
+                '<label>Loại CTXD</label>' +
+                '<select name="structureParentMore[]"  class="structure_parent">'+
+                <?php foreach($ketCauChinhKhoXuong as $s){?>
+                  '<option value="<?php echo $s['id'] ?>"><?php echo $s['name']?></option>'+
+                <?php }?>
+                '</select>' +
+                '</div>' +                
+                '<div class="form_col">'+
+                   '<label>Kết cấu chính</label>'+
+                   '<select name="structureMore[]" class="structure_child">'+
+                   <?php foreach ($childKhoXuong as $s){?>
+                    '<option value="<?php echo $s['price'] ?>"><?php echo $s['structure'] ?></option>'+
+                   <?php }?>
+                    '</select>'+
+                '</div>'+
+                '<div class="form_col">' +
+                '<label>Tổng diện tích sàn xd</label>' +
+                '<input type="text" placeholder="" name="total_ground_area_more[]" value="">' +
+                '</div>' +
+                '<div class="form_col">' +
+                '<label>Năm xây dựng</label>' +
+                '<input type="hidden" name="year_building_more[]" class="namXD1">' +
+                '<input type="text" name="textNamXDMore[]" class="textNamXD"/>' +
+                '</div>'+
+        '</div>';
+        $(this).after(rowKetCauChinh);
+        var heightOfRightBox = $(this).parents('.zui-tabpanel-content').height();
+        $('#modal_dinhgia .desktop .dinhgia_tabpanel .ztabpanel').height(heightOfRightBox);
+      });
+      
+      
       $('#modal_dinhgia .dinhgia_tabpanel .ztabpanel li').click(function () {
         setTimeout(function () {
           var heightOfRightBox = $('#modal_dinhgia .zui-tabpanel-content.zui-active').height();

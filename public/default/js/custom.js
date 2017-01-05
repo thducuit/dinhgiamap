@@ -32,13 +32,15 @@
     });
     
     $('.login-form .btn-login').click(function(){
+      var ele = $(this);
       $.post(url.login, $('.login-form').serialize(), function(data){
         if(data.id){
           $('.menu_list').find('.login-menu-item:first').hide();
           $('.menu_list').find('.register-menu-item:first').hide();
           $('#modal_dangNhap').modal('hide');          
           if($('.vacant_land_form').prop('tagName') !== 'undefined'){
-            $('.vacantBtnSubmit').trigger('click');
+            var landType = ele.attr('land-type');
+            $('.'+landType+'_btnsubmit').trigger('click');
           }
         }else{
           $('.login-form').find('.the-error:first').html(data);

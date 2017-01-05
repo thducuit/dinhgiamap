@@ -5015,9 +5015,7 @@ body.menu_mobile_active {
 
 }
 
-.modal .form_add_row_wrapper {}
-
-.modal .form_add_row_wrapper .btn_add_more_row {
+.modal .form_add_row_wrapper .btn_add_more_row, .modal .form_add_row_wrapper_kho_xuong .btn_add_more_row {
 
 	color: #444444;
 
