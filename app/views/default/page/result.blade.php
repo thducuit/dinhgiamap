@@ -85,7 +85,7 @@ MAIN
                                       <div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất SXKD ( m ) : {{$inputThamDinhGia['production_plan_area']}}</div></div>
                                       <?php }?>
                                     </div>
-                                    <?php ?>
+                                    <?php }?>
                                     <div class="row">
                                       <div class="col-md-12 col-chitietsobo"><div class="chitietsobo-item">Diện tích vi phạm lộ giới được công nhận:</div></div>
                                       <?php if($inputThamDinhGia['leaving_violance_area']){?><div class="col-md-3 col-chitietsobo"><div class="chitietsobo-item">Đất ở ( m ) :  {{$inputThamDinhGia['leaving_violance_area']}}</div></div><?php }?>
@@ -235,5 +235,4 @@ MAIN
 </div>
 {{ HTML::script('default/js/map.js') }}
 {{ HTML::style('default/css/custom.css') }}
-@endsection
-			
+@endsection			

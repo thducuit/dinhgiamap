@@ -128,6 +128,7 @@ Route::get('/chi-tiet-tai-san-dang-giao-dich.html', function() {
 Route::get('/price', function() {
      $marker = Marker::findByPlaceId(Input::get('placeId'));
      $districtName = 'Quận 1';
+     $childKhoXuong = [];
      if(Input::get('street')){
       $street = Street::find(Input::get('street'));
       $disTrict = District::find($street->district_id);
@@ -141,7 +142,14 @@ Route::get('/price', function() {
      $chieuNgang = AdjustOption::findByGroupId(1, 1, null)->get()->toArray();
      $dienTichDat = AdjustOption::findByGroupId(3, 1, null)->get()->toArray();
 //     $ketCauChinh = User::getKetCauChinh();
-     $ketCauChinh = Structure::findByAlias('nha-pho')->structure_options()->get()->toArray();
+     $ketCauChinhNhaPho = Structure::findByAlias('nha-pho')->structure_options()->get()->toArray();
+     $ketCauChinhCanHo = Structure::findByAlias('can-ho')->structure_options()->get()->toArray();
+     $ketCauChinhKhachSan = Structure::findByAlias('khach-san')->structure_options()->get()->toArray();
+     $ketCauChinhToaNhaVanPhong = Structure::findByAlias('toa-nha-van-phong')->structure_options()->get()->toArray();
+     $ketCauChinhKhoXuong = Structure::findByParent('kho-xuong')->get()->toArray();
+     if(count($ketCauChinhKhoXuong)){
+      $childKhoXuong = StructureOption::where('structure_id', '=', $ketCauChinhKhoXuong[0]['id'])->get()->toArray();
+     }
      $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
      return View::make('default.page.price')
         ->with('address', $address)
@@ -155,7 +163,12 @@ Route::get('/price', function() {
         ->with(array('chieuNgang'=> $chieuNgang))
         ->with(array('dienTichDat'=> $dienTichDat))
         ->with(array('districtName' => $districtName))
-        ->with(array('ketCauChinh' => $ketCauChinh))
+        ->with(array('ketCauChinhNhaPho' => $ketCauChinhNhaPho))
+        ->with(array('ketCauChinhCanHo' => $ketCauChinhCanHo))             
+        ->with(array('ketCauChinhKhachSan' => $ketCauChinhKhachSan))
+        ->with(array('ketCauChinhToaNhaVanPhong' => $ketCauChinhToaNhaVanPhong))
+        ->with(array('ketCauChinhKhoXuong' => $ketCauChinhKhoXuong))
+        ->with(array('childKhoXuong' => $childKhoXuong))             
         ->with(array('namXayDung' => $namXayDung));
 });
 

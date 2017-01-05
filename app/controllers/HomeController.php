@@ -95,8 +95,8 @@ class HomeController extends BaseController {
         'horizontal.required' => 'Nhập chiều ngang mặt tiền',
         'horizontal.numeric' => 'Nhập số chiều ngang mặt tiền',        
         
-        'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch ( đất ở )',
-        'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch ( đất ở )'             
+        'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch ',
+        'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch'             
     );
     $validation = Validator::make(Input::get(), $rules, $messages);        
     if ($validation->fails()) {
@@ -168,18 +168,34 @@ class HomeController extends BaseController {
   public function showResult() {
     $result = $this->cart->getLastResult();
     $inputThamDinhGia = Session::get('inputThamDinhGia');
-  
+    
     $inputThamDinhGia['vitri'] = '';
     $inputThamDinhGia['yeuToKhac'] = '';
     $inputThamDinhGia['hinhDangThuaDat'] = '';
     $inputThamDinhGia['ketCauChinh'] = '';
-
+    $ketCauChinh = [];
     $hinhDangThuaDat = AdjustOption::findByGroupId(4, 1, null)->get()->toArray();
     $yeuToKhac = AdjustOption::findByGroupId(16, 1, null)->get()->toArray();
     $chieuNgang = AdjustOption::findByGroupId(1, 1, null)->get()->toArray();
     $dienTichDat = AdjustOption::findByGroupId(3, 1, null)->get()->toArray();
-    $ketCauChinh = Structure::findByAlias('nha-pho')->structure_options()->get()->toArray();
-
+    if($inputThamDinhGia['type'] == 'house'){
+      $ketCauChinh = Structure::findByAlias('nha-pho')->structure_options()->get()->toArray();
+    }else if($inputThamDinhGia['type'] == 'flat'){
+      $ketCauChinh = Structure::findByAlias('can-ho')->structure_options()->get()->toArray();
+    }else if($inputThamDinhGia['type'] == 'hotel'){
+      $ketCauChinh = Structure::findByAlias('khach-san')->structure_options()->get()->toArray();
+    }else if($inputThamDinhGia['type'] == 'office'){
+      $ketCauChinh = Structure::findByAlias('toa-nha-van-phong')->structure_options()->get()->toArray();
+    }else if($inputThamDinhGia['type'] == 'warehouse' && $inputThamDinhGia['structure_parent']){
+      $ketCauChinh = StructureOption::where('structure_id', '=', $inputThamDinhGia['structure_parent']);             
+      if(isset($inputThamDinhGia['structureParentMore']) && count($inputThamDinhGia['structureParentMore'])){       
+        foreach($inputThamDinhGia['structureParentMore'] as $item){      
+          $ketCauChinh = $ketCauChinh->orWhere('structure_id', '=', $item);
+        }
+      }
+      $ketCauChinh = $ketCauChinh->get()->toArray();      
+    }
+    
     $viTri = AdjustOption::findByGroupId(15, 1, null)->get()->toArray();
     foreach ($viTri as $item) {
       if ($item['id'] == $inputThamDinhGia['selectVitri']) {
