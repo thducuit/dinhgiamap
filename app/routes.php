@@ -240,6 +240,7 @@ Route::group(array('before' => 'dg_admin_authentication'), function() {
      Route::controller('admin/plans', 'PlanController');
      Route::controller('admin/contacts', 'AdminContactController');
      Route::controller('admin/users', 'UserController');
+     Route::controller('admin/estates', 'EstateController');
      Route::controller('admin/customers', 'CustomerController');
      Route::get('admin/dashboard', 'AdminController@dashboard');
 });
