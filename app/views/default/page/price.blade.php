@@ -539,7 +539,7 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
-                        <?php /*
+                        
                           <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
                           <br/><br/>
                           <p>
@@ -552,9 +552,8 @@ MAIN
                           <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
                           <br/><br/>
                           <p><strong>Website: dinhgiatructuyen.vn</strong></p>
-                         * 
-                         */ ?>
                         
+                        <?php /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form price-form flat_form') ) }}
                         <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                         <div class="form_row clearfix">
@@ -650,16 +649,7 @@ MAIN
                           </div>																								
 
                         </div>
-                        <div class="form_row clearfix">
-                          <div class="form_col">
-                            <label>Công trình xây dựng</label>
-                            <select name="congTrinhXD" class="selectCongTrinhXayDung">                                                  
-                              <option value="">Không có CTXD</option>
-                              <option value="nha_pho">Nhà phố</option>
-                              <option value="biet_thu">Biệt thự</option>
-                            </select>
-                          </div>
-                        </div>																												
+                        																											
                         <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                               <label>Kết cấu chính</label>
@@ -677,14 +667,7 @@ MAIN
                             <label>Năm xây dựng</label>
                             <input type="hidden" name="year_building" class="namXD1">
                             <input type="text" name="textNamXD" class="textNamXD">
-                            <?php /*
-                              <select name="year_building">
-                              @foreach ($namXayDung as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
-                              @endforeach
-                              </select>
-                             * 
-                             */ ?>
+                            
                           </div>
                         </div>	
                         <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh cursor" type="can_ho">
@@ -701,7 +684,8 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
-
+ * 
+                         */ ?>
                       </div>
                     </div>
                   </div>
@@ -714,7 +698,7 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
-                        <?php /*
+                        
                         <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
                         <br/><br/>
                         <p>
@@ -727,7 +711,8 @@ MAIN
                         <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
                         <br/><br/>
                         <p><strong>Website: dinhgiatructuyen.vn</strong></p>
-                        */?>
+                        
+                        <?php /*
                          {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form price-form flat_form') ) }}
                         <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                         <div class="form_row clearfix">
@@ -823,16 +808,7 @@ MAIN
                           </div>																								
 
                         </div>
-                        <div class="form_row clearfix">
-                          <div class="form_col">
-                            <label>Công trình xây dựng</label>
-                            <select name="congTrinhXD" class="selectCongTrinhXayDung">                                                  
-                              <option value="">Không có CTXD</option>
-                              <option value="nha_pho">Nhà phố</option>
-                              <option value="biet_thu">Biệt thự</option>
-                            </select>
-                          </div>
-                        </div>																												
+                        																												
                         <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                               <label>Kết cấu chính</label>
@@ -850,14 +826,7 @@ MAIN
                             <label>Năm xây dựng</label>
                             <input type="hidden" name="year_building" class="namXD1">
                             <input type="text" name="textNamXD" class="textNamXD">
-                            <?php /*
-                              <select name="year_building">
-                              @foreach ($namXayDung as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
-                              @endforeach
-                              </select>
-                             * 
-                             */ ?>
+                           
                           </div>
                         </div>	
                         <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh cursor" type="khach_san">
@@ -874,6 +843,7 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
+                         */?>
                       </div>
                     </div>
                   </div>
@@ -886,8 +856,7 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
-                        <?php
-                        /*
+                       
                         <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
                         <br/><br/>
                         <p>
@@ -901,9 +870,9 @@ MAIN
                         <br/><br/>
                         <p><strong>Website: dinhgiatructuyen.vn</strong></p>
                         
-                         * 
-                         */
-                        ?>
+                        
+                         <?php
+                        /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form office_form price-forms') ) }}
                         <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                         <div class="form_row clearfix">
@@ -999,16 +968,7 @@ MAIN
                           </div>																								
 
                         </div>
-                        <div class="form_row clearfix">
-                          <div class="form_col">
-                            <label>Công trình xây dựng</label>
-                            <select name="congTrinhXD" class="selectCongTrinhXayDung">                                                  
-                              <option value="">Không có CTXD</option>
-                              <option value="nha_pho">Nhà phố</option>
-                              <option value="biet_thu">Biệt thự</option>
-                            </select>
-                          </div>
-                        </div>																												
+                        																											
                         <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col form_col2">
                               <label>Kết cấu chính</label>
@@ -1026,14 +986,7 @@ MAIN
                             <label>Năm xây dựng</label>
                             <input type="hidden" name="year_building" class="namXD1">
                             <input type="text" name="textNamXD" class="textNamXD">
-                            <?php /*
-                              <select name="year_building">
-                              @foreach ($namXayDung as $s)
-                              <option value="{{ $s['value'] }}">{{ $s['description'] }}</option>
-                              @endforeach
-                              </select>
-                             * 
-                             */ ?>
+                            
                           </div>
                         </div>	
                         <div class="form_row form_add_row_wrapper clearfix  row-ket-cau-chinh cursor" type="toa_nha_van_phong">
@@ -1050,7 +1003,9 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
-                        
+                         * 
+                         */
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -1063,7 +1018,7 @@ MAIN
                     </div>
                     <div class="tab_body">
                       <div class="tab_body_inner">
-                       <?php /*
+                       
                         <p><strong>Chúng tôi sẽ cập nhật dữ liệu trong phiên bản mới trong thời gian tới hoặc vui lòng liên hệ trực tiếp với chúng tôi để được tư vấn chuyên sâu:</strong></p>
                         <br/><br/>
                         <p>
@@ -1076,8 +1031,8 @@ MAIN
                         <p><strong>Email liên hệ hỗ trợ: hotro@dinhgiatructuyen.vn</strong></p>
                         <br/><br/>
                         <p><strong>Website: dinhgiatructuyen.vn</strong></p>
-                       */?>
                        
+                       <?php /*
                         {{ Form::open( array('url' => 'the-price', 'method' => 'post', 'class' => 'clearfix google-map-search-form warehouse_form price-forms') ) }}
                         <input type="hidden" name="textDistrict" class="textDistrict" value="{{$districtName}}"/>             
                         <div class="form_row clearfix">
@@ -1173,16 +1128,7 @@ MAIN
                           </div>																								
 
                         </div>
-                        <div class="form_row clearfix">
-                          <div class="form_col">
-                            <label>Công trình xây dựng</label>
-                            <select name="congTrinhXD" class="selectCongTrinhXayDung">                                                  
-                              <option value="">Không có CTXD</option>
-                              <option value="nha_pho">Nhà phố</option>
-                              <option value="biet_thu">Biệt thự</option>
-                            </select>
-                          </div>
-                        </div>																												
+                       																											
                         <div class="form_row clearfix row-ket-cau-chinh">
                           <div class="form_col">
                             <label>Loại CTXD</label>
@@ -1225,7 +1171,7 @@ MAIN
                           </div>
                         </div>
                         {{ Form::close() }}
-                        
+                        */?>
                       </div>
                     </div>
                   </div>
