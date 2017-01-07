@@ -48,5 +48,27 @@
       })
     });
     
+    $('.register-form .btn-register').click(function(){
+      var ele = $(this);
+      $.post(url.register, $('.register-form').serialize(), function(data){
+        var errors = '';
+        if(data.id){
+          $('.menu_list').find('.login-menu-item:first').hide();
+          $('.menu_list').find('.register-menu-item:first').hide();
+          $('#modal_dangky').modal('hide');      
+          if($('.vacant_land_form').prop('tagName') !== 'undefined'){
+            var landType = ele.attr('land-type');
+            $('.'+landType+'_btnsubmit').trigger('click');
+          }
+        }else{          
+          errors = '<ul>';
+          for(var i in data){
+            errors += '<li>'+data[i][0]+'</li>';
+          }
+          errors += '</ul>';
+        }        
+        $('.register-form').find('.the-error:first').html(errors);
+      });
+    });
     
 })(jQuery, url);

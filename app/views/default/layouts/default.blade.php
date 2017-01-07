@@ -60,7 +60,8 @@
 				priceStreet: '/public/streets/price',
 				district: '/public/district',
 				ward: '/public/admin/info/ward',
-                login: '/public/login-ajax'
+                login: '/public/login-ajax',
+                register: '/public/register-ajax'
 			};
 			
 			jQuery(window).keydown(function(event){

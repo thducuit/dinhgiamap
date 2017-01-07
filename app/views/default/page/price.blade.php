@@ -2157,7 +2157,7 @@ MAIN
           <div class="modal_info_inner clearfix">
             <div class="popup_button_group groupThanhToan">
               Vui lòng <a href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap">Đăng nhập</a> hoặc chọn <a class="cnologin" href="#">Thanh toán nhanh</a>
-              không cần <a class="clogin" href="#">Đăng ký tài khoản </a> để nhận kết quả định giá của bạn
+              không cần <a href="#dangki"  data-toggle="modal" data-target="#modal_dangky">Đăng ký tài khoản </a> để nhận kết quả định giá của bạn
             </div>
           </div>
         </div>
@@ -2263,6 +2263,7 @@ foreach ($dienTichDat as $item) {
       jQuery('.btn_dinhgia').click(function (e) {
         e.preventDefault();        
         $('.login-form .btn-login').attr('land-type', $(this).attr('land-type'));
+        $('.register-form .btn-register').attr('land-type', $(this).attr('land-type'));
         formClass = jQuery(this).attr('data');
       });
 

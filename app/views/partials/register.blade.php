@@ -1,5 +1,5 @@
 <!--                        modal dang ky-->
-<div class="modal fade" id="modal_dangky" role="dialog">
+<div class="modal fade " id="modal_dangky" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -15,8 +15,8 @@
        </div>
 
        <!--                                                                                             <form class="form-horizontal" id="form_dangky" role="form" action="" method="post">-->
-       <form class="form-horizontal" id="form_dangky" method="post" action="">
-
+       <form class="form-horizontal register-form" id="form_dangky" method="post" action="">
+         <div class="the-error"></div>
          <div class="form-group">
           <label class="col-sm-3 control-label">Loại tài khoản (*):</label>
           <div class="col-sm-9">
@@ -33,42 +33,42 @@
         <div class="form-group">
          <label  class="col-sm-3 control-label">Tên đăng nhập (*):</label>
          <div class="col-sm-9">
-          <input type="text" class="form-control" id="danKy_email" name="danKy_email"  placeholder="Email đăng nhập">
+          <input type="text" class="form-control" id="danKy_email" name="email"  placeholder="Email đăng nhập">
           <div class="help-block"></div>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-3 control-label">Mật khẩu (*):</label>
         <div class="col-sm-9">
-          <input type="password" class="form-control" id="danKy_MatKhau" name="danKy_MatKhau"  placeholder="Mật khẩu">
+          <input type="password" class="form-control" id="danKy_MatKhau" name="password"  placeholder="Mật khẩu">
           <div class="help-block"></div>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-3 control-label">Gõ lại mật khẩu (*):</label>
         <div class="col-sm-9">
-          <input type="password" class="form-control" id="danKy_ReMatKhau" name="danKy_ReMatKhau"  placeholder="Gõ lại mật khẩu">
+          <input type="password" class="form-control" id="danKy_ReMatKhau" name="password_confirmation"  placeholder="Gõ lại mật khẩu">
           <div class="help-block"></div>
         </div>
       </div>
       <div class="form-group">
         <label  class="col-sm-3 control-label">Họ & Tên (*):</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" id="dangKy_ht" name="dangKy_ht"  placeholder="Họ & Tên">
+          <input type="text" class="form-control" id="dangKy_ht" name="name"  placeholder="Họ & Tên">
           <div class="help-block"></div>
         </div>
       </div>                                                                                            
       <div class="form-group">
         <label  class="col-sm-3 control-label">Điện thoại (*):</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" id="dangKy_dienthoai" name="dangKy_dienthoai">
+          <input type="text" class="form-control" id="dangKy_dienthoai" name="mobile">
           <div class="help-block"></div>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-3 control-label">Địa chỉ:</label>
         <div class="col-sm-9">
-         <input type="text" class="form-control" id="dangKy_diaChi" name="dangKy_diaChi"  placeholder="Địa chỉ">
+         <input type="text" class="form-control" id="dangKy_diaChi" name="address"  placeholder="Địa chỉ">
 
        </div>
      </div>
@@ -76,10 +76,10 @@
       <label  class="col-sm-3 control-label">Giới tính:</label>
       <div class="col-sm-9">
         <label class="radio-inline">
-          <input type="radio" name="gender" checked="true" id="inlineRadio1" value="0"> Nam
+          <input type="radio" name="gender" checked="true" id="inlineRadio1" value="1"> Nam
         </label>
         <label class="radio-inline">
-          <input type="radio" name="gender" id="inlineRadio2" value="1"> Nữ
+          <input type="radio" name="gender" id="inlineRadio2" value="0"> Nữ
         </label>
 
       </div>
@@ -133,7 +133,7 @@
                         </div>                                                                                                         -->
                       </div>
                     </div>                                                                                            
-                    <div class="form-group">
+<!--                    <div class="form-group">
                       <label  class="col-sm-3 control-label">Mã xác nhận:</label>
                       <div class="col-sm-9">
                         <div class="row">
@@ -149,7 +149,7 @@
                       </div>
 
                     </div>
-                  </div>
+                  </div>-->
                   <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
                       <div class="checkbox">
@@ -171,9 +171,8 @@
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
-                  <button class="btn btn-danger btn-flat" id="register"   type="submit" >Đăng ký</button>
-
+                <div class="col-sm-offset-3 col-sm-9">                  
+                  <a class="btn btn-danger btn-flat btn-register">Đăng ký</a>                       
                 </div>
               </div>
             </form>	

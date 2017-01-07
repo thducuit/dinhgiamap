@@ -236,6 +236,7 @@ Route::post('/register', 'AuthController@register');
 
 Route::post('/login', 'AuthController@login');
 Route::post('/login-ajax', 'AuthController@loginAjax');
+Route::post('/register-ajax', 'AuthController@registerAjax');
 
 Route::get('/logout', 'AuthController@logout');
 
