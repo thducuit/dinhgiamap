@@ -22,7 +22,7 @@
 
 {{ HTML::script('admin/js/jquery.validate.js') }}
 
-
+{{ HTML::script('admin/js/ckeditor/ckeditor.js') }}
 
 <!--Icons-->
 {{ HTML::script('admin/js/lumino.glyphs.js') }}

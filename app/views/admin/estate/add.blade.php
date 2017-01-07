@@ -53,6 +53,10 @@
 			                <input type="text" name="cost" class="form-control" placeholder="Giá rao bán" value="{{ Input::old('cost') }}"/>
 			            </div>
 
+						<div class="form-group">
+			                <label for="description">Mô tả chi tiết</label>
+			                <textarea name="description" id="description-content-editor" data-editor="description-content-editor" cols="30" rows="10"></textarea>
+			            </div>
 			        </div>
 			        
 			        <!--right-->
@@ -143,6 +147,12 @@
 			                <input type="hidden" id="ward_id" class="form-control" value="{{ Input::old('ward_id') }}">
 			            </div>
 
+			            <div class="form-group upload-group">
+				        	<label for="photo">Thư viện ảnh</label>
+				        	<a class="btn btn-primary" data-upload="#gallery">Tải ảnh</a>
+				        	<ul class="list-group" id="gallery"></ul>	
+				        </div>
+
 			        </div>
 			        
 			        
@@ -173,48 +183,17 @@
         VLD_EM = 'Email chưa đúng !',
         VLD_NB = 'Nhập số !';
     jQuery(document).ready(function () {
-    	jQuery('#street_id').change(function() {
-    		var val = jQuery(this).val();
-    		jQuery.ajax({
-    			url: '/public/admin/info/price',
-    			type: 'post',
-    			data: {
-    				id:val
-    			},
-    			success: function(response) {
-    				if(response) {
-    					jQuery('#price').val(response.price);
-    					jQuery('#state_price').val(response.state_price);
-    				}
-    			}
-    		});
-    	});
+    	
 
         jQuery('#estates-form').validate({
             rules: {
                 name: {
                     required: true
-                },
-				price: {
-                    required: true,
-                    number: true
-                },
-                state_price: {
-                    required: true,
-                    number: true
                 }
             },
             messages: {
                 name: {
                     required: VLD_RQ
-                },
-                price: {
-                    required: VLD_RQ,
-                    number: VLD_NB
-                },
-                state_price: {
-                    required: VLD_RQ,
-                    number: VLD_NB
                 }
             }
 

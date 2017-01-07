@@ -1,5 +1,5 @@
 <?php
-class Marker extends Eloquent{
+class Estate extends Eloquent{
     protected $table = 'estates';
     
     

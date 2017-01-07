@@ -176,48 +176,16 @@
         VLD_EM = 'Email chưa đúng !',
         VLD_NB = 'Nhập số !';
     jQuery(document).ready(function () {
-    	// jQuery('#street_id').change(function() {
-    	// 	var val = jQuery(this).val();
-    	// 	jQuery.ajax({
-    	// 		url: '/public/admin/info/price',
-    	// 		type: 'post',
-    	// 		data: {
-    	// 			id:val
-    	// 		},
-    	// 		success: function(response) {
-    	// 			if(response) {
-    	// 				jQuery('#price').val(response.price);
-    	// 				jQuery('#state_price').val(response.state_price);
-    	// 			}
-    	// 		}
-    	// 	});
-    	// });
 
         jQuery('#estates-form').validate({
             rules: {
                 name: {
                     required: true
-                },
-				price: {
-                    required: true,
-                    number: true
-                },
-                state_price: {
-                    required: true,
-                    number: true
                 }
             },
             messages: {
                 name: {
                     required: VLD_RQ
-                },
-                price: {
-                    required: VLD_RQ,
-                    number: VLD_NB
-                },
-                state_price: {
-                    required: VLD_RQ,
-                    number: VLD_NB
                 }
             }
 
