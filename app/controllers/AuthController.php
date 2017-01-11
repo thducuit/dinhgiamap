@@ -249,7 +249,8 @@ class AuthController extends BaseController {
     $user->addGroup($group);
 
     Sentry::login($user, false);
-
+//    $activatedCode = $user->getActivationCode();
+//    $user->attemptActivation($code);
     //$this->sendActivationEmail( $user->getActivationCode() );
     $bday = null;//d_ngaySinh
     if(Input::get('d_ngaySinh') || Input::get('m_ngaySinh') || Input::get('y_ngaySinh')){

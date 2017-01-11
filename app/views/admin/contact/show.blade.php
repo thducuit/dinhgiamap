@@ -21,12 +21,20 @@
 			            <td>{{ $contact->phone }}</td>
 			        </tr>
 			        <tr>
-			            <td>Tiêu đề</td>
-			            <td>{{ $contact->title }}</td>
+			            <td>Mục đích</td>
+			            <td>{{ $contact->purpose }}</td>
+			        </tr>
+                    <tr>
+			            <td>Vị trí tài sản</td>
+			            <td>{{ $contact->position }}</td>
 			        </tr>
 			        <tr>
 			            <td>Nội dung</td>
 			            <td>{{ $contact->content }}</td>
+			        </tr>
+                    <tr>
+			            <td>Tập tin</td>
+                        <td><a href="/public/upload/contact/{{ $contact->file }}" target="_blank">{{ $contact->file }}</a></td>
 			        </tr>
 			    </table>
 			    <div class="col-md-12">

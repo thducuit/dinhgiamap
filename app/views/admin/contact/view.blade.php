@@ -20,7 +20,7 @@
                     					        <th style=""><div class="th-inner ">Tên</div></th>
                     					        <th style=""><div class="th-inner ">Email</div></th>
                     					        <th style=""><div class="th-inner ">Điện thoại</div></th>
-                    					        <th style=""><div class="th-inner ">Tiêu đề</div></th>
+                    					        <th style=""><div class="th-inner ">Mục đích</div></th>
                     					        <th style=""><div class="th-inner "></div></th>
                     					    </tr>
 					                    </thead>
@@ -31,7 +31,7 @@
     					                            <td>{{ $e->name }}</td>
     					                            <td>{{ $e->email }}</td>
     					                            <td>{{ $e->phone }}</td>
-    					                            <td>{{ $e->title }}</td>
+    					                            <td>{{ $e->purpose }}</td>
     					                            <td>
     					                            	<div class="btn-group">
     					                            		<!-- <a href="{{ URL::to('admin/contacts/edit/' . $e->id) }}" class='btn btn-default'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Sửa</a> -->
