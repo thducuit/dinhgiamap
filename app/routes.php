@@ -206,10 +206,17 @@ Route::post('/xem-quy-hoach.html', function() {
 });
 
 Route::post('/district', function() {
-    $districts = Province::find(Input::get('id'))->districts;
-    return Response::json($districts);
+    $districts = District::getByProvince(Input::get('id'));
+        return Response::json($districts);
 });
-
+Route::post('/ward', function() {
+    if(Input::get('id') == 0)
+    {
+        return Response::json(array());
+    }
+    $wards = District::find(Input::get('id'))->wards;
+    return Response::json($wards);
+});
 Route::get('/xem-quy-hoach.html', function() {
      return View::make('default.page.plan')
         ->with(array('title'=> 'Xem quy hoạch'))

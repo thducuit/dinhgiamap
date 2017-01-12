@@ -117,9 +117,9 @@ MAIN
     var map = L.map('map_photo', {
 		minZoom: mapMinZoom,
 		maxZoom: mapMaxZoom
-    }).setView([0, 0], 3);
+    }).setView([0, 0], 5);
 
-    L.tileLayer('/public/plans/{{ Session::get('name') }}/{z}/{x}/{y}.png', {
+    L.tileLayer('/public/plan/{{ Session::get('name') }}/{z}/{x}/{y}.png', {
         minZoom: mapMinZoom,
         maxZoom: mapMaxZoom,
         attribution: 'dinhgiatructuyen.vn',
