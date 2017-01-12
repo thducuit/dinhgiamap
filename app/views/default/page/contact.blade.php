@@ -91,7 +91,7 @@ MAIN
 					    <!--/.alert-->
 	    
 						<div class="block_contact_form_left">
-							{{ Form::open( array( 'url'=>'/contact/add', 'method'=>'post' ) ) }}
+							{{ Form::open( array( 'url'=>'/contact/add', 'method'=>'post' , 'enctype' => 'multipart/form-data') ) }}
 								<div class="form_group clearfix">
 									<div class="form_label">Họ và Tên</div>
 									<div class="form_field">
@@ -113,13 +113,13 @@ MAIN
 								<div class="form_group clearfix">
 									<div class="form_label">Vị trí tài sản</div>
 									<div class="form_field">
-										<input type="text" id="vitri" name="address" value="">
+										<input type="text" id="vitri" name="position" value="">
 									</div>
 								</div>
 								<div class="form_group clearfix">
 									<div class="form_label">Mục đích</div>
 									<div class="form_field">
-										<select name="aim" id="">
+										<select name="purpose" id="">
 											<option value="Mua bán, chuyển nhượng">Mua bán, chuyển nhượng</option>
 											<option value="Vay vốn ngân hàng">Vay vốn ngân hàng</option>
 											<option value="Cổ phần hoá, Góp vốn kinh doanh">Cổ phần hoá, Góp vốn kinh doanh</option>
@@ -136,6 +136,12 @@ MAIN
 									<div class="form_label">Ghi chú</div>
 									<div class="form_field">
 										<textarea name="content" rows="5"></textarea>
+									</div>
+								</div>
+                              <div class="form_group clearfix">
+									<div class="form_label">File Đính kèm</div>
+									<div class="form_field">
+                                      <input type="file" name="file" accept=".rar,.zip"/>
 									</div>
 								</div>
 								<div class="form_group clearfix">
