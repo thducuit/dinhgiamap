@@ -27,6 +27,7 @@
 			                <label for="address">Địa chỉ</label>
 			                <input type="text" name="address" class="form-control" id="google-map-point-search" placeholder="địa chỉ nhà" value="{{ $estate->address }}"/>
 			                <input type="hidden" name="id" class="form-control" id='id'  value="{{ $estate->id }}"/>
+			                <input type="hidden" name="place_id" class="form-control" id='place_id'  value="{{ $estate->place_id }}"/>
 			            </div>
 			            
 			            <div class="form-group">

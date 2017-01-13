@@ -26,6 +26,7 @@
 			            <div class="form-group">
 			                <label for="address">Địa chỉ</label>
 			                <input type="text" name="address" class="form-control" id="google-map-point-search" placeholder="địa chỉ nhà" value="{{ Input::old('name') }}"/>
+			                <input type="hidden" name="place_id" class="form-control" id='place_id'  value="{{ Input::old('place_id') }}"/>
 			            </div>
 			            
 			            <div class="form-group">

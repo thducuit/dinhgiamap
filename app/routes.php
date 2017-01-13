@@ -207,7 +207,7 @@ Route::post('/xem-quy-hoach.html', function() {
 
 Route::post('/district', function() {
     $districts = District::getByProvince(Input::get('id'));
-        return Response::json($districts);
+    return Response::json($districts);
 });
 Route::post('/ward', function() {
     if(Input::get('id') == 0)
@@ -216,6 +216,9 @@ Route::post('/ward', function() {
     }
     $wards = District::find(Input::get('id'))->wards;
     return Response::json($wards);
+});
+Route::get('/reals', function() {
+    return Response::json( Estate::where('status', '=', 1)->get() );
 });
 Route::get('/xem-quy-hoach.html', function() {
      return View::make('default.page.plan')
