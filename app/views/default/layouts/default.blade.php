@@ -65,7 +65,8 @@
 				ward: '/public/ward',
                 login: '/public/login-ajax',
                 register: '/public/register-ajax',
-                getReal: '/public/reals'
+                getReal: '/public/reals',
+                reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}'
 			};
 			
 			jQuery(window).keydown(function(event){

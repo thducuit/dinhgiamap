@@ -115,6 +115,8 @@
                     infoWindow.setZIndex(999999999);   
                     infoWindow.open($gmap, gmarker);
                     infoWindowArray.push(infoWindow);
+
+                    $gmap.setCenter(event.latLng);
                 });
 
             });
@@ -131,7 +133,7 @@
                              </div>\
                             <div class="property_info_row clearfix">\
                                 <div class="property_info_left">Giá rao bán</div>\
-                                <div class="property_info_right">'+info.price+'</div>\
+                                <div class="property_info_right">'+info.cost+'</div>\
                             </div>\
                             <div class="property_info_row clearfix property_info_row_end">\
                                 <div class="property_info_left">Liên hệ</div>\
@@ -143,7 +145,7 @@
                       \
                             <div class="property_thumbbnail" style="background: url(default/images/hinh_taisancungdongia_35823583.png) center no-repeat; background-size: cover;margin-top:32px;"></div>\
                           <div class="popup_button_group">\
-                              <a href="chi-tiet-tai-san-dang-giao-dich.html">\
+                              <a href="' + url.reals + '?place=' + info.place_id + '">\
                                   <div class="btn btn_icon btn_gradient4"><i class="icon_cungdongia"></i><span>Xem chi tiết</span></div>\
                               </a>\
                           </div>\

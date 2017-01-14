@@ -114,6 +114,8 @@ class EstateController extends AdminController {
                 'bantivi' => Input::get('bantivi'),
                 'kean' => Input::get('kean'),
                 'description' => Input::get('description'),
+                'contact' => Input::get('contact'),
+                'content' => Input::get('content'),
                 'gallery' => json_encode(Input::get('file')),
             );
             
@@ -182,6 +184,8 @@ class EstateController extends AdminController {
         $estate->kean = Input::get('kean'); 
 
         $estate->description = Input::get('description'); 
+        $estate->contact = Input::get('contact'); 
+        $estate->content = Input::get('content'); 
         $estate->gallery = json_encode(Input::get('file')); 
 
         

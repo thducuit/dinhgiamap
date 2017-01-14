@@ -117,9 +117,12 @@ Route::get('/tai-san-dang-giao-dich.html', function() {
 });
 
 Route::get('/chi-tiet-tai-san-dang-giao-dich.html', function() {
+    $placeId = Input::get('place');
+    $estate = Estate::findByPlaceId($placeId);
      return View::make('default.real.detail')
         ->with(array('title'=> 'Tài sản đang giao dịch'))
         ->with('current', 9)
+        ->with('estate', $estate)
         ->with(array('body_class'=> 'page_search'));
 });
 
