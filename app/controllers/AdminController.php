@@ -68,6 +68,17 @@ class AdminController extends BaseController {
 		return false;
 	}
 
+	protected function isDataManager()
+	{
+		$user = Sentry::getUser();
+		$admin = Sentry::findGroupByName('datamanager');
+		if($user)
+		{
+			return $user->inGroup($admin);
+		}
+		return false;
+	}
+
 	public function dashboard()
 	{
 		return View::make('admin.dashboard')

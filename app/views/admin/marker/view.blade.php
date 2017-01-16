@@ -37,6 +37,7 @@
 					               <table data-toggle="table" class="table table-hover customTable">
 		                                <thead>
                     					    <tr>
+                    					        <th style=""><div class="th-inner ">ID</div></th>
                     					        <th style=""><div class="th-inner ">Tên</div></th>
                     					        <th style=""><div class="th-inner ">Giá thị trường (VNĐ)</div></th>
                     					        <th style=""><div class="th-inner ">Giá nhà nước (VNĐ)</div></th>
@@ -47,6 +48,7 @@
 					                        @if(!empty($markers))
     					                        @foreach($markers as $e)
     					                        <tr>
+    					                            <td>{{ $e->id }}</td>
     					                            <td>{{ $e->name }}</td>
     					                            <td>{{ number_format($e->price) }}</td>
     					                            <td>{{ number_format($e->state_price) }}</td>

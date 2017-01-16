@@ -39,6 +39,7 @@
 		                                <thead>
                     					    <tr>
                     					        <th style=""><div class="th-inner ">Ký hiệu</div></th>
+                    					        <th style=""><div class="th-inner ">ID</div></th>
                     					        <th style=""><div class="th-inner ">Tên</div></th>
                     					        <th style=""><div class="th-inner ">Giá thị trường(VND)</div></th>
                     					        <th style=""><div class="th-inner ">Giá nhà nước(VND)</div></th>
@@ -52,6 +53,7 @@
     					                        @foreach($streets as $e)
     					                        <tr>
     					                            <td>{{ $e->code }}</td>
+    					                            <td>{{ $e->id }}</td>
     					                            <td>{{ $e->name }}</td>
     					                            <td>{{ number_format($e->price) }}</td>
     					                            <td>{{ number_format($e->state_price) }}</td>
