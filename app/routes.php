@@ -227,7 +227,7 @@ Route::get('/hoi-dap.html', function() {
         ->with(array('body_class'=> 'page_contact'));
 });
 Route::get('/result', 'HomeController@showResult');
-Route::get('/register', function() {
+Route::get('/register', function() {  
      return View::make('default.page.register')
         ->with(array('title'=> 'Đăng ký'))
         ->with(array('body_class'=> 'page_contact'));
@@ -235,6 +235,7 @@ Route::get('/register', function() {
 Route::post('/register', 'AuthController@register');
 
 Route::post('/login', 'AuthController@login');
+Route::get('/active', 'AuthController@active');
 Route::post('/login-ajax', 'AuthController@loginAjax');
 Route::post('/register-ajax', 'AuthController@registerAjax');
 
