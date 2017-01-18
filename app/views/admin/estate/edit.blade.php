@@ -27,6 +27,7 @@
 			                <label for="address">Địa chỉ</label>
 			                <input type="text" name="address" class="form-control" id="google-map-point-search" placeholder="địa chỉ nhà" value="{{ $estate->address }}"/>
 			                <input type="hidden" name="id" class="form-control" id='id'  value="{{ $estate->id }}"/>
+			                <input type="hidden" name="place_id" class="form-control" id='place_id'  value="{{ $estate->place_id }}"/>
 			            </div>
 			            
 			            <div class="form-group">
@@ -52,6 +53,21 @@
 			            <div class="form-group">
 			                <label for="cost">Giá bán</label>
 			                <input type="text" name="cost" class="form-control" placeholder="Giá rao bán" value="{{ $estate->cost }}"/>
+			            </div>
+
+			            <div class="form-group">
+			                <label for="description">Mô tả chi tiết</label>
+			                <textarea name="description" id="description-content-editor" data-editor="description-content-editor" cols="30" rows="10">{{ $estate->description }}</textarea>
+			            </div>
+
+			            <div class="form-group">
+			                <label for="contact">Liên hệ</label>
+			                <input type="text" name="contact" class="form-control" placeholder="Liên hệ" value="{{ $estate->contact }}"/>
+			            </div>
+
+			            <div class="form-group">
+			                <label for="content">Nội dung</label>
+			                <textarea name="content" id="content-content-editor" data-editor="content-content-editor" cols="30" rows="10">{{ $estate->content }}</textarea>
 			            </div>
 			        </div>
 			        

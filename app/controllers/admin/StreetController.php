@@ -61,6 +61,7 @@ class StreetController extends AdminController {
             ->with(array('menu' => $this->menuInstance() ))
             ->with(array('title'=>'Đoạn đường', 
                         'pager' => $pager, 
+                        'page' => Input::get('page'), 
                         'streets' => $streets)
                   );    
     }

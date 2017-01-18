@@ -11,12 +11,33 @@
 					<div class="bootstrap-table">
 					    <div class="fixed-table-toolbar"></div>
 					    <div class="fixed-table-container">
-					       <div class="fixed-table-header"></div>
+					       <div class="fixed-table-header">
+					       		<form method="get" action="{{ URL::to('admin/markers') }}">
+					       			<div class="search search-left pull-left">
+					       				{{ Form::select('province', Province::getOptions(), $province, ['class'=>'province_id form-control']) }}
+					       				<select name="district"  class="district_id form-control">
+						                	<option value="0"></option>
+						                </select>
+						                <input type="hidden" id="district_id" class="form-control" value="{{ $district }}">
+					       				<select name="ward"  class="ward_id form-control">
+						                	<option value="0"></option>
+						                </select>
+						                <input type="hidden" id="ward_id" class="form-control" value="{{ $ward }}">
+					       				
+					       			</div>	
+					       			<div class="search search-right pull-right">
+					       				<input class="form-control" name='keyword' placeholder="Tìm kiếm từ khoá" value="{{ $keyword }}" />
+					       				<input type="submit" class="btn btn-primary" value="Tìm kiếm" />
+					       				<a href="{{ URL::to('admin/markers') }}" class="btn btn-default">Tải lại</a>
+					       			</div>
+					       		</form>
+					       </div>
 					       <div class="fixed-table-body">
 					           <div class="fixed-table-loading" style="top: 37px;">Loading, please wait…</div>
 					               <table data-toggle="table" class="table table-hover customTable">
 		                                <thead>
                     					    <tr>
+                    					        <th style=""><div class="th-inner ">ID</div></th>
                     					        <th style=""><div class="th-inner ">Tên</div></th>
                     					        <th style=""><div class="th-inner ">Giá thị trường (VNĐ)</div></th>
                     					        <th style=""><div class="th-inner ">Giá nhà nước (VNĐ)</div></th>
@@ -27,6 +48,7 @@
 					                        @if(!empty($markers))
     					                        @foreach($markers as $e)
     					                        <tr>
+    					                            <td>{{ $e->id }}</td>
     					                            <td>{{ $e->name }}</td>
     					                            <td>{{ number_format($e->price) }}</td>
     					                            <td>{{ number_format($e->state_price) }}</td>
@@ -56,4 +78,5 @@
 			</div>
 		</div>
 	</div>
+{{ HTML::script('admin/js/custom/province.js') }}  
 @endsection

@@ -43,7 +43,7 @@ class EstateController extends AdminController {
             ->with(array('title'=> 'Cập nhật tài sản'));
     }
 
-    public function getShow($id = 0)
+    public function getDetail($id = 0)
     {
         $estate = Estate::find($id);
         // $street = Street::find($estate->street_id);
@@ -90,6 +90,8 @@ class EstateController extends AdminController {
                 'address' => Input::get('address'),
                 'lat' => Input::get('lat'),
                 'lng' => Input::get('lng'),
+                'status' => 0,
+                'place_id' => Input::get('place_id'),
                 'bedroom' => Input::get('bedroom'),
                 'bathroom' => Input::get('bathroom'),
                 'areas' => Input::get('areas'),
@@ -112,6 +114,8 @@ class EstateController extends AdminController {
                 'bantivi' => Input::get('bantivi'),
                 'kean' => Input::get('kean'),
                 'description' => Input::get('description'),
+                'contact' => Input::get('contact'),
+                'content' => Input::get('content'),
                 'gallery' => json_encode(Input::get('file')),
             );
             
@@ -156,6 +160,7 @@ class EstateController extends AdminController {
         $estate->address = Input::get('address');  
         $estate->lat = Input::get('lat'); 
         $estate->lng = Input::get('lng'); 
+        $estate->place_id = Input::get('place_id'); 
         $estate->bedroom = Input::get('bedroom'); 
         $estate->bathroom = Input::get('bathroom'); 
         $estate->areas = Input::get('areas'); 
@@ -179,6 +184,8 @@ class EstateController extends AdminController {
         $estate->kean = Input::get('kean'); 
 
         $estate->description = Input::get('description'); 
+        $estate->contact = Input::get('contact'); 
+        $estate->content = Input::get('content'); 
         $estate->gallery = json_encode(Input::get('file')); 
 
         
@@ -194,6 +201,28 @@ class EstateController extends AdminController {
     {
         $estate = Estate::find($id);
         $estate->delete();
+        return Redirect::to('admin/estates?page=' . Input::get('page'))
+                ->with('message', 'Success')
+                ->with('icon', Config::get('constant.admin.alert.success.icon'))
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));
+    }
+
+    public function getShow($id = 0)
+    {
+        $estate = Estate::find($id);
+        $estate->status = 1;
+        $estate->save();
+        return Redirect::to('admin/estates?page=' . Input::get('page'))
+                ->with('message', 'Success')
+                ->with('icon', Config::get('constant.admin.alert.success.icon'))
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));
+    }
+
+    public function getHide($id = 0)
+    {
+        $estate = Estate::find($id);
+        $estate->status = 0;
+        $estate->save();
         return Redirect::to('admin/estates?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))

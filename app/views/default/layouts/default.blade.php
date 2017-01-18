@@ -25,6 +25,7 @@
         
 		{{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
 		{{ HTML::style('admin/css/leaflet.draw.css') }}
+		{{ HTML::style('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css') }}
 
 		
 		{{ HTML::script('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}
@@ -35,6 +36,8 @@
 		{{	HTML::script('default/js/leaflet-google.js') }}
 		{{	HTML::script('admin/js/custom/Google.js') }}
 		{{ HTML::script('admin/js/custom/leaflet.draw.js') }}
+		{{ HTML::script('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js') }}
+		
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -59,9 +62,11 @@
 				street: '/public/streets',
 				priceStreet: '/public/streets/price',
 				district: '/public/district',
-				ward: '/public/admin/info/ward',
+				ward: '/public/ward',
                 login: '/public/login-ajax',
-                register: '/public/register-ajax'
+                register: '/public/register-ajax',
+                getReal: '/public/reals',
+                reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}'
 			};
 			
 			jQuery(window).keydown(function(event){

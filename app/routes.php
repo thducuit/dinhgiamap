@@ -117,9 +117,12 @@ Route::get('/tai-san-dang-giao-dich.html', function() {
 });
 
 Route::get('/chi-tiet-tai-san-dang-giao-dich.html', function() {
+    $placeId = Input::get('place');
+    $estate = Estate::findByPlaceId($placeId);
      return View::make('default.real.detail')
         ->with(array('title'=> 'Tài sản đang giao dịch'))
         ->with('current', 9)
+        ->with('estate', $estate)
         ->with(array('body_class'=> 'page_search'));
 });
 
@@ -206,10 +209,20 @@ Route::post('/xem-quy-hoach.html', function() {
 });
 
 Route::post('/district', function() {
-    $districts = Province::find(Input::get('id'))->districts;
+    $districts = District::getByProvince(Input::get('id'));
     return Response::json($districts);
 });
-
+Route::post('/ward', function() {
+    if(Input::get('id') == 0)
+    {
+        return Response::json(array());
+    }
+    $wards = District::find(Input::get('id'))->wards;
+    return Response::json($wards);
+});
+Route::get('/reals', function() {
+    return Response::json( Estate::where('status', '=', 1)->get() );
+});
 Route::get('/xem-quy-hoach.html', function() {
      return View::make('default.page.plan')
         ->with(array('title'=> 'Xem quy hoạch'))

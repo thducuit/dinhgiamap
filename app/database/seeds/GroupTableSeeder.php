@@ -10,7 +10,7 @@ class GroupTableSeeder extends Seeder {
 	public function run()
 	{
 		$group = Sentry::createGroup(array(
-            'name' => 'customer',
+            'name' => 'datamanager',
             'permissions' => array(
                     'create'=> 1,
                     'read'  => 1,

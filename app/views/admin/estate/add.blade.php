@@ -26,6 +26,7 @@
 			            <div class="form-group">
 			                <label for="address">Địa chỉ</label>
 			                <input type="text" name="address" class="form-control" id="google-map-point-search" placeholder="địa chỉ nhà" value="{{ Input::old('name') }}"/>
+			                <input type="hidden" name="place_id" class="form-control" id='place_id'  value="{{ Input::old('place_id') }}"/>
 			            </div>
 			            
 			            <div class="form-group">
@@ -56,6 +57,16 @@
 						<div class="form-group">
 			                <label for="description">Mô tả chi tiết</label>
 			                <textarea name="description" id="description-content-editor" data-editor="description-content-editor" cols="30" rows="10"></textarea>
+			            </div>
+
+			            <div class="form-group">
+			                <label for="contact">Liên hệ</label>
+			                <input type="text" name="contact" class="form-control" placeholder="Liên hệ" value="{{ Input::old('contact') }}"/>
+			            </div>
+
+			            <div class="form-group">
+			                <label for="content">Nội dung</label>
+			                <textarea name="content" id="content-content-editor" data-editor="content-content-editor" cols="30" rows="10"></textarea>
 			            </div>
 			        </div>
 			        

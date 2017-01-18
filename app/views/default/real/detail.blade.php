@@ -43,23 +43,22 @@ MAIN
                     	</div>
                     </div>
                     <div class="property-description" >
-                    	<p>Tọa lạc trên con phó sầm uất Lũy Bán Bích (Q.Tân Phú), nhà phố nổi bật với kiến trúc hiện đại, sang trọng với tường trắng, mái ngói xám nâu điểm tô tường đá cao cấp ở tầng trệt.</p>
-                    	<p>
-                    		Từ khoảng sân rộng rãi, bạn sẽ được dẫn vào hai gian nhà riêng với nhà xe có lối cầu thang lên lầu, không gian sinh hoạt chung với khách và nhà bếp được thiết kế thông nhau theo phong cách hiện đại mang sự thoáng đãng và rộng rãi với gam màu trắng chủ đạo.
-                    	</p>
+                    	<div>
+                    		{{ $estate->content }}
+                    	</div>
                     	<div class="property-contact">
                     		<span>Liên hệ: </span>
-                    		<strong>STDA Miền Nam - 19006868</strong>
+                    		<strong>{{ $estate->contact }}</strong>
                     	</div>
                     </div>
                 </div>
                 <div class="col-sm-6 property-right detail-info">
                     <div class="property-title">
                         <h4>
-                            BÁN NHÀ MẶT TIỀN :300 LŨY BÁN BÍCH P. HIỆP TÂN Q. TÂN PHÚ
+                            {{ $estate->title }}
                         </h4>
                         <div class="property-address">
-                            300 Lũy Bán Bích, P. Hiệp Tân, Q. Tân Phú, Tp. Hồ Chí Minh
+                            {{ $estate->address }}
                         </div>
                     </div>
                     <div class="property-meta">
@@ -75,11 +74,11 @@ MAIN
                         	</li>
                             <li class="">
                             	<span>
-                            		<img src="{{ URL::asset('default/images/property_icon_4.png') }}"/>105 m<sup>2</sup>
+                            		<img src="{{ URL::asset('default/images/property_icon_4.png') }}"/>{{ $estate->areas }} m<sup>2</sup>
                             	</span>
                         	</li>
-                            <li class=""><img src="{{ URL::asset('default/images/property_icon_5.png') }}"/> 33.33 triệu/m<sup>2</sup></li>
-                            <li class=""><img src="{{ URL::asset('default/images/property_icon_6.png') }}"/> Giá bán 3.5 tỷ</li>
+                            <li class=""><img src="{{ URL::asset('default/images/property_icon_5.png') }}"/> {{ $estate->price }} triệu/m<sup>2</sup></li>
+                            <li class=""><img src="{{ URL::asset('default/images/property_icon_6.png') }}"/> Giá bán {{ $estate->cost }}</li>
                         </ul>
                     </div>
                     <div class="meta-content">

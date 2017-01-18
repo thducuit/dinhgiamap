@@ -16,14 +16,58 @@ class MarkerController extends AdminController {
             $markers = $markers->where('user_id', '=', $this->getUser());
         }
 
-        $markers = $markers->orderBy('id', 'desc')
-	    ->paginate(Config::get('constant.admin.pager'));
-	    $pager = $markers->links();
+        $keyword = Input::get('keyword');
+        if( !empty($keyword) )
+        {
+            $markers = $markers->where('name', 'LIKE', "%$keyword%");
+        }
+
+        $code = Input::get('code');
+        if( !empty($code) )
+        {
+            $markers = $markers->where('code', 'LIKE', "%$code%");
+        }
+
+        $province = (int)Input::get('province');
+        if( !empty($province) && $province != 0 )
+        {
+            $markers = $markers->where('province_id', '=', $province);
+        }
+
+        $district = (int)Input::get('district');
+        if( !empty($district) && $district != 0 )
+        {
+            $markers = $markers->where('district_id', '=', $district);
+        }
+
+        $ward = (int)Input::get('ward');
+        if( !empty($ward) && $ward != 0 )
+        {
+            $markers = $markers->where('ward_id', '=', $ward);
+        }
+
+
+        $markers = $markers->orderBy('created_at', 'desc')->orderBy('name', 'desc')
+               ->paginate(Config::get('constant.admin.pager'));
+        $pager = $markers->appends(array('keyword' => $keyword,  'province' => $province, 'district' => $district, 'ward' => $ward))->links();
+
+
+     //    $markers = $markers->orderBy('id', 'desc')
+	    // ->paginate(Config::get('constant.admin.pager'));
+	    // $pager = $markers->links();
 	    
         return View::make('admin.marker.view')
-            ->with(array('page' => Input::get('page')))
+            ->with(array('province' => $province,
+                        'district' => $district,
+                        'ward' => $ward,
+                        'keyword' => $keyword,
+                ))
             ->with(array('menu' => $this->menuInstance() ))
-            ->with(array('title' => 'Vị trí', 'markers' => $markers, 'pager' => $pager));
+            ->with(array('title'=>'Vị trí', 
+                        'pager' => $pager, 
+                        'page' => Input::get('page'), 
+                        'markers' => $markers)
+                  ); 
     }
     
     public function getAdd()

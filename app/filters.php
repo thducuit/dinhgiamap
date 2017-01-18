@@ -96,7 +96,8 @@ Route::filter('dg_admin_authentication', function() {
 		$user = Sentry::getUser();
 		$admin = Sentry::findGroupByName('administrator');
 		$writer = Sentry::findGroupByName('writer');
-		if( $user->inGroup($admin) && $user->inGroup($writer) )
+		$datamanager = Sentry::findGroupByName('datamanager');
+		if( !$user->inGroup($admin) && !$user->inGroup($writer) && !$user->inGroup($datamanager) )
 		{
 			return Redirect::to('admin/login');
 		}
