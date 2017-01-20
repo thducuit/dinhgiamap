@@ -110,7 +110,11 @@ Route::get('/chinh-sach.html', function() {
 });
 
 Route::get('/tai-san-dang-giao-dich.html', function() {
+  $lat = Input::get('lat');
+  $lng = Input::get('lng');
      return View::make('default.real.index')
+        ->with(array('lat'=> $lat))
+        ->with(array('lng'=> $lng))
         ->with(array('title'=> 'Tài sản đang giao dịch'))
         ->with('current', 9)
         ->with(array('body_class'=> 'page_search'));
@@ -221,7 +225,18 @@ Route::post('/ward', function() {
     return Response::json($wards);
 });
 Route::get('/reals', function() {
-    return Response::json( Estate::where('status', '=', 1)->get() );
+    $lat = Input::get('lat');
+    $lng = Input::get('lng');
+    if($lat && $lng){
+      $radius = 0.1;    
+      $markers = DB::select(DB::raw("
+          SELECT es.*, ( 6371 * acos( cos( radians(" . $lat . ") ) * cos( radians(es.lat) ) * cos( radians(es.lng) - radians(" . $lng . ") ) + sin( radians( " . $lat . " ) ) * sin( radians( es.lat ) ) ) ) AS distance 
+          FROM ".Estate::TABLE_NAME." AS es
+          HAVING distance > 0 and distance < " . $radius));
+      return Response::json( $markers );
+    }else{
+      return Response::json( Estate::where('status', '=', 1)->get() );
+    }
 });
 Route::get('/xem-quy-hoach.html', function() {
      return View::make('default.page.plan')

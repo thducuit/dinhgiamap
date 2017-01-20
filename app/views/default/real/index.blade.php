@@ -92,6 +92,10 @@ MAIN
     </div>
 </div> -->
 <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script> -->
+<script>
+  var latTaiSanGD = {{$lat}};
+  var lngTaiSanGD = {{$lng}};
+</script>
 {{ HTML::script('default/js/infobox.js') }}
 {{ HTML::script('default/js/real.js') }}
 @endsection

@@ -5,8 +5,16 @@
         var $gmap = null;
         var cityCircleArray = [];
         var infoWindowArray = [];
+        var latPosition = 0;
+        var lngPosition = 0;
+        if(latTaiSanGD){
+          latPosition = latTaiSanGD;
+        }
+        if(lngTaiSanGD){
+          lngPosition = lngTaiSanGD;
+        }
         var mapOptions = {
-            center: new google.maps.LatLng(10.774230, 106.631226),
+            center: new google.maps.LatLng(latPosition, lngPosition),
             zoom: 17,
             overviewMapControl: true,
             overviewMapControlOptions: {
@@ -166,7 +174,7 @@
 
         function getRealEstate(callback) {
             $.ajax({
-                url: url.getReal,
+                url: url.getReal+'?lat='+latPosition+'&'+'lng='+lngPosition,
                 type: 'get',
                 data: {},
                 success: function(response) {
