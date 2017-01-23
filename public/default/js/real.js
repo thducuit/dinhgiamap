@@ -13,8 +13,12 @@
         if(lngTaiSanGD){
           lngPosition = lngTaiSanGD;
         }
+        var mapCenter = {
+          lat: (latPosition)?latPosition:10.774230,
+          lng: (lngPosition)?lngPosition:106.631226
+        };
         var mapOptions = {
-            center: new google.maps.LatLng(latPosition, lngPosition),
+            center: new google.maps.LatLng(mapCenter.lat, mapCenter.lng),
             zoom: 17,
             overviewMapControl: true,
             overviewMapControlOptions: {

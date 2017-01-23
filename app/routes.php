@@ -109,9 +109,9 @@ Route::get('/chinh-sach.html', function() {
         ->with(array('body_class'=> 'page_xemquihoach'));
 });
 
-Route::get('/tai-san-dang-giao-dich.html', function() {
-  $lat = Input::get('lat');
-  $lng = Input::get('lng');
+Route::get('/tai-san-dang-giao-dich.html', function() { 
+  $lat = (Input::get('lat'))?Input::get('lat'):0;  
+  $lng = (Input::get('lng'))?Input::get('lng'):0;
      return View::make('default.real.index')
         ->with(array('lat'=> $lat))
         ->with(array('lng'=> $lng))
@@ -228,7 +228,7 @@ Route::get('/reals', function() {
     $lat = Input::get('lat');
     $lng = Input::get('lng');
     if($lat && $lng){
-      $radius = 0.1;    
+      $radius = 0.5;    
       $markers = DB::select(DB::raw("
           SELECT es.*, ( 6371 * acos( cos( radians(" . $lat . ") ) * cos( radians(es.lat) ) * cos( radians(es.lng) - radians(" . $lng . ") ) + sin( radians( " . $lat . " ) ) * sin( radians( es.lat ) ) ) ) AS distance 
           FROM ".Estate::TABLE_NAME." AS es
