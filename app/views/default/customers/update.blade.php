@@ -78,14 +78,50 @@ MAIN
 							<span><strong>Ngày sinh</strong></span>
 						</div>
 						<div class="profile_info_col">
-							<input type="text" name="bday" id="bday" value="{{ $customer->bday }}">
-							<script>
-							  jQuery( function() {
-							    jQuery( "#bday" ).datepicker({
-							    	dateFormat: "dd/mm/yy"
-							    });
-							  } );
-							  </script>
+                          <div class="row">
+                          <?php 
+                          $day = date('d', strtotime($customer->bday));
+                          $month = date('m', strtotime($customer->bday));
+                          $year = date('Y', strtotime($customer->bday));                          
+                          ?>
+<!--							<input type="text" name="bday" id="bday" value="{{ $customer->bday }}">-->                            
+							<div class="form_col col-md-4">
+                              <select name="d_ngaySinh">
+                                <option value="">Ngày</option>
+                                <?php 
+                                for($i = 1; $i <= 31; $i++){
+                                  ?>
+                                  <option <?php if($day==$i)echo 'selected'?> value="<?php echo $i?>"><?php echo $i?></option>
+                                  <?php
+                                }
+                                ?>
+                              </select>
+                            </div>
+                            <div class="form_col col-md-4">
+                              <select name="m_ngaySinh">
+                                <option value="">Tháng</option>
+                                <?php 
+                                for($i = 1; $i <= 12; $i++){
+                                  ?>
+                                  <option <?php if($month==$i)echo 'selected'?> value="<?php echo $i?>"><?php echo $i?></option>
+                                  <?php
+                                }
+                                ?>
+                              </select>
+                            </div>
+                            <div class="form_col col-md-4">
+                              <select name="y_ngaySinh">
+                                <option value="">Năm</option>
+                                <?php 
+                                for($i = 1916; $i <= 1998; $i++){
+                                  ?>
+                                  <option <?php if($year==$i)echo 'selected'?> value="<?php echo $i?>"><?php echo $i?></option>
+                                  <?php
+                                }
+                                ?>
+                              </select>
+                            </div>
+                          </div>
 						</div>
 					</div>
 					<div class="profile_info_row clearfix">

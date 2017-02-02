@@ -120,7 +120,7 @@
             }
         });
 
-        google.maps.event.addListener(mapObject, 'click', function(e) {
+        google.maps.event.addListener(mapObject, 'click', function(e) {          
             setMarkerPosition(e.latLng);
             mapObject.setCenter(e.latLng);
             markerLatLng = e.latLng;
@@ -220,17 +220,24 @@
                     placeId: placeId
                 },
                 success: function(response) {                  
-                    if (response && response.name) {
-                        setContent(response);
-                        $('#modal_info').modal('show');
-                    }
-                    else {
-                       ContainInPolygon(place, function(streetId){
-							place.street_id = streetId;							
-                                      setContent(place);
-                        $('#modal_info').modal('show');
-                      });
-                    }
+                  var urlTaiSanGiaoDich = $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href');
+                  console.log(markerLatLng);
+                  if(markerLatLng){                          
+                    urlTaiSanGiaoDich += '?lat='+markerLatLng.lat()+'&lng='+markerLatLng.lng();
+                    $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href', urlTaiSanGiaoDich);
+                  }
+                  
+                  if (response && response.name) {
+                      setContent(response);                       
+                      $('#modal_info').modal('show');
+                  }
+                  else {
+                     ContainInPolygon(place, function(streetId){
+                          place.street_id = streetId;							
+                                    setContent(place);
+                      $('#modal_info').modal('show');
+                    });
+                  }
                 }
             })
         }
@@ -250,7 +257,8 @@
         }
 
         marker.addListener('click', function() {
-            findAddressInformation();
+          markerLatLng = marker.getPosition();                
+          findAddressInformation();
         });
 
         /**

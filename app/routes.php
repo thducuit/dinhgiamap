@@ -109,8 +109,12 @@ Route::get('/chinh-sach.html', function() {
         ->with(array('body_class'=> 'page_xemquihoach'));
 });
 
-Route::get('/tai-san-dang-giao-dich.html', function() {
+Route::get('/tai-san-dang-giao-dich.html', function() { 
+  $lat = (Input::get('lat'))?Input::get('lat'):0;  
+  $lng = (Input::get('lng'))?Input::get('lng'):0;
      return View::make('default.real.index')
+        ->with(array('lat'=> $lat))
+        ->with(array('lng'=> $lng))
         ->with(array('title'=> 'Tài sản đang giao dịch'))
         ->with('current', 9)
         ->with(array('body_class'=> 'page_search'));
@@ -221,7 +225,18 @@ Route::post('/ward', function() {
     return Response::json($wards);
 });
 Route::get('/reals', function() {
-    return Response::json( Estate::where('status', '=', 1)->get() );
+    $lat = Input::get('lat');
+    $lng = Input::get('lng');
+    if($lat && $lng){
+      $radius = 0.5;    
+      $markers = DB::select(DB::raw("
+          SELECT es.*, ( 6371 * acos( cos( radians(" . $lat . ") ) * cos( radians(es.lat) ) * cos( radians(es.lng) - radians(" . $lng . ") ) + sin( radians( " . $lat . " ) ) * sin( radians( es.lat ) ) ) ) AS distance 
+          FROM ".Estate::TABLE_NAME." AS es
+          HAVING distance > 0 and distance < " . $radius));
+      return Response::json( $markers );
+    }else{
+      return Response::json( Estate::where('status', '=', 1)->get() );
+    }
 });
 Route::get('/xem-quy-hoach.html', function() {
      return View::make('default.page.plan')
@@ -240,7 +255,7 @@ Route::get('/hoi-dap.html', function() {
         ->with(array('body_class'=> 'page_contact'));
 });
 Route::get('/result', 'HomeController@showResult');
-Route::get('/register', function() {
+Route::get('/register', function() {  
      return View::make('default.page.register')
         ->with(array('title'=> 'Đăng ký'))
         ->with(array('body_class'=> 'page_contact'));
@@ -248,6 +263,7 @@ Route::get('/register', function() {
 Route::post('/register', 'AuthController@register');
 
 Route::post('/login', 'AuthController@login');
+Route::get('/active', 'AuthController@active');
 Route::post('/login-ajax', 'AuthController@loginAjax');
 Route::post('/register-ajax', 'AuthController@registerAjax');
 

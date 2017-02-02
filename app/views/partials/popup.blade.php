@@ -34,7 +34,7 @@
 										</div>
 									</a>
 
-									<a href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><div id="btn_xemquihoach" class="btn btn_icon btn_gradient4"><i class="icon_xemquihoach"></i><span>Tài sản đang giao dịch</span></div></a>
+									<a href="{{ URL::to('/tai-san-dang-giao-dich.html') }}" class="btn-tai-san-giao-dich"><div id="btn_xemquihoach" class="btn btn_icon btn_gradient4"><i class="icon_xemquihoach"></i><span>Tài sản đang giao dịch</span></div></a>
 								</div>
 
 							</div> 

@@ -6,7 +6,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" style="font-weight: bolder;">ĐĂNG KÝ THÀNH VIÊN</h4>
+        <h4 class="modal-title" style="font-weight: bolder; color: #00929a;">ĐĂNG KÝ THÀNH VIÊN</h4>
       </div>
       <div class="modal-body">
        <div class="popup_button_group">
@@ -18,8 +18,8 @@
        <form class="form-horizontal register-form" id="form_dangky" method="post" action="">
          <div class="the-error"></div>
          <div class="form-group">
-          <label class="col-sm-3 control-label">Loại tài khoản (*):</label>
-          <div class="col-sm-9">
+          <label class="col-sm-4 control-label">Loại tài khoản (*):</label>
+          <div class="col-sm-8">
 
             <label class="radio-inline">
               <input type="radio" name="taiKhoan" id="inlineRadio2" checked="true" value="1"> Môi giới/Cá nhân
@@ -31,50 +31,50 @@
           </div>
         </div>
         <div class="form-group">
-         <label  class="col-sm-3 control-label">Tên đăng nhập (*):</label>
-         <div class="col-sm-9">
+         <label  class="col-sm-4 control-label">Tên đăng nhập (*):</label>
+         <div class="col-sm-8">
           <input type="text" class="form-control" id="danKy_email" name="email"  placeholder="Email đăng nhập">
           <div class="help-block"></div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-3 control-label">Mật khẩu (*):</label>
-        <div class="col-sm-9">
+        <label class="col-sm-4 control-label">Mật khẩu (*):</label>
+        <div class="col-sm-8">
           <input type="password" class="form-control" id="danKy_MatKhau" name="password"  placeholder="Mật khẩu">
           <div class="help-block"></div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-3 control-label">Gõ lại mật khẩu (*):</label>
-        <div class="col-sm-9">
+        <label class="col-sm-4 control-label">Gõ lại mật khẩu (*):</label>
+        <div class="col-sm-8">
           <input type="password" class="form-control" id="danKy_ReMatKhau" name="password_confirmation"  placeholder="Gõ lại mật khẩu">
           <div class="help-block"></div>
         </div>
       </div>
       <div class="form-group">
-        <label  class="col-sm-3 control-label">Họ & Tên (*):</label>
-        <div class="col-sm-9">
+        <label  class="col-sm-4 control-label">Họ & Tên (*):</label>
+        <div class="col-sm-8">
           <input type="text" class="form-control" id="dangKy_ht" name="name"  placeholder="Họ & Tên">
           <div class="help-block"></div>
         </div>
       </div>                                                                                            
       <div class="form-group">
-        <label  class="col-sm-3 control-label">Điện thoại (*):</label>
-        <div class="col-sm-9">
+        <label  class="col-sm-4 control-label">Điện thoại (*):</label>
+        <div class="col-sm-8">
           <input type="text" class="form-control" id="dangKy_dienthoai" name="mobile">
           <div class="help-block"></div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-3 control-label">Địa chỉ:</label>
-        <div class="col-sm-9">
+        <label class="col-sm-4 control-label">Địa chỉ:</label>
+        <div class="col-sm-8">
          <input type="text" class="form-control" id="dangKy_diaChi" name="address"  placeholder="Địa chỉ">
 
        </div>
      </div>
      <div class="form-group">
-      <label  class="col-sm-3 control-label">Giới tính:</label>
-      <div class="col-sm-9">
+      <label  class="col-sm-4 control-label">Giới tính:</label>
+      <div class="col-sm-8">
         <label class="radio-inline">
           <input type="radio" name="gender" checked="true" id="inlineRadio1" value="1"> Nam
         </label>
@@ -85,8 +85,8 @@
       </div>
     </div>
     <div class="form-group tab_body ngay-sinh-box">
-      <label  class="col-sm-3 control-label">Ngày sinh:</label>
-      <div class="col-sm-9 form_row">    
+      <label  class="col-sm-4 control-label">Ngày sinh:</label>
+      <div class="col-sm-8 form_row">    
         <div class="form_col">
           <select name="d_ngaySinh">
             <option value="">Ngày</option>
@@ -154,7 +154,7 @@
                     <div class="col-sm-offset-3 col-sm-9">
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" name="danKy_DongY" id="danKy_DongY" value="1"> Tôi đồng ý với qui định của <span style="font-weight: bold;">ĐỊNH GIÁ TRỰC TUYẾN</span> 
+                          <input type="checkbox" name="danKy_DongY" id="danKy_DongY" value="1"> Tôi đồng ý với qui định của <a href="{{ URL::to('/dieu-khoan.html') }}" target="_blank"><span style="font-weight: bold;">ĐỊNH GIÁ TRỰC TUYẾN</span></a> 
 
                         </label>
                       </div>

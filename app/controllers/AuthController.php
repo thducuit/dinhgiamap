@@ -2,7 +2,7 @@
 
 class AuthController extends BaseController {
 
-  public function login() {
+  public function login() {    
     $rules = array(
         'email' => 'required|email',
         'password' => 'required'
@@ -141,8 +141,9 @@ class AuthController extends BaseController {
     }
   }
 
-  private function sendActivationEmail($code) {
-    Mail::send('default.emails.activation', array('code' => $code), function($message) {
+  private function sendActivationEmail($code) {    
+    $activeUrl = action('AuthController@active', array('c' => $code));
+    Mail::send('default.emails.activation', array('activeUrl' => $activeUrl), function($message) {
       $message->to(Input::get('email'), Input::get('name'))->subject('Active Account');
     });
   }
@@ -154,16 +155,18 @@ class AuthController extends BaseController {
         $user = Sentry::findUserByActivationCode($code);
         if (!$user->isActivated()) {
           $user->attemptActivation($code);
-          echo 'actived';
+//          echo 'actived';
         } else {
-          echo 'User has already actived';
+//          echo 'User has already actived';
         }
       } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
-        echo 'User was not found.';
+//        echo 'User was not found.';
       }
     } else {
-      echo 'Code is empty';
+//      echo 'Code is empty';
     }
+    return View::make('default.page.active') ->with(array('title'=> 'Đăng ký'))
+        ->with(array('body_class'=> 'page_contact'));    
   }
 
   public function logout() {
@@ -179,9 +182,9 @@ class AuthController extends BaseController {
     try {
       $user = Sentry::authenticate(array('email' => Input::get('email'), 'password' => Input::get('password')), false);
       $group = Sentry::findGroupByName('customer');
-      if (Sentry::check() && $user->inGroup($group)) {
+      if (Sentry::check() && $user->inGroup($group)) {        
         $users = Sentry::getUser();
-        return Response::json($user);
+        return Response::json($user);        
       } else {
         $message = 'only customer can login';
       }
@@ -194,7 +197,7 @@ class AuthController extends BaseController {
     } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
       $message = 'Email không đúng';
     } catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
-      $message = 'Tài khoản không tồn tại';
+      $message = 'Tài khoản chưa được kích hoạt';
     }
 
     // The following is only required if the throttling is enabled
@@ -239,7 +242,7 @@ class AuthController extends BaseController {
     $user = Sentry::createUser(array(
                 'email' => Input::get('email'),
                 'password' => Input::get('password'),
-                'activated' => true
+                'activated' => false
     ));
 
     //Find Administrator group
@@ -248,10 +251,10 @@ class AuthController extends BaseController {
     // Assign the group to the user
     $user->addGroup($group);
 
-    Sentry::login($user, false);
+//    Sentry::login($user, false);
 //    $activatedCode = $user->getActivationCode();
 //    $user->attemptActivation($code);
-    //$this->sendActivationEmail( $user->getActivationCode() );
+    $this->sendActivationEmail( $user->getActivationCode() );
     $bday = null;//d_ngaySinh
     if(Input::get('d_ngaySinh') || Input::get('m_ngaySinh') || Input::get('y_ngaySinh')){
       $bday  = Input::get('y_ngaySinh').'-'.Input::get('m_ngaySinh').'-'.Input::get('d_ngaySinh');

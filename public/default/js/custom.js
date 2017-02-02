@@ -53,13 +53,15 @@
       $.post(url.register, $('.register-form').serialize(), function(data){
         var errors = '';
         if(data.id){
-          $('.menu_list').find('.login-menu-item:first').hide();
-          $('.menu_list').find('.register-menu-item:first').hide();
-          $('#modal_dangky').modal('hide');      
-          if($('.vacant_land_form').prop('tagName') !== 'undefined'){
-            var landType = ele.attr('land-type');
-            $('.'+landType+'_btnsubmit').trigger('click');
-          }
+//          $('.menu_list').find('.login-menu-item:first').hide();
+//          $('.menu_list').find('.register-menu-item:first').hide();
+//          $('#modal_dangky').modal('hide');      
+//          if($('.vacant_land_form').prop('tagName') !== 'undefined'){
+//            var landType = ele.attr('land-type');
+//            $('.'+landType+'_btnsubmit').trigger('click');
+//          }
+          $('#modal_dangky .popup_button_group').html('<div class="alert alert-success">Cám ơn quý khách đã đăng ký tài khoản tại <a href="#">www.dinhgiatructuyen.vn</a>. Vui lòng kích hoạt tài khoản trước khi sử dụng dịch vụ.</div>');
+
         }else{          
           errors = '<ul>';
           for(var i in data){

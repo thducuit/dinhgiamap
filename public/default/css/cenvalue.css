@@ -7176,3 +7176,6 @@ body .zui-popup-close:hover {
 .error-dongiasobo{
   margin: 7px;
 }
+.modal .tab_body.ngay-sinh-box .form_row .form_col{
+  width: 33%;
+}

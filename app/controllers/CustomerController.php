@@ -46,14 +46,17 @@ class CustomerController extends BaseController {
                     ->withErrors($validation)
                     ->withInput();
         }
-
+        $bday = null;
+        if(Input::get('d_ngaySinh') || Input::get('m_ngaySinh') || Input::get('y_ngaySinh')){
+          $bday  = Input::get('y_ngaySinh').'-'.Input::get('m_ngaySinh').'-'.Input::get('d_ngaySinh');
+        }
         $user = Sentry::getUser();
         $customer = User::find($user->id)->customer;
 
         $customer->name = Input::get('name');
         $customer->phone = Input::get('phone');
         $customer->mobile = Input::get('mobile');
-        $customer->bday = Input::get('bday');
+        $customer->bday = $bday;
         $customer->sex = Input::get('gender');
         $customer->province_id = Input::get('province');
         $customer->district_id = Input::get('district');

@@ -47,7 +47,7 @@ MAIN
 				<div class="profile_right_inner">
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
-							<span><strong>Họ và tên</strong></span>
+							<span><strong>Họ & Tên</strong></span>
 						</div>
 						<div class="profile_info_col">
 							<span>{{ $customer->name }}</span>
@@ -55,7 +55,7 @@ MAIN
 					</div>
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
-							<span><strong>Email</strong></span>
+							<span><strong>Tên đăng nhập</strong></span>
 						</div>
 						<div class="profile_info_col">
 							<span>{{ $customer->email }}</span>
@@ -74,18 +74,18 @@ MAIN
 							<span><strong>Ngày sinh</strong></span>
 						</div>
 						<div class="profile_info_col">
-							<span>{{ $customer->bday }}</span>
+                          <span><?php echo date('d-m-Y', strtotime($customer->bday))?></span>
 						</div>
 					</div>
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
-							<span><strong>Điện thoại di động</strong></span>
+							<span><strong>Điện thoại</strong></span>
 						</div>
 						<div class="profile_info_col">
 							<span>{{ $customer->mobile }}</span>
 						</div>
 					</div>
-					<div class="profile_info_row clearfix">
+<!--					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
 							<span><strong>Điện thoại bàn</strong></span>
 						</div>
@@ -93,6 +93,8 @@ MAIN
 							<span>{{ $customer->phone }}</span>
 						</div>
 					</div>
+-->
+                    <?php if($customer->province_id){?>
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
 							<span><strong>Tỉnh / Thành phố</strong></span>
@@ -101,6 +103,9 @@ MAIN
 							<span>{{ Province::name($customer->province_id) }}</span>
 						</div>
 					</div>
+                    <?php }?>
+
+                    <?php if($customer->district_id){?>
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
 							<span><strong>Quận / Huyện</strong></span>
@@ -109,6 +114,7 @@ MAIN
 							<span>{{ District::name($customer->district_id) }}</span>
 						</div>
 					</div>
+                    <?php }?>
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
 							<span><strong>Địa chỉ</strong></span>
@@ -117,6 +123,7 @@ MAIN
 							<span>{{ $customer->address }}</span>
 						</div>
 					</div>
+                    <?php if($customer->note){?>
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
 							<span><strong>Mô tả</strong></span>
@@ -125,7 +132,7 @@ MAIN
 							<span>{{ $customer->note }}</span>
 						</div>
 					</div>
-					
+                    <?php }?>
 					<div class="button_group">
 						<a class="btn_edit2" href="{{ URL::to('/customer/update') }}"><i class="icon_edit2"></i><span>Chỉnh sửa</span></a>
 					</div>
