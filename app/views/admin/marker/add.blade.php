@@ -20,7 +20,7 @@
 			        <div class="col-md-6">
 			            <div class="form-group">
 			                <label for="name">Địa chỉ</label>
-			                <input type="text" name="name" class="form-control" id="google-map-point-search" placeholder="địa chỉ nhà" value="{{ Input::old('name') }}"/>
+			                <input type="text" name="name" class="form-control" placeholder="địa chỉ nhà" value="{{ Input::old('name') }}"/>
 			                <input type="hidden" name="place_id" class="form-control" id='place_id'  value="{{ Input::old('place_id') }}"/>
 			            	<input type="hidden" name="street_id" class="form-control" id='street_id'  value="{{ Input::old('street_id') }}"/>
 			            </div>
@@ -98,6 +98,7 @@
 			        </div>
 			        
 			        <div class="col-md-12">
+			        	<input type="text" class="form-control" id="google-map-point-search" placeholder="tìm kiếm địa chỉ nhà"/>
 			        	<div class="form-group"><div id="google-map-container"></div></div>
 			            
 			            <div class="form-group google-map-point">
