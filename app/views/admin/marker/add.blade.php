@@ -42,12 +42,12 @@
 			            
 			            <div class="form-group">
 			                <label for="state_price">Đơn giá nhà nước(vnd/m2)</label>
-			                <input type="text" id="state_price"  name="state_price" class="form-control" placeholder="Đơn giá nhà nước" value="{{ Input::old('state_price') }}"/>
+			                <input type="text"  name="state_price" class="form-control" placeholder="Đơn giá nhà nước" value="{{ Input::old('state_price') }}"/>
 			            </div>
 			            
 			            <div class="form-group">
 			                <label for="price">Đơn giá thị trường(vnd/m2)</label>
-			                <input type="text" id="price" name="price" class="form-control" placeholder="Đơn giá thị trường" value="{{ Input::old('price') }}"/>
+			                <input type="text"  name="price" class="form-control" placeholder="Đơn giá thị trường" value="{{ Input::old('price') }}"/>
 			            </div>
 			            
 			            <!-- <div class="form-group">
