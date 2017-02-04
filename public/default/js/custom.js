@@ -42,7 +42,7 @@
               if(data.length){              
                 for(var i in data){
                   if(data[i].id){
-                    $('.list-item-marker ul').append('<li place-id="'+data[i].place_id+'" address="'+position+'" class="cursor"><i class="marker-icon"></i> '+data[i].name+' <div class="clear"></div></li>');
+                    $('.list-item-marker ul').append('<li place-id="'+data[i].place_id+'" address="'+data[i].name+'" class="cursor"><i class="marker-icon"></i> '+data[i].name+' <div class="clear"></div></li>');
                   }
                 }
                 $('.list-item-marker').show();
@@ -61,7 +61,7 @@
       var placeId = $(this).attr('place-id');
       var address = $(this).attr('address');      
       $('.google-map-search-form .place-id').val(placeId);
-      $('.google-map-search-form .cen-address-text').val(address);
+      $('.google-map-search-form .cen-address-text').val(address);    
       $('.list-item-marker').hide();
     });
     
