@@ -80,28 +80,33 @@ class HomeController extends BaseController {
     return Response::json($markers);
   }
 
+  public function searchMarkers() {
+    if (Input::get('position')) {
+      $markers = Marker::where('name', 'like', '%' . Input::get('position') . '%')->limit(5)->get();
+      return Response::json($markers);
+    }
+  }
+
   public function getPrice() {
-    
-    $rules = array(        
+
+    $rules = array(
         'total_area' => 'required',
-        'horizontal' => 'required',        
-        'leaving_plan_area' => 'required',                
+        'horizontal' => 'required',
+        'leaving_plan_area' => 'required',
     );
 
     $messages = array(
         'total_area.required' => 'Nhập tổng diện tích',
         'total_area.numeric' => 'Nhập số tổng diện tích',
-        
         'horizontal.required' => 'Nhập chiều ngang mặt tiền',
-        'horizontal.numeric' => 'Nhập số chiều ngang mặt tiền',        
-        
+        'horizontal.numeric' => 'Nhập số chiều ngang mặt tiền',
         'leaving_plan_area.required' => 'Nhập diện tích đất ở phù hợp quy hoạch ',
-        'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch'             
+        'leaving_plan_area.numeric' => 'Nhập số diện tích đất ở phù hợp quy hoạch'
     );
-    $validation = Validator::make(Input::get(), $rules, $messages);        
+    $validation = Validator::make(Input::get(), $rules, $messages);
     if ($validation->fails()) {
-      
-      $url = '/price?placeId=' . Input::get('place_id') . '&address='.Input::get('address') .'&street=' . Input::get('street_id');
+
+      $url = '/price?placeId=' . Input::get('place_id') . '&address=' . Input::get('address') . '&street=' . Input::get('street_id');
       return Redirect::to($url)
                       ->withInput(Input::all())
                       ->withErrors($validation)
@@ -168,7 +173,7 @@ class HomeController extends BaseController {
   public function showResult() {
     $result = $this->cart->getLastResult();
     $inputThamDinhGia = Session::get('inputThamDinhGia');
-    
+
     $inputThamDinhGia['vitri'] = '';
     $inputThamDinhGia['yeuToKhac'] = '';
     $inputThamDinhGia['hinhDangThuaDat'] = '';
@@ -178,42 +183,41 @@ class HomeController extends BaseController {
     $yeuToKhac = AdjustOption::findByGroupId(16, 1, null)->get()->toArray();
     $chieuNgang = AdjustOption::findByGroupId(1, 1, null)->get()->toArray();
     $dienTichDat = AdjustOption::findByGroupId(3, 1, null)->get()->toArray();
-    if($inputThamDinhGia['type'] == 'house'){
+    if ($inputThamDinhGia['type'] == 'house') {
       $ketCauChinh = Structure::findByAlias('nha-pho')->structure_options()->get()->toArray();
-    }else if($inputThamDinhGia['type'] == 'flat'){
+    } else if ($inputThamDinhGia['type'] == 'flat') {
       $ketCauChinh = Structure::findByAlias('can-ho')->structure_options()->get()->toArray();
-    }else if($inputThamDinhGia['type'] == 'hotel'){
+    } else if ($inputThamDinhGia['type'] == 'hotel') {
       $ketCauChinh = Structure::findByAlias('khach-san')->structure_options()->get()->toArray();
-    }else if($inputThamDinhGia['type'] == 'office'){
+    } else if ($inputThamDinhGia['type'] == 'office') {
       $ketCauChinh = Structure::findByAlias('toa-nha-van-phong')->structure_options()->get()->toArray();
-    }else if($inputThamDinhGia['type'] == 'warehouse' && $inputThamDinhGia['structure_parent']){
-      $ketCauChinh = StructureOption::where('structure_id', '=', $inputThamDinhGia['structure_parent']);             
-      if(isset($inputThamDinhGia['structureParentMore']) && count($inputThamDinhGia['structureParentMore'])){       
-        foreach($inputThamDinhGia['structureParentMore'] as $item){      
+    } else if ($inputThamDinhGia['type'] == 'warehouse' && $inputThamDinhGia['structure_parent']) {
+      $ketCauChinh = StructureOption::where('structure_id', '=', $inputThamDinhGia['structure_parent']);
+      if (isset($inputThamDinhGia['structureParentMore']) && count($inputThamDinhGia['structureParentMore'])) {
+        foreach ($inputThamDinhGia['structureParentMore'] as $item) {
           $ketCauChinh = $ketCauChinh->orWhere('structure_id', '=', $item);
         }
       }
-      $ketCauChinh = $ketCauChinh->get()->toArray();      
+      $ketCauChinh = $ketCauChinh->get()->toArray();
     }
-    
+
     $viTri = AdjustOption::findByGroupId(15, 1, null)->get()->toArray();
     foreach ($viTri as $item) {
       if ($item['id'] == $inputThamDinhGia['selectVitri']) {
         $inputThamDinhGia['vitri'] = $item['description'];
       }
     }
-    
-    if(isset($inputThamDinhGia['selectYeuToKhac'])){
+
+    if (isset($inputThamDinhGia['selectYeuToKhac'])) {
       foreach ($yeuToKhac as $item) {
-        foreach($inputThamDinhGia['selectYeuToKhac'] as $yeuTo){
-          if ($item['id'] == $yeuTo) {    
-            $inputThamDinhGia['yeuToKhac'] .= $item['description'].', ';
+        foreach ($inputThamDinhGia['selectYeuToKhac'] as $yeuTo) {
+          if ($item['id'] == $yeuTo) {
+            $inputThamDinhGia['yeuToKhac'] .= $item['description'] . ', ';
           }
         }
-
       }
     }
-    
+
     foreach ($hinhDangThuaDat as $item) {
       if ($item['id'] == $inputThamDinhGia['shape']) {
         $inputThamDinhGia['hinhDangThuaDat'] = $item['description'];
@@ -233,7 +237,7 @@ class HomeController extends BaseController {
         }
       }
     }
-    
+
     return View::make('default.page.result')
                     ->with(array('title' => 'kết quả định giá'))
                     ->with(array('result' => $result))

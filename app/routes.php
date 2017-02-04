@@ -74,6 +74,7 @@ Route::get('/', 'HomeController@view');
 Route::get('/index1', 'HomeController@view');
 Route::get('/search', 'HomeController@search');
 Route::get('/markers', 'HomeController@getMarkers');
+Route::get('/search-markers', 'HomeController@searchMarkers');
 Route::get('/info', 'HomeController@getInfo');
 Route::get('/thong-tin-tai-khoan.html', 'CustomerController@getInfo');
 Route::get('/lien-he.html', 'ContactController@getIndex');

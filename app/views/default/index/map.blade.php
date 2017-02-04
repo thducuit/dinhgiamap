@@ -6,7 +6,7 @@
 MAIN 
 /*==============================*\
 -->
-<div id="main" class="screen">
+<div id="main" class="screen search-page">
 	<div class="main_wrapper">
 		
 		<div class="block_overlay">
@@ -19,14 +19,17 @@ MAIN
 						<div class="form_group form_group_icon_location"><i class="icon_location"></i></div>
 						<div class="form_group form_group_input_text">
 							<input class="input_text cen-address-text" type="text" name="address" value="{{ $address }}" id="google-map-autocomplete" placeholder="Nhập địa chỉ tài sản để định giá">
-							<input class="input_text" name="placeId" id="placeId" type="hidden" value="{{ $placeId }}" >
+							<input class="input_text place-id" name="placeId" id="placeId" type="hidden" value="{{ $placeId }}" >
 						</div>
 						<div class="form_group form_group_submit">
 							<input class="input_submit" type="submit" value="Tìm kiếm">
 						</div>
 					{{ Form::close() }}
 				</div>
-			</div>		
+			</div>	
+            <div class="list-item-marker">
+              <ul></ul>
+            </div>
 		</div>		
 
 		<!--

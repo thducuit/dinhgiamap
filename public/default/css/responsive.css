@@ -702,7 +702,7 @@
 
 	}
 
-	#search_box .input_submit {
+	#search_box .input_submit, #search_box .search-view {
 
 		background: #F68B20 url(../images/icon_search.png) 15px center no-repeat;
 
