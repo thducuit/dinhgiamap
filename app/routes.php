@@ -280,6 +280,8 @@ Route::group(array('before' => 'dg_admin_authentication'), function() {
      Route::controller('admin/markers', 'MarkerController');
      Route::controller('admin/questions', 'QuestionController');
      Route::controller('admin/maps', 'PlanMapController');
+     Route::controller('admin/planpages', 'PlanPageController');
+     Route::controller('admin/planareas', 'PlanAreaController');
      Route::controller('admin/plans', 'PlanController');
      Route::controller('admin/contacts', 'AdminContactController');
      Route::controller('admin/users', 'UserController');

@@ -74,7 +74,7 @@
 			            <div class="form-group">
 			            	<div class="btn btn-default btn-clear">Clear</div>
 			            	<div id="google-map-container"></div>
-			            	<input class="form-control" type="text" id="points" name="points"></input>
+			            	<input class="form-control" type="hidden" id="points" name="points"></input>
 			            </div>
 			        </div>
 			        
