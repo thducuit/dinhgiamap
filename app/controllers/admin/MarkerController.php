@@ -209,6 +209,7 @@ class MarkerController extends AdminController {
         );
         
         $inputs = Input::get();
+        
         $validation = Validator::make($inputs, $rules);
         
         if( $validation->fails() )
@@ -252,8 +253,7 @@ class MarkerController extends AdminController {
         $marker->plan_field = Input::get('plan_field'); 
         $marker->state_price = Input::get('state_price'); 
         $marker->photo_plan = $name; 
-        $marker->save();
-        
+        $marker->save();        
         return Redirect::to('admin/markers?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))

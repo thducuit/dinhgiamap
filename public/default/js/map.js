@@ -2,6 +2,7 @@
     'use strict';
 
     $(document).ready(function() {
+      
         var place = null;
         var geocoder = new google.maps.Geocoder();
         var isAutoComplete = false;
@@ -34,7 +35,7 @@
             draggable: true
         });
         marker.setMap(mapObject);
-
+        
         var autocomplete = new google.maps.places.Autocomplete(document.getElementById('google-map-autocomplete'));
         autocomplete.bindTo('bounds', mapObject);
 
@@ -47,7 +48,7 @@
         var infowindow = new google.maps.InfoWindow();
 
         var getAddressCallback = function(list) {
-            var placeId = $("#placeId").val();
+            var placeId = $("#placeId").val();            
             if (list.length > 0) {
                 var object = findResultObject(list, placeId);
                 if (!object) {
@@ -165,6 +166,7 @@
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgsb_popup_address, .dgsb_popup_address').html(html);
             getStreetPrice(function(place){                
+              console.log(place);
               var priceFormat = (place.price_format)?place.price_format:'0';
               var statePriceFormat = (place.state_price_format)?place.state_price_format:'0';
               var districtName = (place.districtName)?place.districtName:'Quận 1';
@@ -184,7 +186,7 @@
             $('#modal_dongiathitruong').modal('show');
         }
 
-        function getStreetPrice(cb){
+        function getStreetPrice(cb){          
             $.ajax({
                 url: url.priceStreet,
                 type: 'get',
@@ -192,9 +194,14 @@
                     id: placeInfo.street_id
                 },
                 success: function(response) {
-                    if(response){
-                        placeInfo.price_format = response.price_format;
-                        placeInfo.state_price_format = response.state_price_format;                                                
+                    if(response){                
+                        if(response.price_format){
+                          placeInfo.price_format = response.price_format;
+                        }
+                        if(response.state_price_format){
+                          placeInfo.state_price_format = response.state_price_format;                                                
+                        }
+                        
                         placeInfo.districtName = response.districtName;
                         if(cb){
                           cb(placeInfo);
@@ -318,8 +325,11 @@
                         //console.log(result);
                         if(result && $.isArray(result) && result.length ) {
                             var obj = result[0];
-                            $('.cen-address-text').val(obj.formatted_address);
-                            $('#placeId').val(obj.place_id);
+//                            $('.cen-address-text').val(obj.formatted_address);
+                            var placeIdExist = $('#placeId').val();
+                            if(!placeIdExist){
+                              $('#placeId').val(obj.place_id);
+                            }
                             $('.google-map-search-form').submit();
                         }
                     });

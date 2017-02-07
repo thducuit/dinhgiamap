@@ -1322,7 +1322,42 @@ body.menu_mobile_active {
 	overflow: hidden;
 
 }
-
+.list-item-marker{
+  display: none;
+}
+.landing-page .list-item-marker{
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: 382px;
+  margin-top: 31px;
+  margin-left: -238px;
+  background: white;
+  
+}
+.search-page .list-item-marker{
+  position: absolute;
+  z-index: 1;
+  left: initial;
+  top: 59px;
+  right: 290px;
+  width: 382px;
+  margin-top: 31px;
+  margin-left: -238px;
+  background: white;  
+}
+.list-item-marker li{
+  padding: 7px 0;
+  border-bottom: 1px solid #ccc;
+}
+.list-item-marker i{
+  background: url(../images/marker-list.png) center no-repeat;  
+  width: 23px;
+  height: 23px;
+  display: block;
+  float: left;
+}
 .page_search #search_box {
 
 	margin: 0;
@@ -1433,7 +1468,7 @@ body.menu_mobile_active {
 
 }
 
-#search_box .input_submit {
+#search_box .input_submit, #search_box .search-view {
 
 	width: 100%;
 
@@ -7178,4 +7213,13 @@ body .zui-popup-close:hover {
 }
 .modal .tab_body.ngay-sinh-box .form_row .form_col{
   width: 33%;
+}
+.clear{
+  clear: both;
+}
+.cursor{
+  cursor: pointer;
+}
+.pac-container{
+  display: none;
 }

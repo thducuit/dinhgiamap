@@ -56,6 +56,7 @@
 			var url = {
 				info: '/public/info',
 				markers: '/public/markers',
+                searchMarkers: '/public/search-markers',
 				address: '/public/address',
 				price: '/public/price',
 				plan: '/public/plan',
@@ -67,6 +68,7 @@
                 register: '/public/register-ajax',
                 getReal: '/public/reals',
                 reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}'
+                
 			};
 			
 			jQuery(window).keydown(function(event){
