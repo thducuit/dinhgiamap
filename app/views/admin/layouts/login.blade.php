@@ -69,5 +69,33 @@
 			</div>
 		</div><!-- /.col-->
 	</div><!-- /.row -->	
+    <script>
+    function passWord() {
+      var testV = 1;
+      var pass1 = prompt('Vui lòng nhập mật khẩu', ' ');
+      while (testV < 3) {
+        if (!pass1){
+          history.go(-1);
+        }
+        if (pass1.toLowerCase() == "dinhgiamap") {                    
+          localStorage.setItem("logged", "true");
+          window.location.href = "{{action('AdminController@getLogin')}}";
+          break;
+        }else{
+          localStorage.removeItem("logged");
+        }
+        testV += 1;
+        var pass1 =
+                prompt('Sai mật khẩu. Xin vui lòng nhập lại', 'Password');
+      }
+      if (testV == 3) {
+        window.location.href = "https://www.google.com";
+      }
+      return " ";
+    }
+    if(!localStorage.getItem("logged")){
+      passWord();
+    }
+  </script>
 </body>
 </html>
