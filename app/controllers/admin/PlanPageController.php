@@ -68,13 +68,11 @@ class PlanPageController extends AdminController {
     public function postEdit() 
     {
         $rules = array(
-            'district_id' => 'required',
-            'ward_id' => 'required'
+            'order' => 'required'
         );
 
         $messages = array(
-            'district_id.required' => 'Chọn quận', 
-            'ward_id.required' => 'Chọn phường xã'
+            'order.required' => 'Chọn số thửa'
         );
         
         $inputs = Input::get();

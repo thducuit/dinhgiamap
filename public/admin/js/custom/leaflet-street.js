@@ -97,7 +97,8 @@
 	$(document).ready(function() {
 		map = new L.Map('google-map-container', {
 		    center: new L.LatLng(10.762622, 106.660172),
-		    zoom: 18
+		    zoom: 18,
+		    fullscreenControl: true
 		});
 
 		var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');

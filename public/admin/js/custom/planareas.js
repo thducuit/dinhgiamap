@@ -27,10 +27,13 @@
     }
 
     function getPlan() {
-    	var point = $.parseJSON( $('#points').val() );
-    	var type = point.type || '';
-    	var bounds = point.latlng || point;
-    	drawPolygon(type, bounds);
+    	var json = $('#points').val();
+    	if(json) {
+    		var point = $.parseJSON( $('#points').val() );
+	    	var type = point.type || '';
+	    	var bounds = point.latlng || point;
+	    	drawPolygon(type, bounds);
+    	}
     }
 
     function drawPolygon(type, bounds) {
@@ -49,12 +52,20 @@
 		}
     }
 
+    function getMarker(layer) {
+    	console.log('marker', layer.getLatLng());
+    	var points = layer.getLatLng();
+    	$('#lat').val(points.lat);
+    	$('#lng').val(points.lng);
+    }
+
 	$(document).ready(function() {
 		var mapMinZoom = 0;
 		var mapMaxZoom = 7;
 		map = L.map('google-map-container', {
-		minZoom: mapMinZoom,
-		maxZoom: mapMaxZoom
+			minZoom: mapMinZoom,
+			maxZoom: mapMaxZoom,
+			fullscreenControl: true
 		}).setView([0, 0], 5);
 
 		L.tileLayer('/public/planpages/' + planpage + '/{z}/{x}/{y}.png', {
@@ -106,10 +117,9 @@
 			if (type === 'marker') {
 	            getMarker(layer);
 	        }
-	        if(type === 'circle') {
+	        else if(type === 'circle') {
 	        	console.log(layer);
-	        }
-	        else {
+	        }else {
 				getLayer(type, layer);
 	        }	
 	        drawnItems.addLayer(layer);

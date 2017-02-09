@@ -116,7 +116,8 @@ MAIN
 	var mapMaxZoom = 7;
     var map = L.map('map_photo', {
 		minZoom: mapMinZoom,
-		maxZoom: mapMaxZoom
+		maxZoom: mapMaxZoom,
+		fullscreenControl: true
     }).setView([0, 0], 5);
 
     L.tileLayer('/public/plan/{{ Session::get('name') }}/{z}/{x}/{y}.png', {

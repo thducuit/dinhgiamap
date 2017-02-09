@@ -25,7 +25,7 @@
 			            </div>
 
 			            <div class="form-group">		
-			                <label for="order">Số tờ</label>
+			                <label for="order">Số thửa</label>
 			                <input type="text" id="order" class='form-control' name="order" value="{{ Input::old('order') }}"/>
 			            </div>
 			        </div>	
@@ -45,8 +45,8 @@
 			                <label>Tọa độ</label>
 			                
 			                <div class="m-google-map-point point-start">
-			                    <input type="text" placeholder='Lat'  name="lat" class='form-control point-lat' value="{{ Input::old('lat') }}"/>
-			                    <input type="text" placeholder='Lng'  name="lng" class='form-control point-lng' value="{{ Input::old('lng') }}"/>
+			                    <input type="text" placeholder='Lat'  name="lat" id="lat" class='form-control point-lat' value="{{ Input::old('lat') }}"/>
+			                    <input type="text" placeholder='Lng'  name="lng" id="lng" class='form-control point-lng' value="{{ Input::old('lng') }}"/>
 			                </div>
 			            </div>
 			        </div>

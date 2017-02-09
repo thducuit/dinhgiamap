@@ -14,7 +14,7 @@
 <!--leaflet-->
 {{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
 {{ HTML::style('admin/css/leaflet.draw.css') }}
-
+{{ HTML::style('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css') }}
 
 
 {{ HTML::script('https://code.jquery.com/jquery-2.2.4.min.js') }}
@@ -32,6 +32,7 @@
 {{	HTML::script('http://matchingnotes.com/javascripts/leaflet-google.js') }}
 {{	HTML::script('admin/js/custom/Google.js') }}
 {{ HTML::script('admin/js/custom/leaflet.draw.js') }}
+{{ HTML::script('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js') }}
 
 <!--Google map APIs -->
 {{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyCFEQBvTi6zuAx2lh4Lte_bofdG8eMknlI&sensor=false&libraries=places,drawing,geometry') }}
