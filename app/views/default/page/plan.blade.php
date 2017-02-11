@@ -49,16 +49,20 @@ MAIN
 							</select>
 							<input type="hidden" id="ward_id" class="form-control" value="{{ Input::old('ward_id') }}">
 						</div>
-						<div class="filter_col">
+<!--						<div class="filter_col">
 							<label>Phân loại</label>
 							<select>
 								<option>Số thửa</option>
 								<option>Số tờ</option>
 							</select>
+						</div>-->
+                        <div class="filter_col">
+							<label></label>
+							<input type="text" placeholder="Nhập số tờ" name="soTo" value="{{ Input::old('soTo') }}">
 						</div>
 						<div class="filter_col">
 							<label></label>
-							<input type="text" placeholder="Nhập số thửa" value="">
+							<input type="text" placeholder="Nhập số thửa" name="soThua" value="{{ Input::old('soThua') }}">
 						</div>
 						<div class="filter_col">
 							<div class="popup_button_group">
@@ -110,7 +114,13 @@ MAIN
   //   }).addTo(map);
   // }
 </script>
-@if( Session::get('name') )
+<?php if( Session::get('name') ) { 
+  $pathImageMapFrom = 'plan';
+  if( Session::get('imageMapFrom') && Session::get('imageMapFrom') == 'planPage'){
+    $pathImageMapFrom = 'planpages';
+  }
+  ?>
+
 <script>
 	var mapMinZoom = 0;
 	var mapMaxZoom = 7;
@@ -120,14 +130,18 @@ MAIN
 		fullscreenControl: true
     }).setView([0, 0], 5);
 
-    L.tileLayer('/public/plan/{{ Session::get('name') }}/{z}/{x}/{y}.png', {
+    L.tileLayer('/public/<?php echo $pathImageMapFrom;?>/{{ Session::get('name') }}/{z}/{x}/{y}.png', {
         minZoom: mapMinZoom,
         maxZoom: mapMaxZoom,
         attribution: 'dinhgiatructuyen.vn',
         tms: false,
         noWrap: true
     }).addTo(map);
-
+    <?php if(Session::get('coordinateSoThua')){
+      $coordinate = Session::get('coordinateSoThua');
+      ?>
+        var marker = L.marker([<?php echo $coordinate['lat'];?>, <?php echo $coordinate['lng'];?>]).addTo(map);
+    <?php }?>
     var drawnItems = new L.FeatureGroup();
 	map.addLayer(drawnItems);
 
@@ -161,5 +175,5 @@ MAIN
 	});
 	map.addControl(drawControl);
 </script>
-@endif
+<?php }?>
 @endsection

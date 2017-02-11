@@ -190,8 +190,8 @@ Route::post('/xem-quy-hoach.html', function() {
         'district_id.required' => 'Chọn quận', 
         'ward_id.required' => 'Chọn phường xã'
     );
-    
-    $inputs = Input::get();
+    $imageMapFrom = 'planMap';
+    $inputs = Input::get();    
     $validation = Validator::make($inputs, $rules, $messages);
     
     if( $validation->fails() )
@@ -201,14 +201,33 @@ Route::post('/xem-quy-hoach.html', function() {
         ->withName($name)
         ->withErrors($validation);
     }
-    
     $plan = PlanMap::findByWard(Input::get('ward_id'));
-    $name = '';
-    if($plan) {
-        $name = $plan->name;
+    $planPage = FALSE;
+    $planArea = false;
+    if($inputs['soTo'] && $inputs['soThua'] && $plan){
+      $planPage = PlanPage::where('status', '=', 1)->where('_show', '=', 1)->where('order', '=', $inputs['soTo'])->where('plan_map_id', '=', $plan->id)->first();
+      if($planPage){
+        $planArea = PlanArea::where('plan_page_id', '=', $planPage->id)->where('order', '=', $inputs['soThua'])->first();
+      }
     }
+    $coordinateSoThua = '';
+    $name = '';
+    if($planPage){
+      $name = $planPage->name;
+      $imageMapFrom = 'planPage';
+      if($planArea){
+        $coordinateSoThua = [
+          'lat' => $planArea->lat,
+          'lng' => $planArea->lng
+        ];
+      }
+    }else if($plan){
+      $name = $plan->name;
+    }     
     return Redirect::to('/xem-quy-hoach.html')
             ->withName($name)
+            ->with('imageMapFrom', $imageMapFrom)  
+            ->with('coordinateSoThua', $coordinateSoThua)  
             ->withInput(Input::all());
     
 });
