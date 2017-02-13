@@ -52,6 +52,8 @@
     					                            		@endif
 
                                                             <a href="{{ URL::to('admin/maps/edit/' . $e->id) }}" class='btn btn-default'><i class="glyphicon glyphicon-pushpin"></i> Thêm thông tin</a>
+
+                                                            <a href="{{ URL::to('admin/planpages/index/' . $e->id) }}" class='btn btn-warning'><i class="glyphicon glyphicon-pushpin"></i> Danh sách Tờ</a>
     					                            	</div>
     					                            </td>
     					                        </tr>

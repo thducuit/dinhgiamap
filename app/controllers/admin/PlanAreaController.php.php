@@ -17,41 +17,6 @@ class PlanAreaController extends AdminController {
             $plans = $plans->where('plan_page_id', '=', $plan_page_id);
         }
 
-        // if(!$this->isAdmin())
-        // {
-        //     $plan = $plan->where('user_id', '=', $this->getUser());
-        // }
-
-        // $keyword = Input::get('keyword');
-        // if( !empty($keyword) )
-        // {
-        //     $markers = $markers->where('name', 'LIKE', "%$keyword%");
-        // }
-
-        // $code = Input::get('code');
-        // if( !empty($code) )
-        // {
-        //     $markers = $markers->where('code', 'LIKE', "%$code%");
-        // }
-
-        // $province = (int)Input::get('province');
-        // if( !empty($province) && $province != 0 )
-        // {
-        //     $markers = $markers->where('province_id', '=', $province);
-        // }
-
-        // $district = (int)Input::get('district');
-        // if( !empty($district) && $district != 0 )
-        // {
-        //     $markers = $markers->where('district_id', '=', $district);
-        // }
-
-        // $ward = (int)Input::get('ward');
-        // if( !empty($ward) && $ward != 0 )
-        // {
-        //     $markers = $markers->where('ward_id', '=', $ward);
-        // }
-
 
         $plans = $plans->orderBy('created_at', 'desc')
                ->paginate(Config::get('constant.admin.pager'));
@@ -60,7 +25,7 @@ class PlanAreaController extends AdminController {
         return View::make('admin.planareas.view')
             ->with(array('menu' => $this->menuInstance() ))
             ->with(array('plan_page_id' => $plan_page_id ))
-            ->with(array('title'=>'Số thửa', 
+            ->with(array('title'=>'Thửa Quy hoạch', 
                         'pager' => $pager, 
                         'page' => Input::get('page'), 
                         'plans' => $plans)
@@ -70,10 +35,13 @@ class PlanAreaController extends AdminController {
     public function getAdd($plan_page_id = 0)
     {
         $plan_page = PlanPage::find($plan_page_id);
-        $page_name = ($plan_page->name) ? $plan_page->name:'';
+        $plan_map_id = (int)$plan_page->plan_map_id;
+        $map = PlanMap::find($plan_map_id);
+        $map_name = ($map->name) ? $map->name:'';
+
         return View::make('admin.planareas.add')
             ->with(array('plan_page_id' => $plan_page_id ))
-            ->with(array('page_name' => $page_name ))
+            ->with(array('page_name' => $map_name ))
             ->with(array('menu' => $this->menuInstance() ))
             ->with(array('title'=> 'Thêm thửa'));
     }
@@ -81,34 +49,18 @@ class PlanAreaController extends AdminController {
     public function getEdit($plan_page_id = 0, $id = 0)
     {
         $plan_page = PlanPage::find($plan_page_id);
-        $page_name = ($plan_page->name) ? $plan_page->name:'';
+        $plan_map_id = (int)$plan_page->plan_map_id;
+        $map = PlanMap::find($plan_map_id);
+        $map_name = ($map->name) ? $map->name:'';
 
         $plan = PlanArea::find($id);
         return View::make('admin.planareas.edit')
             ->with(array('page' => Input::get('page')))
             ->with(array('menu' => $this->menuInstance() ))
             ->with(array('plan_page_id' => $plan_page_id ))
-            ->with(array('page_name' => $page_name ))
+            ->with(array('page_name' => $map_name ))
             ->with('plan', $plan)
             ->with(array('title'=> 'Cập nhật thửa'));
-    }
-
-    public function getShow($id = 0)
-    {
-        $marker = Marker::find($id);
-        $street = Street::find($marker->street_id);
-        $province = Province::find($marker->province_id);
-        $district = District::find($marker->district_id);
-        $ward = Ward::find($marker->ward_id);
-        return View::make('admin.marker.show')
-            ->with(array('menu' => $this->menuInstance() ))
-            ->with(array('page' => Input::get('page')))
-            ->with('marker', $marker)
-            ->with('street', $street)
-            ->with('province', $province)
-            ->with('district', $district)
-            ->with('ward', $ward)
-            ->with(array('title'=> 'Chi tiết vị trí'));
     }
     
     
@@ -118,9 +70,12 @@ class PlanAreaController extends AdminController {
             'order' => 'required'
         );
         
+        $messages = array(
+            'order.required' => 'Chọn số thửa'
+        );
         
         $inputs = Input::get();
-        $validation = Validator::make($inputs, $rules);
+        $validation = Validator::make($inputs, $rules, $messages);
         
         
         if( $validation->fails() )
@@ -134,9 +89,12 @@ class PlanAreaController extends AdminController {
         $data = array(
                 'order' => Input::get('order'),
                 'position' => Input::get('points'),
+                'gposition' => Input::get('gpoints'),
                 'plan_page_id' => Input::get('plan_page_id'),
                 'lat' => Input::get('lat'),
-                'lng' => Input::get('lng')
+                'glat' => Input::get('glat'),
+                'lng' => Input::get('lng'),
+                'glng' => Input::get('glng')
             );
             
             
@@ -156,8 +114,12 @@ class PlanAreaController extends AdminController {
             'order' => 'required'
         );
         
+        $messages = array(
+            'order.required' => 'Chọn số thửa'
+        );
+        
         $inputs = Input::get();
-        $validation = Validator::make($inputs, $rules);
+        $validation = Validator::make($inputs, $rules, $messages);
         
         if( $validation->fails() )
         {
@@ -169,8 +131,11 @@ class PlanAreaController extends AdminController {
         $plan = PlanArea::find(Input::get('id'));
         $plan->order = Input::get('order'); 
         $plan->position = Input::get('points'); 
+        $plan->gposition = Input::get('gpoints'); 
         $plan->lat = Input::get('lat'); 
+        $plan->glat = Input::get('glat'); 
         $plan->lng = Input::get('lng'); 
+        $plan->glng = Input::get('glng'); 
 
         $plan->save();
         

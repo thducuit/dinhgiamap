@@ -1,78 +1,113 @@
 <?php
 class PlanPageController extends AdminController {
-
-    private $uploadPath;
-    private $listPosition;
     
     public function __construct()
     {
         parent::__construct();
-        $this->active('quy-hoach-so-to');
-        $this->uploadPath = public_path() . '/planpages/';
-        $this->listPosition = array();
+        $this->active('quy-hoach');
     }
 
-    private function getFileName($path)
+    public function getIndex($plan_map_id = 0)
     {
-        $pathList = explode( '/', substr($path, strpos($this->uploadPath, '/planpages/')) );
-        return end($pathList);
-    }
+        
+        $plans = DB::table('plan_pages');
 
-    private function update()
-    {
-        $list = glob($this->uploadPath . '*', GLOB_ONLYDIR);
-        foreach ($list as $key => $l) {
-            $name = $this->getFileName($l);
-            if( !PlanPage::isExistedName($name) )
-            {
-                $data = array(
-                    'name' => $name
-                );
-                PlanPage::create($data);
-            }
+        if( !empty($plan_map_id) )
+        {
+            $plans = $plans->where('plan_map_id', '=', $plan_map_id);
         }
-    }
-
-    private function updateStatus($name)
-    {
-        $plan = PlanPage::getByName($name);
-        $plan->status = 1;
-        $plan->save();
-        return $plan->id;
-    }
 
 
-
-    public function getIndex()
-    {
-        $this->update();
-        $maps = DB::table('plan_pages')->orderBy('created_at', 'desc')
-        ->paginate(Config::get('constant.admin.pager'));
-        $pager = $maps->links();
+        $plans = $plans->orderBy('created_at', 'desc')
+               ->paginate(Config::get('constant.admin.pager'));
+        $pager = $plans->appends(array('planmap' => $plan_map_id))->links();
         
         return View::make('admin.planpages.view')
             ->with(array('menu' => $this->menuInstance() ))
-            ->with(array('title' => 'Quy hoạch', 'maps' => $maps, 'pager' => $pager));
+            ->with(array('plan_map_id' => $plan_map_id ))
+            ->with(array('title'=>'Tờ Quy Hoạch', 
+                        'pager' => $pager, 
+                        'page' => Input::get('page'), 
+                        'plans' => $plans)
+                  ); 
     }
-
-    public function getUpdate($name = '')
+    
+    public function getAdd($plan_map_id = 0)
     {
-        $plan_id = $this->updateStatus($name);
-
-        return Redirect::to('admin/planpages')
-                ->with('message', 'Success')
-                ->with('icon', Config::get('constant.admin.alert.success.icon'))
-                ->with('type_message', Config::get('constant.admin.alert.success.type'));          
+        $map = PlanMap::find($plan_map_id);
+        $map_name = ($map->name) ? $map->name:'';
+        return View::make('admin.planpages.add')
+            ->with(array('plan_map_id' => $plan_map_id ))
+            ->with(array('map_name' => $map_name ))
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('title'=> 'Thêm tờ'));
     }
 
-    public function postEdit() 
+    public function getEdit($plan_map_id = 0, $id = 0)
+    {
+        $map = PlanMap::find($plan_map_id);
+        $map_name = ($map->name) ? $map->name:'';
+
+        $plan = PlanPage::find($id);
+
+        return View::make('admin.planpages.edit')
+            ->with(array('page' => Input::get('page')))
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('plan_map_id' => $plan_map_id ))
+            ->with(array('map_name' => $map_name ))
+            ->with('plan', $plan)
+            ->with(array('title'=> 'Cập nhật tờ'));
+    }
+    
+    
+    public function postAdd($plan_map_id = 0)
     {
         $rules = array(
             'order' => 'required'
         );
-
+        
         $messages = array(
-            'order.required' => 'Chọn số thửa'
+            'order.required' => 'Chọn số tờ'
+        );
+        
+        $inputs = Input::get();
+        $validation = Validator::make($inputs, $rules, $messages);
+        
+        
+        if( $validation->fails() )
+        {
+            return Redirect::to('admin/planpages/add/' . $plan_map_id)
+            ->withInput(Input::all())
+            ->withErrors($validation);
+        }
+        
+        
+        $data = array(
+                'order' => Input::get('order'),
+                'position' => Input::get('points'),
+                'gposition' => Input::get('gpoints'),
+                'plan_map_id' => Input::get('plan_map_id')
+            );
+            
+            
+            
+        DB::table('plan_pages')->insert($data);
+        
+        return Redirect::to('admin/planpages/index/' . $plan_map_id)
+                ->with('message', 'Success')
+                ->with('icon', Config::get('constant.admin.alert.success.icon'))
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));            
+    }
+    
+    public function postEdit($plan_map_id = 0) 
+    {
+        
+        $rules = array(
+            'order' => 'required'
+        );
+        
+        $messages = array(
+            'order.required' => 'Chọn số tờ'
         );
         
         $inputs = Input::get();
@@ -80,70 +115,29 @@ class PlanPageController extends AdminController {
         
         if( $validation->fails() )
         {
-            return Redirect::to('admin/planpages/edit/' . Input::get('id'))
+            return Redirect::to('admin/planpages/edit/' . $plan_map_id . '/' . Input::get('id'))
             ->withInput(Input::all())
             ->withErrors($validation);
         }
         
         $plan = PlanPage::find(Input::get('id'));
-        $plan->order = (int)Input::get('order'); 
-        $plan->plan_map_id = (int)Input::get('plan_map_id'); 
-        
+        $plan->order = Input::get('order'); 
+        $plan->position = Input::get('points');
+        $plan->gposition = Input::get('gpoints');
+
         $plan->save();
         
-        return Redirect::to('admin/planpages')
+        return Redirect::to('admin/planpages/index/' . $plan_map_id . '?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));
     }
-
-    public function getEdit($id = 0)
+    
+    public function getDelete($plan_map_id = 0, $id = 0) 
     {
         $plan = PlanPage::find($id);
-
-        return View::make('admin.planpages.edit')
-            ->with(array('plan_id' => $id ))
-            ->with(array('plan' => $plan ))
-            ->with(array('menu' => $this->menuInstance() ))
-            ->with(array('title'=>'Thêm thông tin'));
-    }
-
-    public function getDelete($id = 0)
-    {
-        $plan = PlanPage::find($id);
-        $directory = $this->uploadPath .  $plan->name;
-        $success = File::deleteDirectory($directory);
-        if($success == 1) 
-        {
-            $plan->delete();
-            return Redirect::to('admin/planpages')
-                ->with('message', 'Success')
-                ->with('icon', Config::get('constant.admin.alert.success.icon'))
-                ->with('type_message', Config::get('constant.admin.alert.success.type'));
-        }
-        return Redirect::to('admin/planpages')
-                ->with('message', 'Error')
-                ->with('icon', Config::get('constant.admin.alert.error.icon'))
-                ->with('type_message', Config::get('constant.admin.alert.error.type'));
-    }
-
-    public function getShow($id = 0)
-    {
-        $plan = PlanPage::find($id);
-        $plan->_show = 1;
-        $plan->save();
-        return Redirect::to('admin/planpages')
-                ->with('message', 'Success')
-                ->with('icon', Config::get('constant.admin.alert.success.icon'))
-                ->with('type_message', Config::get('constant.admin.alert.success.type'));
-    }
-
-    public function getHide($id = 0)
-    {
-        $plan = PlanPage::find($id);
-        $plan->_show = 0;
-        $plan->save();
-        return Redirect::to('admin/planpages')
+        $plan->delete();
+        return Redirect::to('admin/planpages/index/' . $plan_map_id . '?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));

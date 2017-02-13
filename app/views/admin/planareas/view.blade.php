@@ -4,7 +4,7 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-				    <span class="pull-left">Danh sách thửa quy hoạch</span>
+				    <span class="pull-left">Thửa quy hoạch</span>
 				    <a href="{{ URL::to('admin/planareas/add/' . $plan_page_id ) }}" class="btn btn-info btn-md pull-right">Thêm</a>
 				</div>
 				<div class="panel-body">
@@ -19,7 +19,7 @@
 		                                <thead>
                     					    <tr>
                     					        <th style=""><div class="th-inner ">ID</div></th>
-                    					        <th style=""><div class="th-inner ">Số tờ</div></th>
+                    					        <th style=""><div class="th-inner ">Số thửa</div></th>
                     					        <th style=""><div class="th-inner "></div></th>
                     					    </tr>
 					                    </thead>
@@ -32,8 +32,7 @@
     					                            <td>
     					                            	<div class="btn-group">
     					                            		<a href="{{ URL::to('admin/planareas/edit/' . $plan_page_id . '/' . $e->id . '?page=' . $page) }}" class='btn btn-default'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Sửa</a>
-    					                                	<a href="{{ URL::to('admin/planareas/delete/' . $e->id . '?page=' . $page) }}" data-confirm='Do you really want to delete this item?' class='btn btn-danger'><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"/></svg> Xóa</a>
-    					                            		<a href="{{ URL::to('admin/planareas/show/' . $e->id . '?page=' . $page) }}" class='btn btn-info'><i class="glyphicon glyphicon-pushpin"></i> Chi tiết</a>
+    					                                	<a href="{{ URL::to('admin/planareas/delete/' . $plan_page_id . '/' . $e->id . '?page=' . $page) }}" data-confirm='Do you really want to delete this item?' class='btn btn-danger'><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"/></svg> Xóa</a>
     					                            	</div>
     					                            </td>
     					                        </tr>

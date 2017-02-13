@@ -8,12 +8,12 @@
     		'type': type,
     		'latlng': parseLatLng(layer.getLatLngs())
     	};
-    	$("#points").val( JSON.stringify(data) );
+    	$("#gpoints").val( JSON.stringify(data) );
     }
 
     function editLayer(layer) {
     	data.latlng = parseLatLng(layer.getLatLngs());
-    	$("#points").val( JSON.stringify(data) );
+    	$("#gpoints").val( JSON.stringify(data) );
     }
 
     function parseLatLng(data) {
@@ -27,12 +27,12 @@
     }
 
     function getPlan() {
-    	var lat = $('#lat').val();
-    	var lng = $('#lng').val();
-    	var json = $('#points').val();
+    	var lat = $('#glat').val();
+    	var lng = $('#glng').val();
+    	var json = $('#gpoints').val();
     	//show polygon
     	if(json) {
-    		var point = $.parseJSON( $('#points').val() );
+    		var point = $.parseJSON( $('#gpoints').val() );
 	    	var type = point.type || '';
 	    	var bounds = point.latlng || point;
 	    	drawPolygon(type, bounds);
@@ -61,29 +61,48 @@
 
     function getMarker(layer) {
     	var points = layer.getLatLng();
-    	$('#lat').val(points.lat);
-    	$('#lng').val(points.lng);
+    	$('#glat').val(points.lat);
+    	$('#glng').val(points.lng);
     }
 
 	$(document).ready(function() {
-		var mapMinZoom = 0;
-		var mapMaxZoom = 7;
-		map = L.map('google-map-container', {
-			minZoom: mapMinZoom,
-			maxZoom: mapMaxZoom,
-			fullscreenControl: true
-		}).setView([0, 0], 5);
+		map = new L.Map('g-google-map-container', {
+		    center: new L.LatLng(10.762622, 106.660172),
+		    zoom: 18,
+		    fullscreenControl: true
+		});
 
-		L.tileLayer('/public/plan/' + planpage + '/{z}/{x}/{y}.png', {
-			minZoom: mapMinZoom,
-			maxZoom: mapMaxZoom,
-			attribution: 'dinhgiatructuyen.vn',
-			tms: false,
-			noWrap: true
-		}).addTo(map);
+		var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+		var ggl = new L.Google('ROADMAP');
+		map.addLayer(ggl);
+		map.addControl(new L.Control.Layers( {'OSM':osm, 'Google':ggl}, {}));
 
 		var drawnItems = new L.FeatureGroup();
 		map.addLayer(drawnItems);
+
+		//Autocomplete
+        var GoogleSearch = L.Control.extend({
+			onAdd: function() {
+				var element = document.createElement("input");
+				element.id = "search-box";
+				element.setAttribute("class", "form-control");
+				return element;
+			}
+	    });
+
+	    (new GoogleSearch).addTo(map);
+
+	    var input = document.getElementById("search-box");
+
+	    var searchBox = new google.maps.places.SearchBox(input);
+
+	    searchBox.addListener('places_changed', function() {
+	       	var places = searchBox.getPlaces();
+	       	if (places.length == 0) {
+		        return;
+		    }
+		    map.setView(new L.LatLng(places[0].geometry.location.lat(), places[0].geometry.location.lng()));
+		});
 
 		var drawControl = new L.Control.Draw({
 		draw: {
