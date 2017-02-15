@@ -7,7 +7,7 @@ class PlanAreaController extends AdminController {
         $this->active('quy-hoach');
     }
 
-    public function getIndex($plan_page_id = 0)
+    public function getIndex($plan_map_id = 0, $plan_page_id = 0)
     {
         
         $plans = DB::table('plan_areas');
