@@ -204,29 +204,30 @@ Route::post('/xem-quy-hoach.html', function() {
     $plan = PlanMap::findByWard(Input::get('ward_id'));
     $planPage = FALSE;
     $planArea = false;
-    if($inputs['soTo'] && $inputs['soThua'] && $plan){
+    if($inputs['soTo'] && $plan){
       $planPage = PlanPage::where('status', '=', 1)->where('_show', '=', 1)->where('order', '=', $inputs['soTo'])->where('plan_map_id', '=', $plan->id)->first();
-      if($planPage){
+      if($planPage && $inputs['soThua']){
         $planArea = PlanArea::where('plan_page_id', '=', $planPage->id)->where('order', '=', $inputs['soThua'])->first();
       }
     }
     $coordinateSoThua = '';
     $name = '';
+    $positionSoTo = '';
+    if($plan){
+      $name = $plan->name;
+    }     
     if($planPage){
-      $name = $planPage->name;
-      $imageMapFrom = 'planPage';
+      $positionSoTo = $planPage->position;            
       if($planArea){
         $coordinateSoThua = [
           'lat' => $planArea->lat,
           'lng' => $planArea->lng
         ];
       }
-    }else if($plan){
-      $name = $plan->name;
     }     
     return Redirect::to('/xem-quy-hoach.html')
             ->withName($name)
-            ->with('imageMapFrom', $imageMapFrom)  
+            ->with('positionSoTo', $positionSoTo)              
             ->with('coordinateSoThua', $coordinateSoThua)  
             ->withInput(Input::all());
     

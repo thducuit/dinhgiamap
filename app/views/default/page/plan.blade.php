@@ -114,66 +114,22 @@ MAIN
   //   }).addTo(map);
   // }
 </script>
+
 <?php if( Session::get('name') ) { 
-  $pathImageMapFrom = 'plan';
-  if( Session::get('imageMapFrom') && Session::get('imageMapFrom') == 'planPage'){
-    $pathImageMapFrom = 'planpages';
-  }
   ?>
-
 <script>
-	var mapMinZoom = 0;
-	var mapMaxZoom = 7;
-    var map = L.map('map_photo', {
-		minZoom: mapMinZoom,
-		maxZoom: mapMaxZoom,
-		fullscreenControl: true
-    }).setView([0, 0], 5);
-
-    L.tileLayer('/public/<?php echo $pathImageMapFrom;?>/{{ Session::get('name') }}/{z}/{x}/{y}.png', {
-        minZoom: mapMinZoom,
-        maxZoom: mapMaxZoom,
-        attribution: 'dinhgiatructuyen.vn',
-        tms: false,
-        noWrap: true
-    }).addTo(map);
-    <?php if(Session::get('coordinateSoThua')){
-      $coordinate = Session::get('coordinateSoThua');
-      ?>
-        var marker = L.marker([<?php echo $coordinate['lat'];?>, <?php echo $coordinate['lng'];?>]).addTo(map);
-    <?php }?>
-    var drawnItems = new L.FeatureGroup();
-	map.addLayer(drawnItems);
-
-    var drawControl = new L.Control.Draw({
-		draw: {
-			position: 'topleft',
-			polygon: {
-				title: 'Draw a sexy polygon!',
-				allowIntersection: false,
-				drawError: {
-					color: '#b00b00',
-					timeout: 1000
-				},
-				shapeOptions: {
-					color: '#bada55'
-				},
-				showArea: true
-			},
-			polyline: {
-				metric: false
-			},
-			circle: {
-				shapeOptions: {
-					color: '#662d91'
-				}
-			}
-		},
-		edit: {
-			featureGroup: drawnItems
-		}
-	});
-	map.addControl(drawControl);
-</script>
+var folderMapName = '<?php echo Session::get('name');?>';
+var positionSoTo = null;
+var markerPosition = null;
+<?php if(Session::get('positionSoTo')){ ?>
+  positionSoTo = <?php echo Session::get('positionSoTo');?>;
+<?php }?>
+  <?php if(Session::get('coordinateSoThua')){
+          $coordinate = Session::get('coordinateSoThua');?>
+      
+      markerPosition = [<?php echo $coordinate['lat'];?>, <?php echo $coordinate['lng'];?>];
+  <?php }?>
+</script>    
+      {{ HTML::script('default/js/xem-quy-hoach.js') }} 
 <?php }?>
 @endsection
