@@ -197,8 +197,7 @@ Route::post('/xem-quy-hoach.html', function() {
     if( $validation->fails() )
     {
         return Redirect::to('/xem-quy-hoach.html')
-        ->withInput(Input::all())
-        ->withName($name)
+        ->withInput(Input::all())        
         ->withErrors($validation);
     }
     $plan = PlanMap::findByWard(Input::get('ward_id'));
