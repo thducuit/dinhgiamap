@@ -101,7 +101,10 @@ class PlanAreaController extends AdminController {
             
         DB::table('plan_areas')->insert($data);
         
-        return Redirect::to('admin/planareas/index/' . $plan_page_id)
+        $plan_page = PlanPage::find($plan_page_id);
+        $plan_map_id = (int)$plan_page->plan_map_id;
+
+        return Redirect::to('admin/planareas/index/' . $plan_map_id . '/' . $plan_page_id)
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));            
@@ -138,8 +141,11 @@ class PlanAreaController extends AdminController {
         $plan->glng = Input::get('glng'); 
 
         $plan->save();
+
+        $plan_page = PlanPage::find($plan_page_id);
+        $plan_map_id = (int)$plan_page->plan_map_id;
         
-        return Redirect::to('admin/planareas/index/' . $plan_page_id . '?page=' . Input::get('page'))
+        return Redirect::to('admin/planareas/index/' . $plan_map_id . '/' . $plan_page_id . '?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));

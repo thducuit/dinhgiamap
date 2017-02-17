@@ -171,8 +171,8 @@
         
         
         function init() {
-            var lat = parseInt( $('.point-lat').val() );
-            var lng = parseInt( $('.point-lng').val() );
+            var lat = ( $('.point-lat').val() );
+            var lng = ( $('.point-lng').val() );
             if(lat && lng && lat !== 0 && lng !== 0) {
                 point.setLat( lat ).setLng( lng );
                 setMarkerPosition(point);

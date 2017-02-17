@@ -47,7 +47,7 @@ class MarkerController extends AdminController {
         }
 
 
-        $markers = $markers->orderBy('created_at', 'desc')->orderBy('name', 'desc')
+        $markers = $markers->orderBy('created_at', 'desc')->orderBy('id', 'asc')
                ->paginate(Config::get('constant.admin.pager'));
         $pager = $markers->appends(array('keyword' => $keyword,  'province' => $province, 'district' => $district, 'ward' => $ward))->links();
 
