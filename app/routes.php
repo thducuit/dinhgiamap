@@ -204,7 +204,7 @@ Route::post('/xem-quy-hoach.html', function() {
     $planPage = FALSE;
     $planArea = false;
     if($inputs['soTo'] && $plan){
-      $planPage = PlanPage::where('status', '=', 1)->where('_show', '=', 1)->where('order', '=', $inputs['soTo'])->where('plan_map_id', '=', $plan->id)->first();
+      $planPage = PlanPage::where('order', '=', $inputs['soTo'])->where('plan_map_id', '=', $plan->id)->first();
       if($planPage && $inputs['soThua']){
         $planArea = PlanArea::where('plan_page_id', '=', $planPage->id)->where('order', '=', $inputs['soThua'])->first();
       }
