@@ -31,7 +31,12 @@
     {{ HTML::script('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}
     {{ HTML::script('https://code.jquery.com/ui/1.12.0/jquery-ui.js') }}
     {{ HTML::script('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js') }}
-    {{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyCFEQBvTi6zuAx2lh4Lte_bofdG8eMknlI&sensor=false&libraries=places,geometry') }}
+    
+    <script>
+        var geocoder = '';
+        function initMap() { geocoder = new google.maps.Geocoder(); };
+    </script>
+    {{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyCFEQBvTi6zuAx2lh4Lte_bofdG8eMknlI&sensor=false&libraries=places,geometry&callback=initMap') }}
 
     {{	HTML::script('default/js/leaflet-google.js') }}
     {{	HTML::script('admin/js/custom/Google.js') }}
