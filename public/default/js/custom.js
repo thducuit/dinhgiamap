@@ -1,5 +1,4 @@
 (function($, url) {
-
 	function getStreet(id) {
 		if(id) {
 			$.ajax({
@@ -57,6 +56,31 @@
         
     });
     
+    $('.btn-get-current-position').click(function(){
+      if (navigator.geolocation) {        
+          navigator.geolocation.getCurrentPosition(function (position) {                        
+            var latlong = {
+              lng: position.coords.longitude,
+              lat: position.coords.latitude
+            };           
+            geocoder.geocode({'location': latlong}, function(results, status) {
+              if (status === google.maps.GeocoderStatus.OK) {                
+                if (results[0]) {                  
+                  $('.google-map-search-form .place-id').val(results[0].place_id);
+                  $('.google-map-search-form .cen-address-text').val(results[0].formatted_address);                      
+                  $('.google-map-search-form').submit();
+                } else {
+                  window.alert('No results found');
+                }
+              } else {
+                window.alert('Geocoder failed due to: ' + status);
+              }
+            });
+          }, function (err) {                                
+            console.log(err);
+          });          
+        }
+    });
     $(document).on('click', '.list-item-marker ul li', function(){
       var placeId = $(this).attr('place-id');
       var address = $(this).attr('address');      
