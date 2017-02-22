@@ -94,7 +94,9 @@ class PlanAreaController extends AdminController {
                 'lat' => Input::get('lat'),
                 'glat' => Input::get('glat'),
                 'lng' => Input::get('lng'),
-                'glng' => Input::get('glng')
+                'glng' => Input::get('glng'),
+                'address' => Input::get('address'),
+                'place_id' => Input::get('place_id')
             );
             
             
@@ -139,6 +141,8 @@ class PlanAreaController extends AdminController {
         $plan->glat = Input::get('glat'); 
         $plan->lng = Input::get('lng'); 
         $plan->glng = Input::get('glng'); 
+        $plan->address = Input::get('address'); 
+        $plan->place_id = Input::get('place_id'); 
 
         $plan->save();
 

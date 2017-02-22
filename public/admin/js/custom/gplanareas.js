@@ -2,6 +2,7 @@
 	var layer = null;
 	var map = null;
     var data = {};
+    var geocoder = new google.maps.Geocoder();
 
 	function getLayer(type, layer) {
     	data = {
@@ -63,6 +64,30 @@
     	var points = layer.getLatLng();
     	$('#glat').val(points.lat);
     	$('#glng').val(points.lng);
+
+    	getAddress('latLng', layer.getLatLng(), getAddressCallback);
+    }
+
+    var getAddressCallback = function(object) {
+        if(object) {
+        	$('#place_id').val(object.place_id);
+        }
+    };
+
+
+    function getAddress(type, value, callback) {
+        var request = {};
+        request[type] = value;
+        if(geocoder) {
+            geocoder.geocode(request, function(result) {
+                if(result && $.isArray(result) && result.length) {
+                    var object = result[0];
+                    if( callback && $.isFunction(callback) ) {
+                        callback(object);
+                    }
+                }
+            });
+        }
     }
 
 	$(document).ready(function() {

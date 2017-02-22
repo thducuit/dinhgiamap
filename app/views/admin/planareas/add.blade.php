@@ -28,6 +28,13 @@
 			                <label for="order">Số thửa</label>
 			                <input type="text" id="order" class='form-control' name="order" value="{{ Input::old('order') }}"/>
 			            </div>
+
+			            <div class="form-group">		
+			                <label for="address">Địa chỉ</label>
+			                <input type="text" id="address" class='form-control' name="address" value="{{ Input::old('address') }}"/>
+			            </div>
+
+
 			        </div>	
 			        
 			        <!--right-->
@@ -39,6 +46,7 @@
 			        		<label for="points">Bản đồ</label>
 			        		<div id="google-map-container"></div>
 			        		<input class="form-control" type="hidden" id="points" name="points"></input>
+			        		<input class="form-control" type="hidden" id="place_id" name="place_id"></input>
 			        	</div>
 			            
 			            <div class="form-group google-map-point">
