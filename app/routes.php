@@ -210,6 +210,8 @@ Route::post('/xem-quy-hoach.html', function() {
       }
     }
     $coordinateSoThua = '';
+    $addressSoThua = '';
+    $placeIdSoThua = '';
     $name = '';
     $positionSoTo = '';
     if($plan){
@@ -222,12 +224,16 @@ Route::post('/xem-quy-hoach.html', function() {
           'lat' => $planArea->lat,
           'lng' => $planArea->lng
         ];
+        $addressSoThua = $planArea->address;
+        $placeIdSoThua = $planArea->place_id;
       }
     }     
     return Redirect::to('/xem-quy-hoach.html')
             ->withName($name)
             ->with('positionSoTo', $positionSoTo)              
             ->with('coordinateSoThua', $coordinateSoThua)  
+            ->with('addressSoThua', $addressSoThua)  
+            ->with('placeIdSoThua', $placeIdSoThua)  
             ->withInput(Input::all());
     
 });

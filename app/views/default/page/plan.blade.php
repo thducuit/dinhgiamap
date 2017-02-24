@@ -121,6 +121,8 @@ MAIN
 var folderMapName = '<?php echo Session::get('name');?>';
 var positionSoTo = null;
 var markerPosition = null;
+var addressSoThua = null;
+var placeIdSoThua = null;
 <?php if(Session::get('positionSoTo')){ ?>
   positionSoTo = <?php echo Session::get('positionSoTo');?>;
 <?php }?>
@@ -129,6 +131,13 @@ var markerPosition = null;
       
       markerPosition = [<?php echo $coordinate['lat'];?>, <?php echo $coordinate['lng'];?>];
   <?php }?>
+<?php if(Session::get('addressSoThua')){ ?>
+  addressSoThua = '<?php echo Session::get('addressSoThua')?>';
+<?php }?>  
+<?php if(Session::get('placeIdSoThua')){ ?>
+  placeIdSoThua = '<?php echo Session::get('placeIdSoThua')?>';
+<?php }?>  
+    
 </script>    
       {{ HTML::script('default/js/xem-quy-hoach.js') }} 
 <?php }?>

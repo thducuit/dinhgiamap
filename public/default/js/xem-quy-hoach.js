@@ -35,7 +35,13 @@ var mapMinZoom = 0;
     }).addTo(map);
     
     if(markerPosition){
-      L.marker(markerPosition).addTo(map);
+      L.marker(markerPosition).addTo(map).on('click', function(){
+        if(placeIdSoThua){
+          window.location.href = '/public/price?placeId='+placeIdSoThua+'&address='+addressSoThua+'&street=0';
+        }
+        console.log(addressSoThua);
+        console.log(placeIdSoThua);
+      });
     }
     var drawnItems = new L.FeatureGroup();
 	map.addLayer(drawnItems);
