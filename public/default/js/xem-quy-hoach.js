@@ -37,7 +37,7 @@ var mapMinZoom = 0;
     if(markerPosition){
       L.marker(markerPosition).addTo(map).on('click', function(){
         if(placeIdSoThua){
-          window.location.href = '/public/price?placeId='+placeIdSoThua+'&address='+addressSoThua+'&street=0';
+          window.location.href = '/public/search?placeId='+placeIdSoThua+'&address='+addressSoThua;
         }       
       });
     }
