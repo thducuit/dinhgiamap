@@ -14,12 +14,12 @@
                     <div class="col col-md-6 col-sm-12 col-xs-12">
                         <a id="show-price-pop-up" href="#" class="orange-btn even"><img src="{{ URL::asset('default/images/w1.png') }}"> XEM ĐƠN GIÁ ĐẤT</a>
                         <a class="orange-btn odd btn_dinhgia" ><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</a>
-                        <a href="" class="orange-btn even"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
+                        <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn even"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
                     </div>
                     <div class="col col-md-6 col-sm-12 col-xs-12">
                         <a class="emeral-btn odd show-price-temp-pop-up"><img src="{{ URL::asset('default/images/w2.png') }}"> ĐỊNH GIÁ SƠ BỘ</a>
                         <a class="emeral-btn even" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><img src="{{ URL::asset('default/images/w4.png') }}"> TÀI SẢN ĐANG GIAO DỊCH</a>
-                        <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="emeral-btn odd"><img src="{{ URL::asset('default/images/w6.png') }}"> ĐỊNH GIÁ DỰ ÁN </a>
+                        <a  class="emeral-btn odd"><img src="{{ URL::asset('default/images/w6.png') }}"> ĐỊNH GIÁ DỰ ÁN </a>
                     </div>
                 </div>
             </div>

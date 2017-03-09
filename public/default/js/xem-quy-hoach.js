@@ -40,6 +40,7 @@ var mapMinZoom = 0;
           window.location.href = '/public/search?placeId='+placeIdSoThua+'&address='+addressSoThua;
         }       
       });
+      map.panTo(markerPosition);
     }
     var drawnItems = new L.FeatureGroup();
 	map.addLayer(drawnItems);
