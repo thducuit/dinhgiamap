@@ -53,10 +53,10 @@
 			            </div>
 			            
 			            
-			            <!-- <div class="form-group">
-			            	<label for="street_id">Khu vực/Đoạn đường</label>
-			            	{{ Form::select('street_id', Street::getOptions(), $marker->street_id, ['class'=>'form-control', 'id'=>'street_id']) }}
-			            </div> -->
+			            <div class="form-group">
+			            	<label for="plan_map_id">Bản đồ quy hoạch</label>
+			            	{{ Form::select('plan_map_id', PlanMap::getOptions(), $marker->plan_map_id, ['class'=>'form-control', 'id'=>'plan_map_id']) }}
+			            </div>
 			        </div>
 			        
 			        <!--right-->
