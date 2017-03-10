@@ -1,3 +1,32 @@
+
+@font-face {
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+  src: url('../fonts/UTM AVO.eot');
+  src: local('☺'), url('../fonts/UTM AVO.woff') format('woff'), url('../fonts/UTM AVO.ttf') format('truetype'), url('../fonts/UTM AVO.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifBOLD';
+  src: url('../fonts/UTM AVOBOLD.eot');
+  src: local('☺'), url('../fonts/UTM AVOBOLD.woff') format('woff'), url('../fonts/UTM AVOBOLD.ttf') format('truetype'), url('../fonts/UTM AVOBOLD.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifITALIC';
+  src: url('../fonts/UTM AVOITALIC.eot');
+  src: local('☺'), url('../fonts/UTM AVOITALIC.woff') format('woff'), url('../fonts/UTM AVOITALIC.ttf') format('truetype'), url('../fonts/UTM AVOITALIC.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifBOLD_ITALIC';
+  src: url('../fonts/UTM AVOBOLD_ITALIC.eot');
+  src: local('☺'), url('../fonts/UTM AVOBOLD_ITALIC.woff') format('woff'), url('../fonts/UTM AVOBOLD_ITALIC.ttf') format('truetype'), url('../fonts/UTM AVOBOLD_ITALIC.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 /*=========================*\
 
     COMMON
@@ -128,9 +157,7 @@ p {
 
 body {
 
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-
-  font-size: 13px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;  
 
   opacity: 0;
 
@@ -7230,4 +7257,270 @@ body .zui-popup-close:hover {
 }
 .pac-container{
   display: none;
+}
+.head {
+  min-height: 81px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  border-bottom: solid 1px #9fc2c4;
+  position: relative;
+  z-index: 9;
+}
+
+#modal_ketqua_dongiasobo .row, #modal_ketquadinhgia .row {
+  margin-left: 0px!important;
+  margin-right: 0px!important;
+}
+#modal_ketqua_dongiasobo .logo, #modal_ketquadinhgia .logo{
+  margin: 21px 0 0 0!important;display: inline-block;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.info-top {
+  padding: 8px 0;
+}
+.bold {
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifBOLD';
+}
+.emeral {
+  color: #00767a;
+}
+.contact-top {
+  padding: 8px 0;
+}
+.red {
+  color: #ee1c25;
+}
+.close-btn {
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  cursor: pointer;
+  background: url(../images/close2.png) no-repeat;
+}
+.bread-blk {
+  background: #ededef;
+  min-height: 44px;
+  position: relative;
+}
+.bread {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-size: 13px;
+  padding-left: 220px;
+}
+.bread-blk .col-md-3 a {
+  float: right;
+  margin: 8px 0 0 0;
+}
+.orange-btn {
+  width: 233px;
+  height: 66px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  line-height: 60px;
+  background: url(../images/orange-btn.png) no-repeat;
+  font-size: 13px;
+}
+.red-ribbon {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  bottom: -36px;
+}
+#modal_ketquadinhgia, #modal_ketqua_dongiasobo{  
+	font-size: 14px;
+	color:#222;
+	font-weight: normal;
+	line-height:1.5em;
+	letter-spacing:1px;
+	font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	-webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+#modal_ketquadinhgia .content1, #modal_ketqua_dongiasobo .content1 {
+  padding-top: 27px;
+  padding-bottom: 0px;
+}
+.content1 {
+  background: #fff;
+  padding: 50px 0;
+}
+.title-ct1 {
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifBOLD';
+  color: #00767a;
+  font-size: 16px;
+  line-height: 26px;
+  margin: 0 0 15px 0;
+  display: block;
+}
+.info-d {
+  background: url(../images/li.png) no-repeat 0 8px;
+  padding-left: 15px;
+  margin-bottom: 10px;
+}
+.info-d label {
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifBOLD';
+  display: inline;
+}
+#modal_ketquadinhgia .content2, #modal_ketqua_dongiasobo .content2{
+  padding: 0px!important;
+}
+#modal_ketquadinhgia .content2 .container-unit-price, #modal_ketqua_dongiasobo .content2 .container-unit-price{
+  background-color: #E8E7E6;
+  height: 246px;
+}
+.feature {
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+}
+.feature img {
+  margin: 0 0 20px 0;
+}
+.price {
+  font-size: 20px;
+  margin-top: 15px;
+}
+#modal_ketquadinhgia .container-total-price, #modal_ketqua_dongiasobo .container-total-price{
+  padding-top: 20px;
+  background-color: #e1e1e1;
+}
+#modal_ketquadinhgia .total-price, #modal_ketqua_dongiasobo .total-price{
+  padding: 0px;
+}
+.content3 {
+  background: #f5881f;
+  color: #fff;
+  text-align: center;
+  margin-right: -15px;
+  margin-left: -14px;
+  font-size: 10px;
+  padding: 5px 0;
+}
+#modal_ketquadinhgia .content3 h1, #modal_ketqua_dongiasobo .content3 h1{
+  margin: 0px -15px;
+  font-size: 20px;
+}
+.bot-info .col-md-3 {
+  font-size: 16px;
+}
+.padding-left-right-zero {
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+.italic {
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifITALIC';
+}
+.emeral-btn:hover{
+  background:url(../images/orange-btn-2.png) no-repeat;
+  color:#fff;	
+}
+
+.emeral-btn{
+  width:233px;
+  height:66px;
+  display:inline-block;
+  text-align:center;
+  color:#fff;
+  line-height:60px;
+  background:url(../images/emeral-btn.png) no-repeat;
+  font-size:13px;
+}
+.emeral-btn:hover{
+  background:url(../images/emeral-btn-2.png) no-repeat;
+  color:#fff;
+}
+#modal_ketquadinhgia .container-unit-price, #modal_ketqua_dongiasobo .container-unit-price{
+  padding-top: 20px;
+}
+#modal_ketquadinhgia .notice-info, #modal_ketqua_dongiasobo .notice-info{
+      cursor: pointer;
+      line-height: 58px;
+}
+#modal_ketqua_dongiasobo .phone-print-email {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    padding: 10px;
+    background-color: #00767a;
+}
+#modal_ketquadinhgia .content4, #modal_ketqua_dongiasobo .content4{
+  padding-top: 0px!important;
+  margin-bottom: 45px;
+}
+#modal_ketquadinhgia .btn-action-group-evalue-result a, #modal_ketqua_dongiasobo .btn-action-group-evalue-result a{
+      padding-left: 0px!important;
+    padding-right: 0px!important;
+}
+.modal_popup .modal-content {
+    border-radius: 0px!important;
+}
+.close-btn {
+    width: 32px;
+    height: 32px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    cursor: pointer;
+    background: url(../images/close2.png) no-repeat;
+}
+.modal_popup .head-top {
+    margin-bottom: 5px;
+    border-bottom: none!important
+}
+.modal_popup .head-top strong {
+    color: #00767b;
+}
+.btn-list {
+    display: inline-block;
+    padding: 5px 0px 0spx 0px;
+}
+.modal_popup .btn-list .col {
+    padding: 0px 5px 0px 5px;
+}
+.modal_popup .btn-list .col a {
+    margin: 0px 0px 5px 0px!important;
+}
+
+.modal_popup .emeral-btn, .modal_popup .orange-btn, .modal_popup .grey-btn{
+  border-radius: 5px;
+    height: 55px;
+    line-height: 55px!important;
+    background-size: 233px 66px;
+}
+.modal_popup .orange-btn {
+    height: 55px!important;
+    line-height: 55px!important;
+    font-size: 13px;
+}
+.head-top {
+    border-bottom: solid 1px #dcdcdc;
+    min-height: 33px;
+    text-align: center;
+    padding: 5px 32px;
+    font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifBOLD';
+}
+.modal_popup .head-top {
+    margin-bottom: 5px;
+}
+.modal_popup .modal-dialog {
+    width: 489px!important;
+}
+.modal_info__marker{
+  float: left;
+  margin-top: 4px;
 }

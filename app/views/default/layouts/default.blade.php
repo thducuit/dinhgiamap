@@ -31,10 +31,13 @@
     {{ HTML::script('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js') }}
     {{ HTML::script('https://code.jquery.com/ui/1.12.0/jquery-ui.js') }}
     {{ HTML::script('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js') }}
-    
+
     <script>
-        var geocoder = '';
-        function initMap() { geocoder = new google.maps.Geocoder(); };
+      var geocoder = '';
+      function initMap() {
+        geocoder = new google.maps.Geocoder();
+      }
+      ;
     </script>
     {{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyCFEQBvTi6zuAx2lh4Lte_bofdG8eMknlI&sensor=false&libraries=places,geometry&callback=initMap') }}
 
@@ -242,14 +245,14 @@
       var testV = 1;
       var pass1 = prompt('Vui lòng nhập mật khẩu', ' ');
       while (testV < 3) {
-        if (!pass1){
+        if (!pass1) {
           history.go(-1);
         }
-        if (pass1.toLowerCase() == "dinhgiamap") {                    
+        if (pass1.toLowerCase() == "dinhgiamap") {
           localStorage.setItem("logged", "true");
           window.location.href = "{{action('HomeController@view')}}";
           break;
-        }else{
+        } else {
           localStorage.removeItem("logged");
         }
         testV += 1;
@@ -261,9 +264,21 @@
       }
       return " ";
     }
-    if(!localStorage.getItem("logged")){
+    if (!localStorage.getItem("logged")) {
       passWord();
     }
+    var arrowPlay = "{{ URL::asset('default/images/arrow1.png') }}";
+    var arrowDown = "{{ URL::asset('default/images/arrow-down.png') }}";
+    $(document).ready(function () {
+      $('#modal_ketqua_dongiasobo .notice-info').click(function () {        
+        $('#modal_ketqua_dongiasobo .notice-info-content').toggle('slow');
+        if ($('#modal_ketqua_dongiasobo .notice-info img').attr('src').indexOf('arrow1.png') > -1) {
+          $('#modal_ketqua_dongiasobo .notice-info img').attr('src', arrowDown);
+        } else {
+          $('#modal_ketqua_dongiasobo .notice-info img').attr('src', arrowPlay);
+        }
+      });
+    });
   </script>
 </body>
 </html>
