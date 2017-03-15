@@ -76,9 +76,17 @@ MAIN
             </div>
              * 
              */?>
-            <br><br><br><br>
-            <button type="submit" id="btn_submit_xem_qui_hoach" class="grey-btn"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</button>                               
-          <a class="emeral-btn even" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><img src="{{ URL::asset('default/images/w4.png') }}"> TÀI SẢN ĐANG GIAO DỊCH</a>              
+            <div class="filter_col">
+              <div class="popup_button_group">
+                <button type="submit" id="btn_submit_xem_qui_hoach" class="grey-btn page_xemquihoach_wrapper__grey-btn"><img src="{{ URL::asset('default/images/w5.png') }}"> Xem quy hoạch</button>                               
+              </div>
+            </div>
+            <div class="filter_col">                        
+              <a class="emeral-btn page_xemquihoach_wrapper__emeral-btn" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><img src="{{ URL::asset('default/images/w4.png') }}"> TÀI SẢN ĐANG GIAO DỊCH</a>              
+            </div>
+            
+            
+          
           </div>
           
           {{ Form::close() }}

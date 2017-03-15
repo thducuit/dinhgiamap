@@ -7456,7 +7456,7 @@ body .zui-popup-close:hover {
   transition: all 0.5s ease;
 }
 .emeral-btn:hover{
-  background:url(../images/emeral-btn-2.png) no-repeat;
+  background-image:url(../images/emeral-btn-2.png);
   text-decoration: none;
   color: #fff;
 }
@@ -7523,6 +7523,7 @@ body .zui-popup-close:hover {
   font-weight: normal;
   letter-spacing: 1px;
   -webkit-font-smoothing: antialiased;  
+  cursor: pointer;
 }
 button.orange-btn, button.grey-btn{
   border: none;
@@ -7555,4 +7556,19 @@ button.orange-btn, button.grey-btn{
 .modal_info__marker{
   float: left;
   margin-top: 4px;
+}
+button.grey-btn.page_xemquihoach_wrapper__grey-btn, a.page_xemquihoach_wrapper__emeral-btn{
+  background-size: 151px;
+    height: 65px;
+    font-size: 12px;
+    padding-top: 9px;
+    text-align: left;
+    background-position: 0px 21px;
+}
+button.grey-btn.page_xemquihoach_wrapper__grey-btn img, a.page_xemquihoach_wrapper__emeral-btn img{
+  width: 17px;
+}
+a.page_xemquihoach_wrapper__emeral-btn{
+  background-size: 224px 43px;
+  padding-left: 10px;
 }
