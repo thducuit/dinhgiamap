@@ -175,6 +175,7 @@ class StreetController extends AdminController {
                 'price' => Input::get('price'),
                 'state_price' => Input::get('state_price'),
                 'position' => Input::get('points'),
+                'plan_map_id' => Input::get('plan_map_id'),
                 'photo_plan' => $name,
                 'user_id' => $this->getUser()
 
@@ -227,6 +228,7 @@ class StreetController extends AdminController {
         $street->start_lng = Input::get('start_lng'); 
         $street->price = Input::get('price');
         $street->state_price = Input::get('state_price');
+        $street->plan_map_id = Input::get('plan_map_id');
         $street->position = Input::get('points');
         
         

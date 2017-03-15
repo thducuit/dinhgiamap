@@ -22,6 +22,7 @@
     {{ HTML::style('default/css/custom.css') }}
     {{ HTML::style('default/css/responsive.css') }}
     {{ HTML::style('default/css/detail.css') }}
+    {{ HTML::style('default/css/modal.plan.css') }}
 
     {{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
     {{ HTML::style('admin/css/leaflet.draw.css') }}
@@ -210,6 +211,7 @@
       @include('partials.login')
       @include('partials.lostpassword')
       @include('partials.popup')
+      @include('partials.plan')
       @include('partials.price')
       @include('partials.register')
       @include('partials.registersuccess')
