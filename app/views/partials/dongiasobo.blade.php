@@ -96,7 +96,11 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 
       </div>
       <div class="modal-footer">
+        <a id="btn_dinhgiasobo" class="emeral-btn odd"><img src="{{ URL::asset('default/images/w2.png') }}">  XEM GIÁ SƠ BỘ</a>
+        <?php /*
         <a id="btn_dinhgiasobo" class="btn btn_icon btn_gradient4"><i class="icon_phathanhchungthu"></i><span>Xem giá sơ bộ</span></a>
+         * 
+         */?>
       </div>
     </div>
 

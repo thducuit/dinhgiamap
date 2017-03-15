@@ -164,7 +164,6 @@ body {
   -webkit-transition: 0.3s ease;
 
   transition: 0.3s ease;
-
 }
 
 body.ready {
@@ -7329,6 +7328,27 @@ body .zui-popup-close:hover {
   line-height: 60px;
   background: url(../images/orange-btn.png) no-repeat;
   font-size: 13px;
+  transition: all 0.5s ease;
+}
+.orange-btn:hover{
+  background: url(../images/orange-btn-2.png) no-repeat;    	           
+  text-decoration: none;
+}
+.grey-btn {
+  width: 233px;
+  height: 66px;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  line-height: 60px;
+  background: url(../images/grey-btn.png) no-repeat;
+  font-size: 13px;
+  transition: all 0.5s ease;
+}
+.grey-btn:hover{
+  background: url(../images/grey-btn-2.png) no-repeat;    	           
+  text-decoration: none;
+  color: #fff;
 }
 .red-ribbon {
   position: absolute;
@@ -7337,17 +7357,17 @@ body .zui-popup-close:hover {
   bottom: -36px;
 }
 #modal_ketquadinhgia, #modal_ketqua_dongiasobo{  
-	font-size: 14px;
-	color:#222;
-	font-weight: normal;
-	line-height:1.5em;
-	letter-spacing:1px;
-	font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-size-adjust: 100%;
-	-webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+  font-size: 14px;
+  color:#222;
+  font-weight: normal;
+  line-height:1.5em;
+  letter-spacing:1px;
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 #modal_ketquadinhgia .content1, #modal_ketqua_dongiasobo .content1 {
   padding-top: 27px;
@@ -7423,10 +7443,6 @@ body .zui-popup-close:hover {
 .italic {
   font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifITALIC';
 }
-.emeral-btn:hover{
-  background:url(../images/orange-btn-2.png) no-repeat;
-  color:#fff;	
-}
 
 .emeral-btn{
   width:233px;
@@ -7436,89 +7452,105 @@ body .zui-popup-close:hover {
   color:#fff;
   line-height:60px;
   background:url(../images/emeral-btn.png) no-repeat;
-  font-size:13px;
+  font-size:13px;    
+  transition: all 0.5s ease;
 }
 .emeral-btn:hover{
   background:url(../images/emeral-btn-2.png) no-repeat;
-  color:#fff;
+  text-decoration: none;
+  color: #fff;
 }
 #modal_ketquadinhgia .container-unit-price, #modal_ketqua_dongiasobo .container-unit-price{
   padding-top: 20px;
 }
 #modal_ketquadinhgia .notice-info, #modal_ketqua_dongiasobo .notice-info{
-      cursor: pointer;
-      line-height: 58px;
+  cursor: pointer;
+  line-height: 58px;
 }
 #modal_ketqua_dongiasobo .phone-print-email {
-    position: absolute;
-    right: -1px;
-    bottom: -1px;
-    padding: 10px;
-    background-color: #00767a;
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  padding: 10px;
+  background-color: #00767a;
 }
 #modal_ketquadinhgia .content4, #modal_ketqua_dongiasobo .content4{
   padding-top: 0px!important;
   margin-bottom: 45px;
 }
 #modal_ketquadinhgia .btn-action-group-evalue-result a, #modal_ketqua_dongiasobo .btn-action-group-evalue-result a{
-      padding-left: 0px!important;
-    padding-right: 0px!important;
+  padding-left: 0px!important;
+  padding-right: 0px!important;
 }
 .modal_popup .modal-content {
-    border-radius: 0px!important;
+  border-radius: 0px!important;
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+  font-weight: normal;
+  letter-spacing: 1px;
+  -webkit-font-smoothing: antialiased;
 }
 .close-btn {
-    width: 32px;
-    height: 32px;
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 999;
-    cursor: pointer;
-    background: url(../images/close2.png) no-repeat;
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  cursor: pointer;
+  background: url(../images/close2.png) no-repeat;
 }
 .modal_popup .head-top {
-    margin-bottom: 5px;
-    border-bottom: none!important
+  margin-bottom: 5px;
+  border-bottom: none!important
 }
 .modal_popup .head-top strong {
-    color: #00767b;
+  color: #00767b;
 }
 .btn-list {
-    display: inline-block;
-    padding: 5px 0px 0spx 0px;
+  display: inline-block;
+  padding: 5px 0px 0spx 0px;
 }
 .modal_popup .btn-list .col {
-    padding: 0px 5px 0px 5px;
+  padding: 0px 5px 0px 5px;
 }
 .modal_popup .btn-list .col a {
-    margin: 0px 0px 5px 0px!important;
+  margin: 0px 0px 5px 0px!important;
 }
-
+.emeral-btn, .orange-btn, .grey-btn{
+  border-radius: 0px!important;
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+  font-weight: normal;
+  letter-spacing: 1px;
+  -webkit-font-smoothing: antialiased;  
+}
+button.orange-btn, button.grey-btn{
+  border: none;
+  height: 57px;
+}
 .modal_popup .emeral-btn, .modal_popup .orange-btn, .modal_popup .grey-btn{
   border-radius: 5px;
-    height: 55px;
-    line-height: 55px!important;
-    background-size: 233px 66px;
+  height: 55px;
+  line-height: 55px!important;
+  background-size: 233px 66px;
 }
 .modal_popup .orange-btn {
-    height: 55px!important;
-    line-height: 55px!important;
-    font-size: 13px;
+  height: 55px!important;
+  line-height: 55px!important;
+  font-size: 13px;
 }
 .head-top {
-    border-bottom: solid 1px #dcdcdc;
-    min-height: 33px;
-    text-align: center;
-    padding: 5px 32px;
-    font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifBOLD';
+  border-bottom: solid 1px #dcdcdc;
+  min-height: 33px;
+  text-align: center;
+  padding: 5px 32px;
+  font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serifBOLD';
 }
 .modal_popup .head-top {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .modal_popup .modal-dialog {
-    width: 489px!important;
+  width: 489px!important;
 }
 .modal_info__marker{
   float: left;

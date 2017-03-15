@@ -134,6 +134,5 @@
         }        
         $('.register-form').find('.the-error:first').html(errors);
       });
-    });
-    
+    });                    
 })(jQuery, url);
