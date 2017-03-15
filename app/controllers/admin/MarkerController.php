@@ -162,6 +162,7 @@ class MarkerController extends AdminController {
                 'class_field' => Input::get('class_field'),
                 'plan_field' => Input::get('plan_field'),
                 'state_price' => Input::get('state_price'),
+                'plan_map_id' => Input::get('plan_map_id'),
                 'price' => Input::get('price'),
                 'photo_plan' => $name,
                 'user_id' => $this->getUser()
@@ -252,6 +253,7 @@ class MarkerController extends AdminController {
         $marker->class_field = Input::get('class_field'); 
         $marker->plan_field = Input::get('plan_field'); 
         $marker->state_price = Input::get('state_price'); 
+        $marker->plan_map_id = Input::get('plan_map_id'); 
         $marker->photo_plan = $name; 
         $marker->save();        
         return Redirect::to('admin/markers?page=' . Input::get('page'))

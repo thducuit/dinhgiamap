@@ -24,6 +24,7 @@ class PlanPage extends Eloquent{
         foreach($plans as $d) {
             $options = array_add($options, $d->id, $d->name);
         }
+        dd($options);
         return $options;
     }
 

@@ -111,6 +111,7 @@
 				var element = document.createElement("input");
 				element.id = "search-box";
 				element.setAttribute("class", "form-control");
+				element.setAttribute("placeholder", "Tìm kiếm địa chỉ");
 				return element;
 			}
 	    });
@@ -126,7 +127,12 @@
 	       	if (places.length == 0) {
 		        return;
 		    }
-		    map.setView(new L.LatLng(places[0].geometry.location.lat(), places[0].geometry.location.lng()));
+		    var lat = places[0].geometry.location.lat();
+		    var lng = places[0].geometry.location.lng();
+		    map.setView(new L.LatLng(lat, lng));
+		    L.marker([lat, lng]).addTo(map);
+		    $('#glat').val(lat);
+    		$('#glng').val(lng);
 		});
 
 		var drawControl = new L.Control.Draw({

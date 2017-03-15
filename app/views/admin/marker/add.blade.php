@@ -50,10 +50,10 @@
 			                <input type="text"  name="price" class="form-control" placeholder="Đơn giá thị trường" value="{{ Input::old('price') }}"/>
 			            </div>
 			            
-			            <!-- <div class="form-group">
-			            	<label for="street_id">Khu vực/Đoạn đường</label>
-			            	{{ Form::select('street_id', Street::getOptions(), null, ['class'=>'form-control', 'id'=>'street_id']) }}
-			            </div> -->
+			            <div class="form-group">
+			            	<label for="plan_map_id">Bản đồ quy hoạch</label>
+			            	{{ Form::select('plan_map_id', PlanMap::getOptions(), null, ['class'=>'form-control', 'id'=>'plan_map_id']) }}
+			            </div>
 			        </div>
 			        
 			        <!--right-->
