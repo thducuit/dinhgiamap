@@ -64,6 +64,7 @@
 
       var url = {
         info: '/public/info',
+        planmap: '/public/planmap',
         markers: '/public/markers',
         searchMarkers: '/public/search-markers',
         address: '/public/address',

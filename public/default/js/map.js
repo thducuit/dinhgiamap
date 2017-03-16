@@ -1,348 +1,366 @@
-(function($, google, icon, url) {
-    'use strict';
+    (function($, google, icon, url) {
+        'use strict';
 
-    $(document).ready(function() {
-      
-        var place = null;
-        var geocoder = new google.maps.Geocoder();
-        var isAutoComplete = false;
+        $(document).ready(function() {
+          
+            var place = null;
+            var geocoder = new google.maps.Geocoder();
+            var isAutoComplete = false;
 
-        var polygons = [];
-        
-        
+            var polygons = [];
+            
+            
 
-        var mapsProperties = {
-            center: new google.maps.LatLng(10.762622, 106.660172), //HCM city
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+            var mapsProperties = {
+                center: new google.maps.LatLng(10.762622, 106.660172), //HCM city
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
 
-        var mapObject = new google.maps.Map(document.getElementById('map_view'), mapsProperties);
+            var mapObject = new google.maps.Map(document.getElementById('map_view'), mapsProperties);
 
-        var myicon = new google.maps.MarkerImage(
-            icon.home,
-            null, /* size is determined at runtime */
-            null, /* origin is 0,0 */
-            null, /* anchor is bottom center of the scaled image */
-            new google.maps.Size(42, 52)
-        );
-        
-        var marker = new google.maps.Marker({
-            //position: new google.maps.LatLng(10.762622, 106.660172), // center HCM city
-            map: mapObject,
-            icon: myicon,
-            animation: google.maps.Animation.DROP,
-            draggable: true
-        });
-        marker.setMap(mapObject);
-        
-        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('google-map-autocomplete'));
-        autocomplete.bindTo('bounds', mapObject);
+            var myicon = new google.maps.MarkerImage(
+                icon.home,
+                null, /* size is determined at runtime */
+                null, /* origin is 0,0 */
+                null, /* anchor is bottom center of the scaled image */
+                new google.maps.Size(42, 52)
+            );
+            
+            var marker = new google.maps.Marker({
+                //position: new google.maps.LatLng(10.762622, 106.660172), // center HCM city
+                map: mapObject,
+                icon: myicon,
+                animation: google.maps.Animation.DROP,
+                draggable: true
+            });
+            marker.setMap(mapObject);
+            
+            var autocomplete = new google.maps.places.Autocomplete(document.getElementById('google-map-autocomplete'));
+            autocomplete.bindTo('bounds', mapObject);
 
-        autocomplete.addListener('place_changed', function() {
-            var place = autocomplete.getPlace();
-            $('#placeId').val(place.place_id);
-            isAutoComplete = true;
-        });
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+                $('#placeId').val(place.place_id);
+                isAutoComplete = true;
+            });
 
-        var infowindow = new google.maps.InfoWindow();
+            var infowindow = new google.maps.InfoWindow();
 
-        var getAddressCallback = function(list) {
-            var placeId = $("#placeId").val();            
-            if (list.length > 0) {
-                var object = findResultObject(list, placeId);
-                if (!object) {
-                    object = list[0];
+            var getAddressCallback = function(list) {
+                var placeId = $("#placeId").val();            
+                if (list.length > 0) {
+                    var object = findResultObject(list, placeId);
+                    if (!object) {
+                        object = list[0];
+                    }
+                    place = {
+                        name: object.formatted_address,
+                        place_id: object.place_id,
+                        lat: object.geometry.location.lat(),
+                        lng: object.geometry.location.lng()
+                    };
+                    setMarkerPosition(object.geometry.location);
+                    mapObject.setCenter(object.geometry.location);
+                }
+            };
+
+            function findResultObject(list, placeId) {
+                for (var i = 0; i < list.length; i++) {
+                    var o = list[i];
+                    if (o.place_id === placeId) {
+                        return o;
+                    }
+                }
+                return null;
+            }
+
+            function getAddress(type, value, callback) {
+                var request = {};
+                request[type] = value;
+                if (geocoder) {
+                    geocoder.geocode(request, function(result) {
+                        if (result && $.isArray(result) && result.length) {
+                            if (callback && $.isFunction(callback)) {
+                                callback(result);
+                            }
+                        }
+                    });
+                }
+            }
+
+            function setMarkerPosition(point) {
+                marker.setPosition(new google.maps.LatLng(point.lat(), point.lng()));
+            }
+
+            var markerLatLng = null;
+            function getDragendAddressCallback(list) {
+                var object = list[0];
+                $('#google-map-autocomplete').val(object.formatted_address);
+                $('#placeId').val(object.place_id);
+                var lat = object.geometry.location.lat();
+                var long = object.geometry.location.lng();
+                if(markerLatLng){
+                  lat = markerLatLng.lat();
+                  long = markerLatLng.lng();
                 }
                 place = {
                     name: object.formatted_address,
                     place_id: object.place_id,
-                    lat: object.geometry.location.lat(),
-                    lng: object.geometry.location.lng()
-                };
-                setMarkerPosition(object.geometry.location);
-                mapObject.setCenter(object.geometry.location);
+                    lat: lat,
+                    lng: long
+                };              
+                findAddressInformation();
             }
-        };
 
-        function findResultObject(list, placeId) {
-            for (var i = 0; i < list.length; i++) {
-                var o = list[i];
-                if (o.place_id === placeId) {
-                    return o;
-                }
-            }
-            return null;
-        }
-
-        function getAddress(type, value, callback) {
-            var request = {};
-            request[type] = value;
-            if (geocoder) {
-                geocoder.geocode(request, function(result) {
-                    if (result && $.isArray(result) && result.length) {
-                        if (callback && $.isFunction(callback)) {
-                            callback(result);
-                        }
-                    }
-                });
-            }
-        }
-
-        function setMarkerPosition(point) {
-            marker.setPosition(new google.maps.LatLng(point.lat(), point.lng()));
-        }
-
-        var markerLatLng = null;
-        function getDragendAddressCallback(list) {
-            var object = list[0];
-            $('#google-map-autocomplete').val(object.formatted_address);
-            $('#placeId').val(object.place_id);
-            var lat = object.geometry.location.lat();
-            var long = object.geometry.location.lng();
-            if(markerLatLng){
-              lat = markerLatLng.lat();
-              long = markerLatLng.lng();
-            }
-            place = {
-                name: object.formatted_address,
-                place_id: object.place_id,
-                lat: lat,
-                lng: long
-            };              
-            findAddressInformation();
-        }
-
-        google.maps.event.addListener(marker, 'dragend', function() {
-            if (marker) {
-                var latLng = marker.getPosition();
-                markerLatLng = latLng;
-                getAddress('latLng', latLng,getDragendAddressCallback);
-            }
-        });
-
-        google.maps.event.addListener(mapObject, 'click', function(e) {          
-            setMarkerPosition(e.latLng);
-            mapObject.setCenter(e.latLng);
-            markerLatLng = e.latLng;
-            getAddress('latLng', e.latLng, getDragendAddressCallback);
-        });
-
-        function setContent(place) {
-            $('#modal_info .pp_address p').text(place.name);
-
-            placeInfo = place;
-            var a = $('#google-map-autocomplete').val();
-            var p = $('#placeId').val();
-            var priceLink = [url.price, '?placeId=', p, '&address=', a, '&street=', placeInfo.street_id].join('');
-            $('.btn_dinhgia').attr('href', priceLink);
-        }
-
-        $('#show-price-pop-up').click(function(e) {
-            e.preventDefault();
-            var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
-            var html = [placeInfo.name, '<br>', street].join('');
-            $('#dgtt_popup_address').html(html);            
-            if(placeInfo.price_format && placeInfo.state_price_format) {
-                buildHTMLPopupDG();
-            }else {
-                getStreetPrice(function(place){              
-                  console.log(place);
-                  $('.giaThiTruong').val(place.price_format);
-                  $('.giaUB').val(place.state_price_format);
-                  $('.textDistrict').val(place.districtName);              
-                  buildHTMLPopupDG();
-                });
-            }  
-        });
-
-
-        $('.show-price-temp-pop-up').click(function(e) {
-            e.preventDefault();
-            $('#modal_dongiathitruong').modal('hide');
-            $('#modal_info').modal('hide');
-            
-            var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
-            var html = [placeInfo.name, '<br>', street].join('');
-            $('#dgsb_popup_address, .dgsb_popup_address').html(html);
-            getStreetPrice(function(place){                
-              console.log(place);
-              var priceFormat = (place.price_format)?place.price_format:'0';
-              var statePriceFormat = (place.state_price_format)?place.state_price_format:'0';
-              var districtName = (place.districtName)?place.districtName:'Quận 1';
-              $('.giaThiTruong').val(priceFormat);
-              $('.giaUB').val(statePriceFormat);
-              $('.giaUBLabel').html(statePriceFormat.replace(/,/gm, '.'));
-              
-              $('.textDistrict').val(districtName);              
-              $('#modal_dongiasobo').modal('show');
-            });
-           
-        });
-
-        function buildHTMLPopupDG() {          
-            $('.dongia_highlight_left').html(placeInfo.price_format);
-            $('.dongia_highlight_right').html(placeInfo.state_price_format);
-            $('#modal_dongiathitruong').modal('show');
-        }
-
-        function getStreetPrice(cb){          
-            $.ajax({
-                url: url.priceStreet,
-                type: 'get',
-                data: {
-                    id: placeInfo.street_id
-                },
-                success: function(response) {
-                    if(response){                
-                        if(response.price_format){
-                          placeInfo.price_format = response.price_format;
-                        }
-                        if(response.state_price_format){
-                          placeInfo.state_price_format = response.state_price_format;                                                
-                        }
-                        
-                        placeInfo.districtName = response.districtName;
-                        if(cb){
-                          cb(placeInfo);
-                        }else{
-                          buildHTMLPopupDG();
-                        }
-                    }
+            google.maps.event.addListener(marker, 'dragend', function() {
+                if (marker) {
+                    var latLng = marker.getPosition();
+                    markerLatLng = latLng;
+                    getAddress('latLng', latLng,getDragendAddressCallback);
                 }
             });
-        }
-        
-        
-        $('#btn_close').click(function() {
-            $('#dgtt_popup').addClass('none');
-        });
 
-        function findAddressInformation() {
-            var placeId = $("#placeId").val();
-            $.ajax({
-                url: url.info,
-                type: 'get',
-                data: {
-                    placeId: placeId
-                },
-                success: function(response) {                  
-                  var urlTaiSanGiaoDich = $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href');
-                  console.log(markerLatLng);
-                  if(markerLatLng){                          
-                    urlTaiSanGiaoDich += '?lat='+markerLatLng.lat()+'&lng='+markerLatLng.lng();
-                    $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href', urlTaiSanGiaoDich);
-                  }
+            google.maps.event.addListener(mapObject, 'click', function(e) {          
+                setMarkerPosition(e.latLng);
+                mapObject.setCenter(e.latLng);
+                markerLatLng = e.latLng;
+                getAddress('latLng', e.latLng, getDragendAddressCallback);
+            });
+
+            function setContent(place) {
+                $('#modal_info .pp_address p').text(place.name);
+
+                placeInfo = place;
+                var a = $('#google-map-autocomplete').val();
+                var p = $('#placeId').val();
+                var priceLink = [url.price, '?placeId=', p, '&address=', a, '&street=', placeInfo.street_id].join('');
+                $('.btn_dinhgia').attr('href', priceLink);
+            }
+
+            $('#show-price-pop-up').click(function(e) {
+                e.preventDefault();
+                var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
+                var html = [placeInfo.name, '<br>', street].join('');
+                $('#dgtt_popup_address').html(html);            
+                if(placeInfo.price_format && placeInfo.state_price_format) {
+                    buildHTMLPopupDG();
+                }else {
+                    getStreetPrice(function(place){   
+                      $('.giaThiTruong').val(place.price_format);
+                      $('.giaUB').val(place.state_price_format);
+                      $('.textDistrict').val(place.districtName);              
+                      buildHTMLPopupDG();
+                    });
+                }  
+            });
+
+
+            $('.show-price-temp-pop-up').click(function(e) {
+                e.preventDefault();
+                $('#modal_dongiathitruong').modal('hide');
+                $('#modal_info').modal('hide');
+                
+                var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
+                var html = [placeInfo.name, '<br>', street].join('');
+                $('#dgsb_popup_address, .dgsb_popup_address').html(html);
+                getStreetPrice(function(place){  
+                  var priceFormat = (place.price_format)?place.price_format:'0';
+                  var statePriceFormat = (place.state_price_format)?place.state_price_format:'0';
+                  var districtName = (place.districtName)?place.districtName:'Quận 1';
+                  $('.giaThiTruong').val(priceFormat);
+                  $('.giaUB').val(statePriceFormat);
+                  $('.giaUBLabel').html(statePriceFormat.replace(/,/gm, '.'));
                   
-                  if (response && response.name) {
-                      setContent(response);                       
-                      $('#modal_info').modal('show');
-                  }
-                  else {
-                     ContainInPolygon(place, function(streetId){
-                          place.street_id = streetId;							
-                                    setContent(place);
-                      $('#modal_info').modal('show');
-                    });
-                  }
-                }
-            })
-        }
+                  $('.textDistrict').val(districtName);              
+                  $('#modal_dongiasobo').modal('show');
+                });
+               
+            });
 
-        function ContainInPolygon(place, callback){			
-            for(var i = polygons.length; i>=0; i--) {
+            function buildHTMLPopupDG() {          
+                $('.dongia_highlight_left').html(placeInfo.price_format);
+                $('.dongia_highlight_right').html(placeInfo.state_price_format);
+                $('#modal_dongiathitruong').modal('show');
+            }
 
-                if( polygons[i] && google.maps.geometry.poly.containsLocation(new google.maps.LatLng(place.lat, place.lng), polygons[i]) ){
-                    return callback(i);
-				}
-				if(i === 0){
-					return callback(i);
-				}
-
+            function getStreetPrice(cb){          
+                $.ajax({
+                    url: url.priceStreet,
+                    type: 'get',
+                    data: {
+                        id: placeInfo.street_id
+                    },
+                    success: function(response) {
+                        if(response){                
+                            if(response.price_format){
+                              placeInfo.price_format = response.price_format;
+                            }
+                            if(response.state_price_format){
+                              placeInfo.state_price_format = response.state_price_format;                                                
+                            }
+                            
+                            placeInfo.districtName = response.districtName;
+                            if(cb){
+                              cb(placeInfo);
+                            }else{
+                              buildHTMLPopupDG();
+                            }
+                        }
+                    }
+                });
             }
             
-        }
+            
+            $('#btn_close').click(function() {
+                $('#dgtt_popup').addClass('none');
+            });
 
-        marker.addListener('click', function() {
-          markerLatLng = marker.getPosition();                
-          findAddressInformation();
-        });
-
-        /**
-        get area -> draw polygons -> get current point
-        */
-        function getAreas () {
-            $.ajax({
-                url: url.street,
-                type: 'get',
-                success: function(response) {
-                    if(response) {
-                        drawPolygon(response);
+            function findAddressInformation() {
+                var placeId = $("#placeId").val();
+                $.ajax({
+                    url: url.info,
+                    type: 'get',
+                    data: {
+                        placeId: placeId
+                    },
+                    success: function(response) {                 
+                        var urlTaiSanGiaoDich = $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href');
+                        if(markerLatLng){                          
+                            urlTaiSanGiaoDich += '?lat='+markerLatLng.lat()+'&lng='+markerLatLng.lng();
+                            $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href', urlTaiSanGiaoDich);
+                        }
+                        if (response && response.name) {
+                            setContent(response); 
+                            getPlanMap('marker', response, function(map_name) {
+                                $("#plan-btn-popup").attr('href', map_name);
+                            });                      
+                            $('#modal_info').modal('show');
+                        }
+                        else {
+                            ContainInPolygon(place, function(streetId){
+                                place.street_id = streetId;							
+                                setContent(place);
+                                getPlanMap('street', place, function(map_name) {
+                                    $("#plan-btn-popup").attr('href', map_name);
+                                });   
+                                $('#modal_info').modal('show');
+                            });
+                        }
                     }
-                    initCurrentPoint();
+                })
+            }
+
+            function ContainInPolygon(place, callback){			
+                for(var i = polygons.length; i>=0; i--) {
+                    if( polygons[i] && google.maps.geometry.poly.containsLocation(new google.maps.LatLng(place.lat, place.lng), polygons[i]) ){
+                        return callback(i);
+    				}
+    				if(i === 0){
+    					return callback(i);
+    				}
+                } 
+            }
+
+            function getPlanMap(type, object, callback) {
+                var id = 0;
+                if(type === 'marker') {
+                    id = object.plan_map_id;
+                }else {
+                    id = object.street_id;
                 }
-            })    
-        }
-
-        function drawPolygon(response) {
-            $.map(response, function(value, index) {
-                if(value) {
-                    var triangleCoords = JSON.parse(value);
-                    if(triangleCoords.latlng && $.isArray(triangleCoords.latlng) && triangleCoords.latlng.length)  {
-                        polygons[index] = new google.maps.Polygon({
-                                          paths: triangleCoords.latlng,
-                                          strokeColor: '#fff',
-                                          strokeOpacity: 0.2,
-                                          strokeWeight: 1,
-                                          fillColor: '#fff',
-                                          fillOpacity: 0.2
-                                        });
-                        polygons[index].setMap(mapObject);
+                $.ajax({
+                    url: url.planmap,
+                    type: 'post',
+                    data: {
+                        id: id,
+                        type: type
+                    },
+                    success:function(response) {
+                        callback(response);
                     }
-                }else{
-                    polygons[index] = null;
+                });
+            }
+
+            marker.addListener('click', function() {
+              markerLatLng = marker.getPosition();                
+              findAddressInformation();
+            });
+
+            /**
+            get area -> draw polygons -> get current point
+            */
+            function getAreas () {
+                $.ajax({
+                    url: url.street,
+                    type: 'get',
+                    success: function(response) {
+                        if(response) {
+                            drawPolygon(response);
+                        }
+                        initCurrentPoint();
+                    }
+                })    
+            }
+
+            function drawPolygon(response) {
+                $.map(response, function(value, index) {
+                    if(value) {
+                        var triangleCoords = JSON.parse(value);
+                        if(triangleCoords.latlng && $.isArray(triangleCoords.latlng) && triangleCoords.latlng.length)  {
+                            polygons[index] = new google.maps.Polygon({
+                                              paths: triangleCoords.latlng,
+                                              strokeColor: '#fff',
+                                              strokeOpacity: 0.2,
+                                              strokeWeight: 1,
+                                              fillColor: '#fff',
+                                              fillOpacity: 0.2
+                                            });
+                            polygons[index].setMap(mapObject);
+                        }
+                    }else{
+                        polygons[index] = null;
+                    }
+                });
+            }
+
+            function initCurrentPoint(){
+                var placeId = $("#placeId").val();
+                getAddress('placeId', placeId, getAddressCallback);
+            }
+
+            function init() {
+                getAreas();
+            }
+
+            $('.input_submit').click(function(event) {
+                event.stopPropagation();
+                if(isAutoComplete) {
+                    return true;
+                }else {
+                    var address = $('.cen-address-text').val();
+                    if(address) {
+                        getAddress('address', address, function(result) {
+                            if(result && $.isArray(result) && result.length ) {
+                                var obj = result[0];
+    //                            $('.cen-address-text').val(obj.formatted_address);
+                                var placeIdExist = $('#placeId').val();
+                                if(!placeIdExist){
+                                  $('#placeId').val(obj.place_id);
+                                }
+                                $('.google-map-search-form').submit();
+                            }
+                        });
+                    }
+                    return false;
                 }
             });
-        }
 
-        function initCurrentPoint(){
-            var placeId = $("#placeId").val();
-            getAddress('placeId', placeId, getAddressCallback);
-        }
+            $('.cen-address-text').change(function() {
+                isAutoComplete = false;
+            });
 
-        function init() {
-            getAreas();
-        }
+            init();
 
-        $('.input_submit').click(function(event) {
-            event.stopPropagation();
-            if(isAutoComplete) {
-                return true;
-            }else {
-                var address = $('.cen-address-text').val();
-                if(address) {
-                    getAddress('address', address, function(result) {
-                        //console.log(result);
-                        if(result && $.isArray(result) && result.length ) {
-                            var obj = result[0];
-//                            $('.cen-address-text').val(obj.formatted_address);
-                            var placeIdExist = $('#placeId').val();
-                            if(!placeIdExist){
-                              $('#placeId').val(obj.place_id);
-                            }
-                            $('.google-map-search-form').submit();
-                        }
-                    });
-                }
-                return false;
-            }
         });
-
-        $('.cen-address-text').change(function() {
-            isAutoComplete = false;
-        });
-
-        init();
-
-    });
-})(jQuery, google, icon, url);
+    })(jQuery, google, icon, url);

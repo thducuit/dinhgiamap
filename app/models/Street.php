@@ -10,6 +10,10 @@ class Street extends Eloquent {
     {
         return $this->hasOne('User');
     }
+
+    public static function getPlanMapId($id) {
+        return Street::where('id', '=', $id)->first()->plan_map_id;
+    }
     
     public static function getOptions()
     {
