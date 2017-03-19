@@ -63,7 +63,9 @@
     					                                <div class="btn-group">
     					                                	<a href="{{ URL::to('admin/streets/edit/' . $e->id . '?page=' . $page) }}" class='btn btn-default'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Sửa</a>
     					                                	<a href="{{ URL::to('admin/streets/delete/' . $e->id . '?page=' . $page) }}" data-confirm='Do you really want to delete this item?' class='btn btn-danger'><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"/></svg> Xóa</a>
-    					                            		
+    					                            		@if( !empty($e->plan_map_id) )
+    					                            			<a href="{{ URL::to('admin/streets/plan/' . $e->id . '?page=' . $page) }}" class='btn btn-success'><i class="glyphicon glyphicon-pushpin"></i> Quy hoạch</a>
+    					                            		@endif
     					                                </div>
     					                            </td>
     					                        </tr>

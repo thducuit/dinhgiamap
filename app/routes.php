@@ -242,10 +242,12 @@ Route::post('/planmap', function() {
     $id = Input::get('id');
     $result = '';
     if($type == 'marker') {
-        $result = PlanMap::getName($id);
+        $result = Marker::find($id);
+        $result->name =  PlanMap::getName($result->plan_map_id);
+
     }else {
-        $plan_map_id = Street::getPlanMapId($id);
-        $result = PlanMap::getName($plan_map_id);
+        $result = Street::find($id);
+        $result->name =  PlanMap::getName($result->plan_map_id);
     }
     return Response::json($result);
 });

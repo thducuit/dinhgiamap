@@ -219,16 +219,6 @@ class MarkerController extends AdminController {
             ->withInput(Input::all())
             ->withErrors($validation);
         }
-        
-        // $price = Input::get('price');
-        // if(empty($price)) 
-        // {
-        //     if( Input::get('street_id') )
-        //     {
-        //         $street = Street::find(Input::get('street_id'))->toArray();
-        //         $price = $street['price'];
-        //     }
-        // }
 
         $name = null;
         if( Input::hasFile('plan_photo') )
@@ -266,6 +256,32 @@ class MarkerController extends AdminController {
     {
         $marker = Marker::find($id);
         $marker->delete();
+        return Redirect::to('admin/markers?page=' . Input::get('page'))
+                ->with('message', 'Success')
+                ->with('icon', Config::get('constant.admin.alert.success.icon'))
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));
+    }
+
+    public function getPlan($id = 0)
+    {
+        $marker = Marker::find($id);
+        $plan_name = PlanMap::getName($marker->plan_map_id);
+        return View::make('admin.marker.plan')
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('page' => Input::get('page')))
+            ->with('marker', $marker)
+            ->with('marker_id', $id)
+            ->with('page_name', $plan_name)
+            ->with(array('title'=> 'Bản đồ quy hoạch'));
+    }
+
+    public function postPlan()
+    {
+        $marker = Marker::find(Input::get('id'));
+        $marker->sposition = Input::get('position'); 
+        $marker->slat = Input::get('lat'); 
+        $marker->slng = Input::get('lng');
+        $marker->save();
         return Redirect::to('admin/markers?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))

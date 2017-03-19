@@ -47,7 +47,7 @@ class StreetController extends AdminController {
         }
 
 
-        $streets = $streets->orderBy('created_at', 'desc')->orderBy('name', 'desc')->orderBy('code', 'asc')
+        $streets = $streets->orderBy('created_at', 'desc')->orderBy('id', 'desc')->orderBy('code', 'asc')
 	           ->paginate(Config::get('constant.admin.pager'));
 	    $pager = $streets->appends(array('keyword' => $keyword, 'code' => $code, 'province' => $province, 'district' => $district, 'ward' => $ward))->links();
 	    
@@ -245,6 +245,32 @@ class StreetController extends AdminController {
         $street = Street::find($id);
         $street->delete();
         return Redirect::to('admin/streets')
+                ->with('message', 'Success')
+                ->with('icon', Config::get('constant.admin.alert.success.icon'))
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));
+    }
+
+    public function getPlan($id = 0)
+    {
+        $street = Street::find($id);
+        $plan_name = PlanMap::getName($street->plan_map_id);
+        return View::make('admin.street.plan')
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with(array('page' => Input::get('page')))
+            ->with('street', $street)
+            ->with('street_id', $id)
+            ->with('page_name', $plan_name)
+            ->with(array('title'=> 'Bản đồ quy hoạch'));
+    }
+
+    public function postPlan()
+    {
+        $street = Street::find(Input::get('id'));
+        $street->sposition = Input::get('position'); 
+        $street->slat = Input::get('lat'); 
+        $street->slng = Input::get('lng');
+        $street->save();
+        return Redirect::to('admin/streets?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));

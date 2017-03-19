@@ -232,18 +232,20 @@
                         }
                         if (response && response.name) {
                             setContent(response); 
-                            getPlanMap('marker', response, function(map_name) {
-                                $("#plan-btn-popup").attr('href', map_name);
-                            });                      
+                            $("#plan-btn-popup").attr('type', 'marker').attr('data-id', response.id);
+                            // getPlanMap('marker', response, function(map_name) {
+                            //     $("#plan-btn-popup").attr('href', map_name);
+                            // });                      
                             $('#modal_info').modal('show');
                         }
                         else {
                             ContainInPolygon(place, function(streetId){
                                 place.street_id = streetId;							
                                 setContent(place);
-                                getPlanMap('street', place, function(map_name) {
-                                    $("#plan-btn-popup").attr('href', map_name);
-                                });   
+                                $("#plan-btn-popup").attr('type', 'street').attr('data-id', streetId);
+                                // getPlanMap('street', place, function(map_name) {
+                                //     $("#plan-btn-popup").attr('href', map_name);
+                                // });   
                                 $('#modal_info').modal('show');
                             });
                         }
@@ -262,25 +264,25 @@
                 } 
             }
 
-            function getPlanMap(type, object, callback) {
-                var id = 0;
-                if(type === 'marker') {
-                    id = object.plan_map_id;
-                }else {
-                    id = object.street_id;
-                }
-                $.ajax({
-                    url: url.planmap,
-                    type: 'post',
-                    data: {
-                        id: id,
-                        type: type
-                    },
-                    success:function(response) {
-                        callback(response);
-                    }
-                });
-            }
+            // function getPlanMap(type, object, callback) {
+            //     var id = 0;
+            //     if(type === 'marker') {
+            //         id = object.plan_map_id;
+            //     }else {
+            //         id = object.street_id;
+            //     }
+            //     $.ajax({
+            //         url: url.planmap,
+            //         type: 'post',
+            //         data: {
+            //             id: id,
+            //             type: type
+            //         },
+            //         success:function(response) {
+            //             callback(response);
+            //         }
+            //     });
+            // }
 
             marker.addListener('click', function() {
               markerLatLng = marker.getPosition();                
