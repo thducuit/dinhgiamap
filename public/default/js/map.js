@@ -341,23 +341,25 @@
 
             $('.input_submit').click(function(event) {
                 event.stopPropagation();
+                
                 if(isAutoComplete) {
                     return true;
                 }else {
                     var address = $('.cen-address-text').val();
-                    if(address) {
-                        getAddress('address', address, function(result) {
-                            if(result && $.isArray(result) && result.length ) {
-                                var obj = result[0];
-    //                            $('.cen-address-text').val(obj.formatted_address);
-                                var placeIdExist = $('#placeId').val();
-                                if(!placeIdExist){
-                                  $('#placeId').val(obj.place_id);
-                                }
-                                $('.google-map-search-form').submit();
-                            }
-                        });
-                    }
+                    $('.google-map-search-form').submit();
+//                    if(address) {
+//                        getAddress('address', address, function(result) {                          
+//                            if(result && $.isArray(result) && result.length ) {
+//                                var obj = result[0];
+//    //                            $('.cen-address-text').val(obj.formatted_address);
+//                                var placeIdExist = $('#placeId').val();
+//                                if(!placeIdExist){
+//                                  $('#placeId').val(obj.place_id);
+//                                }
+//                                $('.google-map-search-form').submit();
+//                            }
+//                        });
+//                    }
                     return false;
                 }
             });
