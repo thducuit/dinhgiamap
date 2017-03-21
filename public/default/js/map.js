@@ -6,11 +6,7 @@
         var place = null;
         var geocoder = new google.maps.Geocoder();
         var isAutoComplete = false;
-
-        var polygons = [];
-        
-        
-
+        var polygons = [];              
         var mapsProperties = {
             center: new google.maps.LatLng(10.762622, 106.660172), //HCM city
             zoom: 16,
@@ -25,8 +21,7 @@
             null, /* origin is 0,0 */
             null, /* anchor is bottom center of the scaled image */
             new google.maps.Size(42, 52)
-        );
-        
+        );        
         var marker = new google.maps.Marker({
             //position: new google.maps.LatLng(10.762622, 106.660172), // center HCM city
             map: mapObject,
@@ -79,6 +74,7 @@
             var request = {};
             request[type] = value;
             if (geocoder) {
+              
                 geocoder.geocode(request, function(result) {
                     if (result && $.isArray(result) && result.length) {
                         if (callback && $.isFunction(callback)) {
@@ -147,7 +143,7 @@
                 buildHTMLPopupDG();
             }else {
                 getStreetPrice(function(place){              
-                  console.log(place);
+                  
                   $('.giaThiTruong').val(place.price_format);
                   $('.giaUB').val(place.state_price_format);
                   $('.textDistrict').val(place.districtName);              
@@ -166,7 +162,7 @@
             var html = [placeInfo.name, '<br>', street].join('');
             $('#dgsb_popup_address, .dgsb_popup_address').html(html);
             getStreetPrice(function(place){                
-              console.log(place);
+              
               var priceFormat = (place.price_format)?place.price_format:'0';
               var statePriceFormat = (place.state_price_format)?place.state_price_format:'0';
               var districtName = (place.districtName)?place.districtName:'Quận 1';
@@ -228,7 +224,7 @@
                 },
                 success: function(response) {                  
                   var urlTaiSanGiaoDich = $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href');
-                  console.log(markerLatLng);
+                  
                   if(markerLatLng){                          
                     urlTaiSanGiaoDich += '?lat='+markerLatLng.lat()+'&lng='+markerLatLng.lng();
                     $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href', urlTaiSanGiaoDich);
@@ -306,8 +302,12 @@
         }
 
         function initCurrentPoint(){
-            var placeId = $("#placeId").val();
+            var placeId = $("#placeId").val();           
+            if(!placeId){
+              alert('Vị trí chưa được cập nhật');
+            }
             getAddress('placeId', placeId, getAddressCallback);
+            
         }
 
         function init() {
