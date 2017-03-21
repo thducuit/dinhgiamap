@@ -8,7 +8,7 @@
             var isAutoComplete = false;
 
             var polygons = [];
-            
+            var markerLatLng = null;
             
 
             var mapsProperties = {
@@ -50,7 +50,8 @@
             var getAddressCallback = function(list) {
                 var placeId = $("#placeId").val();            
                 if (list.length > 0) {
-                    var object = findResultObject(list, placeId);
+                    //var object = findResultObject(list, placeId);
+                    var object = null;
                     if (!object) {
                         object = list[0];
                     }
@@ -93,7 +94,7 @@
                 marker.setPosition(new google.maps.LatLng(point.lat(), point.lng()));
             }
 
-            var markerLatLng = null;
+            
             function getDragendAddressCallback(list) {
                 var object = list[0];
                 $('#google-map-autocomplete').val(object.formatted_address);
@@ -300,7 +301,6 @@
                         if(response) {
                             drawPolygon(response);
                         }
-                        initCurrentPoint();
                     }
                 })    
             }
@@ -333,6 +333,7 @@
 
             function init() {
                 getAreas();
+                initCurrentPoint();
             }
 
             $('.input_submit').click(function(event) {

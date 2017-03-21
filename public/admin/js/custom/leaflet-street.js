@@ -87,7 +87,7 @@
                 //                 });
                 // polygons[index].setMap(map);
                 if(triangleCoords.latlng) {
-                	polygons[index] = L.polygon(triangleCoords.latlng, {color: color, weight:'1px'}).addTo(map)
+                	polygons[index] = L.polygon(triangleCoords.latlng, {color: color, weight:'1px'}).addTo(map).bindPopup(index);
                 }
                 
             }else{
