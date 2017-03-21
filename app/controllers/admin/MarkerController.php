@@ -110,7 +110,6 @@ class MarkerController extends AdminController {
     {
         $rules = array(
             'name' => 'required',
-            // 'street_id' => 'required',
             'price' => 'required',
             'state_price' => 'required',
             'lat' => 'required',
@@ -128,16 +127,6 @@ class MarkerController extends AdminController {
             ->withInput(Input::all())
             ->withErrors($validation);
         }
-        
-        // $price = Input::get('price');
-        // if(empty($price)) 
-        // {
-        //     if( Input::get('street_id') )
-        //     {
-        //         $street = Street::find(Input::get('street_id'))->toArray();
-        //         $price = $street['price'];
-        //     }
-        // }
         
         
         $name = null;
@@ -201,8 +190,7 @@ class MarkerController extends AdminController {
     {
         
         $rules = array(
-            'name' => 'required',
-            'street_id' => 'required',
+            'name' => 'required',                       
             'price' => 'required',
             'state_price' => 'required',
             'lat' => 'required',

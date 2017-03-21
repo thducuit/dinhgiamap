@@ -212,10 +212,10 @@
       @include('partials.login')
       @include('partials.lostpassword')
       @include('partials.popup')
-      @include('partials.plan')
       @include('partials.price')
       @include('partials.register')
       @include('partials.registersuccess')
+      @include('partials.plan')
 
     </div>
 
