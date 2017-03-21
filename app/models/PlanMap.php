@@ -11,6 +11,11 @@ class PlanMap extends Eloquent{
     {
         return PlanMap::where('name', '=', $name)->first();
     }
+
+    public static function getName($id) {
+        if(empty($id)) return '';
+        return PlanMap::where('id', '=', $id)->first()->name;
+    }
     
     public static function findByStatus()
     {

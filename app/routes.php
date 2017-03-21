@@ -237,6 +237,20 @@ Route::post('/xem-quy-hoach.html', function() {
             ->withInput(Input::all());
     
 });
+Route::post('/planmap', function() {
+    $type = Input::get('type');
+    $id = Input::get('id');
+    $result = '';
+    if($type == 'marker') {
+        $result = Marker::find($id);
+        $result->name =  PlanMap::getName($result->plan_map_id);
+
+    }else {
+        $result = Street::find($id);
+        $result->name =  PlanMap::getName($result->plan_map_id);
+    }
+    return Response::json($result);
+});
 
 Route::post('/district', function() {
     $districts = District::getByProvince(Input::get('id'));

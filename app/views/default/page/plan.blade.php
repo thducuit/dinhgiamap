@@ -106,29 +106,7 @@ MAIN
 </div>
 {{ HTML::script('admin/js/custom/province.js') }} 
 <script>
-  // var layer;
-  // function init() {
-  //   var mapMinZoom = 0;
-  //   var mapMaxZoom = 7;
-  //   var map = L.map('map', {
-  //     maxZoom: mapMaxZoom,
-  //     minZoom: mapMinZoom,
-  //     crs: L.CRS.Simple
-  //   }).setView([0, 0], mapMaxZoom);
-
-  //   var mapBounds = new L.LatLngBounds(
-  //       map.unproject([0, 19968], mapMaxZoom),
-  //       map.unproject([28160, 0], mapMaxZoom));
-
-  //   map.fitBounds(mapBounds);
-  //   layer = L.tileLayer('{z}/{x}/{y}.png', {
-  //     minZoom: mapMinZoom, maxZoom: mapMaxZoom,
-  //     bounds: mapBounds,
-  //     attribution: 'Rendered with <a href="http://www.maptiler.com/">MapTiler</a>',
-  //     noWrap: true,
-  //     tms: false
-  //   }).addTo(map);
-  // }
+  
 </script>
 
 <?php if (Session::get('name')) {

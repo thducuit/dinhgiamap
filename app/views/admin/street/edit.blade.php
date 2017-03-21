@@ -41,10 +41,10 @@
 			                <input type="text" name="state_price" class="form-control" placeholder="Giá nhà nước(VNĐ)" value="{{ $street->state_price }}"/>
 			            </div>
 
-			            <!-- <div class="form-group">
-				        	<label for="photo_plan">Hình ảnh quy hoạch</label>
-				        	{{ Form::select('plan_id', Plan::getOptions(), null, ['class'=>'form-control', 'id'=>'plan_id']) }}
-				        </div> -->
+			            <div class="form-group">
+			            	<label for="plan_map_id">Bản đồ quy hoạch</label>
+			            	{{ Form::select('plan_map_id', PlanMap::getOptions(), $street->plan_map_id, ['class'=>'form-control', 'id'=>'plan_map_id']) }}
+			            </div>
 			        </div>
 			        
 			        <!--right-->

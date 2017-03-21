@@ -86,7 +86,10 @@
                 //                   fillOpacity: 0.35
                 //                 });
                 // polygons[index].setMap(map);
-                polygons[index] = L.polygon(triangleCoords.latlng, {color: color, weight:'1px'}).addTo(map)
+                if(triangleCoords.latlng) {
+                	polygons[index] = L.polygon(triangleCoords.latlng, {color: color, weight:'1px'}).addTo(map).bindPopup(index);
+                }
+                
             }else{
                 polygons[index] = null;
             }

@@ -155,4 +155,6 @@ class PlanController extends AdminController {
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
                 ->with('type_message', Config::get('constant.admin.alert.success.type'));
     }
+
+    
 }
