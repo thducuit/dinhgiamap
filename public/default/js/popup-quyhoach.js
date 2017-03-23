@@ -68,11 +68,13 @@ var map = null;
             e.preventDefault();
             var type = $(this).attr('type');
             var id = $(this).attr('data-id');
-            if(parseInt(id)) {
+            if(parseInt(id)) {              
                 getPlan(type, id, function(object) {
-                    init(object, function() {
-                        $('#modal-xemquyhoach').modal('show');
-                    })
+                  $('#modal-xemquyhoach').modal('show');
+                  setTimeout(function(){
+                    init(object, function() {});
+                  }, 2000);
+                    
                 });
             }else {
                 $('#map_plan_pop_up').html('<p>Chưa cập nhật bản đồ quy hoạch</p>');
