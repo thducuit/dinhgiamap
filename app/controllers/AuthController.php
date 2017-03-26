@@ -254,7 +254,12 @@ class AuthController extends BaseController {
 //    Sentry::login($user, false);
 //    $activatedCode = $user->getActivationCode();
 //    $user->attemptActivation($code);
-    $this->sendActivationEmail( $user->getActivationCode() );
+    try {
+      $this->sendActivationEmail( $user->getActivationCode() );
+    }catch(Exception $e) {
+      return Response::json('Email is sent error');
+    }
+    
     $bday = null;//d_ngaySinh
     if(Input::get('d_ngaySinh') || Input::get('m_ngaySinh') || Input::get('y_ngaySinh')){
       $bday  = Input::get('y_ngaySinh').'-'.Input::get('m_ngaySinh').'-'.Input::get('d_ngaySinh');

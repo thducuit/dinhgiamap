@@ -1,4 +1,4 @@
-<!--                            chon kich hoat tai khoan-->
+<!--chon kich hoat tai khoan-->
 <div class="modal fade" id="modal_KichHoatTaiKhoan" role="dialog">
   <div class="modal-dialog" >
 
@@ -68,4 +68,4 @@
 </div>
 
 </div>
-<!--                                end chon kich hoat tai khoan-->
+<!--end chon kich hoat tai khoan-->

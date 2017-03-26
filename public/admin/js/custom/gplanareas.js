@@ -3,6 +3,8 @@
 	var map = null;
     var data = {};
     var geocoder = new google.maps.Geocoder();
+    polygon = null;
+    marker = null;
 
 	function getLayer(type, layer) {
     	data = {
@@ -40,23 +42,23 @@
     	}
     	//show marker
     	if(lat&&lng) {
-    		L.marker([lat, lng]).addTo(map);
+    		marker = L.marker([lat, lng]).addTo(map);
     	}
     }
 
     function drawPolygon(type, bounds) {
     	switch(type) {
 		    case 'rectangle':
-		        L.rectangle(bounds, {color: "#ff7800", weight:'1px'}).addTo(map);
+		        polygon = L.rectangle(bounds, {color: "#ff7800", weight:'1px'}).addTo(map);
 		        break;
 		    case 'circle':
-		        L.circle(bounds, 200).addTo(map);
+		        polygon = L.circle(bounds, 200).addTo(map);
 		        break;
 		    case 'polygon':
-		    	L.polygon(bounds, {color: 'ff7800', weight:'1px'}).addTo(map);
+		    	polygon = L.polygon(bounds, {color: 'ff7800', weight:'1px'}).addTo(map);
 		    	break;
 		    default:
-		        L.polyline(bounds, {color: "#ff7800", weight:'1px'}).addTo(map)
+		        polygon = L.polyline(bounds, {color: "#ff7800", weight:'1px'}).addTo(map)
 		}
     }
 
@@ -134,6 +136,16 @@
 		    $('#glat').val(lat);
     		$('#glng').val(lng);
 		});
+
+	    $("#btn-reset-polygon-map").on('click', function() {
+	    	map.removeLayer(polygon);
+	    	$('#gpoints').val('')
+	    });
+	    $("#btn-reset-marker-map").on('click', function() {
+	    	map.removeLayer(marker);
+	    	$('#glat').val('');
+    		$('#glng').val('');
+	    });
 
 		var drawControl = new L.Control.Draw({
 		draw: {

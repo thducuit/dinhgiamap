@@ -113,11 +113,13 @@ class HomeController extends BaseController {
                       ->withType(Input::get('type'));
     }
     $inputThamDinhGia = Input::get();
+
     unset($inputThamDinhGia['_token']);
     unset($inputThamDinhGia['address']);
     unset($inputThamDinhGia['textDistrict']);
     unset($inputThamDinhGia['place_id']);
     unset($inputThamDinhGia['street']);
+
     Session::put('inputThamDinhGia', $inputThamDinhGia);
 
     $result = $this->getResult();
@@ -238,6 +240,8 @@ class HomeController extends BaseController {
       }
     }
 
+    //store history in to DB
+    
     return View::make('default.page.result')
                     ->with(array('title' => 'kết quả định giá'))
                     ->with(array('result' => $result))

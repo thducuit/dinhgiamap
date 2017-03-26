@@ -44,6 +44,8 @@
 			        <div class="col-md-12">
 			        	<div class="form-group">
 			        	<label for="points">Bản đồ</label>
+			        		<button type="button" id="btn-reset-polygon-image">Clear Polygon</button>
+                            <button type="button" id="btn-reset-marker-image">Clear Marker</button>
 			        		<div id="google-map-container"></div>
 			        		<input class="form-control" type="hidden" id="points" name="points" value="{{ htmlentities($plan->position) }}"></input>
 			        		<input class="form-control" type="hidden" id="place_id" name="place_id" value="{{ $plan->place_id }}"></input>
@@ -59,6 +61,8 @@
 
 			            <div class="form-group">
 			        		<label for="gpoints">Google map</label>
+			        		<button type="button" id="btn-reset-polygon-map">Clear Polygon</button>
+                            <button type="button" id="btn-reset-marker-map">Clear Marker</button>
 			        		<div id="g-google-map-container" style="height:1000px"></div>
 			        		<input class="form-control" type="hidden" id="gpoints" name="gpoints" value="{{ htmlentities($plan->gposition) }}"></input>
 			        	</div>

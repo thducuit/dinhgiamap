@@ -127,8 +127,12 @@
 
         }else{          
           errors = '<ul>';
-          for(var i in data){
-            errors += '<li>'+data[i][0]+'</li>';
+          if( $.isArray(data) ) {
+            for(var i in data){
+              errors += '<li>'+data[i][0]+'</li>';
+            }
+          }else {
+            errors += '<li>'+data+'</li>';
           }
           errors += '</ul>';
         }        
