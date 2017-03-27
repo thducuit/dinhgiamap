@@ -112,13 +112,19 @@ class MarkerController extends AdminController {
             'name' => 'required',
             'price' => 'required',
             'state_price' => 'required',
-            'lat' => 'required',
-            'lng' => 'required'
+            'place_id' => 'required'
+        );
+
+        $messages = array(
+            'name.required' => 'Nhập tên',
+            'price.required' => 'Nhập giá thị trường',
+            'state_price.required' => 'Nhập giá nhà nước',
+            'place_id.required' => 'Chọn địa chỉ'
         );
         
         
         $inputs = Input::get();
-        $validation = Validator::make($inputs, $rules);
+        $validation = Validator::make($inputs, $rules, $messages);
         
         
         if( $validation->fails() )
@@ -157,10 +163,9 @@ class MarkerController extends AdminController {
                 'user_id' => $this->getUser()
             );
             
-            
-            
+    
         DB::table('markers')->insert($data);
-        
+        Log::info(Sentry::getUser()->email + 'create a marker name :' + Input::get('name'));
         return Redirect::to('admin/markers')
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
@@ -188,18 +193,23 @@ class MarkerController extends AdminController {
     
     public function postEdit() 
     {
-        
         $rules = array(
             'name' => 'required',                       
             'price' => 'required',
             'state_price' => 'required',
-            'lat' => 'required',
-            'lng' => 'required'
+            'place_id' => 'required'
         );
         
+        $messages = array(
+            'name.required' => 'Nhập tên',
+            'price.required' => 'Nhập giá thị trường',
+            'state_price.required' => 'Nhập giá nhà nước',
+            'place_id.required' => 'Chọn địa chỉ'
+        );
+
         $inputs = Input::get();
         
-        $validation = Validator::make($inputs, $rules);
+        $validation = Validator::make($inputs, $rules, $messages);
         
         if( $validation->fails() )
         {
@@ -233,7 +243,8 @@ class MarkerController extends AdminController {
         $marker->state_price = Input::get('state_price'); 
         $marker->plan_map_id = Input::get('plan_map_id'); 
         $marker->photo_plan = $name; 
-        $marker->save();        
+        $marker->save();  
+        Log::info(Sentry::getUser()->email + 'update a marker name :' + Input::get('name'));      
         return Redirect::to('admin/markers?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
@@ -244,6 +255,7 @@ class MarkerController extends AdminController {
     {
         $marker = Marker::find($id);
         $marker->delete();
+        Log::info(Sentry::getUser()->email + 'delete a marker name :' + $marker->name);
         return Redirect::to('admin/markers?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
@@ -270,6 +282,7 @@ class MarkerController extends AdminController {
         $marker->slat = Input::get('lat'); 
         $marker->slng = Input::get('lng');
         $marker->save();
+        Log::info(Sentry::getUser()->email + 'delete a marker plan name :' + $marker->name);
         return Redirect::to('admin/markers?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))

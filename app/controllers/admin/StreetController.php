@@ -182,11 +182,11 @@ class StreetController extends AdminController {
             );
             
         DB::table('streets')->insert($data);
-        
+        Log::info(Sentry::getUser()->email + 'add a street name :' + Input::get('name'));
         return Redirect::to('admin/streets')
                 ->with('message', 'Success')
-                ->with('icon', Config::get('dinhgia.admin.alert.success.icon'))
-                ->with('type_message', Config::get('dinhgia.admin.alert.success.type'));   
+                ->with('icon', Config::get('constant.admin.alert.success.icon'))
+                ->with('type_message', Config::get('constant.admin.alert.success.type'));   
     }
     
 
@@ -231,9 +231,8 @@ class StreetController extends AdminController {
         $street->plan_map_id = Input::get('plan_map_id');
         $street->position = Input::get('points');
         
-        
         $street->save();
-        
+        Log::info(Sentry::getUser()->email + 'update a street name :' + Input::get('name'));
         return Redirect::to('admin/streets')
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
@@ -244,6 +243,7 @@ class StreetController extends AdminController {
     {
         $street = Street::find($id);
         $street->delete();
+        Log::info(Sentry::getUser()->email + 'delete a street name :' + $street->name);
         return Redirect::to('admin/streets')
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))
@@ -270,6 +270,7 @@ class StreetController extends AdminController {
         $street->slat = Input::get('lat'); 
         $street->slng = Input::get('lng');
         $street->save();
+        Log::info(Sentry::getUser()->email + 'update a street plan name :' + $street->name);
         return Redirect::to('admin/streets?page=' . Input::get('page'))
                 ->with('message', 'Success')
                 ->with('icon', Config::get('constant.admin.alert.success.icon'))

@@ -1,5 +1,6 @@
 @extends('default.layouts.default')
 @section('content')
+
 <!--
 /*==============================*\
 MAIN 
@@ -13,7 +14,7 @@ MAIN
 				<div class="clearfix">
 					<div class="profile_info_wrapper">
 						<div class="profile_avatar_wrapper">
-							<div class="profile_avatar"></div>
+							<div class="profile_avatar" style="background: url(images/icon_camera.png) center no-repeat; background-size: cover;"></div>
 						</div>
 						<div class="profile_name">
 							<span>{{ $customer->name }}</span>
@@ -27,35 +28,59 @@ MAIN
 				<div class="profile_menu">
 					<ul>
 						<li class="current"><a href="{{ URL::to('/customer/info') }}">Thông tin tài khoản</a></li>
-						<li><a href="{{ URL::to('/customer/history') }}">Lịch sử giao dịch</a></li>
-						<li><a href="#">Hướng dẫn sử dụng</a></li>
+						<li><a href="#">Lịch sử giao dịch</a></li>
+						<li><a href="{{ URL::to('/customer/history') }}">Xem tài sản đã định giá</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="profile_right">
-				<!--.alert-->
-				@if( Session::get('message') )
-				<div class="row">
-				    <div class="col-md-12">
-				    	<div class="alert">
-						  <strong>{{ Session::get('message') }}</strong>
-						</div>
-				    </div>
-				</div>
-			    @endif
-			    <!--/.alert-->
 				<div class="profile_right_inner">
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
-							<span><strong>Họ & Tên</strong></span>
+							<span><strong>Loại Tài khoản:</strong></span>
 						</div>
 						<div class="profile_info_col">
-							<span>{{ $customer->name }}</span>
+							<span>Công ty</span>
 						</div>
+					</div>
+                    <div class="profile_info_row clearfix">
+						<div class="profile_info_col">
+							<span><strong>Tên công ty:</strong></span>
+						</div>
+						<div class="profile_info_col">
+							<span>Công ty TNHH</span>
+						</div>
+					</div>
+                    <div class="profile_info_row clearfix">
+						<div class="profile_info_col">
+							<span><strong>Địa chỉ/Chi nhánh:</strong></span>
+						</div>
+						<div class="profile_info_col">
+							<span>Thông tin địa chỉ</span>
+						</div>
+					</div>
+                    <div class="profile_info_row clearfix">
+						<div class="profile_info_col">
+							<span><strong>Điện thoại:</strong></span>
+						</div>
+						<div class="profile_info_col">
+							<span>{{ $customer->mobile }}</span>
+						</div>
+					</div>
+                    <div class="profile_info_row clearfix">
+						<div class="profile_info_col">
+							<span><strong>Email:</strong></span>
+						</div>
+						<div class="profile_info_col">
+							<span>{{ $customer->email }}</span>
+						</div>
+					</div>
+                    <div class="profile_info_row clearfix">
+                        <hr style="border-top: 1px solid #111010;">
 					</div>
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
-							<span><strong>Tên đăng nhập</strong></span>
+							<span><strong>Tên đăng nhập:</strong></span>
 						</div>
 						<div class="profile_info_col">
 							<span>{{ $customer->email }}</span>
@@ -63,21 +88,13 @@ MAIN
 					</div>
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
-							<span><strong>Giới tính</strong></span>
+							<span><strong>Họ tên</strong></span>
 						</div>
 						<div class="profile_info_col">
-							<span>{{ $customer->sex == 1 ? 'Nam' : 'Nữ' }}</span>
+							<span>{{ $customer->name }}</span>
 						</div>
 					</div>
-					<div class="profile_info_row clearfix">
-						<div class="profile_info_col">
-							<span><strong>Ngày sinh</strong></span>
-						</div>
-						<div class="profile_info_col">
-                          <span><?php echo date('d-m-Y', strtotime($customer->bday))?></span>
-						</div>
-					</div>
-					<div class="profile_info_row clearfix">
+                    <div class="profile_info_row clearfix">
 						<div class="profile_info_col">
 							<span><strong>Điện thoại</strong></span>
 						</div>
@@ -85,36 +102,15 @@ MAIN
 							<span>{{ $customer->mobile }}</span>
 						</div>
 					</div>
-<!--					<div class="profile_info_row clearfix">
+                    <div class="profile_info_row clearfix">
 						<div class="profile_info_col">
-							<span><strong>Điện thoại bàn</strong></span>
+							<span><strong>Chức vụ:</strong></span>
 						</div>
 						<div class="profile_info_col">
-							<span>{{ $customer->phone }}</span>
-						</div>
-					</div>
--->
-                    <?php if($customer->province_id){?>
-					<div class="profile_info_row clearfix">
-						<div class="profile_info_col">
-							<span><strong>Tỉnh / Thành phố</strong></span>
-						</div>
-						<div class="profile_info_col">
-							<span>{{ Province::name($customer->province_id) }}</span>
+							<span>Thông tin chức vụ</span>
 						</div>
 					</div>
-                    <?php }?>
-
-                    <?php if($customer->district_id){?>
-					<div class="profile_info_row clearfix">
-						<div class="profile_info_col">
-							<span><strong>Quận / Huyện</strong></span>
-						</div>
-						<div class="profile_info_col">
-							<span>{{ District::name($customer->district_id) }}</span>
-						</div>
-					</div>
-                    <?php }?>
+                                                
 					<div class="profile_info_row clearfix">
 						<div class="profile_info_col">
 							<span><strong>Địa chỉ</strong></span>
@@ -123,16 +119,28 @@ MAIN
 							<span>{{ $customer->address }}</span>
 						</div>
 					</div>
-                    <?php if($customer->note){?>
-					<div class="profile_info_row clearfix">
+                    <div class="profile_info_row clearfix">
 						<div class="profile_info_col">
-							<span><strong>Mô tả</strong></span>
+							<span><strong>Giới tính</strong></span>
 						</div>
 						<div class="profile_info_col">
-							<span>{{ $customer->note }}</span>
+							<span>{{ $customer->sex == 1 ? 'Nam' : 'Nữ' }}</span>
 						</div>
 					</div>
-                    <?php }?>
+					
+					
+					<div class="profile_info_row clearfix">
+						<div class="profile_info_col">
+							<span><strong>Ngày sinh:</strong></span>
+						</div>
+						<div class="profile_info_col">
+							<span><?php echo date('d-m-Y', strtotime($customer->bday))?></span>
+						</div>
+					</div>
+					
+					
+					
+					
 					<div class="button_group">
 						<a class="btn_edit2" href="{{ URL::to('/customer/update') }}"><i class="icon_edit2"></i><span>Chỉnh sửa</span></a>
 					</div>
