@@ -267,11 +267,11 @@ class AuthController extends BaseController {
         'mobile' => Input::get('mobile'),
         'bday' => $bday,
         'sex' => Input::get('gender'),
-        'province_id' => Input::get('province'),
-        'district_id' => Input::get('district'),
-        'address' => Input::get('address'),
+        'province_id' => (Input::get('province'))? Input::get('province'): 0,
+        'district_id' => (Input::get('district'))?Input::get('district'):0,
+        'address' => (Input::get('address'))?Input::get('address'):'',
         'user_id' => $user->id,
-        'note' => Input::get('note'),
+        'note' => (Input::get('note'))?Input::get('note'):'',
     );
     DB::table('customers')->insert($data);
     
