@@ -55,7 +55,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'info@cenvalue.com', 'name' => 'cenvalue'),
+	'from' => array('address' => 'info@cenvalue.com', 'name' => 'cenvalue'),    
 
 	/*
 	|--------------------------------------------------------------------------
@@ -81,7 +81,8 @@ return array(
 	|
 	*/
 
-	'username' => 'email.sender.systems@gmail.com',
+//	'username' => 'email.sender.systems@gmail.com',
+    'username' => 'dukpro2910@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,7 +95,9 @@ return array(
 	|
 	*/
 
-	'password' => '123456tq',
+    
+//	'password' => '123456tq',
+    'password' => 'choancut',
 
 	/*
 	|--------------------------------------------------------------------------
