@@ -63,21 +63,21 @@
       };
 
       var url = {
-        info: '/public/info',
-        planmap: '/public/planmap',
-        markers: '/public/markers',
-        searchMarkers: '/public/search-markers',
-        address: '/public/address',
-        price: '/public/price',
-        plan: '/public/plan',
-        street: '/public/streets',
-        priceStreet: '/public/streets/price',
-        district: '/public/district',
-        ward: '/public/ward',
-        login: '/public/login-ajax',
-        register: '/public/register-ajax',
-        getReal: '/public/reals',
-        reals: '{{ URL::to(' / chi - tiet - tai - san - dang - giao - dich.html') }}'
+        info: '{{ URL::to('/info') }}',
+        planmap: '{{ URL::to('/planmap') }}',
+        markers: '{{ URL::to('/markers') }}',
+        searchMarkers: '{{ URL::to('/search-markers') }}',
+        address: '{{ URL::to('/address') }}',
+        price: '{{ URL::to('/price') }}',
+        plan: '{{ URL::to('/plan') }}',
+        street: '{{ URL::to('/streets') }}',
+        priceStreet: '{{ URL::to('/streets/price') }}',
+        district: '{{ URL::to('/district') }}',
+        ward: '{{ URL::to('/ward') }}',
+        login: '{{ URL::to('/login-ajax') }}',
+        register: '{{ URL::to('/register-ajax') }}',
+        getReal: '{{ URL::to('/reals') }}',
+        reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}'
 
       };
 

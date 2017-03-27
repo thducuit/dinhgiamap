@@ -202,13 +202,12 @@ class AuthController extends BaseController {
 
     // The following is only required if the throttling is enabled
     catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e) {
-      $message = 'Tài khoản ddang bị khóa';
+      $message = 'Tài khoản đang bị khóa';
     } catch (Cartalyst\Sentry\Throttling\UserBannedException $e) {
-      $message = 'Tài khoản ddang bị khóa';
+      $message = 'Tài khoản đang bị khóa';
     }
 
-    echo $message;
-    exit();
+    return Response::json($message);
   }
 
   public function registerAjax() {

@@ -124,6 +124,15 @@ class HomeController extends BaseController {
 
     $result = $this->getResult();
 
+    if(Sentry::check()) {
+      $user = Sentry::getUser();
+      $data = array(
+        'data' => serialize(Input::get()),
+        'user_id' => $user->id
+      );
+      DB::table('customer_logs')->insert($data);
+    }
+
     $result['place_id'] = Input::get('place_id');
 
     $this->cart->store($result);
