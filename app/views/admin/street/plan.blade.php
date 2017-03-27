@@ -20,6 +20,8 @@
                     <div class="col-md-12">
                         <div class="form-group">
                         <label for="points">Bản đồ</label>
+                            <button type="button" id="btn-reset-polygon-image">Clear Polygon</button>
+                            <button type="button" id="btn-reset-marker-image">Clear Marker</button>
                             <div id="google-map-container"></div>
                             <input class="form-control" type="hidden" id="points" name="position" value="{{ htmlentities($street->sposition) }}"></input>
                             <input class="form-control" type="hidden" id="street_id" name="id" value="{{ $street->id }}"></input>

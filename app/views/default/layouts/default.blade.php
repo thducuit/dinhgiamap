@@ -63,21 +63,21 @@
       };
 
       var url = {
-        info: '/public/info',
-        planmap: '/public/planmap',
-        markers: '/public/markers',
-        searchMarkers: '/public/search-markers',
-        address: '/public/address',
-        price: '/public/price',
-        plan: '/public/plan',
-        street: '/public/streets',
-        priceStreet: '/public/streets/price',
-        district: '/public/district',
-        ward: '/public/ward',
-        login: '/public/login-ajax',
-        register: '/public/register-ajax',
-        getReal: '/public/reals',
-        reals: '{{ URL::to(' / chi - tiet - tai - san - dang - giao - dich.html') }}'
+        info: '{{ URL::to('/info') }}',
+        planmap: '{{ URL::to('/planmap') }}',
+        markers: '{{ URL::to('/markers') }}',
+        searchMarkers: '{{ URL::to('/search-markers') }}',
+        address: '{{ URL::to('/address') }}',
+        price: '{{ URL::to('/price') }}',
+        plan: '{{ URL::to('/plan') }}',
+        street: '{{ URL::to('/streets') }}',
+        priceStreet: '{{ URL::to('/streets/price') }}',
+        district: '{{ URL::to('/district') }}',
+        ward: '{{ URL::to('/ward') }}',
+        login: '{{ URL::to('/login-ajax') }}',
+        register: '{{ URL::to('/register-ajax') }}',
+        getReal: '{{ URL::to('/reals') }}',
+        reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}'
 
       };
 
@@ -107,22 +107,22 @@
               <div class="navigation_wrapper">
                 <ul class="menu_list clearfix">	
                   @if(!Sentry::check())
-                  <li class="menu_item login-menu-item"><a class="clearfix dangNhap" href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap"><i class="menu_icon icon_dangky"></i> <span>Đăng nhập</span></a></li>
-                  <li class="menu_item register-menu-item"><a class="clearfix dangKy" href="#dangky" data-toggle="modal" data-target="#modal_dangky"><i class="menu_icon icon_dangky"></i> <span>Đăng ký</span></a></li>
+                    <li class="menu_item login-menu-item"><a class="clearfix dangNhap" href="#dangnhap"  data-toggle="modal" data-target="#modal_dangNhap"><i class="menu_icon icon_dangky"></i> <span>Đăng nhập</span></a></li>
+                    <li class="menu_item register-menu-item"><a class="clearfix dangKy" href="#dangky" data-toggle="modal" data-target="#modal_dangky"><i class="menu_icon icon_dangky"></i> <span>Đăng ký</span></a></li>
                   @else
-                  <li class="menu_item"><a class="clearfix dangNhap" href="{{ URL::to('/thong-tin-tai-khoan.html') }}"  ><i class="menu_icon icon_dangky"></i> <span>Thông tin tài khoản</span></a></li>
+                    <li class="menu_item"><a class="clearfix dangNhap" href="{{ URL::to('/thong-tin-tai-khoan.html') }}"  ><i class="menu_icon icon_dangky"></i> <span>Thông tin tài khoản</span></a></li>
                   @endif
-                  <li class="menu_item {{ isset($current) && $current == 1 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/index1') }}"><i class="menu_icon icon_trangchu"></i><span>Trang chủ</span></a></li>
-                  <li class="menu_item {{ isset($current) && $current == 2 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/ve-chung-toi.html') }}"><i class="menu_icon icon_vechungtoi"></i><span>Về chúng tôi</span></a></li>
-                  <li class="menu_item {{ isset($current) && $current == 3 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/xem-quy-hoach.html') }}"><i class="menu_icon icon_xemquihoach"></i><span>Xem quy hoạch</span></a></li>
-                  <li class="menu_item {{ isset($current) && $current == 9 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><i class="menu_icon icon_cungdongia"></i><span>Tài sản đang giao dịch</span></a></li>
-                  <li class="menu_item {{ isset($current) && $current == 4 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/hoi-dap.html') }}"><i class="menu_icon icon_faq"></i><span>Hỏi đáp</span></a></li>
-                  <li class="menu_item {{ isset($current) && $current == 5 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/huong-dan.html') }}"><i class="menu_icon icon_video"></i><span>Hướng dẫn sử dụng</span></a></li>
-                  <li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/lien-he.html') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li>	
+                    <li class="menu_item {{ isset($current) && $current == 1 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/index1') }}"><i class="menu_icon icon_trangchu"></i><span>Trang chủ</span></a></li>
+                    <li class="menu_item {{ isset($current) && $current == 2 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/ve-chung-toi.html') }}"><i class="menu_icon icon_vechungtoi"></i><span>Về chúng tôi</span></a></li>
+                    <li class="menu_item {{ isset($current) && $current == 3 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/xem-quy-hoach.html') }}"><i class="menu_icon icon_xemquihoach"></i><span>Xem quy hoạch</span></a></li>
+                    <li class="menu_item {{ isset($current) && $current == 9 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><i class="menu_icon icon_cungdongia"></i><span>Tài sản đang giao dịch</span></a></li>
+                    <li class="menu_item {{ isset($current) && $current == 4 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/hoi-dap.html') }}"><i class="menu_icon icon_faq"></i><span>Hỏi đáp</span></a></li>
+                    <li class="menu_item {{ isset($current) && $current == 5 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/huong-dan.html') }}"><i class="menu_icon icon_video"></i><span>Hướng dẫn sử dụng</span></a></li>
+                    <li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/lien-he.html') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li>	
 
 
-                  <li class="menu_item {{ isset($current) && $current == 7 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/dieu-khoan.html') }}"><span>Điều khoản bảo mật</span></a></li>									
-                  <li class="menu_item {{ isset($current) && $current == 8 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/chinh-sach.html') }}"><span>Chính sách sử dụng</span></a></li>									
+                    <li class="menu_item {{ isset($current) && $current == 7 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/dieu-khoan.html') }}"><span>Điều khoản bảo mật</span></a></li>									
+                    <li class="menu_item {{ isset($current) && $current == 8 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/chinh-sach.html') }}"><span>Chính sách sử dụng</span></a></li>									
                 </ul>
                 <!-- <ul class="submenu">
                     <li><a href="#"><span>Điều khoản bảo mật</span></a></li>

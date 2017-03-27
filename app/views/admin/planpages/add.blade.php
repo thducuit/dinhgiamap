@@ -36,11 +36,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="points">Bản đồ</label>
+                            <button type="button" id="btn-reset-polygon-image">Clear Polygon</button>
                             <div id="google-map-container"></div>
                             <input class="form-control" type="hidden" id="points" name="points"></input>
                         </div>
                         <div class="form-group">
                             <label for="gpoints">Google map</label>
+                            <button type="button" id="btn-reset-polygon-map">Clear Polygon</button>
                             <div id="g-google-map-container" style="height:1000px"></div>
                             <input class="form-control" type="hidden" id="gpoints" name="gpoints"></input>
                         </div>

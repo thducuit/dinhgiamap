@@ -135,6 +135,23 @@
 		    getPlaceId(places[0].place_id);
 		});
 
+		//reset button
+		var ResetButton = L.Control.extend({
+			onAdd: function() {
+				var element = document.createElement("button");
+				element.id = "btn-reset";
+				element.setAttribute("class", "btn btn-danger");
+				element.setAttribute("type", "button");
+				element.innerHTML = "Clear";
+				return element;
+			}
+	    });
+	    (new ResetButton).addTo(map);
+	    $("#btn-reset").on('click', function() {
+	    	var id = $('#id').val();
+	    	map.removeLayer(polygons[id]);
+	    });
+
 		//draw image overlay
 		getPlanImage();
 

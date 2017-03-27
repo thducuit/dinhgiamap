@@ -113,14 +113,25 @@ class HomeController extends BaseController {
                       ->withType(Input::get('type'));
     }
     $inputThamDinhGia = Input::get();
+
     unset($inputThamDinhGia['_token']);
     unset($inputThamDinhGia['address']);
     unset($inputThamDinhGia['textDistrict']);
     unset($inputThamDinhGia['place_id']);
     unset($inputThamDinhGia['street']);
+
     Session::put('inputThamDinhGia', $inputThamDinhGia);
 
     $result = $this->getResult();
+
+    if(Sentry::check()) {
+      $user = Sentry::getUser();
+      $data = array(
+        'data' => serialize(Input::get()),
+        'user_id' => $user->id
+      );
+      DB::table('customer_logs')->insert($data);
+    }
 
     $result['place_id'] = Input::get('place_id');
 
@@ -238,6 +249,8 @@ class HomeController extends BaseController {
       }
     }
 
+    //store history in to DB
+    
     return View::make('default.page.result')
                     ->with(array('title' => 'kết quả định giá'))
                     ->with(array('result' => $result))

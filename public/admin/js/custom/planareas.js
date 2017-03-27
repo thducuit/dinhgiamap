@@ -2,6 +2,8 @@
 	var layer = null;
 	var map = null;
     var data = {};
+    polygon = null;
+    marker = null;
 
 	function getLayer(type, layer) {
     	data = {
@@ -39,23 +41,23 @@
     	}
     	//show marker
     	if(lat&&lng) {
-    		L.marker([lat, lng]).addTo(map);
+    		marker = L.marker([lat, lng]).addTo(map);
     	}
     }
 
     function drawPolygon(type, bounds) {
     	switch(type) {
 		    case 'rectangle':
-		        L.rectangle(bounds, {color: "#ff7800", weight:'1px'}).addTo(map);
+		        polygon = L.rectangle(bounds, {color: "#ff7800", weight:'1px'}).addTo(map);
 		        break;
 		    case 'circle':
-		        L.circle(bounds, 200).addTo(map);
+		        polygon = L.circle(bounds, 200).addTo(map);
 		        break;
 		    case 'polygon':
-		    	L.polygon(bounds, {color: 'ff7800', weight:'1px'}).addTo(map);
+		    	polygon = L.polygon(bounds, {color: 'ff7800', weight:'1px'}).addTo(map);
 		    	break;
 		    default:
-		        L.polyline(bounds, {color: "#ff7800", weight:'1px'}).addTo(map)
+		        polygon = L.polyline(bounds, {color: "#ff7800", weight:'1px'}).addTo(map)
 		}
     }
 
@@ -84,6 +86,17 @@
 
 		var drawnItems = new L.FeatureGroup();
 		map.addLayer(drawnItems);
+
+	    $("#btn-reset-polygon-image").on('click', function() {
+	    	map.removeLayer(polygon);
+	    	$('#points').val('');
+	    });
+
+	    $("#btn-reset-marker-image").on('click', function() {
+	    	map.removeLayer(marker);
+	    	$('#lat').val('');
+    		$('#lng').val('');
+	    });
 
 		var drawControl = new L.Control.Draw({
 		draw: {
