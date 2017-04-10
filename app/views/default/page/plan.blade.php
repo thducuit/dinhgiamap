@@ -56,11 +56,21 @@ MAIN
                                             <option>Số tờ</option>
                                         </select>
                                     </div>-->
+
             <div class="filter_col">
+              <label></label>
+              <input type="radio" class="plan-type" name="type" value="0">Địa chỉ
+              <input type="radio" class="plan-type" name="type" value="1" checked>Số tờ/thửa
+            </div>  
+            <div class="filter_col address hidden">
+              <label></label>
+              <input type="text" placeholder="Nhập địa chỉ" name="soTo" value="{{ Input::old('diaChi') }}">
+            </div>
+            <div class="filter_col page">
               <label></label>
               <input type="text" placeholder="Nhập số tờ" name="soTo" value="{{ Input::old('soTo') }}">
             </div>
-            <div class="filter_col">
+            <div class="filter_col page">
               <label></label>
               <input type="text" placeholder="Nhập số thửa" name="soThua" value="{{ Input::old('soThua') }}">
             </div>
@@ -81,9 +91,9 @@ MAIN
                 <button type="submit" id="btn_submit_xem_qui_hoach" class="grey-btn page_xemquihoach_wrapper__grey-btn"><img src="{{ URL::asset('default/images/w5.png') }}"> Xem quy hoạch</button>                               
               </div>
             </div>
-            <div class="filter_col">                        
+            <!-- <div class="filter_col">                        
               <a class="emeral-btn page_xemquihoach_wrapper__emeral-btn" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><img src="{{ URL::asset('default/images/w4.png') }}"> TÀI SẢN ĐANG GIAO DỊCH</a>              
-            </div>
+            </div> -->
             
             
           

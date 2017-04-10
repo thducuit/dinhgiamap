@@ -197,8 +197,8 @@ MAIN
                         </div>
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">                            
-                            <button data='.vacant_land_form' type='submit' id="btn_dinhgia" land-type="dat_trong" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
-                            <button type='submit' class="orange-btn odd vacantBtnSubmit dat_trong_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>														                                                                                                                                            
+                            <button data='.vacant_land_form' type='submit' id="btn_dinhgia" land-type="dat_trong" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
+                            <button type='submit' class="orange-btn odd vacantBtnSubmit dat_trong_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>														                                                                                                                                            
                             <!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->														
                           </div>
                         </div>
@@ -369,8 +369,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="nha_pho" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
-                            <button type='submit' class="orange-btn odd vacantBtnSubmit nha_pho_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>														                                                                                                                                            
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="nha_pho" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
+                            <button type='submit' class="orange-btn odd vacantBtnSubmit nha_pho_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>														                                                                                                                                            
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -517,9 +517,9 @@ MAIN
                     <div class="popup_button_group groupThanhToan">
                     <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
                     @if( !Sentry::check() )
-                    <button data='.vila_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                    <button data='.vila_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                     @else
-                    <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                    <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                     @endif
                     </div>
                     </div>
@@ -679,8 +679,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="can_ho" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
-                            <button type='submit' class="orange-btn odd vacantBtnSubmit can_ho_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>														                                                                                                                                                                        
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="can_ho" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
+                            <button type='submit' class="orange-btn odd vacantBtnSubmit can_ho_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>														                                                                                                                                                                        
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -838,8 +838,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="khach_san" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
-                            <button type='submit' class="orange-btn odd vacantBtnSubmit khach_san_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>														                                                                                                                                                                                                    
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="khach_san" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
+                            <button type='submit' class="orange-btn odd vacantBtnSubmit khach_san_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>														                                                                                                                                                                                                    
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -998,8 +998,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="toa_nha_van_phong" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
-                            <button type='submit' class="orange-btn odd vacantBtnSubmit toa_nha_van_phong_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>														                                                                                                                                                                                                                                                            
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="toa_nha_van_phong" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
+                            <button type='submit' class="orange-btn odd vacantBtnSubmit toa_nha_van_phong_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>														                                                                                                                                                                                                                                                            
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -1166,8 +1166,8 @@ MAIN
                         <div class="form_row clearfix">
                           <div class="popup_button_group groupThanhToan">
                               <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
-                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="kho_xuong" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
-                            <button type='submit' class="orange-btn odd vacantBtnSubmit kho_xuong_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>														                                                                                                                                                                                                                                
+                            <button data='.house_form' type='submit' id="btn_dinhgia" land-type="kho_xuong" class="orange-btn odd btn_dinhgia @if( Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
+                            <button type='submit' class="orange-btn odd vacantBtnSubmit kho_xuong_btnsubmit @if( !Sentry::check() ) hidden @endif"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>														                                                                                                                                                                                                                                
                           </div>
                         </div>
                         {{ Form::close() }}
@@ -1272,9 +1272,9 @@ MAIN
 
                                                         <!-- <a href="{{ URL::to('/payment') }}"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
                                 @if( !Sentry::check() ) 
-                                <button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button data='.vacant_land_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @else
-                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @endif
                               </div>
                             </div>
@@ -1415,9 +1415,9 @@ MAIN
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
                                 @if( !Sentry::check() ) 
-                                <button data='.house_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button data='.house_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @else
-                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @endif
                               </div>
                             </div>
@@ -1555,9 +1555,9 @@ MAIN
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
                                 @if( !Sentry::check() ) 
-                                <button data='.vila_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button data='.vila_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @else
-                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @endif
                               </div>
                             </div>
@@ -1696,9 +1696,9 @@ MAIN
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
                                 @if( !Sentry::check() ) 
-                                <button data='.flat_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button data='.flat_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @else
-                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @endif
                               </div>
                             </div>
@@ -1836,9 +1836,9 @@ MAIN
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
                                 @if( !Sentry::check() ) 
-                                <button data='.hotel_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button data='.hotel_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @else
-                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @endif
                               </div>
                             </div>
@@ -1976,9 +1976,9 @@ MAIN
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
                                 @if( !Sentry::check() ) 
-                                <button data='.office_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button data='.office_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @else
-                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @endif
                               </div>
                             </div>
@@ -2122,9 +2122,9 @@ MAIN
                               <div class="popup_button_group groupThanhToan">
                                   <!-- <a href="thanh-toan.html"><div id="btn_thanhtoan" class="btn btn_icon btn_gradient2"><i class="icon_thanhtoan"></i><span>Thanh toán</span></div></a> -->
                                 @if( !Sentry::check() ) 
-                                <button data='.warehouse_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button data='.warehouse_form' type='submit' id="btn_dinhgia" class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @else
-                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</button>
+                                <button  type='submit' class="orange-btn odd"><img src="{{ URL::asset('default/images/w3.png') }}"> XEM KẾT QUẢ</button>
                                 @endif
                               </div>
                             </div>

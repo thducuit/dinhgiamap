@@ -12,7 +12,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Định giá sơ bộ</h4>
+        <h4 class="modal-title">Thẩm định cơ bản</h4>
       </div>
       <div class="modal-body">
         <input type="hidden" class="giaThiTruong"/>
@@ -96,7 +96,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 
       </div>
       <div class="modal-footer">
-        <a id="btn_dinhgiasobo" class="emeral-btn odd"><img src="{{ URL::asset('default/images/w2.png') }}">  XEM GIÁ SƠ BỘ</a>
+        <a id="btn_dinhgiasobo" class="emeral-btn odd"><img src="{{ URL::asset('default/images/w2.png') }}">  XEM KẾT QUẢ</a>
         <?php /*
         <a id="btn_dinhgiasobo" class="btn btn_icon btn_gradient4"><i class="icon_phathanhchungthu"></i><span>Xem giá sơ bộ</span></a>
          * 
