@@ -149,5 +149,10 @@
         jQuery('.address').addClass('hidden');
         jQuery('.page').removeClass('hidden');
       }
-    });               
+    });        
+
+    
+    jQuery('#group-images-1').sliderSimple();
+    jQuery('#group-images-2').sliderSimple();
+
 })(jQuery, url);

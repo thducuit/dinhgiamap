@@ -115,15 +115,26 @@
 }
 
 
+.group-images {
+    width: 260px;
+    height: 55px;
+    position: relative;
+}
 .image-item {
-    width: 128px;
-    height: 50px;
+    width: 260px;
+    height: 55px;
+    position: absolute;
+    top: 0;
+    left: 0;
     float: left;
     background: #fff;
-    /*margin-top:2px;
-    margin-bottom:2px;*/
-    margin: 2px;
+    margin: 0 2px;
     overflow: hidden;
+    opacity: 0;
+    text-align: center;
+}
+.image-item.active {
+    opacity: 1;
 }
 /*.image-item.left {
     margin-right: 5px;

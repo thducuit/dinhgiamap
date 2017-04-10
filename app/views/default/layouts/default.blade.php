@@ -144,11 +144,11 @@
                       <a class="clearfix" href="#"><span>Đối tác chiến lược</span></a>
                     </li>
                     <li class="menu_item">
-                      <div class="group-images">
-                        <div class="image-item left"><img class="img-responsive" src="{{ URL::asset('default/images/logo/Logo-03.jpg') }}"></img></div>
-                        <div class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/STDA ngang.jpg') }}"></img></div>
-                        <div class="image-item left"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo-nghe moi gioi.png') }}"></img></div>
-                      </div>
+                      <ul class="group-images" id="group-images-1">
+                        <li class="image-item active"><img class="img-responsive" src="{{ URL::asset('default/images/logo/Logo-03.jpg') }}"></img></li>
+                        <li class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/STDA ngang.jpg') }}"></img></li>
+                        <li class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo-nghe moi gioi.png') }}"></img></li>
+                      </ul>
                     </li>
 
                     <li class="menu_item">
@@ -156,11 +156,11 @@
                     </li>
 
                     <li class="menu_item">
-                      <div class="group-images">
-                        <div class="image-item left"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo techcombank.png') }}"></img></div>
-                        <div class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo vietcombank.jpg') }}"></img></div>
-                        <div class="image-item left"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo Agribank.jpg') }}"></img></div>
-                      </div>
+                      <ul class="group-images" id="group-images-2">
+                        <li class="image-item active"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo techcombank.png') }}"></img></li>
+                        <li class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo vietcombank.jpg') }}"></img></li>
+                        <li class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo Agribank.jpg') }}"></img></li>
+                      </ul>
                     </li>
 
                     <!-- <li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/lien-he.html') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li> -->	
@@ -287,6 +287,7 @@
   {{ HTML::script('default/js/jquery.accordion.js') }}
   {{ HTML::script('default/js/bootstrap-multiselect.js') }}
   {{ HTML::script('default/js/cenvalue.js') }}
+  {{ HTML::script('default/js/slider-simple.js') }}
   {{ HTML::script('default/js/custom.js') }}
 
   <script>

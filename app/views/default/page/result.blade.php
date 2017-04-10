@@ -29,7 +29,7 @@ MAIN
                     </div>
                     <div class="col-md-5 col-sm-12 col-xs-12">
                       <div class="info-top">
-                        <span class="bold emeral">CÔNG TY CỔ PHẦN THẨM ĐỊNH GIÁ THẾ KỶ</span>
+                        <!-- <span class="bold emeral">CÔNG TY CỔ PHẦN THẨM ĐỊNH GIÁ THẾ KỶ</span> -->
                         <br><img src="{{ URL::asset('default/images/map.png') }}" > Tầng 3 Tòa nhà Samco, 326 Võ Văn Kiệt,
                         P.Cô Giang, Q1, TPHCM
                       </div>
@@ -143,10 +143,10 @@ MAIN
                       <div class="col-md-4 col-sm-12 col-xs-12">
                           <div class="info-d"><label>Kết cấu chính: </label> {{$inputThamDinhGia['ketCauChinh']}}</div>
                       </div>
-                      <div class="col-md-5 col-sm-12 col-xs-12">
+                      <div class="col-md-4 col-sm-12 col-xs-12">
                           <div class="info-d"><label>Tổng diện tích sàn xây dựng(m<sup>2</sup>):</label> {{$inputThamDinhGia['total_ground_area']}}</div>
                       </div>
-                      <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="col-md-4 col-sm-12 col-xs-12">
                           <div class="info-d"><label>Năm xây dựng:</label> {{$inputThamDinhGia['textNamXD']}}</div>
                       </div>                      
                   
@@ -161,10 +161,10 @@ MAIN
                       <div class="col-md-4 col-sm-12 col-xs-12">
                           <div class="info-d"><label>Kết cấu chính: </label> {{$inputThamDinhGia['structureMore'][$i]}}</div>
                       </div>
-                      <div class="col-md-5 col-sm-12 col-xs-12">
+                      <div class="col-md-4 col-sm-12 col-xs-12">
                           <div class="info-d"><label>Tổng diện tích sàn xây dựng(m<sup>2</sup>):</label> {{$inputThamDinhGia['total_ground_area_more'][$i]}}</div>
                       </div>
-                      <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="col-md-4 col-sm-12 col-xs-12">
                           <div class="info-d"><label>Năm xây dựng:</label> {{$inputThamDinhGia['textNamXDMore'][$i]}}</div>
                       </div> 
                       <?php  }?>
@@ -236,22 +236,25 @@ MAIN
                           <div class="buttons">
                             <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
                               <div class="center">
-                                <a href="{{ URL::to('/tai-san-dang-giao-dich.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12"><img src="{{ URL::asset('default/images/w4.png') }}" > TÀI SẢN ĐANG GIAO DỊCH</a>
+                                <!-- <a href="{{ URL::to('/tai-san-dang-giao-dich.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12"><img src="{{ URL::asset('default/images/w4.png') }}" > TÀI SẢN ĐANG GIAO DỊCH</a> -->
+                                <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span>
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
+                              <div class="center">
+                                <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor"><img src="{{ URL::asset('default/images/w6.png') }}" > PHÁT HÀNH CHỨNG THƯ</a>
+                                <!-- <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a> -->
                               </div>
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
                               <div class="center">
                                 <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
+                                <!-- <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor"><img src="{{ URL::asset('default/images/w6.png') }}" > THẨM ĐỊNH GIÁ</a> -->
                               </div>
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
                               <div class="center">
-                                <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor"><img src="{{ URL::asset('default/images/w6.png') }}" > THẨM ĐỊNH GIÁ</a>
-                              </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
-                              <div class="center">
-                                <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span>
+                                <!-- <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span> -->
                               </div>
                             </div>
                           </div>

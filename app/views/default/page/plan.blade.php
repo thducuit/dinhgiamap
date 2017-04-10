@@ -58,18 +58,18 @@ MAIN
                                     </div>-->
 
             <div class="filter_col">
-              <label></label>
-              <input type="radio" class="plan-type" name="type" value="0">Địa chỉ
-              <input type="radio" class="plan-type" name="type" value="1" checked>Số tờ/thửa
+              <div style="padding-bottom: 5px;">
+                <input type="radio" class="plan-type" name="type" value="0">Địa chỉ
+                <input type="radio" class="plan-type" name="type" value="1" checked>Số tờ/thửa
+              </div>
+              
+              <div class="address hidden">
+                <input type="text" placeholder="Nhập địa chỉ" name="soTo" value="{{ Input::old('diaChi') }}">
+              </div>
+              <div class="page">
+                <input type="text" placeholder="Nhập số tờ" name="soTo" value="{{ Input::old('soTo') }}">
+              </div>
             </div>  
-            <div class="filter_col address hidden">
-              <label></label>
-              <input type="text" placeholder="Nhập địa chỉ" name="soTo" value="{{ Input::old('diaChi') }}">
-            </div>
-            <div class="filter_col page">
-              <label></label>
-              <input type="text" placeholder="Nhập số tờ" name="soTo" value="{{ Input::old('soTo') }}">
-            </div>
             <div class="filter_col page">
               <label></label>
               <input type="text" placeholder="Nhập số thửa" name="soThua" value="{{ Input::old('soThua') }}">
