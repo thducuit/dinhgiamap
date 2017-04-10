@@ -138,5 +138,16 @@
         }        
         $('.register-form').find('.the-error:first').html(errors);
       });
-    });                    
+    });      
+
+    jQuery('.plan-type').click(function() {
+      var _this = jQuery(this);
+      if( parseInt(_this.val()) === 0) {
+        jQuery('.address').removeClass('hidden');
+        jQuery('.page').addClass('hidden');
+      }else {
+        jQuery('.address').addClass('hidden');
+        jQuery('.page').removeClass('hidden');
+      }
+    });               
 })(jQuery, url);

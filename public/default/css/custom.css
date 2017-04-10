@@ -113,3 +113,27 @@
 .yeu-to-khac-box .btn-group span.multiselect-selected-text{  
   color: #8d8d8d;
 }
+
+
+.image-item {
+    width: 128px;
+    height: 50px;
+    float: left;
+    background: #fff;
+    /*margin-top:2px;
+    margin-bottom:2px;*/
+    margin: 2px;
+    overflow: hidden;
+}
+/*.image-item.left {
+    margin-right: 5px;
+}*/
+
+.modal_popup .head-top .pp_address {
+    color: #00767b;
+    font-family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    font-size: 12px;
+}
+.modal_popup .btn-list a:hover{
+    color: #fff
+}
