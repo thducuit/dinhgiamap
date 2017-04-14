@@ -9,10 +9,31 @@ MAIN
 <div id="main" class="screen">
 	<div class="main_wrapper">
 							
-		<!--
-		MAP VIEW
-		-->
-		<div id="map_view"></div>	
+		<div class="block_overlay">
+      <!--
+      SEARCH BOX
+      -->
+      <div id="search_box">
+        <div class="search_box_inner">
+          {{ Form::open( array('url' => 'search', 'method' => 'get', 'class' => 'clearfix google-map-search-form') ) }}
+          <div class="form_group form_group_icon_location"><i class="icon_location"></i></div>
+          <div class="form_group form_group_input_text">
+            <input class="input_text cen-address-text" type="text" name="address" value="{{ Session::get('address') }}" id="google-map-autocomplete" placeholder="Nhập địa chỉ tài sản để định giá">
+            <input class="input_text" name="placeId" id="placeId" type="hidden" value="{{ Session::get('place_id') }}" >
+          </div>
+          <div class="form_group form_group_submit">
+            <input class="input_submit" type="submit" value="Tìm kiếm">
+          </div>
+          {{ Form::close() }}
+        </div>
+      </div>    
+    </div>
+
+
+    <!--
+    MAP VIEW
+    -->
+    <div id="map_view"></div>
 		
 
 		<!-- Modal -->
@@ -45,16 +66,16 @@ MAIN
                 </div>
                 <div class="bread-blk">                   
                   <div class="row">
-                    <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                       <div class="bread">
-                        <img src="{{ URL::asset('default/images/kq-sobo.png') }}" class="red-ribbon" style="width: 225px;">
+                        <img src="{{ URL::asset('default/images/kd-dinhgia.png') }}" class="red-ribbon" style="width: 225px;">
                         <span class="bold emeral">Địa chỉ: {{ $result['name'] }}</span>
                       </div>
                     </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
+                    <!-- <div class="col-md-3 col-sm-12 col-xs-12">
                       <a href="#" class="orange-btn" id="btn_xemtaisandinhgia"><img src="{{ URL::asset('default/images/w3.png') }}" > XEM TÀI SẢN ĐÃ ĐỊNH GIÁ</a>
 
-                    </div>
+                    </div> -->
                   </div>
                 </div>
 
@@ -127,11 +148,11 @@ MAIN
                   <div class="row info-blk">
                       <div class="col-md-12 col-sm-12 col-xs-12">
                           <span class="title-ct1">CÔNG TRÌNH XÂY DỰNG <?php 
-                                        switch($inputThamDinhGia['congTrinhXD']){
-                                          case 'nha_pho': echo 'NHÀ PHỐ';break;
-                                          case 'biet_thu': echo 'BIỆT THỰ̣';break;
-                                          default: echo 'Không có CTXD';break;
-                                        }
+                                        // switch($inputThamDinhGia['congTrinhXD']){
+                                        //   case 'nha_pho': echo 'NHÀ PHỐ';break;
+                                        //   case 'biet_thu': echo 'BIỆT THỰ̣';break;
+                                        //   default: echo 'Không có CTXD';break;
+                                        // }
                                         ?></span>
                       </div>
                     <?php }?>
@@ -242,7 +263,12 @@ MAIN
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
                               <div class="center">
-                                <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor"><img src="{{ URL::asset('default/images/w6.png') }}" > PHÁT HÀNH CHỨNG THƯ</a>
+                                <!-- <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span> -->
+                              </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
+                              <div class="center">
+                                <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor" href="{{ URL::to('/lien-he.html') }}"><img src="{{ URL::asset('default/images/w6.png') }}" > PHÁT HÀNH CHỨNG THƯ</a>
                                 <!-- <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a> -->
                               </div>
                             </div>
@@ -252,11 +278,7 @@ MAIN
                                 <!-- <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor"><img src="{{ URL::asset('default/images/w6.png') }}" > THẨM ĐỊNH GIÁ</a> -->
                               </div>
                             </div>
-                            <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
-                              <div class="center">
-                                <!-- <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span> -->
-                              </div>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>

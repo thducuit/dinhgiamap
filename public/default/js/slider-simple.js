@@ -17,6 +17,6 @@
 	        currentIndex = 0;
 	      }
 	      cycleItems();
-	    }, 2000);
+	    }, 3000);
 	};
 }( jQuery ));

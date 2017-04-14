@@ -152,7 +152,7 @@
     });        
 
     
-    jQuery('#group-images-1').sliderSimple();
-    jQuery('#group-images-2').sliderSimple();
+    //jQuery('#group-images-1').sliderSimple();
+    //jQuery('#group-images-2').sliderSimple();
 
 })(jQuery, url);

@@ -2,8 +2,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <a href="#" class="close-btn" data-dismiss="modal"></a>
-            <div class="page_03 text-center">
-                <div class="head-top">
+            <div class="page_03">
+                <div class="head-top text-center">
                     <div>
                     <img class="modal_info__marker" src="{{ URL::asset('default/images/map.png') }}" > 
                       <div class="pp_address">
@@ -11,11 +11,11 @@
                       </div>
                     </div>
                 </div>
-                <div class="btn-list">
+                <div class="btn-list btn-text-left">
                     <div class="col col-md-6 col-sm-12 col-xs-12">
                         <a id="show-price-pop-up" href="#" class="orange-btn even" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Xem đơn giá đất thị trường tài sản của bạn. Phí 10.000 VNĐ/1 lần"><img src="{{ URL::asset('default/images/w1.png') }}"> XEM ĐƠN GIÁ ĐẤT</a>
                         
-                        <a href="{{ URL::to('/xem-quy-hoach.html') }}" id="plan-btn-popup" class="orange-btn even" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Xem thông tin quy hoạch. Phí 20.000 VNĐ/1 lần"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
+                        <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn even plan-btn-popup" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Xem thông tin quy hoạch. Phí 20.000 VNĐ/1 lần"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
                     </div>
                     <div class="col col-md-6 col-sm-12 col-xs-12">
                         <a class="emeral-btn odd show-price-temp-pop-up" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Thẩm định tài sản cơ bản Phí 10.000 VNĐ/1 lần"><img src="{{ URL::asset('default/images/w2.png') }}"> THẨM ĐỊNH CƠ BẢN</a>

@@ -233,7 +233,7 @@
                         }
                         if (response && response.name) {
                             setContent(response); 
-                            $("#plan-btn-popup").attr('type', 'marker').attr('data-id', response.id);
+                            $(".plan-btn-popup").attr('type', 'marker').attr('data-id', response.id);
                             // getPlanMap('marker', response, function(map_name) {
                             //     $("#plan-btn-popup").attr('href', map_name);
                             // });                      
@@ -243,7 +243,7 @@
                             ContainInPolygon(place, function(streetId){
                                 place.street_id = streetId;							
                                 setContent(place);
-                                $("#plan-btn-popup").attr('type', 'street').attr('data-id', streetId);
+                                $(".plan-btn-popup").attr('type', 'street').attr('data-id', streetId);
                                 // getPlanMap('street', place, function(map_name) {
                                 //     $("#plan-btn-popup").attr('href', map_name);
                                 // });   

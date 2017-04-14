@@ -137,7 +137,9 @@ class HomeController extends BaseController {
 
     $this->cart->store($result);
 
-    return Redirect::to('/result');
+    return Redirect::to('/result')
+                ->with('address', Input::get('address') )
+                ->with('place_id', Input::get('place_id') );
     if (empty(Input::get('chooser')) || Input::get('chooser') == 'nologin') {
       Session::put('step', 2);
       return Redirect::to('/payment');
@@ -252,9 +254,9 @@ class HomeController extends BaseController {
     //store history in to DB
     
     return View::make('default.page.result')
-                    ->with(array('title' => 'kết quả định giá'))
+                    ->with(array('title' => 'Kết quả định giá'))
                     ->with(array('result' => $result))
-                    ->with(array('body_class' => 'page_thanhtoan'))
+                    ->with(array('body_class' => 'page_search'))
                     ->with(array('inputThamDinhGia' => $inputThamDinhGia));
   }
 

@@ -4870,7 +4870,7 @@ body.menu_mobile_active {
 
 .modal .dinhgia_tabpanel .zui-tabpanel-content-wrapper {
 
-  margin-left: 222px;
+  /*margin-left: 222px;*/
 
   background: #fff;
 
@@ -6456,7 +6456,7 @@ body .zui-popup-close:hover {
 
   float: left;
 
-  padding: 15px 40px;
+  padding: 15px 20px;
 
   border-right: 1px solid #ddd;
 
@@ -6480,7 +6480,7 @@ body .zui-popup-close:hover {
 
 #modal_dongiathitruong .address_row {
 
-  padding: 15px 40px;
+  padding: 15px 20px;
 
   border-bottom: 1px solid #ddd;
 

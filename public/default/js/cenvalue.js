@@ -13,7 +13,7 @@ $( document ).ready(function() {
 		$('.minscreen').css('min-height', (Window.height()-$('#footer').height()-60));
 		$('.page_xemquihoach_left').height(Window.height());
 		$('.page_contact_left').height(Window.height());
-		$('#navigation').height(Window.height()-$('#header .header_show').height());
+		$('#navigation').height(Window.height()-$('#header .header_show').height() - 50);
 		$('.page_xemquihoach_right').width(Window.width()-$('.page_xemquihoach_left').width());
 		$('.page_contact_right').width(Window.width()-$('.page_contact_left').width());
 		$('.page_thanhtoan_right').width(Window.width()-$('.page_thanhtoan_left').width());

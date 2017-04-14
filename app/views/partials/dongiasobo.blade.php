@@ -139,16 +139,16 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
         </div>
         <div class="bread-blk">                   
           <div class="row">
-            <div class="col-md-9 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="bread">
                 <img src="{{ URL::asset('default/images/kq-sobo.png') }}" class="red-ribbon" style="width: 225px;">
                 <span class="bold emeral">Địa chỉ: <span class='dgsb_popup_address'></span></span>
               </div>
             </div>
-            <div class="col-md-3 col-sm-12 col-xs-12">
-              <!-- <a href="#" class="orange-btn" id="btn_xemtaisandinhgia"><img src="{{ URL::asset('default/images/w3.png') }}" > XEM TÀI SẢN ĐÃ ĐỊNH GIÁ</a> -->
+            <!-- <div class="col-md-3 col-sm-12 col-xs-12">
+              <a href="#" class="orange-btn" id="btn_xemtaisandinhgia"><img src="{{ URL::asset('default/images/w3.png') }}" > XEM TÀI SẢN ĐÃ ĐỊNH GIÁ</a>
 
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -173,7 +173,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
 
           <div class="row info-blk">
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <span class="title-ct1">CÔNG TRÌNH XÂY DỰNG NHÀ PHỐ</span>
+              <span class="title-ct1">CÔNG TRÌNH XÂY DỰNG <!-- NHÀ PHỐ --></span>
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
               <div class="info-d"><label>Công trình xây dựng: </label> <span class="CTXDLabel"></span></div>
@@ -258,24 +258,25 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                         <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span>
                       </div>
                     </div>
-
                     <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
                       <div class="center">
-                        <!-- <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a> -->
-                        <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor" href="#"><img src="{{ URL::asset('default/images/w6.png') }}" > PHÁT HÀNH CHỨNG THƯ</a>
+                        <!-- <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span> -->
+                        <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 cursor btn_dinhgia"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH NÂNG CAO</a>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
+                      <div class="center">
+                        <!-- <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH1</a> -->
+                        <a href="{{ URL::to('/lien-he.html') }}" class="emeral-btn col-md-4 col-sm-12 col-xs-12 cursor"><img src="{{ URL::asset('default/images/w6.png') }}" > PHÁT HÀNH CHỨNG THƯ</a>
                       </div>
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
                       <div class="center">
                         <!-- <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor"><img src="{{ URL::asset('default/images/w6.png') }}" > THẨM ĐỊNH GIÁ</a> -->
-                        <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
+                        <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12 plan-btn-popup"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
                       </div>
                     </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
-                      <div class="center">
-                        <!-- <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span> -->
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
               </div>

@@ -143,31 +143,40 @@
                     <li class="menu_item">
                       <a class="clearfix" href="#"><span>Đối tác chiến lược</span></a>
                     </li>
-                    <li class="menu_item">
-                      <ul class="group-images" id="group-images-1">
-                        <li class="image-item active"><img class="img-responsive" src="{{ URL::asset('default/images/logo/Logo-03.jpg') }}"></img></li>
-                        <li class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/STDA ngang.jpg') }}"></img></li>
-                        <li class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo-nghe moi gioi.png') }}"></img></li>
-                      </ul>
-                    </li>
+                    
 
                     <li class="menu_item">
                       <a class="clearfix" href="#"><span>Khách hàng thân thiết</span></a>
                     </li>
 
-                    <li class="menu_item">
-                      <ul class="group-images" id="group-images-2">
-                        <li class="image-item active"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo techcombank.png') }}"></img></li>
-                        <li class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo vietcombank.jpg') }}"></img></li>
-                        <li class="image-item"><img class="img-responsive" src="{{ URL::asset('default/images/logo/logo Agribank.jpg') }}"></img></li>
-                      </ul>
-                    </li>
+                    
 
                     <!-- <li class="menu_item {{ isset($current) && $current == 6 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/lien-he.html') }}"><i class="menu_icon icon_lienhe"></i><span>Liên hệ</span></a></li> -->	
 
 
                     <li class="menu_item {{ isset($current) && $current == 7 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/dieu-khoan.html') }}"><span>Điều khoản bảo mật</span></a></li>									
-                    <li class="menu_item {{ isset($current) && $current == 8 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/chinh-sach.html') }}"><span>Chính sách sử dụng</span></a></li>									
+                    <li class="menu_item {{ isset($current) && $current == 8 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/chinh-sach.html') }}"><span>Chính sách sử dụng</span></a></li>		
+
+                    <li class="menu_item">
+                      <div id="group-images-1" class="group-images carousel slide" data-ride="carousel">
+                        <ul class="carousel-inner" role="listbox">
+                          <li class="image-item item active"><img  src="{{ URL::asset('default/images/logo/Logo-03.jpg') }}"></img></li>
+                          <li class="image-item item"><img  src="{{ URL::asset('default/images/logo/STDA ngang.jpg') }}"></img></li>
+                          <li class="image-item item"><img  src="{{ URL::asset('default/images/logo/logo-nghe moi gioi.png') }}"></img></li>
+                        </ul>
+                      </div>
+                    </li>			
+
+                    <li class="menu_item">
+                      <div id="group-images-2" class="group-images carousel slide" data-ride="carousel">
+                        <ul class="carousel-inner" role="listbox">
+                          <li class="image-item item active"><img  src="{{ URL::asset('default/images/logo/logo techcombank.png') }}"></img></li>
+                          <li class="image-item item"><img  src="{{ URL::asset('default/images/logo/logo vietcombank.jpg') }}"></img></li>
+                          <li class="image-item item"><img  src="{{ URL::asset('default/images/logo/logo Agribank.jpg') }}"></img></li>
+                        </ul>
+                      </div>
+                    </li>
+
                 </ul>
 
                 <!-- <ul class="submenu">

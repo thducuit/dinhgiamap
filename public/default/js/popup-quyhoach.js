@@ -64,7 +64,7 @@ var map = null;
     }
 
     $(document).ready(function(){
-        $('#plan-btn-popup').click(function(e) {
+        $('.plan-btn-popup').click(function(e) {
             e.preventDefault();
             var type = $(this).attr('type');
             var id = $(this).attr('data-id');

@@ -133,6 +133,9 @@
     opacity: 0;
     text-align: center;
 }
+.image-item img {
+    max-width: 100%
+}
 .image-item.active {
     opacity: 1;
 }
@@ -148,3 +151,9 @@
 .modal_popup .btn-list a:hover{
     color: #fff
 }
+.btn-text-left .orange-btn,
+.btn-text-left .emeral-btn
+{text-align: left}
+.btn-text-left img {padding: 0 10px}
+.row-ket-cau-chinh {position: relative;}
+.row-ket-cau-chinh span {position: absolute;top: 0; right: 0;cursor: pointer;}

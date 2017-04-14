@@ -38,8 +38,8 @@
          */?>
         
         <!-- <a id="btn_dinhgia" class="orange-btn odd btn_dinhgia" ><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</a> -->
-        <a href="{{ URL::to('/xem-quy-hoach.html') }}" id="plan-btn-popup" class="orange-btn even"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
-        <a class="grey-btn odd show-price-temp-pop-up"><img src="{{ URL::asset('default/images/w2.png') }}"> ĐỊNH GIÁ CƠ BẢN</a>
+        <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn even plan-btn-popup"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
+        <a class="grey-btn odd show-price-temp-pop-up"><img src="{{ URL::asset('default/images/w2.png') }}"> THẨM ĐỊNH CƠ BẢN</a>
       </div>
     </div>
 
