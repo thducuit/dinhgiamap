@@ -19,7 +19,7 @@
                     </div>
                     <div class="col col-md-6 col-sm-12 col-xs-12">
                         <a class="emeral-btn odd show-price-temp-pop-up" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Thẩm định tài sản cơ bản Phí 10.000 VNĐ/1 lần"><img src="{{ URL::asset('default/images/w2.png') }}"> THẨM ĐỊNH CƠ BẢN</a>
-                        <a class="emeral-btn odd btn_dinhgia" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Thẩm định tài sản nâng cao dành cho Ngân hàng. Phí 20.000 VNĐ/1 lần"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH NÂNG CAO</a>
+                        <a class="emeral-btn odd btn_dinhgia_adv" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Thẩm định tài sản nâng cao dành cho Ngân hàng. Phí 20.000 VNĐ/1 lần"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH NÂNG CAO</a>
                         <!-- <a class="emeral-btn even" href="{{ URL::to('/tai-san-dang-giao-dich.html') }}"><img src="{{ URL::asset('default/images/w4.png') }}"> TÀI SẢN ĐANG GIAO DỊCH</a>
                         <a  class="emeral-btn odd"><img src="{{ URL::asset('default/images/w6.png') }}"> ĐỊNH GIÁ DỰ ÁN </a> -->
                     </div>

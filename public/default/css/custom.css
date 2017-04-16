@@ -116,25 +116,25 @@
 
 
 .group-images {
-    width: 260px;
-    height: 55px;
+    width: 100%;
+    height: 80px;
     position: relative;
 }
 .image-item {
-    width: 260px;
-    height: 55px;
+    width: 100%;
+    height: 80px;
     position: absolute;
     top: 0;
     left: 0;
     float: left;
     background: #fff;
-    margin: 0 2px;
+    /*margin: 0 2px;*/
     overflow: hidden;
-    opacity: 0;
     text-align: center;
 }
 .image-item img {
-    max-width: 100%
+    max-width: 100%;
+    padding-top: 10px;
 }
 .image-item.active {
     opacity: 1;
@@ -156,4 +156,16 @@
 {text-align: left}
 .btn-text-left img {padding: 0 10px}
 .row-ket-cau-chinh {position: relative;}
-.row-ket-cau-chinh span {position: absolute;top: 0; right: 0;cursor: pointer;}
+.row-ket-cau-chinh span {position: absolute;
+    top: -10px;
+    right: 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+.ads-slider {
+    height: 80px;
+}
+.bx-wrapper{
+    border: none;
+         margin-bottom: 0; 
+}

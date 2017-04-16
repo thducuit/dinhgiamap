@@ -14,7 +14,7 @@
             <span class="the-error"></span>
             <div class="form-group">
 
-              <div class="col-sm-10 col-sm-offset-1">
+              <div class="col-sm-12">
                 <label  class="control-label">Tên đăng nhập(*):</label>
                 <input type="text" class="form-control"  placeholder="Tên đăng nhập" name="email">
                 <div class="help-block"></div>
@@ -22,14 +22,14 @@
             </div>
             <div class="form-group">
 
-              <div class="col-sm-10 col-sm-offset-1">
+              <div class="col-sm-12">
                 <label class="control-label">Mật khẩu (*):</label>
                 <input type="password" class="form-control"  placeholder="Mật khẩu"  name="password">
                 <div class="help-block"></div>
               </div>
             </div>                                                                                                                                                                  
             <div class="form-group">
-              <div class="col-sm-offset-1 col-sm-10">
+              <div class="col-sm-12">
 
                 <div class="row">
                   <div class="col-sm-8">

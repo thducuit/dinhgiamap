@@ -136,7 +136,7 @@
                 var a = $('#google-map-autocomplete').val();
                 var p = $('#placeId').val();
                 var priceLink = [url.price, '?placeId=', p, '&address=', a, '&street=', placeInfo.street_id].join('');
-                $('.btn_dinhgia').attr('href', priceLink);
+                $('.btn_dinhgia_adv').attr('href', priceLink);
             }
 
             $('#show-price-pop-up').click(function(e) {

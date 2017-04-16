@@ -146,7 +146,7 @@ MAIN
                               <label>Diện tích phù hợp quy hoạch</label>
                             </div>
                             <div class="col-md-6">
-                              <label><input type="checkbox" class="cacLoaiDatKhac" value="1"/> Các loại đất khác</label>
+                              <label><input type="checkbox" class="cacLoaiDatKhac" value="1"/> Các loại đất khác</label>
                             </div>
                           </div>
                           <div class="form_col">
@@ -850,7 +850,11 @@ foreach ($namXayDung as $item) {
 
       //$('.selectYeuToKhac').val($('.selectYeuToKhac option:first').val());
       $('.selectYeuToKhac').trigger('change');
-      $('.selectYeuToKhac').multiselect();
+      $('.selectYeuToKhac').multiselect({
+        buttonText: function(options, select) {
+                return 'Chọn yếu tố khác';
+            }
+      });
 
     });
   </script>

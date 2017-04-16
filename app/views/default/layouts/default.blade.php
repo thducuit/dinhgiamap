@@ -19,10 +19,12 @@
     {{ HTML::style('//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css') }}
     {{ HTML::style('default/css/bootstrap-multiselect.css') }}
     {{ HTML::style('default/css/cenvalue.css') }}
-    {{ HTML::style('default/css/custom.css') }}
+    
     {{ HTML::style('default/css/responsive.css') }}
     {{ HTML::style('default/css/detail.css') }}
     {{ HTML::style('default/css/modal.plan.css') }}
+    {{ HTML::style('default/css/jquery.bxslider.css') }}
+    {{ HTML::style('default/css/custom.css') }}
 
     {{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
     {{ HTML::style('admin/css/leaflet.draw.css') }}
@@ -140,14 +142,10 @@
                       </a>
                     </li>
 
-                    <li class="menu_item">
-                      <a class="clearfix" href="#"><span>Đối tác chiến lược</span></a>
-                    </li>
+                    
                     
 
-                    <li class="menu_item">
-                      <a class="clearfix" href="#"><span>Khách hàng thân thiết</span></a>
-                    </li>
+                    
 
                     
 
@@ -158,21 +156,26 @@
                     <li class="menu_item {{ isset($current) && $current == 8 ? 'current' : '' }}"><a class="clearfix" href="{{ URL::to('/chinh-sach.html') }}"><span>Chính sách sử dụng</span></a></li>		
 
                     <li class="menu_item">
-                      <div id="group-images-1" class="group-images carousel slide" data-ride="carousel">
-                        <ul class="carousel-inner" role="listbox">
-                          <li class="image-item item active"><img  src="{{ URL::asset('default/images/logo/Logo-03.jpg') }}"></img></li>
-                          <li class="image-item item"><img  src="{{ URL::asset('default/images/logo/STDA ngang.jpg') }}"></img></li>
-                          <li class="image-item item"><img  src="{{ URL::asset('default/images/logo/logo-nghe moi gioi.png') }}"></img></li>
+                      <a class="clearfix" href="#"><span>Đối tác chiến lược</span></a>
+                    </li>
+                    <li class="menu_item ads-slider">
+                      <div id="group-images-1" class="group-images">
+                        <ul class="bxslider-1" role="listbox">
+                          <li class="image-item"><img  src="{{ URL::asset('default/images/logo/Logo-03.jpg') }}"></img></li>
+                          <li class="image-item"><img  src="{{ URL::asset('default/images/logo/STDA ngang.jpg') }}"></img></li>
+                          <li class="image-item"><img  src="{{ URL::asset('default/images/logo/logo-nghe moi gioi.png') }}"></img></li>
                         </ul>
                       </div>
                     </li>			
-
                     <li class="menu_item">
-                      <div id="group-images-2" class="group-images carousel slide" data-ride="carousel">
-                        <ul class="carousel-inner" role="listbox">
-                          <li class="image-item item active"><img  src="{{ URL::asset('default/images/logo/logo techcombank.png') }}"></img></li>
-                          <li class="image-item item"><img  src="{{ URL::asset('default/images/logo/logo vietcombank.jpg') }}"></img></li>
-                          <li class="image-item item"><img  src="{{ URL::asset('default/images/logo/logo Agribank.jpg') }}"></img></li>
+                      <a class="clearfix" href="#"><span>Khách hàng thân thiết</span></a>
+                    </li>
+                    <li class="menu_item ads-slider">
+                      <div id="group-images-2" class="group-images">
+                        <ul class="bxslider-2" role="listbox">
+                          <li class="image-item"><img  src="{{ URL::asset('default/images/logo/logo techcombank.png') }}"></img></li>
+                          <li class="image-item"><img  src="{{ URL::asset('default/images/logo/logo vietcombank.jpg') }}"></img></li>
+                          <li class="image-item"><img  src="{{ URL::asset('default/images/logo/logo Agribank.jpg') }}"></img></li>
                         </ul>
                       </div>
                     </li>
@@ -297,6 +300,7 @@
   {{ HTML::script('default/js/bootstrap-multiselect.js') }}
   {{ HTML::script('default/js/cenvalue.js') }}
   {{ HTML::script('default/js/slider-simple.js') }}
+  {{ HTML::script('default/js/jquery.bxslider.js') }}
   {{ HTML::script('default/js/custom.js') }}
 
   <script>
@@ -329,13 +333,22 @@
     var arrowPlay = "{{ URL::asset('default/images/arrow1.png') }}";
     var arrowDown = "{{ URL::asset('default/images/arrow-down.png') }}";
     $(document).ready(function () {
-      $('#modal_ketqua_dongiasobo .notice-info').click(function () {        
-        $('#modal_ketqua_dongiasobo .notice-info-content').toggle('slow');
-        if ($('#modal_ketqua_dongiasobo .notice-info img').attr('src').indexOf('arrow1.png') > -1) {
-          $('#modal_ketqua_dongiasobo .notice-info img').attr('src', arrowDown);
+      $('#modal_ketqua_dongiasobo .notice-info, #modal_ketquadinhgia .notice-info').click(function () {        
+        $('#modal_ketqua_dongiasobo .notice-info-content, #modal_ketquadinhgia .notice-info-content').toggle('slow');
+        if ($('#modal_ketqua_dongiasobo .notice-info img, #modal_ketquadinhgia .notice-info img').attr('src').indexOf('arrow1.png') > -1) {
+          $('#modal_ketqua_dongiasobo .notice-info img, #modal_ketquadinhgia .notice-info img').attr('src', arrowDown);
         } else {
-          $('#modal_ketqua_dongiasobo .notice-info img').attr('src', arrowPlay);
+          $('#modal_ketqua_dongiasobo .notice-info img, #modal_ketquadinhgia .notice-info img').attr('src', arrowPlay);
         }
+      });
+
+
+      $('.bxslider-1, .bxslider-2').bxSlider({
+        auto: true,
+        autoControls: false,
+        controls: false,
+        pager: false,
+        autoDirection: 'prev'
       });
     });
   </script>

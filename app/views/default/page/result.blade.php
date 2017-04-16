@@ -147,19 +147,19 @@ MAIN
                   <?php if(isset($inputThamDinhGia['congTrinhXD']) && $inputThamDinhGia['congTrinhXD']){?>
                   <div class="row info-blk">
                       <div class="col-md-12 col-sm-12 col-xs-12">
-                          <span class="title-ct1">CÔNG TRÌNH XÂY DỰNG <?php 
-                                        // switch($inputThamDinhGia['congTrinhXD']){
-                                        //   case 'nha_pho': echo 'NHÀ PHỐ';break;
-                                        //   case 'biet_thu': echo 'BIỆT THỰ̣';break;
-                                        //   default: echo 'Không có CTXD';break;
-                                        // }
-                                        ?></span>
+                          <span class="title-ct1">CÔNG TRÌNH XÂY DỰNG </span>
                       </div>
                     <?php }?>
                     <?php if(isset($inputThamDinhGia['congTrinhXD']) && $inputThamDinhGia['congTrinhXD'] && $inputThamDinhGia['ketCauChinh']){?>
                     
                       <div class="col-md-12 col-sm-12 col-xs-12">
-                          <div class="info-d"><label>Công trình xây dựng: </label> 1</div>
+                          <div class="info-d"><label>Công trình xây dựng: </label> <?php 
+                                        switch($inputThamDinhGia['congTrinhXD']){
+                                          case 'nha_pho': echo 'NHÀ PHỐ';break;
+                                          case 'biet_thu': echo 'BIỆT THỰ̣';break;
+                                          default: echo 'Không có CTXD';break;
+                                        }
+                                        ?></div>
                       </div>
                       <div class="col-md-4 col-sm-12 col-xs-12">
                           <div class="info-d"><label>Kết cấu chính: </label> {{$inputThamDinhGia['ketCauChinh']}}</div>
