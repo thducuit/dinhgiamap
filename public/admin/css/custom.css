@@ -29,7 +29,7 @@ label.error {
 
 .search {
     margin: 10px;
-}
+}       
 .search select,
 .search input
 {
@@ -43,8 +43,10 @@ label.error {
 }
 
 #update-location-modal iframe {width: 100%; height: 800px}
+.location-page {padding-top: 0}
 .location-page #sidebar-collapse,
 .location-page .main-title,
-.location-page .main-breadcrumb
+.location-page .main-breadcrumb,
+.location-page .navbar
 {display: none}
 .location-page .main {width: 100%; margin-left: 0}

@@ -12,7 +12,7 @@
 			            <div class="form-group">
 			                <div class="pull-right">
 			                    <button type='submit' class='btn btn-primary submit'>Cập nhật</button>
-			                    <a href="{{ URL::to('admin/markers?page=' . $page) }}" class='btn btn-default'>Bỏ qua</a>
+			                    <!-- <a href="{{ URL::to('admin/markers?page=' . $page) }}" class='btn btn-default'>Bỏ qua</a> -->
 			                </div>
 			            </div>
 			        </div>
