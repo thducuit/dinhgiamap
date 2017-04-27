@@ -44,11 +44,12 @@
 
 <script type="text/javascript">
 	var url = {
-		ward: '/public/admin/info/ward',
-		district: '/public/admin/info/district',
-		street: '/public/streets',
-		priceStreet: '/public/admin/info/price',
-		plan: '/public/admin/info/plan',
+		ward:  "{{ URL::to('/admin/info/ward') }}",
+		district:  "{{ URL::to('/admin/info/district') }}",
+		street:  "{{ URL::to('/streets') }}",
+		priceStreet:  "{{ URL::to('/admin/info/price') }}",
+		plan: "{{ URL::to('/admin/info/plan') }}",
+		streetEdit: "{{ URL::to('/admin/streets/edit') }}"
 	};
 	
 	jQuery(window).keydown(function(event){
@@ -60,7 +61,7 @@
 </script>
 </head>
 
-<body>
+<body class="page-admin {{ (!empty($customClass)) ? $customClass : '' }}">
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -143,14 +144,14 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
+		<div class="row main-breadcrumb">
 			<ol class="breadcrumb">
 				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
 				<li class="active">Icons</li>
 			</ol>
 		</div><!--/.row-->
 		
-		<div class="row">
+		<div class="row main-title">
 			<div class="col-lg-12">
 				<h1 class="page-header">{{ $title }}</h1>
 			</div>

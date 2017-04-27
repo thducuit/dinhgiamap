@@ -12,8 +12,7 @@
         _currentMarker = {
             streetId: 0
         },
-        markerInfoPromise
-        ;
+        markerInfoPromise;
 
         var geocoder = new google.maps.Geocoder();
         var infowindow = new google.maps.InfoWindow();
@@ -164,21 +163,22 @@
         _ draw polygon by area store all polygon to a polygons array
         */
         function getAreas () {
+            console.log('get areas');
             $.ajax({
                 url: url.street,
                 type: 'get',
                 success: function(response) {
+                    console.log('draw polygon');
                     if(response) {
                         areas = response;
-                        drawPolygon(response, function() {
-                            findPolygon();
-                        });
+                        drawPolygon(response);
                     }
                 }
-            })    
+            });    
         }
 
-        function drawPolygon(response, callback) {
+        function drawPolygon(response) {
+            var defer = $.Deferred();
             $.map(response, function(value, index) {
                 if(value && value.position) {
                     var triangleCoords = JSON.parse(value.position);
@@ -197,7 +197,9 @@
                     polygons[index] = null;
                 }
             });
-            callback();
+            
+            console.log('draw polygon success');
+            return defer.promise();
         }
 
         function initCurrentMarker(){
@@ -205,6 +207,8 @@
             var placeId = $('.google-map-search-form #placeId').val();
             var lat = $('.google-map-search-form #lat').val();
             var lng = $('.google-map-search-form #lng').val();
+            var street = $('#areas').html();
+            street = (street) ? JSON.parse(street.trim()) : {};
             if(!placeId) {
                 return;
             }
@@ -212,8 +216,10 @@
             _currentMarker = {
                 address: address,
                 placeId: placeId,
+                streetId: (street.id) ? street.id : 0,
                 lat: point.lat(),
-                lng: point.lng()
+                lng: point.lng(),
+                street: street
             };
             markerInfoPromise = findMarkerInfo();
             setMarkerPosition(point);
@@ -227,19 +233,14 @@
 
         $('#show-price-pop-up').click(function(e) {
             e.preventDefault();
-            var street =  (placeInfo.street && placeInfo.street.name) ? placeInfo.street.name : '';
-            var html = [placeInfo.name, '<br>', street].join('');
-            $('#dgtt_popup_address').html(html);            
-            if(placeInfo.price_format && placeInfo.state_price_format) {
-                buildHTMLPopupDG();
-            }else {
-                getStreetPrice(function(place){   
-                  $('.giaThiTruong').val(place.price_format);
-                  $('.giaUB').val(place.state_price_format);
-                  $('.textDistrict').val(place.districtName);              
-                  buildHTMLPopupDG();
-                });
-            }  
+            initPriceModal();
+            $('#modal_dongiathitruong').modal('show');
+        });
+
+        $('.show-price-temp-pop-up').click(function(e) {
+            e.preventDefault();
+            initGetPriceSimpleModal();
+            $('#modal_dongiasobo').modal('show');
         });
 
         //UTILS
@@ -258,7 +259,6 @@
         function updateCurrentMarkerLocation(point) {
             _currentMarker.lat = point.lat();
             _currentMarker.lng = point.lng();
-            console.log('update current marker location!!!');
         }
 
         function updateCurrentMarker(address, placeId, lat, lng) {
@@ -312,9 +312,11 @@
         }
 
         function handleMarkerInfo() {
-            $.when(markerInfoPromise).then(
+            $.when(markerInfoPromise).done(
                 function(response) {
                     findMarkerCallback(response);
+                    //open modal
+                    $('#modal_info').modal('show');
                 });
         }
 
@@ -343,9 +345,9 @@
                     price_format: (area.price_format) ? area.price_format : 0, 
                     state_price_format: (area.state_price_format) ? area.state_price_format : 0, 
                     price: (area.price) ? area.price : 0, 
-                    state_price: (area.state_price) ? area.state_price : 0, 
+                    state_price: (area.state_price) ? area.state_price : 0,
+                    district_format:  area.district_format
                 };
-                console.log('current marker', _currentMarker);
             });
         }
 
@@ -363,6 +365,36 @@
             }else {
                 $(".plan-btn-popup").attr('type', 'street').attr('data-id', _currentMarker.streetId);
             }
+        }
+
+        function initPriceModal() {
+            $('#dgtt_popup_address').html(_currentMarker.address);            
+            if(_currentMarker.price_format && _currentMarker.state_price_format) {
+                $('.dongia_highlight_left').html(_currentMarker.price_format);
+                $('.dongia_highlight_right').html(_currentMarker.state_price_format);
+                $('.giaThiTruong').val(_currentMarker.price_format);
+                $('.giaUB').val(_currentMarker.state_price_format);
+            }else {
+                $('.dongia_highlight_left').html(_currentMarker.street.price_format);
+                $('.dongia_highlight_right').html(_currentMarker.street.state_price_format);
+                $('.giaThiTruong').val(_currentMarker.street.price_format);
+                $('.giaUB').val(_currentMarker.street.state_price_format);
+            }  
+            $('.textDistrict').val(_currentMarker.street.district_format); 
+        }
+
+        function initGetPriceSimpleModal() {
+            $('#dgsb_popup_address, .dgsb_popup_address').html(_currentMarker.address);
+            if(_currentMarker.price_format && _currentMarker.state_price_format) {
+                $('.giaThiTruong').val(_currentMarker.price_format);
+                $('.giaUB').val(_currentMarker.state_price_format);
+                $('.giaUBLabel').html(_currentMarker.state_price_format.replace(/,/gm, '.'));
+            }else {
+                $('.giaThiTruong').val(_currentMarker.street.price_format);
+                $('.giaUB').val(_currentMarker.street.state_price_format);
+                $('.giaUBLabel').html(_currentMarker.street.state_price_format.replace(/,/gm, '.'));
+            }
+            $('.textDistrict').val(_currentMarker.street.district_format); 
         }
 
         function updateCurrentMarkerPrice(object) {

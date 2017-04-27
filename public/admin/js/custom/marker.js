@@ -153,7 +153,7 @@
         function drawPolygon(response) {
             $.map(response, function(value, index) {
                 if(value) {
-                    var triangleCoords = JSON.parse(value);
+                    var triangleCoords = JSON.parse(value.position);
                     polygons[index] = new google.maps.Polygon({
                                       paths: triangleCoords,
                                       strokeColor: '#FF0000',

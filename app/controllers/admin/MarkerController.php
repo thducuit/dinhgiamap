@@ -87,6 +87,17 @@ class MarkerController extends AdminController {
             ->with(array('title'=> 'Cập nhật vị trí'));
     }
 
+    public function getLocation($id = 0)
+    {
+        $marker = Marker::find($id);
+        return View::make('admin.marker.location')
+            ->with(array('page' => Input::get('page')))
+            ->with(array('menu' => $this->menuInstance() ))
+            ->with('marker', $marker)
+            ->with('customClass', 'location-page')
+            ->with(array('title'=> 'Cập nhật vị trí'));
+    }
+
     public function getShow($id = 0)
     {
         $marker = Marker::find($id);

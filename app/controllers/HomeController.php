@@ -38,12 +38,27 @@ class HomeController extends BaseController {
   }
 
   public function search() {
+    $point = array(Input::get('lat'), Input::get('lng'));
+    $street = Street::getPolygon($point);
+    if( $street != false ) {
+      $district = District::find($street['district_id']);
+      $street['price_format'] = number_format($street['price']);
+      $street['state_price_format'] = number_format($street['state_price']);
+      $street['district_format'] =  ($district->type && $district->name) ? $district->type . ' ' . $district->name : '';
+    }
+    $streetJSON = $street != false ? json_encode($street) : '';
+    
     return View::make('default.index.map')
                     ->with('address', Input::get('address'))
                     ->with('placeId', Input::get('placeId'))
+                    ->with('lat', Input::get('lat'))
+                    ->with('lng', Input::get('lng'))
+                    ->with('streetJSON', $streetJSON)
                     ->with('title', 'Tìm kiếm')
                     ->with('body_class', 'page_search');
   }
+
+  
 
   public function getInfo() {
     $placeId = Input::get('placeId');
@@ -163,7 +178,17 @@ class HomeController extends BaseController {
     $streets = Street::all()->toArray();
     $response = array();
     foreach ($streets as $key => $s) {
-      $response[$s['id']] = $s['position'];
+      $district = District::find($s['district_id']);
+      $response[$s['id']] = array(
+        'position' => $s['position'],
+        'price_format' => number_format($s['price']),
+        'state_price_format' => number_format($s['state_price']),
+        'price' => ($s['price']),
+        'state_price' => ($s['state_price']),
+        'district_format'=> ($district->type && $district->name) ? $district->type . ' ' . $district->name : '',
+        'name' => $s['code']
+      );
+
     }
     return Response::json($response);
   }

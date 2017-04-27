@@ -20,9 +20,10 @@ MAIN
 						<div class="form_group form_group_input_text">
 							<input class="input_text cen-address-text" type="text" name="address" id="google-map-autocomplete" placeholder="Nhập địa chỉ tài sản để định giá">
 							<input type="hidden" class="input_text place-id" name="placeId" id="placeId">
+							<input type="hidden" class="input_text lat" name="lat" id="lat">
+							<input type="hidden" class="input_text lng" name="lng" id="lng">
 						</div>
 						<div class="form_group form_group_submit">
-<!--							<input class="input_submit search-view" type="submit" value="Tìm kiếm">-->
                           <input class="search-view" type="submit" value="Tìm kiếm">
 						</div>
 					{{ Form::close() }}
@@ -40,7 +41,7 @@ MAIN
 		MAP VIEW
 		-->
 		<div id="map_view" class="screen"></div>	
-		{{ HTML::script('default/js/view.js') }}
+		{{ HTML::script('default/js/view.v2.js') }}
 	</div>
 </div>
 @endsection

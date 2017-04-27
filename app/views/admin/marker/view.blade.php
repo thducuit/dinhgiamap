@@ -41,6 +41,7 @@
                     					        <th style=""><div class="th-inner ">Tên</div></th>
                     					        <th style=""><div class="th-inner ">Giá thị trường (VNĐ)</div></th>
                     					        <th style=""><div class="th-inner ">Giá nhà nước (VNĐ)</div></th>
+                    					        <th style=""><div class="th-inner ">Cập nhật vị trí</div></th>
                     					        <th style=""><div class="th-inner "></div></th>
                     					    </tr>
 					                    </thead>
@@ -52,6 +53,8 @@
     					                            <td>{{ $e->name }}</td>
     					                            <td>{{ number_format($e->price) }}</td>
     					                            <td>{{ number_format($e->state_price) }}</td>
+    					                            <td>
+    					                            <a href="{{ URL::to('admin/markers/location/' . $e->id . '?page=' . $page) }}" class='btn btn-default btn-update-location'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Vị trí</a></td>
     					                            <td>
     					                            	<div class="btn-group">
     					                            		<a href="{{ URL::to('admin/markers/edit/' . $e->id . '?page=' . $page) }}" class='btn btn-default'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Sửa</a>
@@ -82,5 +85,26 @@
 			</div>
 		</div>
 	</div>
+
+<!-- Modal -->
+<div id="update-location-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Chọn vị trí</h4>
+      </div>
+      <div class="modal-body">
+        <iframe src="" scrolling="yes" seamless="seamless" frameborder="0"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 {{ HTML::script('admin/js/custom/province.js') }}  
 @endsection

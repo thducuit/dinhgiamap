@@ -76,7 +76,7 @@
         $.map(response, function(value, index) {
             if(value) {
                 var color = id===index ? '#000' : '#FF0000';
-                var triangleCoords = JSON.parse(value);
+                var triangleCoords = JSON.parse(value.position);
                 // polygons[index] = new google.maps.Polygon({
                 //                   paths: triangleCoords.latlng,
                 //                   strokeColor: color,
@@ -87,7 +87,8 @@
                 //                 });
                 // polygons[index].setMap(map);
                 if(triangleCoords.latlng) {
-                	polygons[index] = L.polygon(triangleCoords.latlng, {color: color, weight:'1px'}).addTo(map).bindPopup(index);
+                	var html = '<a target="_blank" href="' + url.streetEdit + '/' + index + '">' + value.name + '</a>';
+                	polygons[index] = L.polygon(triangleCoords.latlng, {color: color, weight:'1px'}).addTo(map).bindPopup(html);
                 }
                 
             }else{

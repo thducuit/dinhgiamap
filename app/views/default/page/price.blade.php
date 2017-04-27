@@ -858,6 +858,5 @@ foreach ($namXayDung as $item) {
 
     });
   </script>
-  {{ HTML::script('default/js/map.js') }}
-  <!-- {{ HTML::style('default/css/custom.css') }} -->
+  {{ HTML::script('default/js/view.v2.js') }}
   @endsection

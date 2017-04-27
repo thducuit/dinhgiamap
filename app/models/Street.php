@@ -24,4 +24,61 @@ class Street extends Eloquent {
         }
         return $options;
     }
+
+    public static function getPolygon($point) {
+        $streets = Street::all();
+        $length = count($streets);
+
+        function location($object) {
+            return array($object->lat, $object->lng);
+        }
+
+        for($i = 0; $i<$length; $i++) {
+            $s = $streets[$i];
+            try{
+              $json = $s['position'];
+              if(!empty($json)) {
+                $polygonObject = json_decode($json);
+                $polygon = ($polygonObject->latlng) ? $polygonObject->latlng: array();
+                $polygon = array_map('location', $polygon);
+                if( Street::contains($point, $polygon) ) {
+                    return $s->toArray();
+                }
+              }
+            }catch(Exception $e){
+              echo 'Error';
+            }
+            
+        }
+        return false;
+    }
+
+    public static function contains($point, $polygon)
+    {
+      if($polygon[0] != $polygon[count($polygon)-1])
+          $polygon[count($polygon)] = $polygon[0];
+      $j = 0;
+      $oddNodes = false;
+      $x = $point[1];
+      $y = $point[0];
+      $n = count($polygon);
+      for ($i = 0; $i < $n; $i++)
+      {
+          $j++;
+          if ($j == $n)
+          {
+              $j = 0;
+          }
+          if ((($polygon[$i][0] < $y) && ($polygon[$j][0] >= $y)) || (($polygon[$j][0] < $y) && ($polygon[$i][0] >=
+              $y)))
+          {
+              if ($polygon[$i][1] + ($y - $polygon[$i][0]) / ($polygon[$j][0] - $polygon[$i][0]) * ($polygon[$j][1] -
+                  $polygon[$i][1]) < $x)
+              {
+                  $oddNodes = !$oddNodes;
+              }
+          }
+      }
+      return $oddNodes;
+    }
 }

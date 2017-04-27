@@ -26,35 +26,31 @@
 
 		getStreet($('#province').val());
 	});
-    var timeOut;
-    $('#google-map-autocomplete').keyup(function(e){
-        var position = $(this).val();
-        if (timeOut) {          
-          clearTimeout(timeOut);
-        }
+    // var timeOut;
+    // $('#google-map-autocomplete').keyup(function(e){
+    //     var position = $(this).val();
+    //     if (timeOut) {          
+    //       clearTimeout(timeOut);
+    //     }
         
-        timeOut = setTimeout(function(){ 
-//          var locationFromGoogle = $('.pac-container .pac-item').length;          
-//          if(!locationFromGoogle){
-            $.get(url.searchMarkers, {position:position}, function(data){
-              $('.list-item-marker ul').html('');
-              if(data.length){              
-                for(var i in data){
-                  if(data[i].id){
-                    $('.list-item-marker ul').append('<li place-id="'+data[i].place_id+'" address="'+data[i].name+'" class="cursor"><i class="marker-icon"></i> '+data[i].name+' <div class="clear"></div></li>');
-                  }
-                }
-                $('.list-item-marker').show();
-              }else{              
-                $('.list-item-marker').hide();
-                $('.pac-container').show();
-              }            
-            });
-//          }
-          
-        }, 600);
+    //     timeOut = setTimeout(function(){ 
+    //         $.get(url.searchMarkers, {position:position}, function(data){
+    //           $('.list-item-marker ul').html('');
+    //           if(data.length){              
+    //             for(var i in data){
+    //               if(data[i].id){
+    //                 $('.list-item-marker ul').append('<li place-id="'+data[i].place_id+'" address="'+data[i].name+'" class="cursor"><i class="marker-icon"></i> '+data[i].name+' <div class="clear"></div></li>');
+    //               }
+    //             }
+    //             $('.list-item-marker').show();
+    //           }else{              
+    //             $('.list-item-marker').hide();
+    //             $('.pac-container').show();
+    //           }            
+    //         });
+    //     }, 600);
         
-    });
+    // });
     
     $('.btn-get-current-position').click(function(){
       if (navigator.geolocation) {        
@@ -81,13 +77,13 @@
           });          
         }
     });
-    $(document).on('click', '.list-item-marker ul li', function(){
-      var placeId = $(this).attr('place-id');
-      var address = $(this).attr('address');      
-      $('.google-map-search-form .place-id').val(placeId);
-      $('.google-map-search-form .cen-address-text').val(address);    
-      $('.list-item-marker').hide();
-    });
+    // $(document).on('click', '.list-item-marker ul li', function(){
+    //   var placeId = $(this).attr('place-id');
+    //   var address = $(this).attr('address');      
+    //   $('.google-map-search-form .place-id').val(placeId);
+    //   $('.google-map-search-form .cen-address-text').val(address);    
+    //   $('.list-item-marker').hide();
+    // });
     
     
 	$('#google-map-autocomplete').focus(function(e){

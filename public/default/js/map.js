@@ -236,8 +236,11 @@
                             $(".plan-btn-popup").attr('type', 'marker').attr('data-id', response.id);
                             // getPlanMap('marker', response, function(map_name) {
                             //     $("#plan-btn-popup").attr('href', map_name);
-                            // });                      
-                            $('#modal_info').modal('show');
+                            // });              
+                            setTimeout(function(){
+                                $('#modal_info').modal('show');
+                            }, 1000 );        
+                            
                         }
                         else {
                             ContainInPolygon(place, function(streetId){
@@ -247,7 +250,9 @@
                                 // getPlanMap('street', place, function(map_name) {
                                 //     $("#plan-btn-popup").attr('href', map_name);
                                 // });   
-                                $('#modal_info').modal('show');
+                                setTimeout(function(){
+                                    $('#modal_info').modal('show');
+                                }, 1000 );
                             });
                         }
                     }
@@ -307,8 +312,8 @@
 
             function drawPolygon(response) {
                 $.map(response, function(value, index) {
-                    if(value) {
-                        var triangleCoords = JSON.parse(value);
+                    if(value && value.position) {
+                        var triangleCoords = JSON.parse(value.position);
                         if(triangleCoords.latlng && $.isArray(triangleCoords.latlng) && triangleCoords.latlng.length)  {
                             polygons[index] = new google.maps.Polygon({
                                               paths: triangleCoords.latlng,

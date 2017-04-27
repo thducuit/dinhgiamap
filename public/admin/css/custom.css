@@ -42,3 +42,9 @@ label.error {
     z-index: 100;
 }
 
+#update-location-modal iframe {width: 100%; height: 800px}
+.location-page #sidebar-collapse,
+.location-page .main-title,
+.location-page .main-breadcrumb
+{display: none}
+.location-page .main {width: 100%; margin-left: 0}

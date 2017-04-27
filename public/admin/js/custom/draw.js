@@ -113,7 +113,7 @@
             $.map(response, function(value, index) {
                 if(value) {
                     var color = id===index ? '#FF0000' : 'blue';
-                    var triangleCoords = JSON.parse(value);
+                    var triangleCoords = JSON.parse(value.position);
                     polygons[index] = new google.maps.Polygon({
                                       paths: triangleCoords,
                                       strokeColor: color,

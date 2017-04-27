@@ -280,6 +280,8 @@
 
     @include('partials.dongiasobo')
 
+    @include('partials.areas')
+
   </div>
 
   <!-- JS -->
@@ -299,7 +301,6 @@
   {{ HTML::script('default/js/jquery.accordion.js') }}
   {{ HTML::script('default/js/bootstrap-multiselect.js') }}
   {{ HTML::script('default/js/cenvalue.js') }}
-  {{ HTML::script('default/js/slider-simple.js') }}
   {{ HTML::script('default/js/jquery.bxslider.js') }}
   {{ HTML::script('default/js/custom.js') }}
 
