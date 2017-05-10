@@ -189,7 +189,7 @@ class AuthController extends BaseController {
         $message = 'only customer can login';
       }
     } catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
-      $message = 'Vui long nhập email và mật khẩu';
+      $message = 'Vui lòng nhập email và mật khẩu';
     } catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
       $message = 'Vui lòng nhập mật khẩu';
     } catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {

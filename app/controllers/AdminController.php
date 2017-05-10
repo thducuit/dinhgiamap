@@ -114,10 +114,11 @@ class AdminController extends BaseController {
 			{
 				$admin = Sentry::findGroupByName('administrator');
 				$writer = Sentry::findGroupByName('writer');
-				if( !$user->inGroup($admin) && !$user->inGroup($writer) )
+				$datamanager = Sentry::findGroupByName('datamanager');
+				if( !( $user->inGroup($admin)  || $user->inGroup($writer) || $user->inGroup($datamanager) ) )
 				{
 					return Redirect::to('admin/login')
-						->with('message', 'Can not access to dashboard.Try again')
+						->with('message', 'Không thể truy cập hệ thống. Vui lòng thử lại')
 	                    ->with('icon', Config::get('constant.admin.alert.error.icon'))
 	                    ->with('type_message', Config::get('constant.admin.alert.error.type'));
 				}
@@ -134,17 +135,22 @@ class AdminController extends BaseController {
 		catch(Cartalyst\Sentry\Users\WrongPasswordException $e)
 		{
 			return Redirect::to('admin/login')
-					->with('message', 'Email or password is not match')
+					->with('message', 'Tài khoản hoặc mật khẩu có sai')
                     ->with('icon', Config::get('constant.admin.alert.error.icon'))
                     ->with('type_message', Config::get('constant.admin.alert.error.type'));
 		}
 		catch(Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
 			return Redirect::to('admin/login')
-					->with('message', 'Email not found')
+					->with('message', 'Tài khoản không tồn tại')
                     ->with('icon', Config::get('constant.admin.alert.error.icon'))
                     ->with('type_message', Config::get('constant.admin.alert.error.type'));
-		}
+		}catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
+	      return Redirect::to('admin/login')
+					->with('message', 'Tài khoản chưa kích hoạt')
+                    ->with('icon', Config::get('constant.admin.alert.error.icon'))
+                    ->with('type_message', Config::get('constant.admin.alert.error.type'));
+	    }
 		
 	}
 	

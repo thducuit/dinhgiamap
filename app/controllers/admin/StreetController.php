@@ -11,7 +11,7 @@ class StreetController extends AdminController {
     {
         $streets = DB::table('streets');
         
-        if(!$this->isAdmin())
+        if(  !( $this->isDataManager() || $this->isAdmin() ) )
         {
             $streets = $streets->where('user_id', '=', $this->getUser());
         }

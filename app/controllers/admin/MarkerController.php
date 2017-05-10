@@ -11,7 +11,7 @@ class MarkerController extends AdminController {
     {
         $markers = DB::table('markers');
 
-        if(!$this->isAdmin())
+        if(  !( $this->isDataManager() || $this->isAdmin() ) )
         {
             $markers = $markers->where('user_id', '=', $this->getUser());
         }

@@ -11,7 +11,7 @@ class EstateController extends AdminController {
     {
         $estates = DB::table('estates');
 
-        if(!$this->isAdmin())
+        if(  !( $this->isDataManager() || $this->isAdmin() ) )
         {
             $estates = $estates->where('user_id', '=', $this->getUser());
         }
