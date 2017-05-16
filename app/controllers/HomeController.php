@@ -188,7 +188,28 @@ class HomeController extends BaseController {
         'district_format'=> ($district->type && $district->name) ? $district->type . ' ' . $district->name : '',
         'name' => $s['code']
       );
+    }
+    return Response::json($response);
+  }
 
+  public function postStreet() {
+    $district_id = (int)Input::get('district');
+    $response = array();
+    if(empty($district_id)) {
+      return Response::json($response);
+    }
+    $streets = Street::getByDistrict($district_id)->toArray();
+    foreach ($streets as $key => $s) {
+      $district = District::find($s['district_id']);
+      $response[$s['id']] = array(
+        'position' => $s['position'],
+        'price_format' => number_format($s['price']),
+        'state_price_format' => number_format($s['state_price']),
+        'price' => ($s['price']),
+        'state_price' => ($s['state_price']),
+        'district_format'=> ($district->type && $district->name) ? $district->type . ' ' . $district->name : '',
+        'name' => $s['code']
+      );
     }
     return Response::json($response);
   }

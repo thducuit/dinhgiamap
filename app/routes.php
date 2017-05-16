@@ -80,6 +80,7 @@ Route::get('/thong-tin-tai-khoan.html', 'CustomerController@getInfo');
 Route::get('/lien-he.html', 'ContactController@getIndex');
 Route::get('/address', 'HomeController@getAddress');
 Route::get('/streets', 'HomeController@getStreet');
+Route::post('/streets', 'HomeController@postStreet');
 Route::get('/streets/price', 'HomeController@getStreetPrice');
 
 

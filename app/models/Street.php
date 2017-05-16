@@ -14,6 +14,10 @@ class Street extends Eloquent {
     public static function getPlanMapId($id) {
         return Street::where('id', '=', $id)->first()->plan_map_id;
     }
+
+    public static function getByDistrict($id) {
+        return Street::where('district_id', '=', $id)->get();
+    }
     
     public static function getOptions()
     {
@@ -28,7 +32,6 @@ class Street extends Eloquent {
     public static function getPolygon($point) {
         $streets = Street::all();
         $length = count($streets);
-
         function location($object) {
             return array($object->lat, $object->lng);
         }

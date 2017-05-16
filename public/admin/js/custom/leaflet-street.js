@@ -60,9 +60,11 @@
     }
 
     function getAreas () {
+    	var district = $('#district_id').val();
         $.ajax({
             url: url.street,
-            type: 'get',
+            type: 'post',
+            data: {district:district},
             success: function(response) {
                 if(response) {
                     drawPolygon(response);
@@ -87,7 +89,7 @@
                 //                 });
                 // polygons[index].setMap(map);
                 if(triangleCoords.latlng) {
-                	var html = '<a target="_blank" href="' + url.streetEdit + '/' + index + '">' + value.name + '</a>';
+                	var html = '<a target="_blank" href="' + url.streetEdit + '/' + index + '">' + value.name + '-' + value.district_format + '</a>';
                 	polygons[index] = L.polygon(triangleCoords.latlng, {color: color, weight:'1px'}).addTo(map).bindPopup(html);
                 }
                 

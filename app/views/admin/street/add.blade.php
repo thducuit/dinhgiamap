@@ -72,8 +72,8 @@
 			        
 			        <div class="col-md-12">
 			            <div class="form-group">
-			            	<div class="btn btn-default btn-clear">Clear</div>
-			            	<div id="google-map-container"></div>
+			            	<!-- <div class="btn btn-default btn-clear">Clear</div>
+			            	<div id="google-map-container"></div> -->
 			            	<input class="form-control" type="hidden" id="points" name="points"></input>
 			            </div>
 			        </div>
@@ -85,7 +85,7 @@
 	</div>
 </div> 
    
-{{ HTML::script('admin/js/custom/leaflet-street.js') }}     
+<!-- {{ HTML::script('admin/js/custom/leaflet-street.js') }}   -->   
 {{ HTML::script('admin/js/custom/province.js') }} 
 
 @endsection
