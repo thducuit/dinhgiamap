@@ -157,6 +157,51 @@
             $('.google-map-search-form #lng').val('');
         }
 
+        /*
+        INIT
+        _ get all area in db by ajax
+        _ draw polygon by area store all polygon to a polygons array
+        */
+        function getAreas () {
+            console.log('get areas');
+            $.ajax({
+                url: url.street,
+                type: 'get',
+                success: function(response) {
+                    console.log('draw polygon');
+                    if(response) {
+                        areas = response;
+                        drawPolygon(response);
+                    }
+                }
+            });    
+        }
+
+        function drawPolygon(response) {
+            var defer = $.Deferred();
+            $.map(response, function(value, index) {
+                if(value && value.position) {
+                    var triangleCoords = JSON.parse(value.position);
+                    if(triangleCoords.latlng && $.isArray(triangleCoords.latlng) && triangleCoords.latlng.length)  {
+                        polygons[index] = new google.maps.Polygon({
+                                          paths: triangleCoords.latlng,
+                                          strokeColor: '#fff',
+                                          strokeOpacity: 0.2,
+                                          strokeWeight: 1,
+                                          fillColor: '#fff',
+                                          fillOpacity: 0.2
+                                        });
+                        polygons[index].setMap(mapObject);
+                    }
+                }else{
+                    polygons[index] = null;
+                }
+            });
+            
+            console.log('draw polygon success');
+            return defer.promise();
+        }
+
         function initCurrentMarker(){
             var address = $('.google-map-search-form .cen-address-text').val();
             var placeId = $('.google-map-search-form #placeId').val();
@@ -282,24 +327,20 @@
         }
 
         // check if marker is existed in what polygon
-        function isContainedInPolygon(callback){    
-        	$.ajax({
-                url: url.searchArea,
-                type: 'post',
-                data: {
-                    lat: _currentMarker.lat,
-                    lng: _currentMarker.lng
-                },
-                success: function(response) {    
-                    callback(response);
+        function isContainedInPolygon(place, callback){         
+            for(var i in polygons) {
+                if( polygons[i] && google.maps.geometry.poly.containsLocation(new google.maps.LatLng(place.lat, place.lng), polygons[i]) ){
+                    return callback(i);
                 }
-            });
+            }
+            return callback(0);
         }
 
         function findPolygon() {
             console.log('finding area !!!');
-            isContainedInPolygon(function(area) {
-                _currentMarker.streetId = area.id;
+            isContainedInPolygon(_currentMarker, function(streetId) {
+                _currentMarker.streetId = streetId;
+                var area = areas[streetId];
                 _currentMarker.street = {
                     price_format: (area.price_format) ? area.price_format : 0, 
                     state_price_format: (area.state_price_format) ? area.state_price_format : 0, 
@@ -366,6 +407,7 @@
 
         //RUN INIT
         (function() {
+            getAreas();
             initCurrentMarker();
         })()
     	

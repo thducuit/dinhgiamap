@@ -37,7 +37,7 @@ class HomeController extends BaseController {
                     ->with('body_class', 'page_home');
   }
 
-  public function search() {
+  public function getSearch() {
     $point = array(Input::get('lat'), Input::get('lng'));
     $street = Street::getPolygon($point);
     if( $street != false ) {
@@ -56,6 +56,19 @@ class HomeController extends BaseController {
                     ->with('streetJSON', $streetJSON)
                     ->with('title', 'Tìm kiếm')
                     ->with('body_class', 'page_search');
+  }
+
+  public function postSearch() {
+    $point = array(Input::get('lat'), Input::get('lng'));
+    $street = Street::getPolygon($point);
+    if( $street != false ) {
+      $district = District::find($street['district_id']);
+      $street['price_format'] = number_format($street['price']);
+      $street['state_price_format'] = number_format($street['state_price']);
+      $street['district_format'] =  ($district->type && $district->name) ? $district->type . ' ' . $district->name : '';
+    }
+    
+    return Response::json($street);     
   }
 
   

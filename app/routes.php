@@ -72,7 +72,8 @@
 
 Route::get('/', 'HomeController@view');
 Route::get('/index1', 'HomeController@view');
-Route::get('/search', 'HomeController@search');
+Route::get('/search', 'HomeController@getSearch');
+Route::post('/search', 'HomeController@postSearch');
 Route::get('/markers', 'HomeController@getMarkers');
 Route::get('/search-markers', 'HomeController@searchMarkers');
 Route::get('/info', 'HomeController@getInfo');

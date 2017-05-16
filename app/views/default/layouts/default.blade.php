@@ -69,6 +69,7 @@
         planmap: '{{ URL::to('/planmap') }}',
         markers: '{{ URL::to('/markers') }}',
         searchMarkers: '{{ URL::to('/search-markers') }}',
+        searchArea: '{{ URL::to('/search') }}',
         address: '{{ URL::to('/address') }}',
         price: '{{ URL::to('/price') }}',
         plan: '{{ URL::to('/plan') }}',
