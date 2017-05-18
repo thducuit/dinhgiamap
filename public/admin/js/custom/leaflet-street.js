@@ -175,10 +175,11 @@
 					shapeOptions: {
 						color: '#bada55'
 					},
+					metric: false,
 					showArea: true
 				},
 				polyline: {
-					metric: false
+					//metric: false
 				},
 				circle: {
 					shapeOptions: {

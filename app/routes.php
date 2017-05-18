@@ -79,7 +79,7 @@ Route::get('/search-markers', 'HomeController@searchMarkers');
 Route::get('/info', 'HomeController@getInfo');
 Route::get('/thong-tin-tai-khoan.html', 'CustomerController@getInfo');
 Route::get('/lien-he.html', 'ContactController@getIndex');
-Route::get('/address', 'HomeController@getAddress');
+//Route::get('/address', 'HomeController@getAddress');
 Route::get('/streets', 'HomeController@getStreet');
 Route::post('/streets', 'HomeController@postStreet');
 Route::get('/streets/price', 'HomeController@getStreetPrice');
@@ -221,7 +221,7 @@ Route::post('/xem-quy-hoach.html', function() {
     }     
     if($planPage){
       $positionSoTo = $planPage->position;            
-      if($planArea){
+      if($planArea){        
         $coordinateSoThua = [
           'lat' => $planArea->lat,
           'lng' => $planArea->lng
@@ -242,7 +242,7 @@ Route::post('/xem-quy-hoach.html', function() {
 Route::post('/planmap', function() {
     $type = Input::get('type');
     $id = Input::get('id');
-    $result = '';
+    $result;
     if($type == 'marker') {
         $result = Marker::find($id);
         $result->name =  PlanMap::getName($result->plan_map_id);

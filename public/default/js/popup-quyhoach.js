@@ -1,32 +1,77 @@
-var map = null;
+(function(url) {
+    var map = null;
+
     function init(object, callback) {
-        if(!map) {
-            if(object.name) {
+        if (!map) {
+            if (object.name) {
                 var mapMinZoom = 0;
                 var mapMaxZoom = 7;
                 map = L.map('map_plan_pop_up', {
-                maxZoom: mapMaxZoom,
-                minZoom: mapMinZoom,
-                fullscreenControl: true
-              }).setView([0, 0], 5);
+                    maxZoom: mapMaxZoom,
+                    minZoom: mapMinZoom,
+                    fullscreenControl: true
+                }).setView([0, 0], 2);
 
-                L.tileLayer('/public/plan/' + object.name + '/{z}/{x}/{y}.png', {
-                    minZoom: mapMinZoom, 
+                L.tileLayer(url.plan + '/' + object.name + '/{z}/{x}/{y}.png', {
+                    minZoom: mapMinZoom,
                     maxZoom: mapMaxZoom,
                     attribution: 'dinhgiatructuyen.vn',
                     noWrap: true,
                     tms: false
                 }).addTo(map);
 
-                if(object.sposition) {
-                    drawPolygon( JSON.parse(object.sposition) );
+                if (object.sposition) {
+                    drawPolygon(JSON.parse(object.sposition));
                 }
                 L.marker([object.slat, object.slng]).addTo(map);
                 map.panTo([object.slat, object.slng]);
-            }else {
+
+
+                var drawnItems = new L.FeatureGroup();
+                map.addLayer(drawnItems);
+
+                L.drawLocal.draw.toolbar.buttons.polygon = 'Tính diện tích';
+                L.drawLocal.draw.toolbar.buttons.polyline = 'Tính khoảng cách';
+                L.drawLocal.draw.toolbar.buttons.marker = 'Đặt vị trí';
+                var drawControl = new L.Control.Draw({
+                    draw: {
+                        position: 'topleft',
+                        polygon: {
+                            title: 'Tính diện tích',
+                            allowIntersection: false,
+                            drawError: {
+                                color: '#b00b00',
+                                timeout: 1000
+                            },
+                            shapeOptions: {
+                                color: '#bada55'
+                            },
+                            //metric: false,
+                            showArea: true
+                        },
+                        polyline: {
+                            title: 'Tính khoảng cách',
+                            //metric: false
+                        },
+                        rectangle: false,
+                        circle: false
+                    },
+                    edit: {
+                        featureGroup: drawnItems
+                    }
+                });
+                map.addControl(drawControl);
+
+                map.on('draw:created', function(e) {
+                    var type = e.layerType,
+                        layer = e.layer;
+
+                    drawnItems.addLayer(layer);
+                });
+            } else {
                 $('#map_plan_pop_up').html('<p>Chưa cập nhật bản đồ quy hoạch</p>');
             }
-        } 
+        }
         callback();
     }
 
@@ -38,47 +83,59 @@ var map = null;
                 id: id,
                 type: type
             },
-            success:function(response) {
+            success: function(response) {
                 callback(response);
             }
         });
     }
 
     function drawPolygon(object) {
-        if(object && object.latlng) {
+        if (object && object.latlng) {
             var bounds = object.latlng;
-            switch(object.type) {
+            switch (object.type) {
                 case 'rectangle':
-                    L.rectangle(bounds, {color: "#ff7800", weight:'1px'}).addTo(map);
+                    L.rectangle(bounds, {
+                        color: "#ff7800",
+                        weight: '1px'
+                    }).addTo(map);
                     break;
                 case 'circle':
                     L.circle(bounds, 200).addTo(map);
                     break;
                 case 'polygon':
-                    L.polygon(bounds, {color: 'ff7800', weight:'1px'}).addTo(map);
+                    L.polygon(bounds, {
+                        color: 'ff7800',
+                        weight: '1px'
+                    }).addTo(map);
                     break;
                 default:
-                    L.polyline(bounds, {color: "#ff7800", weight:'1px'}).addTo(map)
+                    L.polyline(bounds, {
+                        color: "#ff7800",
+                        weight: '1px'
+                    }).addTo(map)
             }
         }
     }
 
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('.plan-btn-popup').click(function(e) {
             e.preventDefault();
             var type = $(this).attr('type');
             var id = $(this).attr('data-id');
-            if(parseInt(id)) {              
+            if (parseInt(id)) {
                 getPlan(type, id, function(object) {
-                  $('#modal-xemquyhoach').modal('show');
-                  setTimeout(function(){
-                    init(object, function() {});
-                  }, 2000);
-                    
+                    $('.modal.in').modal('hide');
+                    $('#modal-xemquyhoach').modal('show');
+                    setTimeout(function() {
+                        init(object, function() {});
+                    }, 2000);
+
                 });
-            }else {
+            } else {
                 $('#map_plan_pop_up').html('<p>Chưa cập nhật bản đồ quy hoạch</p>');
+                $('.modal.in').modal('hide');
                 $('#modal-xemquyhoach').modal('show');
             }
-        });                    
+        });
     });
+})(url);

@@ -1,5 +1,5 @@
 <div id="modal-xemquyhoach" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <!-- Modal content-->
     <div class="modal-content">     
       <div class="modal-body">
@@ -10,4 +10,3 @@
     </div>
   </div>
 </div>
-{{ HTML::script('default/js/popup-quyhoach.js') }} 

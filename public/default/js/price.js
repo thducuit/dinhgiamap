@@ -101,7 +101,6 @@
 
     function bindInfoWindow(marker) {
       google.maps.event.addListener(marker, 'click', function() {
-        //console.log(marker);
         setContent(marker);
         infowindow.open(mapObject, marker);
       });

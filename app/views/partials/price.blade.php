@@ -1,7 +1,6 @@
 <!-- Modal -->
 <div id="modal_dongiathitruong" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -17,31 +16,30 @@
           <div class="modal_half">
             <p><strong>Đơn giá đất thị trường đề xuất</strong><br>
               <span class="price"><span class="dongia_highlight_left"></span>(VNĐ/M<sup>2</sup>)</span></p>
+            </div>
+            <div class="modal_half">
+              <p><strong>Đơn giá đất nhà nước Mặt tiền đường</strong><br>
+                <span class="price"><span class="dongia_highlight_right"></span>(VNĐ/M<sup>2</sup>)</span></p>
+              </div>
+            </div>
           </div>
-          <div class="modal_half">
-            <p><strong>Đơn giá đất nhà nước Mặt tiền đường</strong><br>
-              <span class="price"><span class="dongia_highlight_right"></span>(VNĐ/M<sup>2</sup>)</span></p>
+          <div class="modal-footer">
+            <?php
+            /*
+            <a href="#" class="show-price-temp-pop-up">
+              <div class="btn btn_icon btn_gradient2" style="padding-right: 70px;">
+                <i class="icon_phathanhchungthu"></i>
+                <span>Định giá sơ bộ</span>
+              </div>
+            </a>
+            <a id="btn_dinhgia" class="btn btn_dinhgia btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></a>
+            *
+            */?>
+            
+            <!-- <a id="btn_dinhgia" class="orange-btn odd btn_dinhgia" ><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</a> -->
+            <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn even plan-btn-popup"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
+            <a class="grey-btn odd show-price-temp-pop-up"><img src="{{ URL::asset('default/images/w2.png') }}"> THẨM ĐỊNH CƠ BẢN</a>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <?php 
-        /*
-        <a href="#" class="show-price-temp-pop-up">
-          <div class="btn btn_icon btn_gradient2" style="padding-right: 70px;">
-            <i class="icon_phathanhchungthu"></i>
-            <span>Định giá sơ bộ</span>
-          </div>
-        </a>
-        <a id="btn_dinhgia" class="btn btn_dinhgia btn_icon btn_gradient3"><i class="icon_dinhgia"></i><span>Thẩm Định giá</span></a>
-         * 
-         */?>
-        
-        <!-- <a id="btn_dinhgia" class="orange-btn odd btn_dinhgia" ><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH GIÁ</a> -->
-        <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn even plan-btn-popup"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
-        <a class="grey-btn odd show-price-temp-pop-up"><img src="{{ URL::asset('default/images/w2.png') }}"> THẨM ĐỊNH CƠ BẢN</a>
-      </div>
-    </div>
-
-  </div>
-</div> <!-- end modal -->
+      </div> <!-- end modal -->

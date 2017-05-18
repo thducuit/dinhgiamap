@@ -1,4 +1,4 @@
-(function($, google) {
+(function($, google, url) {
     'use strict';
     
     $(document).ready(function() {
@@ -37,10 +37,10 @@
         
         
         $('#autocomplete').autocomplete({
-            serviceUrl: '/public/search',
+            serviceUrl: url.searchArea,
             onSelect: function(suggestion){
                $.ajax({
-                    url: '/public/markers',
+                    url: url.markers,
                     type: 'POST',
                     data: {streetId: suggestion.data},
                     success: function(response) {
@@ -90,4 +90,4 @@
         }
         
     });
-})(jQuery, google);
+})(jQuery, google, url);
