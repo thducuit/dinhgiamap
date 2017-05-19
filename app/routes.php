@@ -135,7 +135,7 @@ Route::get('/chi-tiet-tai-san-dang-giao-dich.html', function() {
 
 
 
-Route::get('/price', function() {
+Route::get('/dinh-gia.html', function() {
      $marker = Marker::findByPlaceId(Input::get('placeId'));
      $districtName = 'Quận 1';
      $childKhoXuong = [];
@@ -239,6 +239,15 @@ Route::post('/xem-quy-hoach.html', function() {
             ->withInput(Input::all());
     
 });
+
+Route::post('/xem-quy-hoach-v2.html', function() {
+    
+    $plan = PlanMap::findByWard(Input::get('ward_id'));
+
+    return Response::json($plan);
+    
+});
+
 Route::post('/planmap', function() {
     $type = Input::get('type');
     $id = Input::get('id');
@@ -296,7 +305,7 @@ Route::get('/hoi-dap.html', function() {
         ->with('current', 4)
         ->with(array('body_class'=> 'page_contact'));
 });
-Route::get('/result', 'HomeController@showResult');
+Route::get('/ket-qua-dinh-gia.html', 'HomeController@showResult');
 Route::get('/register', function() {  
      return View::make('default.page.register')
         ->with(array('title'=> 'Đăng ký'))

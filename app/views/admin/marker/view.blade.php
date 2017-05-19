@@ -38,9 +38,12 @@
 		                                <thead>
                     					    <tr>
                     					        <th style=""><div class="th-inner ">ID</div></th>
+                    					        <th style=""><div class="th-inner ">Ký Hiệu</div></th>
                     					        <th style=""><div class="th-inner ">Tên</div></th>
                     					        <th style=""><div class="th-inner ">Giá thị trường (VNĐ)</div></th>
                     					        <th style=""><div class="th-inner ">Giá nhà nước (VNĐ)</div></th>
+                    					        <th style=""><div class="th-inner ">Phường/Xã</div></th>
+                    					        <th style=""><div class="th-inner ">Quận/Huyện</div></th>
                     					        <th style=""><div class="th-inner ">Cập nhật vị trí</div></th>
                     					        <th style=""><div class="th-inner "></div></th>
                     					    </tr>
@@ -50,9 +53,12 @@
     					                        @foreach($markers as $e)
     					                        <tr>
     					                            <td>{{ $e->id }}</td>
+    					                            <td>{{ $e->code }}</td>
     					                            <td>{{ $e->name }}</td>
     					                            <td>{{ number_format($e->price) }}</td>
     					                            <td>{{ number_format($e->state_price) }}</td>
+    					                            <td>{{ Ward::name($e->ward_id) }}</td>
+    					                            <td>{{ District::name($e->district_id) }}</td>
     					                            <td>
     					                            <a href="{{ URL::to('admin/markers/location/' . $e->id . '?page=' . $page) }}" class='btn btn-default btn-update-location'><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"/></svg> Vị trí</a></td>
     					                            <td>

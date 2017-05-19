@@ -60,7 +60,7 @@
     searchMarkers: '{{ URL::to('/search-markers') }}',
     searchArea: '{{ URL::to('/search') }}',
     address: '{{ URL::to('/address') }}',
-    price: '{{ URL::to('/price') }}',
+    price: '{{ URL::to('/dinh-gia.html') }}',
     plan: '{{ URL::to('/plan') }}',
     street: '{{ URL::to('/streets') }}',
     priceStreet: '{{ URL::to('/streets/price') }}',
@@ -90,7 +90,7 @@
         <div id="header">
           <div class="header_inner">
             <div class="header_show clearfix">
-              <div id="logo"><a href="{{ URL::to('/index1') }}">cenvalue</a></div>
+              <div id="logo"><a href="{{ URL::to('/') }}">cenvalue</a></div>
               <div id="menu_button"><span></span></div>
             </div>
             <div id="navigation">
@@ -103,7 +103,7 @@
                   <li class="menu_item"><a class="clearfix dangNhap" href="{{ URL::to('/thong-tin-tai-khoan.html') }}"  ><i class="menu_icon icon_dangky"></i> <span>Thông tin tài khoản</span></a></li>
                   @endif -->
                   <li class="menu_item {{ isset($current) && $current == 1 ? 'current' : '' }}">
-                    <a class="clearfix" href="{{ URL::to('/index1') }}">
+                    <a class="clearfix" href="{{ URL::to('/') }}">
                       <!-- <i class="menu_icon icon_trangchu"></i> --><span>Trang chủ</span>
                     </a>
                   </li>
@@ -255,6 +255,7 @@
   {{ HTML::script('default/js/jquery.bxslider.js') }}
   {{ HTML::script('default/js/custom.js') }}
   {{ HTML::script('default/js/popup-quyhoach.js') }} 
+  {{ HTML::script('admin/js/custom/province.js') }} 
   <script>
   function passWord() {
       var testV = 1;

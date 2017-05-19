@@ -134,7 +134,7 @@ class HomeController extends BaseController {
     $validation = Validator::make(Input::get(), $rules, $messages);
     if ($validation->fails()) {
 
-      $url = '/price?placeId=' . Input::get('place_id') . '&address=' . Input::get('address') . '&street=' . Input::get('street_id');
+      $url = '/dinh-gia.html?placeId=' . Input::get('place_id') . '&address=' . Input::get('address') . '&street=' . Input::get('street_id');
       return Redirect::to($url)
                       ->withInput(Input::all())
                       ->withErrors($validation)
@@ -165,7 +165,7 @@ class HomeController extends BaseController {
 
     $this->cart->store($result);
 
-    return Redirect::to('/result')
+    return Redirect::to('/ket-qua-dinh-gia.html')
                 ->with('address', Input::get('address') )
                 ->with('place_id', Input::get('place_id') );
     if (empty(Input::get('chooser')) || Input::get('chooser') == 'nologin') {

@@ -27,7 +27,7 @@
 			                <select name="district_id"  class="district_id form-control">
 			                	<option value="0"></option>
 			                </select>
-			                <input type="hidden" id="district_id" class="form-control" value="{{ Input::old('district_id') }}">
+			                <input type="hidden" id="district_id" class="form-control" value="{{  $plan->district_id }}">
 			            </div>
 			            
 			            <div class="form-group">
@@ -35,7 +35,7 @@
 			                <select name="ward_id"  class="ward_id form-control">
 			                	<option value="0"></option>
 			                </select>
-			                <input type="hidden" id="ward_id" class="form-control" value="{{ Input::old('ward_id') }}">
+			                <input type="hidden" id="ward_id" class="form-control" value="{{  $plan->ward_id }}">
 			            </div>
 			        </div>
 			        

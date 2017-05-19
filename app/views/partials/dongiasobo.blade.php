@@ -237,7 +237,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                 <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
                   <div class="center">
                     <!-- <span class="emeral notice-info">XEM THÔNG TIN LƯU Ý <img src="{{ URL::asset('default/images/arrow1.png') }}" > </span> -->
-                    <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 cursor btn_dinhgia_adv"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH NÂNG CAO</a>
+                    <!-- <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 cursor btn_dinhgia_adv"><img src="{{ URL::asset('default/images/w3.png') }}"> THẨM ĐỊNH NÂNG CAO</a> -->
                   </div>
                 </div>
                 <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
@@ -249,7 +249,7 @@ $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
                 <div class="col-md-3 col-sm-12 col-xs-12 padding-left-right-zero">
                   <div class="center">
                     <!-- <a class="emeral-btn col-md-4 col-sm-12 col-xs-12 btn_dinhgia cursor"><img src="{{ URL::asset('default/images/w6.png') }}" > THẨM ĐỊNH GIÁ</a> -->
-                    <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12 plan-btn-popup"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a>
+                    <!-- <a href="{{ URL::to('/xem-quy-hoach.html') }}" class="orange-btn col-md-4 col-sm-12 col-xs-12 plan-btn-popup"><img src="{{ URL::asset('default/images/w5.png') }}"> XEM QUY HOẠCH</a> -->
                   </div>
                 </div>
                 

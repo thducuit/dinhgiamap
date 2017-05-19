@@ -1,5 +1,6 @@
 (function(url) {
-    var map = null;
+    var map;
+    var tileLayer;
 
     function init(object, callback) {
         if (!map) {
@@ -12,7 +13,7 @@
                     fullscreenControl: true
                 }).setView([0, 0], 2);
 
-                L.tileLayer(url.plan + '/' + object.name + '/{z}/{x}/{y}.png', {
+                tileLayer = L.tileLayer(url.plan + '/' + object.name + '/{z}/{x}/{y}.png', {
                     minZoom: mapMinZoom,
                     maxZoom: mapMaxZoom,
                     attribution: 'dinhgiatructuyen.vn',
@@ -22,11 +23,10 @@
 
                 if (object.sposition) {
                     drawPolygon(JSON.parse(object.sposition));
+                    L.marker([object.slat, object.slng]).addTo(map);
+                    map.panTo([object.slat, object.slng]);
                 }
-                L.marker([object.slat, object.slng]).addTo(map);
-                map.panTo([object.slat, object.slng]);
-
-
+                
                 var drawnItems = new L.FeatureGroup();
                 map.addLayer(drawnItems);
 
@@ -71,6 +71,8 @@
             } else {
                 $('#map_plan_pop_up').html('<p>Chưa cập nhật bản đồ quy hoạch</p>');
             }
+        }else {
+            tileLayer.setUrl(url.plan + '/' + object.name + '/{z}/{x}/{y}.png');
         }
         callback();
     }
@@ -117,6 +119,24 @@
         }
     }
 
+    function getPlanByWard() {
+        var ward_id = $('.map-plan-search-tool .ward_id').val();
+        if(!ward_id) {
+            alert('Chọn phường để tiếp tục');
+        }else {
+            $.ajax({
+                url: '/xem-quy-hoach-v2.html',
+                type: 'post',
+                data: {
+                    ward_id: ward_id
+                },
+                success: function(response) {
+                    init(response, function() {});
+                }
+            });
+        }
+    }
+
     $(document).ready(function() {
         $('.plan-btn-popup').click(function(e) {
             e.preventDefault();
@@ -136,6 +156,11 @@
                 $('.modal.in').modal('hide');
                 $('#modal-xemquyhoach').modal('show');
             }
+        });
+
+
+        $('#btn_submit_xem_qui_hoach').click(function() {
+            getPlanByWard();
         });
     });
 })(url);
