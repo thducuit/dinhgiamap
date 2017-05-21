@@ -32,7 +32,9 @@
               </div>
             </div>
           </div>
-          <div id="map_plan_pop_up" class="map_plan_pop_up" ></div>
+          <div id="map_plan_pop_up" class="map_plan_pop_up" >
+            <p>Chưa cập nhật bản đồ quy hoạch</p>
+          </div>
         </div>
       </div>
     </div>

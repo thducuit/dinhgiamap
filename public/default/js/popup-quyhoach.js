@@ -5,6 +5,7 @@
     function init(object, callback) {
         if (!map) {
             if (object.name) {
+                $('#map_plan_pop_up p').hide();
                 var mapMinZoom = 0;
                 var mapMaxZoom = 7;
                 map = L.map('map_plan_pop_up', {
@@ -13,9 +14,16 @@
                     fullscreenControl: true
                 }).setView([0, 0], 2);
 
+                var mapBounds = new L.LatLngBounds(
+                    map.unproject([0, 19968], mapMaxZoom),
+                    map.unproject([28160, 0], mapMaxZoom));
+                    
+                map.fitBounds(mapBounds);
+
                 tileLayer = L.tileLayer(url.plan + '/' + object.name + '/{z}/{x}/{y}.png', {
                     minZoom: mapMinZoom,
                     maxZoom: mapMaxZoom,
+                    bounds: mapBounds,
                     attribution: 'dinhgiatructuyen.vn',
                     noWrap: true,
                     tms: false
@@ -33,6 +41,13 @@
                 L.drawLocal.draw.toolbar.buttons.polygon = 'Tính diện tích';
                 L.drawLocal.draw.toolbar.buttons.polyline = 'Tính khoảng cách';
                 L.drawLocal.draw.toolbar.buttons.marker = 'Đặt vị trí';
+                L.drawLocal.draw.handlers.polygon.tooltip.start = 'Nhấn vào để bắt đầu vẽ';
+                L.drawLocal.draw.handlers.polygon.tooltip.cont = 'Nhấn vào để tiếp tục vẽ';
+                L.drawLocal.draw.handlers.polygon.tooltip.end = 'Nhấn vào điểm đầu để hoàn tất';
+                L.drawLocal.draw.handlers.polyline.tooltip.start = 'Nhấn vào để bắt đầu vẽ';
+                L.drawLocal.draw.handlers.polyline.tooltip.cont = 'Nhấn vào để tiếp tục vẽ';
+                L.drawLocal.draw.handlers.polyline.tooltip.end = 'Nhấn vào điểm cuối để hoàn tất';
+
                 var drawControl = new L.Control.Draw({
                     draw: {
                         position: 'topleft',
@@ -51,7 +66,7 @@
                         },
                         polyline: {
                             title: 'Tính khoảng cách',
-                            //metric: false
+                            metric: true
                         },
                         rectangle: false,
                         circle: false
@@ -69,10 +84,17 @@
                     drawnItems.addLayer(layer);
                 });
             } else {
-                $('#map_plan_pop_up').html('<p>Chưa cập nhật bản đồ quy hoạch</p>');
+                $('#map_plan_pop_up p').show();
             }
         }else {
-            tileLayer.setUrl(url.plan + '/' + object.name + '/{z}/{x}/{y}.png');
+            if(object && object.name) {
+                $('#map_plan_pop_up p').hide();
+                tileLayer.setUrl(url.plan + '/' + object.name + '/{z}/{x}/{y}.png');
+            }else {
+                $('#map_plan_pop_up p').show();
+                tileLayer.setUrl('');
+            }
+            
         }
         callback();
     }
@@ -142,6 +164,9 @@
             e.preventDefault();
             var type = $(this).attr('type');
             var id = $(this).attr('data-id');
+            if(map) {
+                tileLayer.setUrl('');
+            }
             if (parseInt(id)) {
                 getPlan(type, id, function(object) {
                     $('.modal.in').modal('hide');

@@ -114,7 +114,7 @@
 				showArea: true
 			},
 			polyline: {
-				metric: false
+				//metric: false
 			},
 			circle: {
 				shapeOptions: {

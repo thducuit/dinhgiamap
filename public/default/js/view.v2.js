@@ -84,6 +84,7 @@
 
         $('#google-map-autocomplete').keyup(function(e) {
             var position = $(this).val();
+            fixListItemMarkerPosition();
             if (timeOut) {
                 clearTimeout(timeOut);
             }
@@ -125,8 +126,10 @@
         $('.google-map-search-form').submit(function(event) {
             var address = $('.google-map-search-form .cen-address-text').val();
             var placeId = $('.google-map-search-form #placeId').val();
+            var lat = $('.google-map-search-form #lat').val();
+            var lng = $('.google-map-search-form #lng').val();
             if (address) {
-                if (!placeId) {
+                if (!placeId || !lat || !lng) {
                     getAddress('address', address, function(result) {
                         if (result && $.isArray(result) && result.length) {
                             var obj = result[0];
@@ -326,7 +329,7 @@
             urlTaiSanGiaoDich += '?lat=' + _currentMarker.lat + '&lng=' + _currentMarker.lng;
             $('#modal_info').find('.btn-tai-san-giao-dich:first').attr('href', urlTaiSanGiaoDich);
             $('#modal_info .pp_address p').text(_currentMarker.address);
-            $('.btn_dinhgia_adv').attr('href', [url.price, '?placeId=', _currentMarker.placeId, '&address=', _currentMarker.address, '&street=', _currentMarker.streetId].join(''));
+            $('.btn_dinhgia_adv').attr('href', [url.price, '?placeId=', _currentMarker.placeId, '&address=', _currentMarker.address, '&street=', _currentMarker.streetId, '&lat=', _currentMarker.lat, '&lng=', _currentMarker.lng].join(''));
         }
 
         function initPlanMapModal(object) {
@@ -372,6 +375,12 @@
             _currentMarker.state_price_format = (object.state_price_format) ? object.state_price_format : 0;
             _currentMarker.price = (object.price) ? object.price : 0;
             _currentMarker.state_price = (object.state_price) ? object.state_price : 0;
+        }
+
+        function fixListItemMarkerPosition() {
+            var widthLocationLabel = $('.form_group_icon_location').outerWidth(true);
+            var widthAutocomplete = $('#google-map-autocomplete').outerWidth(true);
+            $('.list-item-marker').css('width', widthAutocomplete + 'px').css('left', widthLocationLabel + 'px');
         }
 
 

@@ -49,33 +49,33 @@
     <script>
     var placeInfo = null;
     var icon = {
-    home: "{{ URL::asset('default/images/logo_icon2.png') }}",
-    real: "{{ URL::asset('default/images/icon_marker.png') }}",
-    address: "{{ URL::asset('default/images/icon_cenvalue.png') }}",
+        home: "{{ URL::asset('default/images/logo_icon2.png') }}",
+        real: "{{ URL::asset('default/images/icon_marker.png') }}",
+        address: "{{ URL::asset('default/images/icon_cenvalue.png') }}",
     };
     var url = {
-    info: '{{ URL::to('/info') }}',
-    planmap: '{{ URL::to('/planmap') }}',
-    markers: '{{ URL::to('/markers') }}',
-    searchMarkers: '{{ URL::to('/search-markers') }}',
-    searchArea: '{{ URL::to('/search') }}',
-    address: '{{ URL::to('/address') }}',
-    price: '{{ URL::to('/dinh-gia.html') }}',
-    plan: '{{ URL::to('/plan') }}',
-    street: '{{ URL::to('/streets') }}',
-    priceStreet: '{{ URL::to('/streets/price') }}',
-    district: '{{ URL::to('/district') }}',
-    ward: '{{ URL::to('/ward') }}',
-    login: '{{ URL::to('/login-ajax') }}',
-    register: '{{ URL::to('/register-ajax') }}',
-    getReal: '{{ URL::to('/reals') }}',
-    reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}'
+        info: '{{ URL::to('/info') }}',
+        planmap: '{{ URL::to('/planmap') }}',
+        markers: '{{ URL::to('/markers') }}',
+        searchMarkers: '{{ URL::to('/search-markers') }}',
+        searchArea: '{{ URL::to('/search') }}',
+        address: '{{ URL::to('/address') }}',
+        price: '{{ URL::to('/dinh-gia.html') }}',
+        plan: '{{ URL::to('/plan') }}',
+        street: '{{ URL::to('/streets') }}',
+        priceStreet: '{{ URL::to('/streets/price') }}',
+        district: '{{ URL::to('/district') }}',
+        ward: '{{ URL::to('/ward') }}',
+        login: '{{ URL::to('/login-ajax') }}',
+        register: '{{ URL::to('/register-ajax') }}',
+        getReal: '{{ URL::to('/reals') }}',
+        reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}'
     };
-    jQuery(window).keydown(function (event) {
-    if (event.keyCode == 13) {
-    event.preventDefault();
-    return false;
-    }
+    jQuery(window).keydown(function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
     });
     </script>
   </head>

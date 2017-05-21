@@ -67,6 +67,11 @@
 	width: 100%;
 	height: 600px;
 }
+#map_plan_pop_up p {
+	text-align: center;
+	padding-top: 250px;
+	display: none
+}
 .map-plan-search-tool {
 	position: absolute;
 	top: 15px;

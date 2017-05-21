@@ -28,10 +28,12 @@ MAIN
 						</div>
 					{{ Form::close() }}
 				</div>
+
+				<div class="list-item-marker">
+	              <ul></ul>
+	            </div>
 			</div>	
-            <div class="list-item-marker">
-              <ul></ul>
-            </div>
+            
             <div class="box-current-position">
               <a class="btn-get-current-position cursor"><img src="{{ URL::asset('default/images/logo_icon2.png') }}"/></a>
             </div>
