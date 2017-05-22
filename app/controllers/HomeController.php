@@ -312,6 +312,16 @@ class HomeController extends BaseController {
     }
 
     //store history in to DB
+
+    $point = array(Input::get('lat'), Input::get('lng'));
+    $street = Street::getPolygon($point);
+    if( $street != false ) {
+      $district = District::find($street['district_id']);
+      $street['price_format'] = number_format($street['price']);
+      $street['state_price_format'] = number_format($street['state_price']);
+      $street['district_format'] =  ($district->type && $district->name) ? $district->type . ' ' . $district->name : '';
+    }
+    $streetJSON = $street != false ? json_encode($street) : '';
     
     return View::make('default.page.result')
                     ->with(array('title' => 'Kết quả định giá'))
@@ -320,6 +330,7 @@ class HomeController extends BaseController {
                     ->with('placeId', Input::get('placeId'))
                     ->with('lat', Input::get('lat'))
                     ->with('lng', Input::get('lng'))
+                    ->with('streetJSON', $streetJSON)
                     ->with(array('body_class' => 'page_search'))
                     ->with(array('inputThamDinhGia' => $inputThamDinhGia));
   }
