@@ -134,7 +134,7 @@ class HomeController extends BaseController {
     $validation = Validator::make(Input::get(), $rules, $messages);
     if ($validation->fails()) {
 
-      $url = '/dinh-gia.html?placeId=' . Input::get('place_id') . '&address=' . Input::get('address') . '&street=' . Input::get('street_id');
+      $url = '/dinh-gia.html?placeId=' . Input::get('place_id') . '&address=' . Input::get('address') . '&street=' . Input::get('street_id') . '&lat=' . Input::get('lat') . '&lng=' . Input::get('lng');
       return Redirect::to($url)
                       ->withInput(Input::all())
                       ->withErrors($validation)
@@ -165,9 +165,10 @@ class HomeController extends BaseController {
 
     $this->cart->store($result);
 
-    return Redirect::to('/ket-qua-dinh-gia.html')
-                ->with('address', Input::get('address') )
-                ->with('place_id', Input::get('place_id') );
+    $url = '/ket-qua-dinh-gia.html?placeId=' . Input::get('place_id') . '&address=' . Input::get('address') . '&street=' . Input::get('street_id') . '&lat=' . Input::get('lat') . '&lng=' . Input::get('lng');
+
+    return Redirect::to($url);
+
     if (empty(Input::get('chooser')) || Input::get('chooser') == 'nologin') {
       Session::put('step', 2);
       return Redirect::to('/payment');
@@ -315,6 +316,10 @@ class HomeController extends BaseController {
     return View::make('default.page.result')
                     ->with(array('title' => 'Kết quả định giá'))
                     ->with(array('result' => $result))
+                    ->with('address', Input::get('address'))
+                    ->with('placeId', Input::get('placeId'))
+                    ->with('lat', Input::get('lat'))
+                    ->with('lng', Input::get('lng'))
                     ->with(array('body_class' => 'page_search'))
                     ->with(array('inputThamDinhGia' => $inputThamDinhGia));
   }

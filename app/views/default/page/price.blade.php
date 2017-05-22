@@ -99,6 +99,8 @@ MAIN
                             <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                             <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                             <input type="hidden" name="address"  value="{{ $address }}" >
+                            <input type="hidden" name="lat"  value="{{ $lat }}" >
+                            <input type="hidden" name="lng"  value="{{ $lng }}" >
                             <input type="hidden" name="viTri"  value="" class="inputViTri">
                             <select class="selectVitri" name='selectVitri'>
                               @foreach ($viTri as $s)
@@ -263,6 +265,8 @@ MAIN
                                 <input type="hidden" name="place_id" value='{{ $placeId }}'/>
                                 <input type="hidden" name="street_id"  value="{{ $streetId }}" >
                                 <input type="hidden" name="address"  value="{{ $address }}" >
+                                <input type="hidden" name="lat"  value="{{ $lat }}" >
+                                <input type="hidden" name="lng"  value="{{ $lng }}" >
                               </div>
                               <div class="form_col">
                                 <input type="text" placeholder="Tổng diện tích (m2)" name="total_area" value="{{ Input::old('total_area') }}">

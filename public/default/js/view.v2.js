@@ -383,10 +383,28 @@
             $('.list-item-marker').css('width', widthAutocomplete + 'px').css('left', widthLocationLabel + 'px');
         }
 
+        function onResultPage() {
+            try {
+                if(IS_ON_RESULT_PAGE) {
+                    onResultPageCallback();
+                }
+            }catch(e) {
+                console.log('Not result page');
+            }
+        }
+
+        function onResultPageCallback() {
+            $.when( findMarkerInfo() ).done(
+            function(response) {
+                initPlanMapModal(response);
+            });
+        }
+
 
         //RUN INIT
         (function() {
             initCurrentMarker();
+            onResultPage();
         })()
 
     });
