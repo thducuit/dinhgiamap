@@ -161,12 +161,24 @@ Route::get('/dinh-gia.html', function() {
       $childKhoXuong = StructureOption::where('structure_id', '=', $ketCauChinhKhoXuong[0]['id'])->get()->toArray();
      }
      $namXayDung = AdjustOption::findByGroupId(9)->get()->toArray();
+
+    $point = array(Input::get('lat'), Input::get('lng'));
+    $street = Street::getPolygon($point);
+    if( $street != false ) {
+      $district = District::find($street['district_id']);
+      $street['price_format'] = number_format($street['price']);
+      $street['state_price_format'] = number_format($street['state_price']);
+      $street['district_format'] =  ($district->type && $district->name) ? $district->type . ' ' . $district->name : '';
+    }
+    $streetJSON = $street != false ? json_encode($street) : '';
+
      return View::make('default.page.price')
         ->with('address', $address)
         ->with('placeId', Input::get('placeId'))
         ->with('streetId', Input::get('street'))
         ->with('lat', Input::get('lat'))
 	    ->with('lng', Input::get('lng'))
+        ->with('streetJSON', $streetJSON)
         ->with(array('title'=> 'Định giá'))
         ->with(array('body_class'=> 'page_search'))     
         ->with(array('viTri'=> $viTri))

@@ -394,7 +394,7 @@
         }
 
         function onResultPageCallback() {
-            $.when( findMarkerInfo() ).done(
+            $.when( markerInfoPromise ).done(
             function(response) {
                 initPlanMapModal(response);
             });

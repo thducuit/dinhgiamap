@@ -38,15 +38,118 @@
                 var drawnItems = new L.FeatureGroup();
                 map.addLayer(drawnItems);
 
-                L.drawLocal.draw.toolbar.buttons.polygon = 'Tính diện tích';
-                L.drawLocal.draw.toolbar.buttons.polyline = 'Tính khoảng cách';
-                L.drawLocal.draw.toolbar.buttons.marker = 'Đặt vị trí';
-                L.drawLocal.draw.handlers.polygon.tooltip.start = 'Nhấn vào để bắt đầu vẽ';
-                L.drawLocal.draw.handlers.polygon.tooltip.cont = 'Nhấn vào để tiếp tục vẽ';
-                L.drawLocal.draw.handlers.polygon.tooltip.end = 'Nhấn vào điểm đầu để hoàn tất';
-                L.drawLocal.draw.handlers.polyline.tooltip.start = 'Nhấn vào để bắt đầu vẽ';
-                L.drawLocal.draw.handlers.polyline.tooltip.cont = 'Nhấn vào để tiếp tục vẽ';
-                L.drawLocal.draw.handlers.polyline.tooltip.end = 'Nhấn vào điểm cuối để hoàn tất';
+                // L.drawLocal.draw.toolbar.buttons.polygon = 'Tính diện tích';
+                // L.drawLocal.draw.toolbar.buttons.polyline = 'Tính khoảng cách';
+                // L.drawLocal.draw.toolbar.buttons.marker = 'Đặt vị trí';
+                // L.drawLocal.draw.handlers.polygon.tooltip.start = 'Nhấn vào để bắt đầu vẽ';
+                // L.drawLocal.draw.handlers.polygon.tooltip.cont = 'Nhấn vào để tiếp tục vẽ';
+                // L.drawLocal.draw.handlers.polygon.tooltip.end = 'Nhấn vào điểm đầu để hoàn tất';
+                // L.drawLocal.draw.handlers.polyline.tooltip.start = 'Nhấn vào để bắt đầu vẽ';
+                // L.drawLocal.draw.handlers.polyline.tooltip.cont = 'Nhấn vào để tiếp tục vẽ';
+                // L.drawLocal.draw.handlers.polyline.tooltip.end = 'Nhấn vào điểm cuối để hoàn tất';
+
+                L.drawLocal = {
+                    draw: {
+                        toolbar: {
+                            // #TODO: this should be reorganized where actions are nested in actions
+                            // ex: actions.undo  or actions.cancel
+                            actions: {
+                                title: 'Huỷ',
+                                text: 'Huỷ'
+                            },
+                            finish: {
+                                title: 'Hoàn thành',
+                                text: 'Hoàn thành'
+                            },
+                            undo: {
+                                title: 'Xoá điểm cuối cùng',
+                                text: 'Xoá điểm cuối cùng'
+                            },
+                            buttons: {
+                                polyline: 'Vẽ đường thẳng',
+                                polygon: 'Vẽ một khu vực',
+                                rectangle: 'Vẽ hình vuông',
+                                circle: 'Vẽ hình tròn',
+                                marker: 'Đặt marker'
+                            }
+                        },
+                        handlers: {
+                            circle: {
+                                tooltip: {
+                                    start: 'Click và kéo để vẽ hình tròn.'
+                                },
+                                radius: 'Bán kính'
+                            },
+                            marker: {
+                                tooltip: {
+                                    start: 'Click vào bản đồ để đặt marker.'
+                                }
+                            },
+                            polygon: {
+                                tooltip: {
+                                    start: 'Click để bắt đầu vẽ.',
+                                    cont: 'Click tiếp tục vẽ.',
+                                    end: 'Click vào điểm bắt đầu để hoàn thành.'
+                                }
+                            },
+                            polyline: {
+                                error: '<strong>Error:</strong> shape edges cannot cross!',
+                                tooltip: {
+                                    start: 'Click để bắt đầu vẽ.',
+                                    cont: 'Click tiếp tục vẽ.',
+                                    end: 'Click vào điểm cuối cùng để hoàn thành.'
+                                }
+                            },
+                            rectangle: {
+                                tooltip: {
+                                    start: 'Click và kéo để vẽ hình vuông.'
+                                }
+                            },
+                            simpleshape: {
+                                tooltip: {
+                                    end: 'Release mouse to finish drawing.'
+                                }
+                            }
+                        }
+                    },
+                    edit: {
+                        toolbar: {
+                            actions: {
+                                save: {
+                                    title: 'Lưu lại.',
+                                    text: 'Lưu lại'
+                                },
+                                cancel: {
+                                    title: 'Huỷ thay đổi, bỏ qua mọi thay đổi.',
+                                    text: 'Huỷ'
+                                },
+                                clearAll:{
+                                    title: 'xoá hết các lớp.',
+                                    text: 'Xoá hết'
+                                }
+                            },
+                            buttons: {
+                                edit: 'Cập nhật các lớp.',
+                                editDisabled: 'Không có lớp nào được sửa.',
+                                remove: 'Xoá các lớp.',
+                                removeDisabled: 'Không lớp nào được xoá.'
+                            }
+                        },
+                        handlers: {
+                            edit: {
+                                tooltip: {
+                                    text: 'Drag handles, or marker to edit feature.',
+                                    subtext: 'Click cancel to undo changes.'
+                                }
+                            },
+                            remove: {
+                                tooltip: {
+                                    text: 'Click on a feature to remove'
+                                }
+                            }
+                        }
+                    }
+                };
 
                 var drawControl = new L.Control.Draw({
                     draw: {

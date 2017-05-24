@@ -70,7 +70,7 @@
             showInput();
             setMarkerPosition(point);
             getAddress('latLng', e.latLng, getAddressCallback);
-            autoPrice(point);
+            //autoPrice(point);
         });
         
         google.maps.event.addListener(marker, 'dragend', function() {
@@ -79,27 +79,27 @@
                 point.setLat( latLng.lat() ).setLng( latLng.lng() );
                 showInput();
                 getAddress('latLng', latLng, getAddressCallback);
-                autoPrice(point);
+                //autoPrice(point);
             }
         });
 
-        function autoPrice(point) {
-            var street_id = ContainInPolygon(point);
-            $("#street_id").val(street_id);
-            $.ajax({
-                url: url.priceStreet,
-                type: 'post',
-                data: {
-                    id: street_id
-                },
-                success: function(response) {
-                    if(response){
-                        $('#price').val(response.price);
-                        $('#state_price').val(response.state_price);
-                    }
-                }
-            });
-        }
+        // function autoPrice(point) {
+        //     var street_id = ContainInPolygon(point);
+        //     $("#street_id").val(street_id);
+        //     $.ajax({
+        //         url: url.priceStreet,
+        //         type: 'post',
+        //         data: {
+        //             id: street_id
+        //         },
+        //         success: function(response) {
+        //             if(response){
+        //                 $('#price').val(response.price);
+        //                 $('#state_price').val(response.state_price);
+        //             }
+        //         }
+        //     });
+        // }
 
         function ContainInPolygon(point){
             for(var i = polygons.length; i>=0; i--) {
@@ -108,6 +108,26 @@
             }
             return 0;
         }
+
+
+        $('.btn-search-marker').click(function(e) {
+            e.preventDefault();
+            var address = $('#google-map-point-search').val();
+            var obj;
+            getAddress('address', address, function(result) {
+                if(result && $.isArray(result) && result.length ) {
+                    obj = result[0];
+                }else {
+                    obj = result;
+                }
+                if(obj) {
+                    point.setLat( obj.geometry.location.lat() ).setLng( obj.geometry.location.lng() );
+                    setMarkerPosition(point);
+                    showInput();
+                    $('#place_id').val(obj.place_id);
+                }
+            });
+        });
         
         
         
