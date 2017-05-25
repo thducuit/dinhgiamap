@@ -1,1 +1,1 @@
-<div id="areas" class="hidden-xs-up">{{ !empty($streetJSON) ? $streetJSON : '' }}</div>
+<div id="areas" class="hidden">{{ !empty($streetJSON) ? $streetJSON : '' }}</div>

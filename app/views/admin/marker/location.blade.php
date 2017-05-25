@@ -101,7 +101,15 @@
 			        </div>
 			        
 			        <div class="col-md-12">
-			        	<input type="text" class="form-control" id="google-map-point-search" placeholder="tìm kiếm địa chỉ nhà"/>
+			        	<div class="form-group">
+			        		<label>Tìm vị trí</label>
+			        		<input type="text" class="form-control" id="google-map-point-search" placeholder="tìm kiếm địa chỉ nhà"/>
+			        	</div>
+
+			        	<div class="form-group pull-right">
+			        		<button class="btn btn-info btn-search-marker">Tìm vị trí</button>
+			        	</div>
+			        	
 			        	<div class="form-group"><div id="google-map-container"></div></div>
 			            
 			            <div class="form-group google-map-point">

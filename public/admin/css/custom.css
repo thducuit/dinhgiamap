@@ -50,3 +50,9 @@ label.error {
 .location-page .navbar
 {display: none}
 .location-page .main {width: 100%; margin-left: 0}
+
+.page-search-form {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}

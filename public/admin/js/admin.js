@@ -104,6 +104,14 @@
         disableOption();
 
         locationModal();
+
+        $('#page-search').click(function() {
+            var page = $('#page-number').val();
+            var link = $('#page-number').data('href');
+            if(page) {
+                window.location.href = [link, '?page=', parseInt(page)].join('');
+            }
+        });
     });
 
     $( window ).load(function() {

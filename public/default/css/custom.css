@@ -182,7 +182,7 @@
     border: none;
     margin-bottom: 0; 
 }
-
+.hidden {display:none;}
 @media screen and (max-width: 1100px) {
     .image-item div {
         width: 100%
