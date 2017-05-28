@@ -17,11 +17,12 @@
     {{ HTML::style('default/css/bootstrap-multiselect.css') }}
     {{ HTML::style('default/css/cenvalue.css') }}
     
+    {{ HTML::style('default/css/custom.css') }}
     {{ HTML::style('default/css/responsive.css') }}
     {{ HTML::style('default/css/detail.css') }}
     {{ HTML::style('default/css/modal.plan.css') }}
     {{ HTML::style('default/css/jquery.bxslider.css') }}
-    {{ HTML::style('default/css/custom.css') }}
+    
     {{ HTML::style('http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css') }}
     {{ HTML::style('admin/css/leaflet.draw.css') }}
     {{ HTML::style('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css') }}

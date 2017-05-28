@@ -65,7 +65,8 @@ MAIN
             @endif
             <!--/.alert-->
             <!-- danh cho ban desktop -->
-            <div class="desktop">
+<!--            <div class="desktop">-->
+            <div>
               <div class="dinhgia_tabpanel">
                 <div class="ztabpanel clearfix">
                   <ul>
@@ -117,7 +118,7 @@ MAIN
                               @endforeach
                             </select>
                           </div>
-                          <div class="form_col yeu-to-khac-box"  style="width: 50%;">
+                          <div class="form_col yeu-to-khac-box" >
                             <label>Yếu tố khác</label>
                             <div class="box-input-yeutokhac"></div>
                             <select class="selectYeuToKhac" name='selectYeuToKhac[]' multiple="">
@@ -240,6 +241,7 @@ MAIN
               </div>
             </div>
             
+            <?php /*
             <!-- danh cho ban mobile -->
             <div class="mobile">
               <section id="list_loaitaisan_dinhgia" data-accordion-group>
@@ -385,6 +387,8 @@ MAIN
                 </section>
               </section>
             </div>
+            
+            */ ?>
           </div>
         </div>
       </div>

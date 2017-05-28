@@ -986,7 +986,7 @@
 
 	}
 
-	.modal .tab_body .form_row .form_col {
+	.modal .tab_body .form_row .form_col, .modal .tab_body .form_row .form_col.yeu-to-khac-box {
 
 		width: 100%;
 
@@ -994,6 +994,9 @@
 
 	}
 
+    #modal_dongiasobo .form_col{
+      width: 100%;
+    }
 	
 
 }
@@ -1137,6 +1140,13 @@
 	  font-family: serif;
 
 	}
+    .modal_popup .modal-dialog, #modal_ketqua_dongiasobo .modal-dialog{
+      width: auto;
+      margin: 10px;
+    };
+    #modal_dongiasobo .form_col{
+      width: 100%;
+    }
 
 }
 

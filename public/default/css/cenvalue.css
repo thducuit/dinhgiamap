@@ -7553,7 +7553,7 @@ button.orange-btn, button.grey-btn{
   margin-bottom: 5px;
 }
 .modal_popup .modal-dialog {
-  width: 489px!important;
+  width: 489px;
 }
 .modal_info__marker{
   float: left;
@@ -7573,4 +7573,7 @@ button.grey-btn.page_xemquihoach_wrapper__grey-btn img, a.page_xemquihoach_wrapp
 a.page_xemquihoach_wrapper__emeral-btn{
   background-size: 224px 43px;
   padding-left: 10px;
+}
+.modal .tab_body .form_row .form_col.yeu-to-khac-box{
+  width: 50%;
 }
