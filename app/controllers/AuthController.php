@@ -186,7 +186,7 @@ class AuthController extends BaseController {
         $users = Sentry::getUser();
         return Response::json($user);        
       } else {
-        $message = 'only customer can login';
+        $message = 'Chỉ có tài khoản user có thể đăng nhập';
       }
     } catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
       $message = 'Vui lòng nhập email và mật khẩu';

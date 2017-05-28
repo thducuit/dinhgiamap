@@ -41,6 +41,8 @@
     {{  HTML::script('admin/js/custom/Google.js') }}
     {{ HTML::script('admin/js/custom/leaflet.draw.js') }}
     {{ HTML::script('https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js') }}
+    {{ HTML::script('default/js/bootstrap.min.js') }}
+    {{ HTML::script('default/js/bootstrap-multiselect.js') }}
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -70,7 +72,8 @@
         login: '{{ URL::to('/login-ajax') }}',
         register: '{{ URL::to('/register-ajax') }}',
         getReal: '{{ URL::to('/reals') }}',
-        reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}'
+        reals: '{{ URL::to('/chi-tiet-tai-san-dang-giao-dich.html') }}',
+        donGiaSoBo: '{{ URL::to('/don-gia-so-bo') }}'
     };
     jQuery(window).keydown(function(event) {
         if (event.keyCode == 13) {
@@ -245,17 +248,16 @@
   <script src="js/moment.js"></script>
   <script src="js/moment-vi.js"></script>
   <script src="js/bootstrap-datetimepicker.js"></script>
-  -->
-  {{ HTML::script('default/js/bootstrap.min.js') }}
+  -->  
   {{ HTML::script('default/js/moment.js') }}
   {{ HTML::script('default/js/moment-vi.js') }}
   {{ HTML::script('default/js/zjs/z.min.js') }}
-  {{ HTML::script('default/js/jquery.accordion.js') }}
-  {{ HTML::script('default/js/bootstrap-multiselect.js') }}
+  {{ HTML::script('default/js/jquery.accordion.js') }}  
   {{ HTML::script('default/js/cenvalue.js') }}
   {{ HTML::script('default/js/jquery.bxslider.js') }}
   {{ HTML::script('default/js/custom.js') }}
-  {{ HTML::script('default/js/popup-quyhoach.js') }} 
+  {{ HTML::script('default/js/popup-quyhoach.js') }}   
+  {{ HTML::script('admin/js/custom/province.js') }} 
   {{ HTML::script('admin/js/custom/province.js') }} 
   <script>
   function passWord() {

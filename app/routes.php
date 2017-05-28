@@ -337,7 +337,18 @@ Route::get('/logout', 'AuthController@logout');
 Route::get('/structure', 'HomeController@getStructure');
 
 Route::post('/the-price', 'HomeController@getPrice');
-
+Route::post('/don-gia-so-bo', function(){      
+  $giaSauDieuChinh = floatval(Input::get('giaThiTruong')) + floatval(Input::get('giaThiTruong')) * (floatval(Input::get('viTri')) + floatval(Input::get('hinhDangThuaDat')) + floatval(Input::get('chieuNgang')) + floatval(Input::get('dienTichDat'))) / 100;
+  $giaTriDat = floatval(Input::get('dienTichDatText')) * $giaSauDieuChinh;
+  $giaTriCTXD = (Input::get('ketCauChinh') * Input::get('dienTichSanXD') * Input::get('namXayDung')) / 100;
+  $tongGiaTriSoBo = floatval($giaTriDat) + floatval($giaTriCTXD);
+  return Response::json(array(
+      'giaSauDieuChinh' => $giaSauDieuChinh,
+      'giaTriDat' => $giaTriDat,
+      'giaTriCTXD' => $giaTriCTXD,
+      'tongGiaTriSoBo' => $tongGiaTriSoBo
+  ));        
+});
 
 Route::group(array('before' => 'dg_admin_authentication'), function() {
      Route::controller('admin/info', 'InfoController');
